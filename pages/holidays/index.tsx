@@ -1,5 +1,6 @@
 import { Col, List, Row } from 'antd';
-import React, { ReactElement } from 'react';
+import axios from 'axios';
+import React, { ReactElement, useEffect, useState } from 'react';
 import HolidaysHero from '../../components/holidays/HolidaysHero';
 import LayoutHOC from '../../layout/LayoutHOC';
 
@@ -241,6 +242,37 @@ const mockHolidaysReArrange = [
   },
 ];
 function HolidaysPage(): ReactElement {
+  const [holidayData, setHolidayData] = useState<HolidaysResponseFromBOT>(mockHolidays);
+
+  const options: any = {
+    method: 'GET',
+    url: 'https://apigw1.bot.or.th/bot/public/financial-institutions-holidays/',
+    qs: { year: '2022' },
+    headers: {
+      'X-IBM-Client-Id': '7d6e043b-6f69-4026-8279-7be69d2d3399',
+      accept: 'application/json',
+    },
+  };
+  
+  async function getHolidays() {
+    console.log('asifhasi','data')
+    try {
+      let data: any = await axios({ ...options });
+      setHolidayData(data);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function sayHello(){
+    console.log("hello")
+  }
+
+
+  useEffect(() => {
+    sayHello();
+  }, []);
+
   return (
     <LayoutHOC>
       <div>
@@ -248,7 +280,7 @@ function HolidaysPage(): ReactElement {
         <Row className='container mx-auto pt-10'>
           <List
             className='p-5'
-            dataSource={mockHolidays.result.data}
+            dataSource={(holidayData as HolidaysResponseFromBOT)?.result?.data}
             renderItem={(_holiday: HolidaysData) => (
               <List.Item key={_holiday.Date}>
                 <Row gutter={[32, 0]} className='w-full'>

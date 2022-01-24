@@ -14,7 +14,7 @@ export function _makeNewEvent(_eventInfo: MakeNewsDto) {
     .then((res) => res.data);
 }
 
-export function _updateEvent(id, eventInfo: UpdateNewsDto) {
+export function _updateEvent(id: number | string, eventInfo: UpdateNewsDto) {
   return axios
     .patch(`/calendar-event/${id}`, { ...eventInfo })
     .then((res) => res.data);

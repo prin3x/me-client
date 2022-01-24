@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import Glide from '@glidejs/glide';
-import {
-  LeftOutlined,
-  RightOutlined,
-} from '@ant-design/icons';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 const sliderConfiguration = {
   gap: 20,
@@ -11,7 +8,8 @@ const sliderConfiguration = {
   startAt: 0,
 };
 
-const CarouselSlider = () => {
+const CarouselSlider = (props: any) => {
+  const { items } = props;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const slider = new Glide('.glide', sliderConfiguration);
 
@@ -25,30 +23,14 @@ const CarouselSlider = () => {
       <div className='glide relative'>
         <div className='glide__track' data-glide-el='track'>
           <ul className='glide__slides'>
-            <li className='glide__slide slider h-56 bg-gray-300 rounded-xl'>
-              <div className='h-56'></div>
-            </li>
-            <li className='glide__slide slider h-56 bg-gray-300 rounded-xl'>
-              <div className='h-56'></div>
-            </li>
-            <li className='glide__slide slider h-56 bg-gray-300 rounded-xl'>
-              <div className='h-56'></div>
-            </li>
-            <li className='glide__slide slider h-56 bg-gray-300 rounded-xl'>
-              <div className='h-56'></div>
-            </li>
-            <li className='glide__slide slider h-56 bg-gray-300 rounded-xl'>
-              <div className='h-56'></div>
-            </li>
-            <li className='glide__slide slider h-56 bg-gray-300 rounded-xl'>
-              <div className='h-56'></div>
-            </li>
-            <li className='glide__slide slider h-56 bg-gray-300 rounded-xl'>
-              <div className='h-56'></div>
-            </li>
-            <li className='glide__slide slider h-56 bg-gray-300 rounded-xl'>
-              <div className='h-56'></div>
-            </li>
+            {items.data.map((_post: any) => (
+              <li
+                key={_post.id}
+                className='glide__slide slider h-56 bg-gray-300 rounded-xl'
+              >
+                <div className='h-56'></div>
+              </li>
+            ))}
           </ul>
         </div>
         <div

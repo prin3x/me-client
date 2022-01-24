@@ -1,6 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Calendar, Col, Form, Row, Select } from 'antd';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import MeetingRoomCalendar from '../../components/booking/MeetingRoomCalendar';
 import LayoutHOC from '../../layout/LayoutHOC';
@@ -13,6 +14,7 @@ const BookingMeetingHero = dynamic(
 );
 
 function BookingMeetingRoom(): ReactElement {
+  const router = useRouter()
   return (
     <LayoutHOC>
       <div>
@@ -58,7 +60,7 @@ function BookingMeetingRoom(): ReactElement {
         <Row className='container mx-auto pt-10'>
           <Col span={24}>
             <Row justify='start'>
-              <Button type='primary' className='rounded-full'>
+              <Button type='primary' className='rounded-full' onClick={() => router.push('/booking/make')}>
                 <PlusOutlined />
                 Booking Room
               </Button>

@@ -2,12 +2,16 @@ import { Carousel, Col, Row, Image } from 'antd';
 import type { NextPage } from 'next';
 import LayoutHOC from '../layout/LayoutHOC';
 import dynamic from 'next/dynamic';
+import { useQuery } from 'react-query';
+import { ALL_RECENT_NEWS } from '../services/news/news.queryKey';
+import { _getRecentNews } from '../services/news/news.service';
 
 const CarouselSlider = dynamic(
   () => import('../components/home/GlideComponent')
 );
 
 const Home: NextPage = () => {
+  const recentPostsMeta = useQuery([ALL_RECENT_NEWS], _getRecentNews);
   function onChange(a: any) {
     console.log(a);
   }
@@ -39,15 +43,21 @@ const Home: NextPage = () => {
             </div>
           </Col>
         </Row>
+        {recentPostsMeta.isSuccess && recentPostsMeta.data.length > 0 && (
+          <Row className='container mx-auto pt-10'>
+            <Col span={24}>
+              <h2 className='font-bold text-4xl text-primary-color'>NEWS</h2>
+              <CarouselSlider items={recentPostsMeta} />
+            </Col>
+          </Row>
+        )}
         <Row className='container mx-auto pt-10'>
           <Col span={24}>
-            <h2 className='font-bold text-4xl text-primary-color'>NEWS</h2>
-            <CarouselSlider />
-          </Col>
-        </Row>
-        <Row className='container mx-auto pt-10'>
-          <Col span={24}>
-            <Image src='/assets/service-contact.svg' preview={false} alt='service-contact' />
+            <Image
+              src='/assets/service-contact.svg'
+              preview={false}
+              alt='service-contact'
+            />
           </Col>
         </Row>
         <Row className='container mx-auto pt-10'>

@@ -1,10 +1,24 @@
 import { Col, Row, Image } from 'antd';
-import React, { ReactElement } from 'react';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import LayoutHOC from '../../../layout/LayoutHOC';
+import {  SINGLE_CONTACT } from '../../../services/contact/contact.queryKey';
+import { _getOneStaff } from '../../../services/contact/contact.service';
 
 interface Props {}
 
 function SingleCantactPage({}: Props): ReactElement {
+  const router = useRouter()
+  const staffContactMeta = useQuery([SINGLE_CONTACT], () => _getOneStaff(router.query.id as string))
+  const [contactData, setContactData] = useState({})
+
+  useEffect(() => {
+    if(staffContactMeta.isSuccess){
+      setContactData(staffContactMeta.data)
+    }
+  },[staffContactMeta.data])
+  
   return (
     <LayoutHOC>
       <div>

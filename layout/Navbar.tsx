@@ -8,29 +8,39 @@ import Link from 'next/link';
 function Navbar(): ReactElement {
   const Personal = (
     <Menu className='bg-primary-color text-white'>
-      <Menu.Item className='text-white'>
+      <Menu.Item>
         <Link href={'/staff-contact'}>
-          <a>Staff Contact</a>
+          <a className='cursor-pointer'>
+            <div className='text-white hover:text-black'>Staff Contact</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/calendar'}>
-          <a>Calendar</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Calendar</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/birthdays'}>
-          <a>Birthday</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Birthday</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/holidays'}>
-          <a>Holiday</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Holiday</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/ta-online'}>
-          <a>TA Online</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>TA Online</div>
+          </a>
         </Link>
       </Menu.Item>
     </Menu>
@@ -40,27 +50,37 @@ function Navbar(): ReactElement {
     <Menu className='bg-primary-color text-white'>
       <Menu.Item className='text-white'>
         <Link href={'/booking'}>
-          <a>Meeting Room</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Meeting Room</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/'}>
-          <a>Request Service</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Request Service</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/'}>
-          <a>Repair Service</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Repair Service</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/form-request'}>
-          <a>Form / Flow</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Form / Flow</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/form-request'}>
-          <a>Job Request</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Job Request</div>
+          </a>
         </Link>
       </Menu.Item>
     </Menu>
@@ -70,17 +90,23 @@ function Navbar(): ReactElement {
     <Menu className='bg-primary-color text-white'>
       <Menu.Item className='text-white'>
         <Link href={'/announcement'}>
-          <a>Announcement</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Announcement</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/it-clinic'}>
-          <a>IT Clinic</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>IT Clinic</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/activities'}>
-          <a>Activities</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Activities</div>
+          </a>
         </Link>
       </Menu.Item>
     </Menu>
@@ -90,27 +116,37 @@ function Navbar(): ReactElement {
     <Menu className='bg-primary-color text-white'>
       <Menu.Item className='text-white'>
         <Link href={'/company-profile'}>
-          <a>Profile</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Profile</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/company-policy'}>
-          <a>Policy</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Policy</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/company-benefits'}>
-          <a>Benefit</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Benefit</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/privacy-policy'}>
-          <a>Privacy Policy</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Privacy Policy</div>
+          </a>
         </Link>
       </Menu.Item>
       <Menu.Item>
         <Link href={'/company-contact'}>
-          <a>Contact</a>
+          <a className='cursor-pointer'>
+            <div className='text-white'>Contact</div>
+          </a>
         </Link>
       </Menu.Item>
     </Menu>
@@ -125,7 +161,7 @@ function Navbar(): ReactElement {
               src='/assets/logo-m.svg'
               preview={false}
               width={125}
-              className='p-3'
+              className='p-3 cursor-pointer'
               alt='logo'
             />
           </div>

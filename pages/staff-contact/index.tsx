@@ -1,42 +1,60 @@
 import { Col, Row, Image, Form, Select, Input, Table } from 'antd';
-import React, { ReactElement } from 'react';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import LayoutHOC from '../../layout/LayoutHOC';
+import { ALL_CONTACT } from '../../services/contact/contact.queryKey';
+import { _getAllStaffContacts } from '../../services/contact/contact.service';
 
 interface Props {}
+
+
+function StaffContactPage({}: Props): ReactElement {
+  const [form] = Form.useForm();
+  const [staffContactData, setStaffContactData] = useState([])
+  const staffContactMeta = useQuery([ALL_CONTACT], _getAllStaffContacts)
+  const router = useRouter()
+
 
 const columns = [
   {
     title: 'NAME',
-    dataIndex: 'date_time',
+    dataIndex: 'name',
+    render: (_self : string, _record : any) => <div onClick={() => router.push(`/staff-contact/${_record.id}`)}>{_self}</div>
   },
   {
     title: 'NICKNAME',
-    dataIndex: 'ip',
+    dataIndex: 'nickname',
   },
   {
     title: 'COMPANY',
-    dataIndex: 'detail',
+    dataIndex: 'company',
   },
   {
     title: 'DEPARTMENT',
-    dataIndex: 'detail',
+    dataIndex: 'department',
   },
   {
     title: 'DIVISION',
-    dataIndex: 'detail',
+    dataIndex: 'division',
   },
   {
     title: 'IP-PHONE',
-    dataIndex: 'detail',
+    dataIndex: 'ipPhone',
   },
   {
     title: 'E-MAIL',
-    dataIndex: 'detail',
+    dataIndex: 'email',
   },
 ];
 
-function StaffContactPage({}: Props): ReactElement {
-  const [form] = Form.useForm();
+  useEffect(() => {
+    if(staffContactMeta.isSuccess){
+
+      setStaffContactData(staffContactMeta.data)
+    }
+  },[staffContactMeta.data])
+
   return (
     <LayoutHOC>
       <div>
@@ -74,14 +92,14 @@ function StaffContactPage({}: Props): ReactElement {
           <Table
             tableLayout='fixed'
             scroll={{ x: '100%' }}
-            pagination={{
-              showTotal: (total, range) => `ทั้งหมด`,
-              current: 1,
-              defaultPageSize: 10,
-              total: 100,
-            }}
+            // pagination={{
+            //   showTotal: (total, range) => `ทั้งหมด`,
+            //   current: 1,
+            //   defaultPageSize: 10,
+            //   total: 100,
+            // }}
             columns={columns}
-            dataSource={[]}
+            dataSource={staffContactData}
           />
         </Row>
       </div>
