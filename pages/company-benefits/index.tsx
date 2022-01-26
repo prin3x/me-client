@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Button, Col, Row } from 'antd';
+import { Button, Col, Image, Row } from 'antd';
 import LayoutHOC from '../../layout/LayoutHOC';
 import CompanyBenefitHero from '../../components/company-benefit/CompanyBenefitHero';
 
@@ -10,13 +10,20 @@ function CompanyBenefits({}: Props): ReactElement {
     <LayoutHOC>
       <div>
         <CompanyBenefitHero />
-        <Row className='container mx-auto rounded-xl pt-5 mt-10 border-primary-color h-96'>
+        <Row className='container mx-auto rounded-xl pt-5 mt-10 border-primary-color'>
           <Col span={24}>
             <Row
               justify='center'
               className='uppercase text-3xl font-bold text-primary-color'
             >
               infographic
+            </Row>
+            <Row>
+              <Image
+                src='/assets/Company_Benefit.png'
+                alt='Company_Benefit'
+                preview={false}
+              />
             </Row>
           </Col>
         </Row>

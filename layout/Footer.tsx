@@ -32,19 +32,19 @@ function Footer({}: Props): ReactElement {
             <Link href={'/booking'} passHref>
               <li className='text-md cursor-pointer'>Meeting Room</li>
             </Link>
-            <Link href={'/'} passHref>
+            {/* <Link href={'/'} passHref>
               <li className='text-md cursor-pointer'>Request Service</li>
             </Link>
-            <li className='text-md cursor-pointer'>Repair Service</li>
-            <li className='text-md cursor-pointer'>Form / Flow</li>
+            <li className='text-md cursor-pointer'>Repair Service</li> */}
             <Link href={'/form-request'} passHref>
-              <li className='text-md cursor-pointer'>Job Request</li>
+              <li className='text-md cursor-pointer'>Form / Flow</li>
             </Link>
+            <li className='text-md cursor-pointer'>Job Request</li>
           </ul>
         </Col>
         <Col>
           <ul className='text-white'>
-            <li className='text-lg uppercase'>news</li>
+            <li className='text-lg uppercase'>News</li>
             <Link href={'/announcement'} passHref>
               <li className='text-md cursor-pointer'>Announcements</li>
             </Link>

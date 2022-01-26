@@ -55,7 +55,7 @@ function Navbar(): ReactElement {
           </a>
         </Link>
       </Menu.Item>
-      <Menu.Item>
+      {/* <Menu.Item>
         <Link href={'/'}>
           <a className='cursor-pointer'>
             <div className='text-white'>Request Service</div>
@@ -68,7 +68,7 @@ function Navbar(): ReactElement {
             <div className='text-white'>Repair Service</div>
           </a>
         </Link>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item>
         <Link href={'/form-request'}>
           <a className='cursor-pointer'>

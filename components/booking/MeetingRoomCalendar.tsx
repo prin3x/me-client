@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 // Calendar
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -7,10 +7,20 @@ import interactionPlugin from '@fullcalendar/interaction';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 import resourceTimelinePlugin from '@fullcalendar/resource-timeline'; // a plugin!
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
-interface Props {}
 
-function MeetingRoomCalendar({}: Props): ReactElement {
+function MeetingRoomCalendar({selectDate}): ReactElement {
   const calendarRef = useRef<any>(null);
+
+  const getToday = () => {
+    if (calendarRef.current) {
+      calendarRef.current.getApi().gotoDate(selectDate)
+    }
+  };
+
+  useEffect(() => {
+    getToday()
+  },[])
+
   return (
     <div>
       <FullCalendar

@@ -1,5 +1,6 @@
 import { Button, Col, DatePicker, Form, Input, Row, Select } from 'antd';
 import moment from 'moment';
+import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect } from 'react';
 import LayoutHOC from '../../../layout/LayoutHOC';
 
@@ -7,7 +8,9 @@ interface Props {}
 
 function MakeBooking({}: Props): ReactElement {
   const [form] = Form.useForm();
+  const io = useRouter()
 
+console.log(moment(io.query.date));
   return (
     <LayoutHOC>
       <>
@@ -32,10 +35,10 @@ function MakeBooking({}: Props): ReactElement {
                 <Input style={{ width: 200 }} />
               </Form.Item>
               <Form.Item label='Start'>
-                <DatePicker style={{ width: 200 }} />
+                <DatePicker value={moment(io.query.date)} showTime style={{ width: 200 }} />
               </Form.Item>
               <Form.Item label='End'>
-                <DatePicker style={{ width: 200 }} />
+                <DatePicker value={moment(io.query.date)} showTime  style={{ width: 200 }} />
               </Form.Item>
               <Form.Item label='Area'>
                 <Select

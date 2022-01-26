@@ -1,4 +1,5 @@
-import { Col, Image, List, Row, Tag } from 'antd';
+import { Col, Divider, Image, List, Row, Tag } from 'antd';
+import moment from 'moment';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import AnnouncementHero from '../../components/announcement/AnnouncementHero';
@@ -26,35 +27,14 @@ function AnnouncementPage({}: Props): ReactElement {
         <Row className='container mx-auto pt-10'>
           <List
             className='p-5'
-            dataSource={[
-              {
-                id: '1',
-                desc: 'apisdfhaifia',
-              },
-            ]}
-            renderItem={(_holiday) => (
-              <List.Item key={_holiday.id}>
-                <Row gutter={[32, 0]} className='w-full'>
-                  {announcementList.map((_post) => (
-                    <>
-                      <Col span={8} key={_post.id}>
-                        <Image preview={false} width={100} height={100} alt='preview'/>
-                      </Col>
-                      <Col span={8}>
-                        <div className='flex flex-col'>
-                          <div> {_post.title}</div>
-                          <p>{_post.content}</p>
-                        </div>
-                      </Col>
-                      <Col span={8}>
-                        <Tag>Tag 1</Tag>
-                      </Col>
-                    </>
-                  ))}
-                  <Col span={8}>
-                    <Image preview={false} width={100} height={100} />
+            dataSource={announcementMeta.data}
+            renderItem={(_announce: any) => (
+              <List.Item key={_announce.id} className='w-full'>
+                <Row className='w-full'>
+                  <Col>
+                    <Image preview={false} width={100} height={100} alt=''/>
                   </Col>
-                  <Col span={8}>
+                  <Col className='mx-2'>
                     <div className='flex flex-col'>
                       <div> แนะนำพนักงานใหม่ ประจำเดือน มิถุนายน 2564</div>
                       <p>
@@ -63,8 +43,12 @@ function AnnouncementPage({}: Props): ReactElement {
                       </p>
                     </div>
                   </Col>
-                  <Col span={8}>
-                    <Tag>Tag 1</Tag>
+                  <Col>
+                  <Divider type='vertical' className='bg-black h-full'/>
+                  </Col>
+                  <Col className='flex flex-col justify-center items-center gap-2'>
+                    <p className='text-xs text-slate-400'>{moment(_announce.updatedDate).format('LLL')}</p>
+                    <Tag className='rounded-2xl'  color="blue">Tag 1 Long</Tag>
                   </Col>
                 </Row>
               </List.Item>

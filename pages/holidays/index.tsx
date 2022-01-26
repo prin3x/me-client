@@ -1,5 +1,6 @@
 import { Col, List, Row } from 'antd';
 import axios from 'axios';
+import moment from 'moment';
 import React, { ReactElement, useEffect, useState } from 'react';
 import HolidaysHero from '../../components/holidays/HolidaysHero';
 import LayoutHOC from '../../layout/LayoutHOC';
@@ -209,40 +210,58 @@ const mockHolidays: HolidaysResponseFromBOT = {
   },
 };
 
-const mockHolidaysReArrange = [
-  {
-    month: 'JAN',
-    detail: [
-      {
-        day: 'Friday',
-        date: '1',
-        event: 'New Year',
-      },
-      {
-        day: 'Saturday',
-        date: '2',
-        event: 'New Year',
-      },
-    ],
-  },
-  {
-    month: 'FEB',
-    detail: [
-      {
-        day: 'Friday',
-        date: '1',
-        event: 'New Year',
-      },
-      {
-        day: 'Saturday',
-        date: '2',
-        event: 'New Year',
-      },
-    ],
-  },
-];
+const dayMappingColor = {
+  Saturday: '#9d33e2',
+  Monday: '#ebc703',
+  Tuesday: '#f879c8',
+  Wednesday: '#31a853',
+  Thursday: '#eb9860',
+  Friday: '#4285f5',
+  Sunday: 'red',
+};
+
+function groupHolidays(_holidays: HolidaysResponseFromBOT) {
+  let result = [];
+  let data = _holidays?.result?.data || [];
+  let prevMonthShort = 'Jan';
+  let newMonthShort = 'Jan';
+  let addedHoliday = [];
+  let addedMonth;
+
+  if (!data.length) return result;
+
+  for (const holiday of data) {
+    newMonthShort = moment(holiday.Date).format('MMM');
+
+    if (prevMonthShort !== newMonthShort) {
+      addedHoliday = [];
+      addedMonth = {
+        month: newMonthShort,
+        holidays: addedHoliday,
+      };
+
+      result.push(addedMonth)
+    }
+
+    addedHoliday.push({
+      day: holiday.HolidayWeekDay,
+      date: moment(holiday.Date).format('DD'),
+      event: holiday.HolidayDescription,
+    });
+
+ 
+
+    prevMonthShort = newMonthShort;
+  }
+
+  return result;
+}
+
 function HolidaysPage(): ReactElement {
-  const [holidayData, setHolidayData] = useState<HolidaysResponseFromBOT>(mockHolidays);
+  const [holidayData, setHolidayData] =
+    useState<HolidaysResponseFromBOT>(mockHolidays);
+
+  const [groupedHolidays, setGroupedHolidays] = useState([]);
 
   const options: any = {
     method: 'GET',
@@ -253,9 +272,9 @@ function HolidaysPage(): ReactElement {
       accept: 'application/json',
     },
   };
-  
+
   async function getHolidays() {
-    console.log('asifhasi','data')
+    console.log('asifhasi', 'data');
     try {
       let data: any = await axios({ ...options });
       setHolidayData(data);
@@ -264,31 +283,57 @@ function HolidaysPage(): ReactElement {
     }
   }
 
-  function sayHello(){
-    console.log("hello")
-  }
-
-
   useEffect(() => {
-    sayHello();
+    setGroupedHolidays(groupHolidays(mockHolidays));
   }, []);
 
   return (
     <LayoutHOC>
       <div>
         <HolidaysHero />
-        <Row className='container mx-auto pt-10'>
+        <Row className='container mx-auto pt-10 w-full'>
           <List
-            className='p-5'
-            dataSource={(holidayData as HolidaysResponseFromBOT)?.result?.data}
-            renderItem={(_holiday: HolidaysData) => (
-              <List.Item key={_holiday.Date}>
-                <Row gutter={[32, 0]} className='w-full'>
-                  <Col md={8}>{_holiday.Date}</Col>
-                  <Col md={8}>
-                    <div className='department'> {_holiday.HolidayWeekDay}</div>
+            className='p-5 w-full'
+            dataSource={groupedHolidays}
+            renderItem={(_holiday, i) => (
+              <List.Item key={_holiday.month}>
+                <Row className='w-full' align='middle'>
+                  <Col span={4}>
+                    <div className='font-bold text-center text-primary-color'>
+                      {_holiday.month.toUpperCase()}
+                    </div>
                   </Col>
-                  <Col md={8}>{_holiday.HolidayDescription}</Col>
+                  <Col span={20} className='w-full'>
+                    {_holiday.holidays.map((hol) => (
+                      <Row
+                        key={hol.event}
+                        justify='space-between'
+                        className='w-full'
+                      >
+                        <Col span={4}>
+                          <div className='flex justify-start items-center gap-1'>
+                            <svg height='20' width='20'>
+                              <circle
+                                cx='10'
+                                cy='10'
+                                r='5'
+                                fill={dayMappingColor[hol.day]}
+                              />
+                            </svg>
+                            <div style={{ color: dayMappingColor[hol.day] }}>
+                              {hol.day}
+                            </div>
+                          </div>
+                        </Col>
+                        <Col span={4}>
+                          <Row justify='center'>
+                          {+hol.date}
+                          </Row>
+                          </Col>
+                        <Col span={12}>{hol.event}</Col>
+                      </Row>
+                    ))}
+                  </Col>
                 </Row>
               </List.Item>
             )}

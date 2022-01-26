@@ -1,4 +1,4 @@
-import { Button, Col, Row } from 'antd';
+import { Button, Col, Image, Row } from 'antd';
 import React, { ReactElement } from 'react';
 import CompanyProfileHero from '../../components/company-profile/CompanyProfileHero';
 import LayoutHOC from '../../layout/LayoutHOC';
@@ -10,13 +10,27 @@ function CompanyProfilePage({}: Props): ReactElement {
     <LayoutHOC>
       <div>
         <CompanyProfileHero />
-        <Row className='container mx-auto rounded-xl pt-5 mt-10 border-primary-color h-96'>
+        <Row className='container mx-auto rounded-xl pt-5 mt-10 border-primary-color h-full'>
           <Col span={24}>
             <Row
               justify='center'
               className='uppercase text-3xl font-bold text-primary-color'
             >
               infographic
+            </Row>
+            <Row>
+              <Image
+                src='/assets/Company_Profile_1.png'
+                alt='Company_Profile_1'
+                preview={false}
+              />
+            </Row>
+            <Row>
+              <Image
+                src='/assets/Company_Profile_2.png'
+                alt='Company_Profile_2'
+                preview={false}
+              />
             </Row>
           </Col>
         </Row>
