@@ -1,0 +1,1 @@
+export const FULL_CANLENDAR_LICENSE = process.env.FULL_CANLENDAR_LICENSE || ''

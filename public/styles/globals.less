@@ -1,10 +1,12 @@
-@import '~antd/dist/antd.less';
-@import "~@glidejs/glide/dist/css/glide.core.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import '~antd/dist/antd.less';
+@import "~@glidejs/glide/dist/css/glide.core.css";
 
 
+@primary-color: #1655B7;
+@secondary-color: #fca125;
 
 @font-face {
   font-family: 'DB Ozone';
@@ -64,6 +66,11 @@ body {
   margin: 0 auto;
 }
 
+ol, ul, dl {
+  margin-top: 0;
+  margin-bottom: 0em;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -78,8 +85,6 @@ a {
   bottom: -40px;
 }
 
-@primary-color: #1655B7;
-@secondary-color: #fca125;
 
 .ant-btn {
   border-radius: 4px;
@@ -150,8 +155,35 @@ a {
   color: @primary-color;
 }
 
-.ant-table-thead > tr > th {
+.ant-table-thead>tr>th {
   background-color: @primary-color;
   color: #fff;
   text-align: center;
+}
+
+.ant-list-split .ant-list-item {
+  border-bottom: 1px solid rgb(156 163 175);
+}
+
+.ant-list-split .ant-list-item:first-child {
+  border-top: 1px solid rgb(156 163 175);
+}
+
+.ant-dropdown-menu-title-content,
+.ant-dropdown-trigger {
+  color: #fff;
+}
+
+.ant-dropdown-menu-title-content:hover{
+  color: #000
+}
+
+.navbar{
+  height: 3rem;
+  border-top-left-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+}
+
+.main-container{
+  max-width: 1004px;
 }

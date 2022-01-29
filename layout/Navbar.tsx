@@ -154,7 +154,7 @@ function Navbar(): ReactElement {
 
   return (
     <div>
-      <Row justify='end'>
+      <Row justify='end' align='middle'>
         <Col lg={4} md={4}>
           <div className='flex h-100 items-center'>
             <Image
@@ -167,8 +167,8 @@ function Navbar(): ReactElement {
           </div>
         </Col>
         <Col lg={18} md={18}>
-          <div className='bg-primary-color flex items-center px-10 h-full rounded-tl-full rounded-br-full'>
-            <ul className='flex items-center gap-5 mb-0 '>
+          <div className='navbar bg-primary-color flex items-center px-10 h-full rounded-tl-full rounded-br-full'>
+            <ul className='navbar-ul flex items-center gap-5 mb-0 '>
               <Dropdown overlay={Personal}>
                 <li className='text-white uppercase flex items-center gap-2'>
                   personal <DownOutlined />

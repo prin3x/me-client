@@ -1,11 +1,17 @@
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Calendar, Col, Form, Row, Select } from 'antd';
+import { Button, Calendar, Col, Form, message, Row, Select } from 'antd';
 import moment from 'moment';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import MeetingRoomCalendar from '../../components/booking/MeetingRoomCalendar';
 import LayoutHOC from '../../layout/LayoutHOC';
+import {
+  _getAllBookingEvents,
+  _getAllRooms,
+  _getRoomByFloor,
+} from '../../services/meetingRoom/meeting-room.service';
 
 const BookingMeetingHero = dynamic(
   () => import('../../components/booking/BookingMeetingHero'),
@@ -15,16 +21,40 @@ const BookingMeetingHero = dynamic(
 );
 
 function BookingMeetingRoom(): ReactElement {
-  const [selectDate, SetSelectDate] = useState(moment().format('YYYY-MM-DD'));
+  const [selectDate, setSelectDate] = useState(moment().format('YYYY-MM-DD'));
+  const [rooms, setRooms] = useState([]);
+  const [floor, setFloor] = useState<string>('1');
   const router = useRouter();
+
+  const meetingEventsQuery = useQuery(['meeting-events'], _getAllBookingEvents);
 
   function onPanelChange(value, mode) {
     console.log(value, mode, 'value, mode');
   }
 
   function onSelect(date) {
-    SetSelectDate(date.format('YYYY-MM-DD'));
+    setSelectDate(date.format('YYYY-MM-DD'));
+    console.log(date);
   }
+
+  const getAllRooms = async (floor: string) => {
+    let res;
+    try {
+      res = await _getRoomByFloor(floor);
+      setRooms(res.data);
+    } catch (e) {
+      message.error('Cannot fetch rooms');
+    }
+  };
+
+  const selectFloor = (_floor) => {
+    setFloor(_floor);
+  };
+  console.log(rooms,'rooms');
+
+  useEffect(() => {
+    getAllRooms(floor);
+  }, [floor]);
 
   return (
     <LayoutHOC>
@@ -42,10 +72,10 @@ function BookingMeetingRoom(): ReactElement {
                     <Col md={14}>
                       <div className='flex'>
                         <Form.Item>
-                          <Select placeholder='Floor 3'>
-                            <Select.Option value='Floor 3'>
-                              Floor 3
-                            </Select.Option>
+                          <Select placeholder='Floor 3' onChange={selectFloor}>
+                            <Select.Option value='1'>Floor 1</Select.Option>
+                            <Select.Option value='2'>Floor 2</Select.Option>
+                            <Select.Option value='3'>Floor 3</Select.Option>
                           </Select>
                         </Form.Item>
                         <Form.Item>
@@ -86,7 +116,11 @@ function BookingMeetingRoom(): ReactElement {
             </Row>
           </Col>
           <Col span={24}>
-            <MeetingRoomCalendar selectDate={selectDate} />
+            <MeetingRoomCalendar
+              rooms={rooms}
+              selectDate={selectDate}
+              meetingEventsQuery={meetingEventsQuery}
+            />
           </Col>
         </Row>
       </div>

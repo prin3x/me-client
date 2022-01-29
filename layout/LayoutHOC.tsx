@@ -8,7 +8,7 @@ interface Props {
 
 function LayoutHOC({ children }: Props): ReactElement {
   return (
-    <div>
+    <div className='main-container mx-auto'>
       <Navbar />
       {children}
       <Footer />

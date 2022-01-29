@@ -6,7 +6,7 @@ interface Props {}
 
 function Footer({}: Props): ReactElement {
   return (
-    <div className='bg-primary-color p-5 mt-10 px-10'>
+    <div className='bg-primary-color p-5 mt-10 px-10 rounded-md'>
       <Row className='container mx-auto pt-5' justify='space-between'>
         <Col>
           <ul className='text-white'>
