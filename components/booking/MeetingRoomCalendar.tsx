@@ -9,7 +9,7 @@ import resourceTimelinePlugin from '@fullcalendar/resource-timeline'; // a plugi
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import moment from 'moment';
 import { _getAllRooms } from '../../services/meetingRoom/meeting-room.service';
-import { FULL_CANLENDAR_LICENSE } from '../../config';
+import { message } from 'antd';
 
 function MeetingRoomCalendar({ rooms,selectDate, meetingEventsQuery }): ReactElement {
   const calendarRef = useRef<any>(null);
@@ -61,7 +61,7 @@ function MeetingRoomCalendar({ rooms,selectDate, meetingEventsQuery }): ReactEle
     <div>
       <FullCalendar
         ref={calendarRef}
-        schedulerLicenseKey={FULL_CANLENDAR_LICENSE}
+        schedulerLicenseKey='0261586002-fcs-1640591838'
         plugins={[
           dayGridPlugin,
           timeGridPlugin,
@@ -73,7 +73,20 @@ function MeetingRoomCalendar({ rooms,selectDate, meetingEventsQuery }): ReactEle
         headerToolbar={false}
         initialView='resourceTimeGridDay'
         themeSystem='standard'
-        resources={rooms}
+        resources={[
+          {
+            id: '1',
+            title: 'Floor 3 : Room A',
+          },
+          {
+            id: '2',
+            title: 'Floor 3 : Room B',
+          },
+          {
+            id: '3',
+            title: 'Floor 3 : Room C',
+          },
+        ]}
         editable
         selectable
         selectMirror
