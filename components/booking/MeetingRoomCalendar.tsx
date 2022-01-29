@@ -9,7 +9,6 @@ import resourceTimelinePlugin from '@fullcalendar/resource-timeline'; // a plugi
 import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import moment from 'moment';
 import { _getAllRooms } from '../../services/meetingRoom/meeting-room.service';
-import { message } from 'antd';
 import { FULL_CANLENDAR_LICENSE } from '../../config';
 
 function MeetingRoomCalendar({ rooms,selectDate, meetingEventsQuery }): ReactElement {
