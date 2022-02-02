@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import MeetingRoomCalendar from '../../components/booking/MeetingRoomCalendar';
+import BookingMeetingHero from '../../components/booking/BookingMeetingHero';
 import LayoutHOC from '../../layout/LayoutHOC';
 import {
   _getAllBookingEvents,
@@ -13,8 +13,8 @@ import {
   _getRoomByFloor,
 } from '../../services/meetingRoom/meeting-room.service';
 
-const BookingMeetingHero = dynamic(
-  () => import('../../components/booking/BookingMeetingHero'),
+const MeetingRoomCalendar = dynamic(
+  () => import('../../components/booking/MeetingRoomCalendar'),
   {
     ssr: false,
   }

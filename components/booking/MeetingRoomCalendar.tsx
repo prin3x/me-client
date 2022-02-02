@@ -10,6 +10,7 @@ import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
 import moment from 'moment';
 import { _getAllRooms } from '../../services/meetingRoom/meeting-room.service';
 import { message } from 'antd';
+import { FULL_CANLENDAR_LICENSE } from '../../config';
 
 function MeetingRoomCalendar({ rooms,selectDate, meetingEventsQuery }): ReactElement {
   const calendarRef = useRef<any>(null);
@@ -61,7 +62,7 @@ function MeetingRoomCalendar({ rooms,selectDate, meetingEventsQuery }): ReactEle
     <div>
       <FullCalendar
         ref={calendarRef}
-        schedulerLicenseKey='0261586002-fcs-1640591838'
+        schedulerLicenseKey={FULL_CANLENDAR_LICENSE}
         plugins={[
           dayGridPlugin,
           timeGridPlugin,

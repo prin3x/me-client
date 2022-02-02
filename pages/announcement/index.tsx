@@ -4,6 +4,7 @@ import moment from 'moment';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import AnnouncementHero from '../../components/announcement/AnnouncementHero';
+import { ASSET_URL } from '../../config';
 import LayoutHOC from '../../layout/LayoutHOC';
 import { GET_ANNOUNCEMENT } from '../../services/news/news.queryKey';
 import { _getPostByCategoryId } from '../../services/news/news.service';
@@ -33,7 +34,7 @@ function AnnouncementPage({}: Props): ReactElement {
               <List.Item key={_announce.id} className='w-full'>
                 <Row className='w-full'>
                   <Col>
-                    <Image preview={false} width={100} height={100} alt='' />
+                    <Image src={ASSET_URL + _announce.imageUrl}  preview={false} width={100} height={100} alt='' />
                   </Col>
                   <Col className='mx-2 mt-5'>
                     <div className='flex flex-col'>

@@ -5,6 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
+import { FULL_CANLENDAR_LICENSE } from '../../config';
 
 interface Props {
   events: any[]
@@ -17,6 +18,7 @@ function CalendarComponent({events}:Props): ReactElement {
     <div>
       <FullCalendar
         ref={calendarRef}
+        schedulerLicenseKey={FULL_CANLENDAR_LICENSE}
         plugins={[
           dayGridPlugin,
           timeGridPlugin,
