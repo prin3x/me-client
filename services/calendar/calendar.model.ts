@@ -23,3 +23,9 @@ export enum ModalEditType{
   EDIT_EVENT = 'edit',
   MAKE_EVENT = 'make'
 }
+
+export class ListQueryCalendarDTO {
+  startDate: string;
+
+  endDate: string;
+}

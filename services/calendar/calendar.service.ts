@@ -1,16 +1,22 @@
-import axios from 'axios';
-import { MakeNewsDto, UpdateNewsDto } from './calendar.model';
+import axios from "axios";
+import {
+  ListQueryCalendarDTO,
+  MakeNewsDto,
+  UpdateNewsDto,
+} from "./calendar.model";
+import * as queryString from "query-string";
 
-export function _findAllCalendarEvent() {
-  return axios.get('/calendar-event').then((res) => res.data);
+export async function _findAllCalendarEvent(q: ListQueryCalendarDTO):Promise<any> {
+  const query = queryString.stringify(q);
+  return await axios.get(`/calendar-event?${query}`).then((res) => res.data);
 }
-export function _getAllCategories() {
-  return axios.get('/calendar-event-category').then((res) => res.data);
+export function _getAllCategories(q: ListQueryCalendarDTO) {
+  return axios.get(`/calendar-event-category`).then((res) => res.data);
 }
 
 export function _makeNewEvent(_eventInfo: MakeNewsDto) {
   return axios
-    .post('/calendar-event', { ..._eventInfo })
+    .post("/calendar-event", { ..._eventInfo })
     .then((res) => res.data);
 }
 

@@ -1,9 +1,8 @@
 export enum ContactStatus {
-  ENABLED = 'enabled',
-  DISABLED = 'disabled',
-  NONE = 'none',
+  ENABLED = "enabled",
+  DISABLED = "disabled",
+  NONE = "none",
 }
-
 
 export interface StaffContact {
   id: number;
@@ -27,4 +26,24 @@ export interface StaffContact {
   status: ContactStatus;
 
   birthDate: string;
+}
+
+export interface ListQueryParams {
+  page?: number;
+
+  limit?: number;
+
+  orderBy?: string;
+
+  order?: string;
+
+  search?: string;
+
+  department?: string;
+}
+
+
+export interface ListQueryParamsBirthday extends ListQueryParams{
+  startDate: Date | string;
+  endDate: Date | string;
 }
