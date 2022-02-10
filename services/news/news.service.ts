@@ -1,11 +1,14 @@
-import axios from 'axios';
+import axios from "axios";
+import { ListQueryParamsForPost } from "./news.model";
+import * as queryString from "query-string";
 
 export function _getAllNewsCategories() {
-  return axios.get('/post-categories/').then((res) => res.data);
+  return axios.get("/post-categories/").then((res) => res.data);
 }
 
-export function _getRecentNews() {
-  return axios.get('/posts').then((res) => res.data);
+export function _getRecentNews(q: ListQueryParamsForPost) {
+  const stringQuery = queryString.stringify(q);
+  return axios.get(`/posts?${stringQuery}`).then((res) => res.data);
 }
 
 export function _getOnePost(_slug: string) {

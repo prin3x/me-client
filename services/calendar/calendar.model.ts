@@ -8,20 +8,24 @@ export interface MakeNewsDto {
   categoryId: number;
 }
 
-export interface UpdateNewsDto extends MakeNewsDto {
-
+export enum ECalendarEventType {
+  EVENT = "event",
+  BIRTHDAY = "birthday",
+  HOLIDAY = "holiday",
+  OTHER = "other",
 }
+
+export interface UpdateNewsDto extends MakeNewsDto {}
 
 export enum NewsStatus {
-  ENABLED = 'enabled',
-  DISABLED = 'disabled',
-  NONE = 'none',
+  ENABLED = "enabled",
+  DISABLED = "disabled",
+  NONE = "none",
 }
 
-
-export enum ModalEditType{
-  EDIT_EVENT = 'edit',
-  MAKE_EVENT = 'make'
+export enum ModalEditType {
+  EDIT_EVENT = "edit",
+  MAKE_EVENT = "make",
 }
 
 export class ListQueryCalendarDTO {

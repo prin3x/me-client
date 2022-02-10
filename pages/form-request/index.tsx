@@ -18,6 +18,7 @@ function FormRequest({}: Props): ReactElement {
         <Row className='container mx-auto pt-10'>
           <Col span={24}>
             <Collapse
+            className='form-collapse'
               defaultActiveKey={['1']}
               onChange={callback}
               expandIconPosition={'right'}
@@ -27,6 +28,7 @@ function FormRequest({}: Props): ReactElement {
                 key='1'
                 showArrow={true}
                 className='bg-primary-color text-xl font-semibold'
+                style={{color: 'white'}}
               >
                 <p className='text-lg font-regular'>In-House Training Request</p>
                 <p className='text-lg font-regular'>Public Training Request</p>

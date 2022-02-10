@@ -2,14 +2,14 @@ import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import { Input, Pagination, Row, Skeleton } from "antd";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import AnnouncementHero from "../../components/announcement/AnnouncementHero";
+import ITClinicHero from "../../components/itclinic/ITClinicHero";
 import PostList from "../../components/post/PostList";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
   EPostCategory,
   ListQueryParamsForPost,
 } from "../../services/news/news.model";
-import { ALL_RECENT_ANNCOUNCEMENT } from "../../services/news/news.queryKey";
+import { ALL_RECENT_IT } from "../../services/news/news.queryKey";
 import {
   _getPostByCategoryId,
   _getRecentNews,
@@ -17,17 +17,16 @@ import {
 
 interface Props {}
 
-function AnnouncementPage({}: Props): ReactElement {
+function ITClinic({}: Props): ReactElement {
   const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({
-    categoryName: EPostCategory.ANNOUNCEMENT,
+    categoryName: EPostCategory.IT,
   });
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const announcementMeta = useQuery(
-    [ALL_RECENT_ANNCOUNCEMENT, queryStr, search, page],
-    () => _getRecentNews(queryStr)
+  const itclinicMeta = useQuery([ALL_RECENT_IT, queryStr, page], () =>
+    _getRecentNews(queryStr)
   );
-  const [announcementList, setAnnouncementList] = useState([]);
+  const [itclinic, setItclinic] = useState([]);
 
   function setQuery() {
     let set = {} as ListQueryParamsForPost;
@@ -58,10 +57,10 @@ function AnnouncementPage({}: Props): ReactElement {
   }
 
   useEffect(() => {
-    if (announcementMeta.isSuccess) {
-      setAnnouncementList(announcementMeta.data.items);
+    if (itclinicMeta.isSuccess) {
+      setItclinic(itclinicMeta.data.items);
     }
-  }, [announcementMeta.data]);
+  }, [itclinicMeta.data]);
 
   useEffect(() => {
     setQuery();
@@ -70,7 +69,7 @@ function AnnouncementPage({}: Props): ReactElement {
   return (
     <LayoutHOC>
       <div>
-        <AnnouncementHero />
+        <ITClinicHero />
         <Row justify="end" className="mt-5">
           <Input
             placeholder={"SEARCH"}
@@ -78,12 +77,12 @@ function AnnouncementPage({}: Props): ReactElement {
             onChange={(e) => setSearch(e.target.value)}
           />
         </Row>
-        {announcementMeta.isLoading &&
+        {itclinicMeta.isLoading &&
           [1, 2, 3].map((_post) => <Skeleton key={_post} />)}
-        {announcementList.length > 0 && <PostList posts={announcementList} />}
+        {itclinic.length > 0 && <PostList posts={itclinic} />}
         <Row justify="center">
           <Pagination
-            total={announcementMeta?.data?.total || 0}
+            total={itclinicMeta?.data?.total || 0}
             itemRender={itemRender}
             current={page}
             onChange={(cur) => setPage(cur)}
@@ -94,4 +93,4 @@ function AnnouncementPage({}: Props): ReactElement {
   );
 }
 
-export default AnnouncementPage;
+export default ITClinic;

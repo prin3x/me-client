@@ -1,15 +1,18 @@
-import '../public/styles/globals.less';
-import '@fullcalendar/common/main.css';
-import '@fullcalendar/daygrid/main.css';
-import '@fullcalendar/timegrid/main.css';
-import '@fullcalendar/bootstrap/main.css';
+import "../public/styles/globals.less";
+import "@fullcalendar/common/main.css";
+import "@fullcalendar/daygrid/main.css";
+import "@fullcalendar/timegrid/main.css";
+import "@fullcalendar/bootstrap/main.css";
 
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
 
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import axios from 'axios';
-import { BASE_URL } from '../config/axios.config';
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import axios from "axios";
+import { API_URL } from "../config";
+import { getAuthToken } from "../services/auth/auth.service";
+import { UserProvider } from "../context/UserContext";
+import { useRouter } from "next/router";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,12 +23,39 @@ export const queryClient = new QueryClient({
   },
 });
 
-axios.defaults.baseURL = BASE_URL;
+axios.defaults.baseURL = API_URL;
+
+axios.interceptors.request.use((config) => {
+  const jwtToken = getAuthToken();
+  if (jwtToken !== null) {
+    config.headers["Authorization"] = `Bearer ${jwtToken}`;
+  }
+  return config;
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  axios.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    function (error) {
+      if (error?.response?.status === 401) {
+        router.push("/log-in");
+        return Promise.reject(error.response);
+      }
+
+      if (error?.response?.status === 404) {
+        router.push("/404");
+      }
+      return Promise.reject(error);
+    }
+  );
   return (
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
+      <UserProvider>
+        <Component {...pageProps} />
+      </UserProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );

@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
-import Footer from './Footer';
-import Navbar from './Navbar';
+import React, { ReactElement } from "react";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 interface Props {
   children: ReactElement;
@@ -8,7 +8,7 @@ interface Props {
 
 function LayoutHOC({ children }: Props): ReactElement {
   return (
-    <div className='main-container mx-auto'>
+    <div className="main-container mx-auto">
       <Navbar />
       {children}
       <Footer />

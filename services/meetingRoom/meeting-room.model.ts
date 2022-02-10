@@ -9,3 +9,9 @@ export interface ICreateMeeting {
 
   roomId: number;
 }
+
+export enum EMakeStatus {
+  MAKE = "MAKE",
+  EDIT = "EDIT",
+  READ = "READ",
+}

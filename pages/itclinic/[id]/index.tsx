@@ -1,16 +1,15 @@
-import { Image, Skeleton } from "antd";
+import { Skeleton } from "antd";
 import { useRouter } from "next/router";
 import React from "react";
 import { useQuery } from "react-query";
 import PostBySlug from "../../../components/post/PostBySlug";
-import { ASSET_URL } from "../../../config";
 import LayoutHOC from "../../../layout/LayoutHOC";
 import { POST_QUERY } from "../../../services/news/news.queryKey";
 import { _getOnePost } from "../../../services/news/news.service";
 
 type Props = {};
 
-function AnnouncementById({}: Props) {
+function ItClinicById({}: Props) {
   const router = useRouter();
   const postMeta = useQuery([POST_QUERY, router.query.id], () =>
     _getOnePost(router.query.id as string)
@@ -20,7 +19,7 @@ function AnnouncementById({}: Props) {
     <LayoutHOC>
       <div className="mt-5">
         {postMeta.isLoading ? (
-          <Skeleton paragraph={{ rows: 12 }} />
+          <Skeleton />
         ) : (
           <PostBySlug postData={postMeta.data} />
         )}
@@ -29,4 +28,4 @@ function AnnouncementById({}: Props) {
   );
 }
 
-export default AnnouncementById;
+export default ItClinicById;

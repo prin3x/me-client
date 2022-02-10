@@ -6,9 +6,39 @@ import { ASSET_URL } from "../../config";
 import LayoutHOC from "../../layout/LayoutHOC";
 import { ALL_CONTACT } from "../../services/contact/contact.queryKey";
 import { _getAllStaffContacts } from "../../services/contact/contact.service";
-import { ListQueryParams } from "../../services/contact/contact.model";
+import {
+  ECompanyList,
+  EDepartment,
+  ListQueryParams,
+} from "../../services/contact/contact.model";
+import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
 
 interface Props {}
+
+const DEPT_SELECTOR = [
+  EDepartment.BD,
+  EDepartment.CALLCENTER,
+  EDepartment.CARECALL,
+  EDepartment.COMPLAINT,
+  EDepartment.DIGITAL,
+  EDepartment.FINANCE_ACCOUNT,
+  EDepartment.HR,
+  EDepartment.ITB,
+  EDepartment.MARKETING,
+  EDepartment.MD,
+  EDepartment.NSC,
+  EDepartment.OPERATION,
+  EDepartment.RECRUITMENT,
+  EDepartment.SHUUSHABU,
+  EDepartment.SLBA,
+];
+
+const COMPANY_SELECTOR = [
+  ECompanyList.FB,
+  ECompanyList.MI,
+  ECompanyList.MR,
+  ECompanyList.MY,
+];
 
 function StaffContactPage({}: Props): ReactElement {
   const [form] = Form.useForm();
@@ -20,46 +50,70 @@ function StaffContactPage({}: Props): ReactElement {
   );
   const router = useRouter();
 
+  function itemRender(current, type, originalElement) {
+    if (type === "prev") {
+      return (
+        <a>
+          <DoubleLeftOutlined />
+        </a>
+      );
+    }
+    if (type === "next") {
+      return (
+        <a className="ml-auto">
+          <DoubleRightOutlined />
+        </a>
+      );
+    }
+  }
+
   const columns = [
     {
       title: "NICKNAME",
       dataIndex: "profilePicUrl",
-      render: (_self: string) => (
-        <Image src={ASSET_URL + _self} alt="" preview={false} />
-      ),
+      render: (_self: string) => <Image src={_self} alt="" preview={false} />,
     },
     {
       title: "NAME",
       dataIndex: "name",
       render: (_self: string, _record: any) => (
-        <div onClick={() => router.push(`/staff-contact/${_record.id}`)}>
+        <p
+          className="text-center cursor-pointer"
+          onClick={() => router.push(`/staff-contact/${_record.id}`)}
+        >
           {_self}
-        </div>
+        </p>
       ),
     },
     {
       title: "NICKNAME",
       dataIndex: "nickname",
+      render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
       title: "COMPANY",
       dataIndex: "company",
+      render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
-      title: "DEPARTMENT",
+      title: "DEPT.",
       dataIndex: "department",
+      render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
-      title: "DIVISION",
-      dataIndex: "division",
+      title: "POSITION",
+      dataIndex: "position",
+      render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
       title: "IP-PHONE",
       dataIndex: "ipPhone",
+      render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
       title: "E-MAIL",
       dataIndex: "email",
+      render: (_self) => <p className="text-center">{_self}</p>,
     },
   ];
 
@@ -68,6 +122,7 @@ function StaffContactPage({}: Props): ReactElement {
     set.limit = 10;
     set.search = form.getFieldValue("search") || "";
     set.department = form.getFieldValue("department") || "";
+    set.company = form.getFieldValue("company") || "";
     set.page = page;
 
     setQueryStr(set);
@@ -96,16 +151,31 @@ function StaffContactPage({}: Props): ReactElement {
           <Col span={24}>
             <Row>
               <Form form={form} layout="inline" onValuesChange={setQuery}>
-                <Form.Item>
-                  <Select placeholder="COMPANY">
-                    <Select.Option value="company">COMPANY</Select.Option>
+                <Form.Item name="company">
+                  <Select
+                    placeholder="COMPANY"
+                    style={{ width: 200 }}
+                  >
+                    <Select.Option key={"ทั้งหมด"} value={""}>
+                      {"ทั้งหมด"}
+                    </Select.Option>
+                    {COMPANY_SELECTOR.map((_comp) => (
+                      <Select.Option key={_comp} value={_comp}>
+                        {_comp}
+                      </Select.Option>
+                    ))}
                   </Select>
                 </Form.Item>
                 <Form.Item name="department">
                   <Select placeholder="DEPARTMENT" style={{ width: 150 }}>
-                    <Select.Option value="A">A</Select.Option>
-                    <Select.Option value="B">B</Select.Option>
-                    <Select.Option value="C">C</Select.Option>
+                    <Select.Option key={"ทั้งหมด"} value={""}>
+                      {"ทั้งหมด"}
+                    </Select.Option>
+                    {DEPT_SELECTOR.map((_dept) => (
+                      <Select.Option key={_dept} value={_dept}>
+                        {_dept}
+                      </Select.Option>
+                    ))}
                   </Select>
                 </Form.Item>
                 <Form.Item name="search">
@@ -117,15 +187,23 @@ function StaffContactPage({}: Props): ReactElement {
         </Row>
         <Row className="container mx-auto pt-10">
           <Table
+            loading={staffContactMeta.isLoading}
+            className="table-noshow-pagination"
+            bordered
             rowKey={(_row) => _row.id}
             tableLayout="fixed"
             scroll={{ x: "100%" }}
             pagination={{
-              showTotal: (total, range) => `ทั้งหมด`,
-              current: page,
-              defaultPageSize: 10,
+              position: ["bottomCenter"],
+              onChange: (_page) => setPage(_page),
+              showTotal: (total, range) => (
+                <div className="text-center">{`ทั้งหมด ${
+                  staffContactMeta?.data?.total || 0
+                } คน`}</div>
+              ),
               total: staffContactMeta?.data?.total,
-              onChange: (current) => setPage(current),
+              showSizeChanger: false,
+              itemRender,
             }}
             columns={columns}
             dataSource={staffContactData}

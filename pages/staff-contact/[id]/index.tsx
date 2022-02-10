@@ -1,109 +1,140 @@
-import { Col, Row, Image } from 'antd';
-import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
-import LayoutHOC from '../../../layout/LayoutHOC';
-import {  SINGLE_CONTACT } from '../../../services/contact/contact.queryKey';
-import { _getOneStaff } from '../../../services/contact/contact.service';
+import { Col, Row, Image } from "antd";
+import moment from "moment";
+import { useRouter } from "next/router";
+import React, { ReactElement, useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { ASSET_URL } from "../../../config";
+import LayoutHOC from "../../../layout/LayoutHOC";
+import { IContact } from "../../../services/contact/contact.model";
+import { SINGLE_CONTACT } from "../../../services/contact/contact.queryKey";
+import { _getOneStaff } from "../../../services/contact/contact.service";
 
 interface Props {}
 
+const INIT_CONTACT = {
+  id: 0,
+  profilePicUrl: "",
+  name: "",
+  nickname: "",
+  company: "",
+  department: "",
+  division: "",
+  section: "",
+  ipPhone: "",
+  email: "",
+  position: "",
+  staffId: "",
+  status: "",
+  birthDate: "",
+  nameTH: "",
+  createdBy: 0,
+  createdDate: "",
+  updatedDate: "",
+};
+
 function SingleCantactPage({}: Props): ReactElement {
-  const router = useRouter()
-  const staffContactMeta = useQuery([SINGLE_CONTACT], () => _getOneStaff(router.query.id as string))
-  const [contactData, setContactData] = useState({})
+  const router = useRouter();
+  const staffContactMeta = useQuery([SINGLE_CONTACT], () =>
+    _getOneStaff(router.query.id as "")
+  );
+  const [contactData, setContactData] = useState<IContact>(INIT_CONTACT);
 
   useEffect(() => {
-    if(staffContactMeta.isSuccess){
-      setContactData(staffContactMeta.data)
+    if (staffContactMeta.isSuccess) {
+      setContactData(staffContactMeta.data);
     }
-  },[staffContactMeta.data])
-  
+  }, [staffContactMeta.data]);
+
   return (
     <LayoutHOC>
       <div>
-        <Row className='container mx-auto pt-10'>
+        <Row className="container mx-auto pt-10">
           <Col span={24}>
             <Image
-              src='/assets/staff-contact.svg'
+              src="/assets/staff-contact.svg"
               preview={false}
-              alt='staff-contact'
+              alt="staff-contact"
             />
           </Col>
         </Row>
-        <Row className='container mx-auto pt-10'>
+        <Row className="container mx-auto pt-10">
           <Col span={12}>
-            <Row justify='center'>
-              <div className='h-44 bg-gray-200 w-44 rounded-xl'></div>
+            <Row justify="center">
+              <Image
+                src={contactData.profilePicUrl}
+                preview={false}
+                alt="staff-contact"
+                width={150}
+              />
             </Row>
           </Col>
           <Col span={12}>
-            <Row justify='start'>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
+            <Row justify="start">
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
                   Name
                 </div>
-                <div className=''>Siraphop Chatchaipholrat</div>
+                <div className="">{contactData.name}</div>
               </Col>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
                   Name(TH)
                 </div>
-                <div className=''>สิรภพ ฉัตรชัยพลรัตน์</div>
+                <div className="">{contactData.nameTH}</div>
               </Col>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
                   Nickname
                 </div>
-                <div className=''>ริว</div>
+                <div className="">{contactData.nickname}</div>
               </Col>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
                   Email
                 </div>
-                <div className=''>siraphopc@mindedge.co.th</div>
+                <div className="">{contactData.email}</div>
               </Col>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
                   IP Phone
                 </div>
-                <div className=''>2168</div>
+                <div className="">{contactData.ipPhone}</div>
               </Col>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
                   Staff ID
                 </div>
-                <div className=''>2200260</div>
+                <div className="">{contactData.staffId}</div>
               </Col>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
                   Company
                 </div>
-                <div className=''>Mind Edge Recruitment</div>
+                <div className="">Mind Edge Recruitment</div>
               </Col>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
                   Department
                 </div>
-                <div className=''>Human Resource</div>
+                <div className="">{contactData.department}</div>
               </Col>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
-                  Division
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
+                  Section
                 </div>
-                <div className=''>Training & Development</div>
+                <div className="">{contactData.section}</div>
               </Col>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
                   Position
                 </div>
-                <div className=''>Training Coordinator</div>
+                <div className="">{contactData.position}</div>
               </Col>
-              <Col className='flex w-full'>
-                <div className='label min-width-full w-24 text-primary-color font-semibold'>
+              <Col className="flex w-full">
+                <div className="label min-width-full w-24 text-primary-color font-semibold">
                   Birthday
                 </div>
-                <div className=''>19 September</div>
+                <div className="">{moment(contactData.birthDate).format()}</div>
               </Col>
             </Row>
           </Col>

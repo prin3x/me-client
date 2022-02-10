@@ -14,28 +14,37 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import bootstrapPlugin from "@fullcalendar/bootstrap";
 import { FULL_CANLENDAR_LICENSE } from "../../config";
-import { ListQueryCalendarDTO } from "../../services/calendar/calendar.model";
+import {
+  ECalendarEventType,
+  ListQueryCalendarDTO,
+} from "../../services/calendar/calendar.model";
 import EventModal from "./EventModal";
 
 const colorsMap = [
-  { color: "primary", category: "event", categoryId: 2 },
-  { color: "secondary", category: "other", categoryId: 3 },
-  { color: "tertiary", category: "Personal", categoryId: 1 },
+  { color: "primary", categoryName: ECalendarEventType.EVENT },
+  { color: "secondary", categoryName: ECalendarEventType.BIRTHDAY },
+  { color: "tertiary", categoryName: ECalendarEventType.HOLIDAY },
+  { color: "tertiary", categoryName: ECalendarEventType.OTHER },
 ];
 
 const themeValues = {
-  primary: "#F6D7A7",
-  secondary: "#C8E3D4",
-  tertiary: "#577BC1",
+  primary: "#facc14",
+  secondary: "#5ea5fa",
+  tertiary: "#f87171",
+  fourth: "#49de80",
 };
 
 const CheckboxGroup = Checkbox.Group;
 
-const calendarOptions = ["EVENT", "BIRTHDAY", "HOLIDAY", "OTHER"];
+const calendarOptions = [
+  ECalendarEventType.EVENT,
+  ECalendarEventType.BIRTHDAY,
+  ECalendarEventType.HOLIDAY,
+  ECalendarEventType.OTHER,
+];
 
 function CalendarPage(): ReactElement {
   const calendarRef = useRef<any>(null);
-  const [checkedList, setCheckedList] = React.useState(calendarOptions);
   const [form] = Form.useForm();
   const [events, setEvents] = useState<any[]>([]);
   const [calendarMeta, setCalendarMeta] = useState({
@@ -49,7 +58,7 @@ function CalendarPage(): ReactElement {
     id: 0,
     title: "New Event",
     dateTime: [],
-    categoryId: 0,
+    categoryName: ECalendarEventType.EVENT,
   });
 
   const handleEventClick = (clickInfo: any) => {
@@ -103,9 +112,9 @@ function CalendarPage(): ReactElement {
     if (!Array.isArray(events)) return;
     const coloredEvents = events.map((event: any) => {
       const coloredEvent = { ...event };
-      if (event.categoryId) {
+      if (event.categoryName) {
         const foundColor = colorsMap.find(
-          (x) => (x as any).categoryId === event.categoryId
+          (x) => (x as any).categoryName === event.categoryName
         );
         if (foundColor) {
           coloredEvent.color = (themeValues as any)[foundColor.color];
@@ -117,14 +126,14 @@ function CalendarPage(): ReactElement {
     return coloredEvents;
   }
 
-  function filterEventType(_categoryIds: CheckboxValueType[]) {
+  function filterEventType(_categoryNames: ECalendarEventType[]) {
     let nextState: any[] = [];
     let tempState = [];
     let events = [];
-    if (_categoryIds.length > 0) {
-      for (let i = 0; i < _categoryIds.length; i++) {
+    if (_categoryNames.length > 0) {
+      for (let i = 0; i < _categoryNames.length; i++) {
         tempState = calendarEventMeta?.data?.filter(
-          (_event: any) => _event.categoryId === _categoryIds[i]
+          (_event: any) => _event.categoryName === _categoryNames[i]
         );
         nextState = [...nextState, ...tempState];
       }
@@ -148,7 +157,10 @@ function CalendarPage(): ReactElement {
       <Col lg={24}>
         <Row justify="space-between">
           <Form form={form} layout="inline" className="flex w-full">
-            <Form.Item name="month">
+            <Form.Item
+              name="month"
+              initialValue={(moment().month() + 1).toString()}
+            >
               <Select
                 placeholder="MONTH"
                 style={{ width: 150 }}
@@ -170,18 +182,17 @@ function CalendarPage(): ReactElement {
             </Form.Item>
             <Form.Item>
               <Select placeholder="2022">
-                <Select.Option value="2021">2021</Select.Option>
                 <Select.Option value="2022">2022</Select.Option>
               </Select>
             </Form.Item>
-            <Form.Item>
+            <Form.Item className="ml-auto">
               <CheckboxGroup onChange={filterEventType}>
                 <Row gutter={[0, 3]}>
                   <Col
                     lg={10}
                     className="bg-yellow-400 p-1 rounded-md m-1 ml-5 text-center"
                   >
-                    <Checkbox value={2} className="">
+                    <Checkbox value={ECalendarEventType.EVENT} className="">
                       EVENT
                     </Checkbox>
                   </Col>
@@ -189,19 +200,23 @@ function CalendarPage(): ReactElement {
                     lg={10}
                     className="bg-blue-400 p-1 rounded-md m-1  ml-5 text-center"
                   >
-                    <Checkbox value={3}>BIRTHDAY</Checkbox>
+                    <Checkbox value={ECalendarEventType.BIRTHDAY}>
+                      BIRTHDAY
+                    </Checkbox>
                   </Col>
                   <Col
                     lg={10}
                     className="bg-red-400 p-1 rounded-md m-1  ml-5 text-center"
                   >
-                    <Checkbox value={4}>HOLIDAY</Checkbox>
+                    <Checkbox value={ECalendarEventType.HOLIDAY}>
+                      HOLIDAY
+                    </Checkbox>
                   </Col>
                   <Col
                     lg={10}
                     className="bg-green-400 p-1 rounded-md m-1  ml-5 text-center"
                   >
-                    <Checkbox value={1}>OTHER</Checkbox>
+                    <Checkbox value={ECalendarEventType.OTHER}>OTHER</Checkbox>
                   </Col>
                 </Row>
               </CheckboxGroup>

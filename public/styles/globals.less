@@ -1,76 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '~antd/dist/antd.less';
+@import "~antd/dist/antd.less";
 @import "~@glidejs/glide/dist/css/glide.core.css";
 
-
-@primary-color: #1655B7;
+@primary-color: #1655b7;
 @secondary-color: #fca125;
 
 @font-face {
-  font-family: 'DB Ozone';
-  src: url('/fonts/DB Ozone X Li It v3.2.ttf');
+  font-family: "DB Ozone";
+  src: url("/fonts/DB li.ttf");
   font-weight: light;
   font-style: light;
 }
 
 @font-face {
-  font-family: 'DB Ozone';
-  src: url('/fonts/DB Ozone X Li v3.2.ttf');
+  font-family: "DB Ozone thin";
+  src: url("/font/DB_thin.ttf");
   font-weight: thin;
   font-style: thin;
 }
 
 @font-face {
-  font-family: 'DB Ozone';
-  src: url('/fonts/DB Ozone X Med It v3.2.ttf');
+  font-family: "DB Ozone reg";
+  src: url("/font/DB_md.ttf");
   font-weight: regular;
   font-style: regular;
 }
 
-@font-face {
-  font-family: 'DB Ozone';
-  src: url('/fonts/DB Ozone X Med v3.2.ttf');
-  font-weight: regular;
-  font-style: regular;
-}
 
 @font-face {
-  font-family: 'DB Ozone';
-  src: url('/fonts/DB Ozone X UlLi It v3.2.ttf');
+  font-family: "DB Ozone semibold";
+  src: url("/font/DB_bold.ttf");
   font-weight: semibold;
   font-style: semibold;
 }
 
 @font-face {
-  font-family: 'DB Ozone';
-  src: url('/fonts/DB Ozone X UlLi v3.2.ttf');
-  font-weight: bold;
-  font-style: bold;
-}
-
-@font-face {
-  font-family: 'DB Ozone';
-  src: url('/fonts/DB Ozone X v3.2.ttf');
+  font-family: "DB Ozone bold";
+  src: url("/font/DB_lg.ttf");
   font-weight: bold;
   font-style: bold;
 }
 
 .fc .fc-scrollgrid-section-liquid {
-  height : 1px !important;
+  height: 1px !important;
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: DB Ozone, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: DB Ozone, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   margin: 0 auto;
 }
 
-ol, ul, dl {
+ol,
+ul,
+dl {
   margin-top: 0;
   margin-bottom: 0em;
 }
@@ -80,20 +68,25 @@ a {
   text-decoration: none;
 }
 
+.nav-item {
+  font-size: 1rem;
+}
+
+.nav-item:hover {
+  color: #000;
+}
+
 * {
   box-sizing: border-box;
 }
-
 
 .user-box {
   bottom: -40px;
 }
 
-
 .ant-btn {
   border-radius: 4px;
 }
-
 
 .text-primary-color {
   color: @primary-color;
@@ -109,13 +102,10 @@ a {
 }
 
 .ant-checkbox {
-
-
   .ant-checkbox-inner {
     border-radius: 4px;
     // background-color: #fff;
   }
-
 }
 
 .ant-input {
@@ -123,7 +113,6 @@ a {
 }
 
 .calendar {
-
   .ant-checkbox {
     position: absolute;
     left: -20px;
@@ -159,7 +148,7 @@ a {
   color: @primary-color;
 }
 
-.ant-table-thead>tr>th {
+.ant-table-thead > tr > th {
   background-color: @primary-color;
   color: #fff;
   text-align: center;
@@ -178,16 +167,74 @@ a {
   color: #fff;
 }
 
-.ant-dropdown-menu-title-content:hover{
-  color: #000
+.ant-dropdown-menu-title-content:hover {
+  color: #000;
 }
 
-.navbar{
+.navbar {
   height: 3rem;
   border-top-left-radius: 9999px;
   border-bottom-right-radius: 9999px;
 }
 
-.main-container{
+.main-container {
   max-width: 1004px;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.ant-table-wrapper,
+.ant-table-container,
+.ant-table-cell,
+.ant-table-row {
+  border-color: @primary-color !important;
+}
+
+.table-noshow-pagination .ant-pagination-total-text {
+  width: 100%;
+}
+
+.table-noshow-pagination .ant-pagination-prev,
+.table-noshow-pagination .ant-pagination-next {
+  width: 40%;
+}
+
+.table-noshow-pagination .ant-pagination-item {
+  display: none;
+}
+
+.table-noshow-pagination .ant-pagination-prev > a {
+  display: inherit;
+  max-width: 50px;
+  margin-right: auto;
+}
+.table-noshow-pagination .ant-pagination-next > a {
+  display: inherit;
+  margin-left: auto;
+  max-width: 50px;
+}
+
+.ant-picker {
+  border-radius: 8px;
+  border-color: @primary-color;
+}
+
+.fc-popover{
+  background-color: rgb(248, 248, 248);
+}
+
+.divider-h-full {
+  height: 100%;
+}
+
+.tag-round{
+  border-radius: 8px;
+  color: @primary-color;
+  text-transform: uppercase;
+}
+
+.ant-collapse.form-collapse > .ant-collapse-item > .ant-collapse-header{
+  color: #fff;
 }

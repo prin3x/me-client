@@ -48,10 +48,10 @@ function Footer({}: Props): ReactElement {
             <Link href={'/announcement'} passHref>
               <li className='text-md cursor-pointer'>Announcements</li>
             </Link>
-            <Link href={'/it-clinic'} passHref>
+            <Link href={'/itclinic'} passHref>
               <li className='text-md cursor-pointer'>IT Clinic</li>
             </Link>
-            <Link href={'/activities'} passHref>
+            <Link href={'/activity'} passHref>
               <li className='text-md cursor-pointer'>Activities</li>
             </Link>
           </ul>

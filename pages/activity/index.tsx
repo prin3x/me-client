@@ -2,14 +2,14 @@ import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import { Input, Pagination, Row, Skeleton } from "antd";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import AnnouncementHero from "../../components/announcement/AnnouncementHero";
+import ActivityHero from "../../components/acitivities/ActivityHero";
 import PostList from "../../components/post/PostList";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
   EPostCategory,
   ListQueryParamsForPost,
 } from "../../services/news/news.model";
-import { ALL_RECENT_ANNCOUNCEMENT } from "../../services/news/news.queryKey";
+import { ALL_RECENT_ACTIVITIES } from "../../services/news/news.queryKey";
 import {
   _getPostByCategoryId,
   _getRecentNews,
@@ -17,24 +17,23 @@ import {
 
 interface Props {}
 
-function AnnouncementPage({}: Props): ReactElement {
+function ActivitiesPage({}: Props): ReactElement {
   const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({
-    categoryName: EPostCategory.ANNOUNCEMENT,
+    categoryName: EPostCategory.ACTIVITY,
   });
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const announcementMeta = useQuery(
-    [ALL_RECENT_ANNCOUNCEMENT, queryStr, search, page],
-    () => _getRecentNews(queryStr)
+  const activityMeta = useQuery([ALL_RECENT_ACTIVITIES, queryStr, page], () =>
+    _getRecentNews(queryStr)
   );
-  const [announcementList, setAnnouncementList] = useState([]);
+  const [activities, setActivities] = useState([]);
 
   function setQuery() {
     let set = {} as ListQueryParamsForPost;
     set.limit = 10;
     set.page = page;
     set.search = search;
-    set.categoryName = EPostCategory.ANNOUNCEMENT;
+    set.categoryName = EPostCategory.ACTIVITY;
 
     setQueryStr(set);
   }
@@ -58,10 +57,10 @@ function AnnouncementPage({}: Props): ReactElement {
   }
 
   useEffect(() => {
-    if (announcementMeta.isSuccess) {
-      setAnnouncementList(announcementMeta.data.items);
+    if (activityMeta.isSuccess) {
+      setActivities(activityMeta.data.items);
     }
-  }, [announcementMeta.data]);
+  }, [activityMeta.data]);
 
   useEffect(() => {
     setQuery();
@@ -70,7 +69,7 @@ function AnnouncementPage({}: Props): ReactElement {
   return (
     <LayoutHOC>
       <div>
-        <AnnouncementHero />
+        <ActivityHero />
         <Row justify="end" className="mt-5">
           <Input
             placeholder={"SEARCH"}
@@ -78,12 +77,12 @@ function AnnouncementPage({}: Props): ReactElement {
             onChange={(e) => setSearch(e.target.value)}
           />
         </Row>
-        {announcementMeta.isLoading &&
+        {activityMeta.isLoading &&
           [1, 2, 3].map((_post) => <Skeleton key={_post} />)}
-        {announcementList.length > 0 && <PostList posts={announcementList} />}
+        {activities.length > 0 && <PostList posts={activities} />}
         <Row justify="center">
           <Pagination
-            total={announcementMeta?.data?.total || 0}
+            total={activityMeta?.data?.total || 0}
             itemRender={itemRender}
             current={page}
             onChange={(cur) => setPage(cur)}
@@ -94,4 +93,4 @@ function AnnouncementPage({}: Props): ReactElement {
   );
 }
 
-export default AnnouncementPage;
+export default ActivitiesPage;

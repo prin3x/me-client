@@ -7,21 +7,37 @@ import {
   message,
   Row,
   Select,
-} from 'antd';
-import moment from 'moment';
-import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect } from 'react';
-import LayoutHOC from '../../../layout/LayoutHOC';
-import { ICreateMeeting } from '../../../services/meetingRoom/meeting-room.model';
-import { _createBooking } from '../../../services/meetingRoom/meeting-room.service';
+} from "antd";
+import moment from "moment";
+import { useRouter } from "next/router";
+import React, { ReactElement, useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import MakeBookingForm from "../../../components/booking/MakeBookingForm";
+import LayoutHOC from "../../../layout/LayoutHOC";
+import {
+  EMakeStatus,
+  ICreateMeeting,
+} from "../../../services/meetingRoom/meeting-room.model";
+import {
+  _createBooking,
+  _getAllBookingEvents,
+  _getAllRooms,
+  _getBookingEventById,
+  _removeMeetingEvent,
+  _updateMeetingEvent,
+} from "../../../services/meetingRoom/meeting-room.service";
 
 interface Props {}
 
 function MakeBooking({}: Props): ReactElement {
+  const router = useRouter();
   const [form] = Form.useForm();
-  const io = useRouter();
+  const roomsMeta = useQuery(["rooms"], _getAllRooms);
+  const [makeStatus, setMakeStatus] = useState(EMakeStatus.MAKE);
 
-  const submitRoomBooking = async (_formValues: ICreateMeeting) => {
+  const submitRoomBooking = async (
+    _formValues: ICreateMeeting
+  ): Promise<void> => {
     let set = {} as any;
     set.title = _formValues.title;
     set.description = _formValues.description;
@@ -29,104 +45,85 @@ function MakeBooking({}: Props): ReactElement {
     set.end = _formValues.end;
     set.roomId = _formValues.roomId;
 
+    console.log(_formValues,'_formValues')
+
     try {
       await _createBooking(set);
-      message.success('Created Successfully');
+      message.success("Created Successfully");
+      router.push("/booking/");
     } catch (e) {
       message.error(e.response.message);
     }
   };
 
+  const updateRoomBooking = async (): Promise<void> => {
+    const formResult = await form.validateFields();
+    let set = {} as any;
+    set.title = formResult.title;
+    set.description = formResult.description;
+    set.start = formResult.start;
+    set.end = formResult.end;
+    set.roomId = formResult.roomId;
+
+    try {
+      await _updateMeetingEvent(router.query.id, set);
+      message.success("Updated Successfully");
+      router.push("/booking/");
+    } catch (e) {
+      message.error(e.response.message);
+    }
+  };
+
+  const removeRoomBooking = async (): Promise<void> => {
+    try {
+      await _removeMeetingEvent(router.query.id);
+      message.success("Updated Successfully");
+      router.push("/booking/");
+    } catch (e) {
+      message.error(e.response.message);
+    }
+  };
+
+  async function getMeetingDetailsFromId(id) {
+    try {
+      const meetingDetails = await _getBookingEventById(id);
+      if (meetingDetails.isOwner) {
+        setMakeStatus(EMakeStatus.EDIT);
+      } else {
+        setMakeStatus(EMakeStatus.READ);
+      }
+
+      form.setFieldsValue({
+        title: meetingDetails.title,
+        description: meetingDetails.description,
+        start: moment(meetingDetails.start),
+        end: moment(meetingDetails.end),
+      });
+    } catch (e) {
+      router.push("/");
+    }
+  }
+
+  useEffect(() => {
+    const id = +router.query.id;
+    if (id) {
+      getMeetingDetailsFromId(id);
+    }
+
+    return () => setMakeStatus(EMakeStatus.MAKE);
+  }, [router]);
+
   return (
     <LayoutHOC>
       <>
-        <Row justify='center' className='w-full'>
-          <Row justify='center' className='w-full mt-10'>
-            <Col>
-              <div className='uppercase text-primary-color text-xl font-bold'>
-                Booking Room
-              </div>
-            </Col>
-          </Row>
-          <Row justify='center' className=' mt-5 w-full'>
-            <Form
-              onFinish={submitRoomBooking}
-              form={form}
-              colon={false}
-              labelCol={{ span: 6 }}
-              wrapperCol={{ span: 14, offset: 2 }}
-            >
-              <Form.Item name='title' label='Name Meeting'>
-                <Input style={{ width: 200 }} />
-              </Form.Item>
-              <Form.Item name='description' label='Description'>
-                <Input style={{ width: 200 }} />
-              </Form.Item>
-              <Form.Item name='start' label='Start'>
-                <DatePicker
-                  value={moment(io.query.date)}
-                  showTime
-                  style={{ width: 200 }}
-                />
-              </Form.Item>
-              <Form.Item name='end' label='End'>
-                <DatePicker
-                  value={moment(io.query.date)}
-                  showTime
-                  style={{ width: 200 }}
-                />
-              </Form.Item>
-              <Form.Item label='Area'>
-                <Select
-                  defaultValue={'4'}
-                  style={{ width: 200 }}
-                  className='selector-w-10'
-                >
-                  <Select.Option value='4'>Floor 4th</Select.Option>
-                </Select>
-              </Form.Item>
-              <Form.Item label='Type'>
-                <Select
-                  defaultValue={'4'}
-                  style={{ width: 200 }}
-                  className='selector-w-10'
-                >
-                  <Select.Option value='4'>Floor 4th</Select.Option>
-                </Select>
-              </Form.Item>
-              <Form.Item initialValue={1} name='roomId' label='Room'>
-                <Select style={{ width: 200 }}>
-                  <Select.Option value={1}>Internal</Select.Option>
-                </Select>
-              </Form.Item>
-              <Row className='mt-10 ml-16'>
-                <Col>
-                  <Form.Item>
-                    <Button className='secondary-btn rounded-btn'>Edit</Button>
-                  </Form.Item>
-                </Col>
-                <Col>
-                  <Form.Item>
-                    <Button
-                      htmlType='submit'
-                      className='rounded-btn ml-6'
-                      type='primary'
-                    >
-                      Save Booking
-                    </Button>
-                  </Form.Item>
-                </Col>
-                <Col>
-                  <Form.Item>
-                    <Button className='rounded-btn ml-6' danger type='primary'>
-                      Delete
-                    </Button>
-                  </Form.Item>
-                </Col>
-              </Row>
-            </Form>
-          </Row>
-        </Row>
+        <MakeBookingForm
+          submitRoomBooking={submitRoomBooking}
+          form={form}
+          roomsMeta={roomsMeta}
+          updateRoomBooking={updateRoomBooking}
+          removeRoomBooking={removeRoomBooking}
+          makeStatus={makeStatus}
+        />
       </>
     </LayoutHOC>
   );

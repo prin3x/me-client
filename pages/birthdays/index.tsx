@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import HeroBirthDays from "../../components/birthdays/HeroBirthDays";
+import { ASSET_URL } from "../../config";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
   ListQueryParams,
@@ -51,23 +52,39 @@ function BirthDayPage(): ReactElement {
     {
       title: "NAME",
       dataIndex: "name",
+      render: (_self, _record) => (
+        <div className="flex items-center gap-2">
+          <Image
+            src={ASSET_URL + _record.profilePicUrl}
+            alt=""
+            preview={false}
+            width={75}
+          />
+          <p className="text-md font-regular">{_self}</p>
+        </div>
+      ),
     },
     {
       title: "NICKNAME",
       dataIndex: "nickname",
+      render: (_self, _record) => <p className="text-center">{_self}</p>,
     },
     {
       title: "COMPANY",
       dataIndex: "company",
+      render: (_self, _record) => <p className="text-center">{_self}</p>,
     },
     {
       title: "DEPARTMENT",
       dataIndex: "department",
+      render: (_self, _record) => <p className="text-center">{_self}</p>,
     },
     {
       title: "BIRTHDATE",
       dataIndex: "birthDate",
-      render: (_self) => moment(_self).format("MMM DD"),
+      render: (_self, _record) => (
+        <p className="text-center">{moment(_self).format("MMM DD")}</p>
+      ),
     },
   ];
 
@@ -116,6 +133,7 @@ function BirthDayPage(): ReactElement {
         </Row>
         <Row className="container mx-auto pt-10">
           <Table
+            bordered
             tableLayout="fixed"
             rowKey={(self) => self.id}
             scroll={{ x: "100%" }}
