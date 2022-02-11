@@ -139,6 +139,7 @@ function BirthDayPage(): ReactElement {
         </Row>
         <Row className="container mx-auto pt-10">
           <Table
+            loading={staffContactMeta.isLoading}
             bordered
             tableLayout="fixed"
             rowKey={(self) => self.id}
