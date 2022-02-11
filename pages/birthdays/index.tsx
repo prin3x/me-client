@@ -7,6 +7,7 @@ import HeroBirthDays from "../../components/birthdays/HeroBirthDays";
 import { ASSET_URL } from "../../config";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
+  DEPT_SELECTOR,
   ListQueryParams,
   ListQueryParamsBirthday,
 } from "../../services/contact/contact.model";
@@ -55,10 +56,10 @@ function BirthDayPage(): ReactElement {
       render: (_self, _record) => (
         <div className="flex items-center gap-2">
           <Image
-            src={ASSET_URL + _record.profilePicUrl}
+            src={_record.profilePicUrl}
             alt=""
             preview={false}
-            width={75}
+            width={40}
           />
           <p className="text-md font-regular">{_self}</p>
         </div>
@@ -122,9 +123,14 @@ function BirthDayPage(): ReactElement {
                 </Form.Item>
                 <Form.Item name="department">
                   <Select placeholder="DEPARTMENT" style={{ width: 150 }}>
-                    <Select.Option value="A">A</Select.Option>
-                    <Select.Option value="B">B</Select.Option>
-                    <Select.Option value="C">C</Select.Option>
+                    <Select.Option key={"ทั้งหมด"} value={""}>
+                      {"ทั้งหมด"}
+                    </Select.Option>
+                    {DEPT_SELECTOR.map((_dept) => (
+                      <Select.Option key={_dept} value={_dept}>
+                        {_dept}
+                      </Select.Option>
+                    ))}
                   </Select>
                 </Form.Item>
               </Form>

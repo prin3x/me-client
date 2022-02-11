@@ -7,6 +7,8 @@ import LayoutHOC from "../../layout/LayoutHOC";
 import { ALL_CONTACT } from "../../services/contact/contact.queryKey";
 import { _getAllStaffContacts } from "../../services/contact/contact.service";
 import {
+  COMPANY_SELECTOR,
+  DEPT_SELECTOR,
   ECompanyList,
   EDepartment,
   ListQueryParams,
@@ -15,30 +17,7 @@ import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
 
 interface Props {}
 
-const DEPT_SELECTOR = [
-  EDepartment.BD,
-  EDepartment.CALLCENTER,
-  EDepartment.CARECALL,
-  EDepartment.COMPLAINT,
-  EDepartment.DIGITAL,
-  EDepartment.FINANCE_ACCOUNT,
-  EDepartment.HR,
-  EDepartment.ITB,
-  EDepartment.MARKETING,
-  EDepartment.MD,
-  EDepartment.NSC,
-  EDepartment.OPERATION,
-  EDepartment.RECRUITMENT,
-  EDepartment.SHUUSHABU,
-  EDepartment.SLBA,
-];
 
-const COMPANY_SELECTOR = [
-  ECompanyList.FB,
-  ECompanyList.MI,
-  ECompanyList.MR,
-  ECompanyList.MY,
-];
 
 function StaffContactPage({}: Props): ReactElement {
   const [form] = Form.useForm();

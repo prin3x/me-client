@@ -69,3 +69,29 @@ export enum ECompanyList {
   FB = "Foodberg",
   MY = "Me and You Entertainment"
 }
+
+
+export const DEPT_SELECTOR = [
+  EDepartment.BD,
+  EDepartment.CALLCENTER,
+  EDepartment.CARECALL,
+  EDepartment.COMPLAINT,
+  EDepartment.DIGITAL,
+  EDepartment.FINANCE_ACCOUNT,
+  EDepartment.HR,
+  EDepartment.ITB,
+  EDepartment.MARKETING,
+  EDepartment.MD,
+  EDepartment.NSC,
+  EDepartment.OPERATION,
+  EDepartment.RECRUITMENT,
+  EDepartment.SHUUSHABU,
+  EDepartment.SLBA,
+];
+
+export const COMPANY_SELECTOR = [
+  ECompanyList.FB,
+  ECompanyList.MI,
+  ECompanyList.MR,
+  ECompanyList.MY,
+];
