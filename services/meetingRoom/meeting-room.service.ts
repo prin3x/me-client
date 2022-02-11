@@ -17,6 +17,10 @@ export async function _getAllRooms() {
   return axios.get("/rooms/").then((res) => res.data);
 }
 
+export async function _getAllRoomsById(_id) {
+  return axios.get(`/rooms/${_id}`).then((res) => res.data);
+}
+
 export async function _getRoomByFloor(floor: string) {
   return axios.get(`/rooms/${floor}`).then((res) => res.data);
 }

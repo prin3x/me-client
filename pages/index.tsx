@@ -1,4 +1,4 @@
-import { Carousel, Col, Row, Image } from "antd";
+import { Carousel, Col, Row, Image, Spin } from "antd";
 import type { NextPage } from "next";
 import LayoutHOC from "../layout/LayoutHOC";
 import dynamic from "next/dynamic";
@@ -8,19 +8,22 @@ import {
   ALL_RECENT_POST,
 } from "../services/news/news.queryKey";
 import { _getRecentNews } from "../services/news/news.service";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   EPostCategory,
   ListQueryParamsForPost,
 } from "../services/news/news.model";
 import { ASSET_URL } from "../config";
 import { useRouter } from "next/router";
+import { UserContext } from "../context/UserContext";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const CarouselSlider = dynamic(
   () => import("../components/home/GlideComponent")
 );
 
 const Home: NextPage = () => {
+  const { userInfo, getUser } = useContext(UserContext);
   const router = useRouter();
   const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({});
   const recentAnnouncementMeta = useQuery(
@@ -46,6 +49,17 @@ const Home: NextPage = () => {
 
     setQueryStr(set);
   }
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  if (!userInfo)
+    return (
+      <div className="h-screen w-screen flex justify-center items-center">
+        <Spin indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />} />
+      </div>
+    );
 
   return (
     <LayoutHOC>
@@ -111,7 +125,10 @@ const Home: NextPage = () => {
           <Col span={24}>
             <Row justify="space-between">
               <Col md={12} className="p-1">
-                <div className='mask-on-hover cursor-pointer' onClick={() => router.push("/itclinic")}>
+                <div
+                  className="mask-on-hover cursor-pointer relative"
+                  onClick={() => router.push("/itclinic")}
+                >
                   <Image
                     className="rounded-xl"
                     src={
@@ -121,10 +138,18 @@ const Home: NextPage = () => {
                     alt=""
                     height={330}
                   />
+                  <div className="absolute bottom-0 w-full bg-slate-900 opacity-80 p-5">
+                    <div className="text-5xl font-bold text-white">
+                      IT Clinic
+                    </div>
+                  </div>
                 </div>
               </Col>
               <Col md={12} className="p-1">
-                <div className='mask-on-hover cursor-pointer' onClick={() => router.push("/activity")}>
+                <div
+                  className="mask-on-hover cursor-pointer relative"
+                  onClick={() => router.push("/activity")}
+                >
                   <Image
                     className="rounded-xl"
                     src={
@@ -134,6 +159,11 @@ const Home: NextPage = () => {
                     alt=""
                     height={330}
                   />
+                  <div className="absolute bottom-0 w-full bg-slate-900 opacity-80 p-5">
+                    <div className="text-5xl font-bold text-white">
+                      Activity
+                    </div>
+                  </div>
                 </div>
               </Col>
             </Row>

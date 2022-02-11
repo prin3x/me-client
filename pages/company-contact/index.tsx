@@ -14,14 +14,14 @@ function CompanyContactPage({}: Props): ReactElement {
         <Row className='container mx-auto text-primary-color'>
           <Col span={24}>
             <Row justify='center' className='px-10  pt-10'>
-              <Col span={12}>
+              <Col span={8}>
                 <Image
                   src='/assets/me-logo.svg'
                   alt='mindedgelogo'
                   width={200}
                 />
               </Col>
-              <Col span={12}>
+              <Col span={8}>
                 <div className='flex flex-col'>
                   <h3 className='font-semibold  text-primary-color'>
                     บริษัท มายด์เอจ อินโนเวชั่น จำกัด
@@ -35,14 +35,14 @@ function CompanyContactPage({}: Props): ReactElement {
             </Row>
 
             <Row justify='center' className='px-10  pt-10'>
-              <Col span={12}>
+              <Col span={8}>
                 <Image
                   src='/assets/me-recruit.svg'
                   alt='mindedgelogo'
                   width={200}
                 />
               </Col>
-              <Col span={12}>
+              <Col span={8}>
                 <div className='flex flex-col'>
                   <h3 className='font-semibold  text-primary-color'>
                   บริษัท จัดหางาน มายด์เอจ จำกัด
@@ -56,14 +56,14 @@ function CompanyContactPage({}: Props): ReactElement {
             </Row>
 
             <Row justify='center' className='px-10  pt-10'>
-              <Col span={12}>
+              <Col span={8}>
                 <Image
                   src='/assets/meu-logo.svg'
                   alt='mindedgelogo'
                   width={150}
                 />
               </Col>
-              <Col span={12}>
+              <Col span={8}>
               <div className='flex flex-col'>
                   <h3 className='font-semibold  text-primary-color'>
                   บริษัท มี แอนด์ ยู เอ็นเตอร์เทนเมนท์ จำกัด
@@ -78,14 +78,14 @@ function CompanyContactPage({}: Props): ReactElement {
             </Row>
 
             <Row justify='center' className='px-10  pt-10'>
-              <Col span={12}>
+              <Col span={8}>
                 <Image
                   src='/assets/foodberg-logo.svg'
                   alt='mindedgelogo'
                   width={100}
                 />
               </Col>
-              <Col span={12}>
+              <Col span={8}>
                 <div className='flex flex-col'>
                   <h3 className='font-semibold  text-primary-color'>
                   บริษัท ฟู้ดเบิร์ก จำกัด

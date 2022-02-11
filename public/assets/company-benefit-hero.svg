@@ -8,4 +8,6 @@
     <rect width="1004" height="330" rx="20" stroke="none"/>
     <rect x="1.5" y="1.5" width="1001" height="327" rx="18.5" fill="none"/>
   </g>
+  <text id="COMPANY_BENEFIT" data-name="COMPANY BENEFIT" transform="translate(263 57)" fill="#1655b7" font-size="50" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">COMPANY BENEFIT</tspan></text>
+  <text id="สวัสดิการของบริษัท_" data-name="สวัสดิการของบริษัทฯ" transform="translate(395 95)" fill="#1655b7" font-size="25" font-family="Thonburi"><tspan x="0" y="0">สวัสดิการของบริษัทฯ</tspan></text>
 </svg>

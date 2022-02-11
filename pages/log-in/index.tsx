@@ -15,12 +15,15 @@ import { UserInfo } from "../../services/user/user.model";
 import { _login } from "../../services/user/user.service";
 import { useRouter } from "next/router";
 import { setTokenToStorage } from "../../services/auth/auth.service";
+import { useState } from "react";
 
 const Home: NextPage = () => {
   const [form] = Form.useForm();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   async function loginUser(user: UserInfo) {
+    setIsLoading(true);
     try {
       const { accessToken } = await _login(user);
       setTokenToStorage(accessToken);
@@ -28,6 +31,8 @@ const Home: NextPage = () => {
       router.push("/");
     } catch (e) {
       Modal.error({ title: "กรุณาตรวจสอบข้อมูลของท่านใหม่" });
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -67,7 +72,7 @@ const Home: NextPage = () => {
             </Form.Item>
             <Row justify="center">
               <Form.Item>
-                <Button htmlType="submit" type="primary">
+                <Button loading={isLoading} htmlType="submit" type="primary">
                   Sign In
                 </Button>
               </Form.Item>

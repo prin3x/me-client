@@ -30,7 +30,7 @@ const CarouselSlider = (props: any) => {
             {items.map((_post: any) => (
               <li
                 key={_post.id}
-                className="glide__slide slider cursor-pointer"
+                className="glide__slide slider cursor-pointer relative"
                 onClick={() =>
                   router.push(`/${_post.categoryName}/${_post.slug}`)
                 }
@@ -40,8 +40,16 @@ const CarouselSlider = (props: any) => {
                   src={ASSET_URL + _post.imageUrl}
                   width={250}
                   height={300}
-                  className="rounded-xl"
+                  className="rounded-xl "
                 />
+                <div className="absolute bottom-5 left-5 bg-slate-900 opacity-75 rounded-md p-2">
+                  <h3 className="text-white text-xl">
+                    {_post.title.slice(0, 20)}
+                  </h3>
+                  <p className="text-white text-lg">
+                    {_post.content.slice(0, 30) + "..."}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>

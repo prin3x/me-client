@@ -8,4 +8,6 @@
     <rect width="1004" height="330" rx="20" stroke="none"/>
     <rect x="1.5" y="1.5" width="1001" height="327" rx="18.5" fill="none"/>
   </g>
+  <text id="COMPANY_POLICY" data-name="COMPANY POLICY" transform="translate(277 63)" fill="#1655b7" font-size="50" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">COMPANY POLICY</tspan></text>
+  <text id="กฎ_ระเบียบ_และนโยบายของบริษัท_" data-name="กฎ ระเบียบ และนโยบายของบริษัทฯ" transform="translate(318 101)" fill="#1655b7" font-size="25" font-family="Thonburi"><tspan x="0" y="0">กฎ</tspan><tspan y="0" font-family="Helvetica"> </tspan><tspan y="0">ระเบียบ</tspan><tspan y="0" font-family="Helvetica"> </tspan><tspan y="0">และนโยบายของบริษัทฯ</tspan></text>
 </svg>
