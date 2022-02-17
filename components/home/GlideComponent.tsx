@@ -46,9 +46,12 @@ const CarouselSlider = (props: any) => {
                   <h3 className="text-white text-xl">
                     {_post.title.slice(0, 20)}
                   </h3>
-                  <p className="text-white text-lg">
-                    {_post.content.slice(0, 30) + "..."}
-                  </p>
+                  <p
+                    className="text-white text-lg"
+                    dangerouslySetInnerHTML={{
+                      __html: _post.content.length > 30 ?  _post.content.slice(0, 30) + "..." : _post.content,
+                    }}
+                  />
                 </div>
               </li>
             ))}
