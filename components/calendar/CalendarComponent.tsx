@@ -24,7 +24,7 @@ const colorsMap = [
   { color: "primary", categoryName: ECalendarEventType.EVENT },
   { color: "secondary", categoryName: ECalendarEventType.BIRTHDAY },
   { color: "tertiary", categoryName: ECalendarEventType.HOLIDAY },
-  { color: "tertiary", categoryName: ECalendarEventType.OTHER },
+  { color: "fourth", categoryName: ECalendarEventType.OTHER },
 ];
 
 const themeValues = {
@@ -66,7 +66,6 @@ function CalendarPage(): ReactElement {
     const { id, url } = clickInfo.event;
     if (id) {
       targetEvent = events.find((_item: any) => _item.id.toString() === id);
-      console.log(targetEvent, targetEvent);
       setSelectedEvent({
         ...targetEvent,
         dateTime: [moment(targetEvent.start), moment(targetEvent.end)],

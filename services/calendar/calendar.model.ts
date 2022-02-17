@@ -33,3 +33,14 @@ export class ListQueryCalendarDTO {
 
   endDate: string;
 }
+
+
+export interface MakeNewsDto {
+  title: string;
+
+  content: string;
+
+  status: NewsStatus;
+
+  categoryId: number;
+}

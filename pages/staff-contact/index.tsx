@@ -9,8 +9,6 @@ import { _getAllStaffContacts } from "../../services/contact/contact.service";
 import {
   COMPANY_SELECTOR,
   DEPT_SELECTOR,
-  ECompanyList,
-  EDepartment,
   ListQueryParams,
 } from "../../services/contact/contact.model";
 import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
