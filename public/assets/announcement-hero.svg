@@ -8,6 +8,6 @@
     <rect width="1004" height="330" rx="20" stroke="none"/>
     <rect x="1.5" y="1.5" width="1001" height="327" rx="18.5" fill="none"/>
   </g>
-  <text id="ANNOUNCEMENT-2" data-name="ANNOUNCEMENT" transform="translate(287 58)" fill="#1655b7" font-size="50" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">ANNOUNCEMENT</tspan></text>
-  <text id="ข่าวสาร_ME" data-name="ข่าวสาร ME" transform="translate(440 105)" fill="#1655b7" font-size="25" font-family="Thonburi"><tspan x="0" y="0">ข่าวสาร</tspan><tspan y="0" xml:space="preserve" font-family="Helvetica"> ME</tspan></text>
+  <text id="ANNOUNCEMENT-2" data-name="ANNOUNCEMENT" transform="translate(359 61)" fill="#1655b7" font-size="50" font-family="DBOzoneX, DB Ozone X"><tspan x="0" y="0">ANNOUNCEMENT</tspan></text>
+  <text id="ข่าวสาร_ME" data-name="ข่าวสาร ME" transform="translate(411 92)" fill="#1655b7" font-size="40" font-family="DBOzoneX, DB Ozone X"><tspan x="0" y="0">ข่าวสาร ME</tspan></text>
 </svg>

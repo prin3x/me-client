@@ -12,22 +12,20 @@ type Props = {
 function PostList({ posts }: Props) {
   const router = useRouter();
   return (
-    <Row className="container mx-auto pt-5" justify='center'>
+    <Row className="container mx-auto pt-5" justify="center">
       <List
         className="p-5 w-full"
         dataSource={posts}
-        renderItem={(_announce: any) => (
+        renderItem={(_post: any) => (
           <List.Item
-            key={_announce.id}
+            key={_post.id}
             className="w-full cursor-pointer"
-            onClick={() =>
-              router.push(`/${_announce.categoryName}/${_announce.slug}/`)
-            }
+            onClick={() => router.push(`/${_post.categoryName}/${_post.slug}/`)}
           >
             <Row className="w-full">
               <Col md={3}>
                 <Image
-                  src={ASSET_URL + _announce.imageUrl}
+                  src={ASSET_URL + _post.imageUrl}
                   preview={false}
                   width={100}
                   height={100}
@@ -36,28 +34,37 @@ function PostList({ posts }: Props) {
               </Col>
               <Col md={12} className="mx-2 mt-5 ml-5">
                 <div className="flex flex-col">
-                  <div className="text-lg"> {_announce.title}</div>
-                  <p className="text-slate-400 ">
-                    {_announce.content.slice(0, 75) + " ..."}
-                  </p>
+                  <div className="text-lg"> {_post.title}</div>
+                  <p
+                    className="text-slate-400 "
+                    dangerouslySetInnerHTML={{
+                      __html: `${_post.content.slice(0, 75) + " ..."}`,
+                    }}
+                  />
                 </div>
               </Col>
               <Col md={1}>
-                <Divider type="vertical" className="divider-h-full bg-gray-400 h-full" />
+                <Divider
+                  type="vertical"
+                  className="divider-h-full bg-gray-400 h-full"
+                />
               </Col>
               <Col
                 md={7}
                 className="flex flex-col items-center gap-2 mt-5 justify-center"
               >
                 <div className="flex items-start gap-2 justify-center">
-                  <ClockCircleOutlined style={{color: '#eee', fontSize: 18}} className="text-slate-400" />
+                  <ClockCircleOutlined
+                    style={{ color: "#eee", fontSize: 18 }}
+                    className="text-slate-400"
+                  />
                   <p className="text-xs text-slate-400">
-                    {moment(_announce.updatedDate).format("LLL")}
+                    {moment(_post.createdAt).format("DD MMMM yyyy | hh:mm A")}
                   </p>
                 </div>
                 <div className="flex justify-center">
                   <Tag className="tag-round font-bold" color="blue">
-                    {_announce.tag}
+                    {_post.tag}
                   </Tag>
                 </div>
               </Col>

@@ -1,5 +1,8 @@
 import { Button, Col, Modal, Row } from "antd";
-import React from "react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { ECalendarEventType } from "../../services/calendar/calendar.model";
+import { _getOneStaff } from "../../services/contact/contact.service";
 
 type Props = {
   visible: boolean;
@@ -18,9 +21,20 @@ function EventModal({ visible, event, close }: Props) {
       <Row>
         <Col>{event.description}</Col>
       </Row>
-      <Row justify='center'>
+      {event.categoryName === ECalendarEventType.BIRTHDAY && (
+        <Row>
+          <Col>
+            <Link href={`/staff-contact/${event.staffId}`}>
+              Go To Employee&apos;s Page
+            </Link>
+          </Col>
+        </Row>
+      )}
+      <Row justify="center">
         <Col>
-          <Button type="primary" onClick={close}>Close</Button>
+          <Button type="primary" onClick={close}>
+            Close
+          </Button>
         </Col>
       </Row>
     </Modal>

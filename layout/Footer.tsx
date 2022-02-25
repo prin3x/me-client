@@ -37,9 +37,8 @@ function Footer({}: Props): ReactElement {
             </Link>
             <li className='text-md cursor-pointer'>Repair Service</li> */}
             <Link href={'/form-request'} passHref>
-              <li className='text-md cursor-pointer'>Form / Flow</li>
+              <li className='text-md cursor-pointer'>Forms / Flow / Job Request</li>
             </Link>
-            <li className='text-md cursor-pointer'>Job Request</li>
           </ul>
         </Col>
         <Col>

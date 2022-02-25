@@ -8,31 +8,10 @@
 @secondary-color: #fca125;
 
 @font-face {
-  font-family: "DB Ozone";
-  src: url("/fonts/DB li.ttf");
-  font-weight: light;
-  font-style: light;
-}
-
-@font-face {
-  font-family: "DB Ozone thin";
-  src: url("/font/DB_thin.ttf");
-  font-weight: thin;
-  font-style: thin;
-}
-
-@font-face {
   font-family: "DB Ozone reg";
-  src: url("/font/DB_md.ttf");
+  src: url("/font/DB_normal.ttf");
   font-weight: regular;
   font-style: regular;
-}
-
-@font-face {
-  font-family: "DB Ozone semibold";
-  src: url("/font/DB_bold.ttf");
-  font-weight: semibold;
-  font-style: semibold;
 }
 
 @font-face {
@@ -107,8 +86,9 @@ a {
   }
 }
 
-.ant-input {
-  border-radius: 4px;
+.ant-input,
+.ant-input-affix-wrapper {
+  border-radius: 8px;
 }
 
 .calendar {
@@ -142,9 +122,12 @@ a {
   border: 1px solid @primary-color;
 }
 
-.ant-select-selection-placeholder,
-.ant-input::placeholder {
+.ant-select-selection-placeholder {
   color: @primary-color;
+}
+
+.ant-input::placeholder {
+  color: "#D8D8D8";
 }
 
 .ant-table-thead > tr > th {
@@ -206,13 +189,13 @@ a {
 
 .table-noshow-pagination .ant-pagination-prev > a {
   display: inherit;
-  max-width: 50px;
+  max-width: 100px;
   margin-right: auto;
 }
 .table-noshow-pagination .ant-pagination-next > a {
   display: inherit;
   margin-left: auto;
-  max-width: 50px;
+  max-width: 100px;
 }
 
 .ant-picker {
@@ -241,4 +224,117 @@ a {
 
 ul.ant-dropdown-menu {
   border-radius: 8px;
+}
+// font system
+.heading-en {
+  font-size: 50px;
+}
+
+.heading-th {
+  font-size: 40px;
+}
+
+.sub-heading {
+  font-size: 32px;
+}
+
+.content-font {
+  font-size: 28px;
+}
+
+.detail-font {
+  font-size: 24px;
+}
+
+.font-20 {
+  font-size: 20px;
+  font-weight: regular;
+}
+
+.font-10 {
+  font-size: 10px;
+}
+
+.calendar-container .fc-day.fc-day-sun {
+  color: #f59331 !important;
+}
+
+.calendar-container
+  .fc-col-header-cell.fc-day.fc-day-sun
+  .fc-scrollgrid-sync-inner {
+  color: #f59331 !important;
+}
+
+.bg-red-custom {
+  background-color: #ea4335;
+}
+
+.bg-green-custom {
+  background-color: #34a853;
+}
+
+.bg-blue-custom {
+  background-color: #4285f4;
+}
+
+.bg-yellow-custom {
+  background-color: #f1c232;
+}
+
+.calendar-container .fc .fc-daygrid-day-frame,
+.calendar-container .fc-col-header-cell .fc-scrollgrid-sync-inner {
+  border: 1px solid @primary-color;
+}
+
+.calendar-container .fc-col-header-cell .fc-scrollgrid-sync-inner {
+  border-bottom: none;
+}
+
+.calendar-container .fc-col-header-cell .fc-scrollgrid-sync-inner {
+  color: @primary-color;
+}
+
+.fc-day-sun {
+  color: unset;
+}
+
+.calendar-container
+  tr
+  .fc-col-header-cell:not(:last-of-type)
+  .fc-scrollgrid-sync-inner {
+  border-right: none;
+}
+
+.calendar-container tr:not(:last-child) td .fc-daygrid-day-frame {
+  border-bottom: none;
+}
+
+.calendar-container tr td:not(:last-of-type) .fc-daygrid-day-frame {
+  border-right: none;
+}
+
+.ant-dropdown-menu-submenu .ant-dropdown-menu {
+  background-color: @primary-color !important;
+}
+
+.ant-dropdown-menu-submenu-popup ul{
+  margin: 0;
+}
+
+.form-collapse .form-download-item:nth-child(odd){
+  background-color: #E7EDF8;
+}
+
+.form-collapse .ant-collapse-content > .ant-collapse-content-box{
+  padding: 0;
+}
+
+.ant-collapse{
+  background-color: unset;
+  border: unset !important;
+}
+
+.ant-collapse-item{
+  border-radius: 8px;
+  margin-top: 20px;
 }

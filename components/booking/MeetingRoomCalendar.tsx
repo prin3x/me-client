@@ -127,6 +127,10 @@ function MeetingRoomCalendar({
           minute: "2-digit",
           meridiem: false,
         }}
+        slotLabelFormat={{
+          hour: '2-digit',
+          minute: '2-digit',
+        }}
       />
     </div>
   );

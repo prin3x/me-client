@@ -27,38 +27,38 @@ function FormRequest({}: Props): ReactElement {
                 header='Training'
                 key='1'
                 showArrow={true}
-                className='bg-primary-color text-xl font-semibold'
+                className='bg-primary-color text-xl'
                 style={{color: 'white'}}
               >
-                <p className='text-lg font-regular'>In-House Training Request</p>
-                <p className='text-lg font-regular'>Public Training Request</p>
-                <p className='text-lg font-regular'>แบบฟอร์มยืม-เบิกอุปกรณ์ตกแต่ง</p>
+                <p className='form-download-item text-lg mb-0 py-2 font-regular'>&emsp; &emsp; In-House Training Request</p>
+                <p className='form-download-item text-lg mb-0 py-2 font-regular'>&emsp; &emsp; Public Training Request</p>
+                <p className='form-download-item text-lg mb-0 py-2 font-regular'>&emsp; &emsp; แบบฟอร์มยืม-เบิกอุปกรณ์ตกแต่ง</p>
               </Collapse.Panel>
               <Collapse.Panel
                 header='QMD'
                 key='2'
                 showArrow={true}
-                className='bg-primary-color text-xl font-semibold'
+                className='bg-primary-color text-xl'
               >
-                <p className='text-lg font-regular'>Job Request</p>
+                <p className='form-download-item text-lg mb-0 py-2 font-regular'>&emsp; &emsp; Job Request</p>
               </Collapse.Panel>
               <Collapse.Panel
                 header='F&A'
                 key='3'
                 showArrow={true}
-                className='bg-primary-color text-xl font-semibold'
+                className='bg-primary-color text-xl'
               >
-                <p className='text-lg font-regular'>แบบฟอร์มชี้แจ้งค่าใช้จ่าย</p>
-                <p className='text-lg font-regular'>แบบฟอร์มเบิกค่าเดินทาง</p>
+                <p className='form-download-item text-lg mb-0 py-2 font-regular'>&emsp; &emsp; แบบฟอร์มชี้แจ้งค่าใช้จ่าย</p>
+                <p className='form-download-item text-lg mb-0 py-2 font-regular'>&emsp; &emsp; แบบฟอร์มเบิกค่าเดินทาง</p>
               </Collapse.Panel>
               <Collapse.Panel
                 header='HR'
                 key='4'
                 showArrow={true}
-                className='bg-primary-color text-xl font-semibold'
+                className='bg-primary-color text-xl'
               >
-                <p className='text-lg font-regular'>แบบฟอร์มขอหนังสือรับรอง</p>
-                <p className='text-lg font-regular'>แบบฟอร์มเบิกค่ารักษาพยาบาล</p>
+                <p className='form-download-item text-lg mb-0 py-2 font-regular'>&emsp; &emsp; แบบฟอร์มขอหนังสือรับรอง</p>
+                <p className='form-download-item text-lg mb-0 py-2 font-regular'>&emsp; &emsp; แบบฟอร์มเบิกค่ารักษาพยาบาล</p>
               </Collapse.Panel>
             </Collapse>
           </Col>

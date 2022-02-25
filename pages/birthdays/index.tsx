@@ -8,7 +8,6 @@ import { ASSET_URL } from "../../config";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
   DEPT_SELECTOR,
-  ListQueryParams,
   ListQueryParamsBirthday,
 } from "../../services/contact/contact.model";
 import { BIRTHDAY } from "../../services/contact/contact.queryKey";
@@ -23,6 +22,7 @@ const INIT_QUERY = {
 };
 
 function BirthDayPage(): ReactElement {
+  const router = useRouter();
   const [form] = Form.useForm();
   const [staffContactData, setStaffContactData] = useState([]);
   const [queryStr, setQueryStr] = useState<ListQueryParamsBirthday>(INIT_QUERY);
@@ -53,38 +53,76 @@ function BirthDayPage(): ReactElement {
     {
       title: "NAME",
       dataIndex: "name",
-      render: (_self, _record) => (
+      width: "280px",
+      render: (_self: string, _record: any) => (
         <div className="flex items-center gap-2">
-          <Image
-            src={_record.profilePicUrl}
-            alt=""
-            preview={false}
-            width={40}
-          />
-          <p className="text-md font-regular">{_self}</p>
+          <div
+            className="max-w-100 w-20
+          "
+          >
+            <Image
+              width={75}
+              height={75}
+              alt="No Image"
+              src={_record.profilePicUrl}
+              preview={false}
+            />
+          </div>
+          <div className="flex flex-col items-start">
+            <p
+              className="text-left cursor-pointer text-primary-color mb-0"
+              onClick={() => router.push(`/staff-contact/${_record.id}`)}
+            >
+              {_self}
+            </p>
+          </div>
         </div>
       ),
     },
     {
       title: "NICKNAME",
       dataIndex: "nickname",
-      render: (_self, _record) => <p className="text-center">{_self}</p>,
-    },
-    {
-      title: "COMPANY",
-      dataIndex: "company",
+      width: "100%",
       render: (_self, _record) => <p className="text-center">{_self}</p>,
     },
     {
       title: "DEPARTMENT",
       dataIndex: "department",
+      width: "100%",
       render: (_self, _record) => <p className="text-center">{_self}</p>,
+    },
+    {
+      title: "COMPANY",
+      dataIndex: "company",
+      width: "100%",
+      render: (_self, _record) => (
+        <p className="text-center">
+          {_self === "Mindedge Recruitment" ? (
+            <Image
+              src="/assets/me-recruit.svg"
+              alt="mindedgelogo"
+              width={100}
+            />
+          ) : _self === "Mindedge Innovation" ? (
+            <Image src="/assets/me-logo.svg" alt="mindedgelogo" width={100} />
+          ) : _self === "Foodberg" ? (
+            <Image
+              src="/assets/foodberg-logo.svg"
+              alt="mindedgelogo"
+              width={50}
+            />
+          ) : (
+            <Image src="/assets/meu-logo.svg" alt="mindedgelogo" width={100} />
+          )}
+        </p>
+      ),
     },
     {
       title: "BIRTHDATE",
       dataIndex: "birthDate",
+      width: "100%",
       render: (_self, _record) => (
-        <p className="text-center">{moment(_self).format("MMM DD")}</p>
+        <p className="text-center">{moment(_self).format("DD MMM")}</p>
       ),
     },
   ];
@@ -107,18 +145,18 @@ function BirthDayPage(): ReactElement {
                   initialValue={(moment().month() + 1).toString()}
                 >
                   <Select placeholder="MONTH" style={{ width: 150 }}>
-                    <Select.Option value="1">Jan</Select.Option>
-                    <Select.Option value="2">Feb</Select.Option>
-                    <Select.Option value="3">Mar</Select.Option>
-                    <Select.Option value="4">Apr</Select.Option>
+                    <Select.Option value="1">January</Select.Option>
+                    <Select.Option value="2">February</Select.Option>
+                    <Select.Option value="3">March</Select.Option>
+                    <Select.Option value="4">April</Select.Option>
                     <Select.Option value="5">May</Select.Option>
-                    <Select.Option value="6">Jun</Select.Option>
-                    <Select.Option value="7">Jul</Select.Option>
-                    <Select.Option value="8">Aug</Select.Option>
-                    <Select.Option value="9">Sep</Select.Option>
-                    <Select.Option value="10">Oct</Select.Option>
-                    <Select.Option value="11">Nov</Select.Option>
-                    <Select.Option value="12">Dec</Select.Option>
+                    <Select.Option value="6">June</Select.Option>
+                    <Select.Option value="7">July</Select.Option>
+                    <Select.Option value="8">August</Select.Option>
+                    <Select.Option value="9">September</Select.Option>
+                    <Select.Option value="10">October</Select.Option>
+                    <Select.Option value="11">November</Select.Option>
+                    <Select.Option value="12">December</Select.Option>
                   </Select>
                 </Form.Item>
                 <Form.Item name="department">

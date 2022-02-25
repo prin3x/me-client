@@ -101,7 +101,9 @@ const Home: NextPage = () => {
           recentAnnouncementMeta.data.items.length > 0 && (
             <Row className="container mx-auto pt-10">
               <Col span={24}>
-                <h2 className="font-bold text-4xl text-primary-color">NEWS</h2>
+                <h2 className="font-bold heading-en text-primary-color">
+                  Announcement
+                </h2>
                 <CarouselSlider
                   items={
                     recentAnnouncementMeta.isSuccess
@@ -138,10 +140,16 @@ const Home: NextPage = () => {
                     alt=""
                     height={330}
                   />
-                  <div className="absolute bottom-0 w-full bg-slate-900 opacity-80 p-5">
-                    <div className="text-5xl font-bold text-white">
+                  <div className="absolute top-0 w-full p-5">
+                    <div className="heading-en font-bold text-white">
                       IT Clinic
                     </div>
+                  </div>
+                  <div className="absolute bottom-0 w-full bg-slate-900 opacity-80 p-5">
+                    <div className="heading-en font-bold text-white">
+                      Title + Desc
+                    </div>
+                    <p className="text-white text-right">Read More ...</p>
                   </div>
                 </div>
               </Col>
@@ -159,10 +167,16 @@ const Home: NextPage = () => {
                     alt=""
                     height={330}
                   />
-                  <div className="absolute bottom-0 w-full bg-slate-900 opacity-80 p-5">
-                    <div className="text-5xl font-bold text-white">
+                  <div className="absolute top-0 w-full p-5">
+                    <div className="heading-en font-bold text-white">
                       Activity
                     </div>
+                  </div>
+                  <div className="absolute bottom-0 w-full bg-slate-900 opacity-80 p-5">
+                    <div className="heading-en font-bold text-white">
+                      Title + Desc
+                    </div>
+                    <p className="text-white text-right">Read More ...</p>
                   </div>
                 </div>
               </Col>

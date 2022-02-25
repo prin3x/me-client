@@ -8,6 +8,6 @@
     <rect width="1004" height="330" rx="20" stroke="none"/>
     <rect x="1.5" y="1.5" width="1001" height="327" rx="18.5" fill="none"/>
   </g>
-  <text id="Birthday-2" data-name="Birthday" transform="translate(387 54)" fill="#1655b7" font-size="50" font-family="Helvetica-Bold, Helvetica" font-weight="700"><tspan x="0" y="0">BIRTHDAY</tspan></text>
-  <text id="สุขสันต์วันเกิด" transform="translate(431 92)" fill="#1655b7" font-size="25" font-family="Thonburi"><tspan x="0" y="0">สุขสันต์วันเกิด</tspan></text>
+  <text id="Birthday-2" data-name="Birthday" transform="translate(418 61)" fill="#1655b7" font-size="50" font-family="DBOzoneX, DB Ozone X"><tspan x="0" y="0">BIRTHDAY</tspan></text>
+  <text id="สุขสันต์วันเกิด" transform="translate(423 92)" fill="#1655b7" font-size="40" font-family="DBOzoneX, DB Ozone X"><tspan x="0" y="0">สุขสันต์วันเกิด</tspan></text>
 </svg>

@@ -28,10 +28,10 @@ const colorsMap = [
 ];
 
 const themeValues = {
-  primary: "#facc14",
-  secondary: "#5ea5fa",
-  tertiary: "#f87171",
-  fourth: "#49de80",
+  primary: "#F1C232",
+  secondary: "#4285F4",
+  tertiary: "#EA4335",
+  fourth: "#34A853",
 };
 
 const CheckboxGroup = Checkbox.Group;
@@ -89,6 +89,7 @@ function CalendarPage(): ReactElement {
   function setEventState() {
     let nextState;
     nextState = displayColoredEvents(calendarEventMeta?.data);
+    console.log(nextState, "nextState");
 
     setEvents(nextState);
   }
@@ -119,10 +120,32 @@ function CalendarPage(): ReactElement {
           coloredEvent.color = (themeValues as any)[foundColor.color];
         }
       }
+      const index = switchCategoryIndex(coloredEvent.categoryName);
+      coloredEvent.index = index;
+
       return coloredEvent;
     });
 
     return coloredEvents;
+  }
+
+  function switchCategoryIndex(_categoryName) {
+    switch (_categoryName) {
+      case ECalendarEventType.HOLIDAY:
+        return "a";
+
+      case ECalendarEventType.EVENT:
+        return "b";
+
+      case ECalendarEventType.BIRTHDAY:
+        return "c";
+
+      case ECalendarEventType.OTHER:
+        return "d";
+
+      default:
+        break;
+    }
   }
 
   function filterEventType(_categoryNames: ECalendarEventType[]) {
@@ -165,18 +188,18 @@ function CalendarPage(): ReactElement {
                 style={{ width: 150 }}
                 onChange={onSelectMonth}
               >
-                <Select.Option value="1">Jan</Select.Option>
-                <Select.Option value="2">Feb</Select.Option>
-                <Select.Option value="3">Mar</Select.Option>
-                <Select.Option value="4">Apr</Select.Option>
+                <Select.Option value="1">January</Select.Option>
+                <Select.Option value="2">February</Select.Option>
+                <Select.Option value="3">March</Select.Option>
+                <Select.Option value="4">April</Select.Option>
                 <Select.Option value="5">May</Select.Option>
-                <Select.Option value="6">Jun</Select.Option>
-                <Select.Option value="7">Jul</Select.Option>
-                <Select.Option value="8">Aug</Select.Option>
-                <Select.Option value="9">Sep</Select.Option>
-                <Select.Option value="10">Oct</Select.Option>
-                <Select.Option value="11">Nov</Select.Option>
-                <Select.Option value="12">Dec</Select.Option>
+                <Select.Option value="6">June</Select.Option>
+                <Select.Option value="7">July</Select.Option>
+                <Select.Option value="8">August</Select.Option>
+                <Select.Option value="9">September</Select.Option>
+                <Select.Option value="10">October</Select.Option>
+                <Select.Option value="11">November</Select.Option>
+                <Select.Option value="12">December</Select.Option>
               </Select>
             </Form.Item>
             <Form.Item>
@@ -184,38 +207,38 @@ function CalendarPage(): ReactElement {
                 <Select.Option value="2022">2022</Select.Option>
               </Select>
             </Form.Item>
-            <Form.Item className="ml-auto">
+            <Form.Item className="ml-auto" style={{ marginLeft: "auto" }}>
               <CheckboxGroup onChange={filterEventType}>
-                <Row gutter={[0, 3]}>
+                <Row gutter={[0, 3]} justify="end">
                   <Col
                     lg={10}
-                    className="bg-yellow-400 p-1 rounded-md m-1 ml-5 text-center"
+                    className="bg-yellow-custom p-1 rounded-md m-1 ml-5 text-center"
                   >
-                    <Checkbox value={ECalendarEventType.EVENT} className="">
+                    <Checkbox value={ECalendarEventType.EVENT} className="text-white">
                       EVENT
                     </Checkbox>
                   </Col>
                   <Col
                     lg={10}
-                    className="bg-blue-400 p-1 rounded-md m-1  ml-5 text-center"
+                    className="bg-blue-custom p-1 rounded-md m-1  ml-5 text-center"
                   >
-                    <Checkbox value={ECalendarEventType.BIRTHDAY}>
+                    <Checkbox value={ECalendarEventType.BIRTHDAY} className="text-white">
                       BIRTHDAY
                     </Checkbox>
                   </Col>
                   <Col
                     lg={10}
-                    className="bg-red-400 p-1 rounded-md m-1  ml-5 text-center"
+                    className="bg-red-custom p-1 rounded-md m-1  ml-5 text-center"
                   >
-                    <Checkbox value={ECalendarEventType.HOLIDAY}>
+                    <Checkbox value={ECalendarEventType.HOLIDAY} className="text-white">
                       HOLIDAY
                     </Checkbox>
                   </Col>
                   <Col
                     lg={10}
-                    className="bg-green-400 p-1 rounded-md m-1  ml-5 text-center"
+                    className="bg-green-custom p-1 rounded-md m-1  ml-5 text-center"
                   >
-                    <Checkbox value={ECalendarEventType.OTHER}>OTHER</Checkbox>
+                    <Checkbox value={ECalendarEventType.OTHER} className="text-white">OTHER</Checkbox>
                   </Col>
                 </Row>
               </CheckboxGroup>
@@ -223,7 +246,7 @@ function CalendarPage(): ReactElement {
           </Form>
         </Row>
       </Col>
-      <Col lg={24}>
+      <Col lg={24} className="mt-10 calendar-container">
         <FullCalendar
           ref={calendarRef}
           schedulerLicenseKey={FULL_CANLENDAR_LICENSE}
@@ -243,7 +266,9 @@ function CalendarPage(): ReactElement {
           eventClick={handleEventClick}
           events={events}
           weekends
-          locale={"th"}
+          dayHeaderClassNames={'day-header'}
+          dayHeaderFormat={{weekday: 'long'}}
+          eventOrder={["index"]}
           eventTimeFormat={{
             hour: "2-digit",
             minute: "2-digit",
