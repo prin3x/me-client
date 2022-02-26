@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react';
-import { Button, Col, Image, Row } from 'antd';
-import LayoutHOC from '../../layout/LayoutHOC';
-import PrivacyPolicyHero from '../../components/privacy-policy/PrivacyPolicyHero';
+import React, { ReactElement } from "react";
+import { Button, Col, Image, Row } from "antd";
+import LayoutHOC from "../../layout/LayoutHOC";
+import PrivacyPolicyHero from "../../components/privacy-policy/PrivacyPolicyHero";
 
 interface Props {}
 
@@ -10,30 +10,57 @@ function PrivacyPolicy({}: Props): ReactElement {
     <LayoutHOC>
       <div>
         <PrivacyPolicyHero />
-        <Row className='container mx-auto rounded-xl pt-5 mt-10 border-primary-color'>
+        <Row className="container mx-auto rounded-xl pt-5 mt-10 border-primary-color">
           <Col span={24}>
-            <Row
-              justify='center'
-              className='uppercase text-3xl font-bold text-primary-color'
-            >
-              infographic
-            </Row>
             <Row>
               <Image
-                src='/assets/Company_Policy.png'
-                alt='Company_Policy'
+                src="/assets/Privacy_Policy.png"
+                alt="Privacy_Policy"
                 preview={false}
               />
             </Row>
           </Col>
         </Row>
-        <Row className='mt-5'>
+        <Row justify="center" className="mt-5">
+          <div>
+            สามารถศึกษานโยบายการใช้ข้อมูลส่วนบุคคลของแต่ละบริษัทเพิ่มเติม ได้ที่{" "}
+          </div>
+        </Row>
+        <Row className="mt-5">
           <Col span={24}>
-            <Row justify='center' className='gap-5'>
-              <Button type='primary'>ME</Button>
-              <Button type='primary'>MR</Button>
-              <Button type='primary'>MY</Button>
-              <Button type='primary'>FB</Button>
+            <Row justify="center" className="gap-5">
+              <a
+                className="cursor-pointer"
+                target="_blank"
+                rel="noreferrer"
+                href="http://203.154.66.203.8015/ME"
+              >
+                <Button type="primary">ME</Button>
+              </a>
+              <a
+                className="cursor-pointer"
+                target="_blank"
+                rel="noreferrer"
+                href="http://203.154.66.203.8015/MR"
+              >
+                <Button type="primary">MR</Button>
+              </a>
+              <a
+                className="cursor-pointer"
+                target="_blank"
+                rel="noreferrer"
+                href="http://203.154.66.203.8015/MY"
+              >
+                <Button type="primary">MY</Button>
+              </a>
+              <a
+                className="cursor-pointer"
+                target="_blank"
+                rel="noreferrer"
+                href="http://203.154.66.203.8015/FB"
+              >
+                <Button type="primary">FB</Button>
+              </a>
             </Row>
           </Col>
         </Row>

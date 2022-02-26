@@ -60,23 +60,43 @@ function Navbar(): ReactElement {
       >
         <Menu className="bg-primary-color ta-tabs text-white left-0">
           <Menu.Item key={nanoid(5)}>
-            <a className="cursor-pointer" href='http://203.154.66.203.8015/ME'>
+            <a
+              className="cursor-pointer"
+              target="_blank"
+              rel="noreferrer"
+              href="http://203.154.66.203.8015/ME"
+            >
               <div className="text-white hover:text-black nav-item">ME</div>
             </a>
           </Menu.Item>
           <Menu.Item key={nanoid(5)}>
-            <a className="cursor-pointer" href='http://203.154.66.203.8015/MR'>
+            <a
+              className="cursor-pointer"
+              target="_blank"
+              rel="noreferrer"
+              href="http://203.154.66.203.8015/MR"
+            >
               <div className="text-white hover:text-black nav-item">MR</div>
             </a>
           </Menu.Item>
           <Menu.Item key={nanoid(5)}>
-            <a className="cursor-pointer" href='http://203.154.66.203.8015/MY'>
+            <a
+              className="cursor-pointer"
+              target="_blank"
+              rel="noreferrer"
+              href="http://203.154.66.203.8015/MY"
+            >
               <div className="text-white hover:text-black nav-item">MY</div>
             </a>
           </Menu.Item>
           <Menu.Item key={nanoid(5)}>
-            <a className="cursor-pointer" href='http://203.154.66.203.8015/FF'>
-              <div className="text-white hover:text-black nav-item">FF</div>
+            <a
+              className="cursor-pointer"
+              target="_blank"
+              rel="noreferrer"
+              href="http://203.154.66.203.8015/FB"
+            >
+              <div className="text-white hover:text-black nav-item">FB</div>
             </a>
           </Menu.Item>
         </Menu>
@@ -110,7 +130,9 @@ function Navbar(): ReactElement {
       <Menu.Item key={nanoid(5)}>
         <Link href={"/form-request"}>
           <a className="cursor-pointer">
-            <div className="text-white nav-item">Forms / Flow / Job Request</div>
+            <div className="text-white nav-item">
+              Forms / Flow / Job Request
+            </div>
           </a>
         </Link>
       </Menu.Item>
@@ -201,7 +223,7 @@ function Navbar(): ReactElement {
         </Col>
         <Col lg={20} md={18}>
           <div className="navbar bg-primary-color flex items-center px-10 h-full rounded-tl-full rounded-br-full">
-            <ul className="navbar-ul flex items-center gap-5 mb-0 ">
+            <ul className="navbar-ul flex  flex-wrap items-center gap-5 mb-0 ">
               <Dropdown overlay={Personal}>
                 <li className="text-white uppercase flex items-center gap-2 ">
                   personal <DownOutlined />

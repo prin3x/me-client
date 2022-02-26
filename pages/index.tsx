@@ -145,7 +145,7 @@ const Home: NextPage = () => {
                       IT Clinic
                     </div>
                   </div>
-                  <div className="absolute bottom-0 w-full bg-slate-900 opacity-80 p-5">
+                  <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5">
                     <div className="heading-en font-bold text-white">
                       Title + Desc
                     </div>
@@ -172,7 +172,7 @@ const Home: NextPage = () => {
                       Activity
                     </div>
                   </div>
-                  <div className="absolute bottom-0 w-full bg-slate-900 opacity-80 p-5">
+                  <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5">
                     <div className="heading-en font-bold text-white">
                       Title + Desc
                     </div>
