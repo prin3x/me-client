@@ -64,11 +64,14 @@ function PostList({ posts }: Props) {
                   </p>
                 </div>
                 <div className="flex justify-center">
-                  <Tag className="tag-round font-bold" color="blue">
-                    <Link href={`/${_post.categoryName}/?tag=${_post.tag}`}>
+                  <Link
+                    href={`/${_post.categoryName}/?tag=${_post.tag}`}
+                    passHref
+                  >
+                    <Tag className="tag-round font-bold" color="blue">
                       {_post.tag}
-                    </Link>
-                  </Tag>
+                    </Tag>
+                  </Link>
                 </div>
               </Col>
             </Row>

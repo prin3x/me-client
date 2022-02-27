@@ -258,13 +258,13 @@ function Navbar(): ReactElement {
                 <div className="text-white font-10">
                   Welcome... {userInfo?.name?.slice(0, 8)}
                 </div>
-                <div
-                  className="text-white font-10"
-                  style={{ marginLeft: 10, cursor: "pointer" }}
-                  onClick={signOutAndReturnToLogin}
-                >
-                  Change Password
-                </div>
+                  <div
+                    className="text-white font-10"
+                    style={{ marginLeft: 10, cursor: "pointer" }}
+                    onClick={() => router.push('/change-password/')}
+                  >
+                    Change Password
+                  </div>
                 <div
                   className="text-white font-10"
                   style={{ marginLeft: 10, cursor: "pointer" }}
