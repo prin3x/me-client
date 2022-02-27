@@ -69,6 +69,7 @@ function MakeBooking({}: Props): ReactElement {
     set.end = formResult.end;
     set.roomId = formResult.roomId;
     set.type = formResult.type;
+    set.allDay = formResult.allDay;
 
     try {
       await _updateMeetingEvent(router.query.id, set);
