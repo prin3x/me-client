@@ -35,25 +35,25 @@ function MakeBooking({}: Props): ReactElement {
   const roomsMeta = useQuery(["rooms"], _getAllRooms);
   const [makeStatus, setMakeStatus] = useState(EMakeStatus.MAKE);
 
-  const submitRoomBooking = async (
-    _formValues: ICreateMeeting
-  ): Promise<void> => {
-    let set = {} as any;
-    set.title = _formValues.title;
-    set.description = _formValues.description;
-    set.start = _formValues.start;
-    set.end = _formValues.end;
-    set.roomId = _formValues.roomId;
+  const submitRoomBooking = (): void => {
+    form.validateFields().then(async (_formValues: ICreateMeeting) => {
+      let set = {} as any;
+      set.title = _formValues.title;
+      set.description = _formValues.description;
+      set.start = _formValues.start;
+      set.end = _formValues.end;
+      set.roomId = _formValues.roomId;
+      set.type = _formValues.type;
+      set.allDay = _formValues.allDay;
 
-    console.log(_formValues,'_formValues')
-
-    try {
-      await _createBooking(set);
-      message.success("Created Successfully");
-      router.push("/booking/");
-    } catch (e) {
-      message.error(e.response.message);
-    }
+      try {
+        await _createBooking(set);
+        message.success("Created Successfully");
+        router.push("/booking/");
+      } catch (e) {
+        message.error(e.response.message);
+      }
+    });
   };
 
   const updateRoomBooking = async (): Promise<void> => {
@@ -64,6 +64,7 @@ function MakeBooking({}: Props): ReactElement {
     set.start = formResult.start;
     set.end = formResult.end;
     set.roomId = formResult.roomId;
+    set.type = formResult.type;
 
     try {
       await _updateMeetingEvent(router.query.id, set);

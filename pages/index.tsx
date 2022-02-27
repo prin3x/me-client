@@ -145,11 +145,23 @@ const Home: NextPage = () => {
                       IT Clinic
                     </div>
                   </div>
-                  <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5">
-                    <div className="heading-en font-bold text-white">
-                      Title + Desc
+                  <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
+                    <div className="heading-th font-bold text-white">
+                      {recentItClinicMeta?.data?.items?.[0]?.title}
                     </div>
-                    <p className="text-white text-right">Read More ...</p>
+                    <div
+                      className="font-bold text-white"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          recentItClinicMeta?.data?.items?.[0]?.content?.slice(
+                            0,
+                            15
+                          ) + "...",
+                      }}
+                    />
+                    <p className="text-white text-right absolute bottom-2 right-5">
+                      Read More ...
+                    </p>
                   </div>
                 </div>
               </Col>
@@ -172,11 +184,23 @@ const Home: NextPage = () => {
                       Activity
                     </div>
                   </div>
-                  <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5">
-                    <div className="heading-en font-bold text-white">
-                      Title + Desc
+                  <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
+                    <div className="heading-th font-bold text-white">
+                      {recentActivityMeta?.data?.items?.[0]?.title}
                     </div>
-                    <p className="text-white text-right">Read More ...</p>
+                    <div
+                      className="font-bold text-white"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          recentActivityMeta?.data?.items?.[0]?.content?.slice(
+                            0,
+                            15
+                          ) + "...",
+                      }}
+                    />
+                    <p className="text-white text-right absolute bottom-2 right-5">
+                      Read More ...
+                    </p>
                   </div>
                 </div>
               </Col>

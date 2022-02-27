@@ -17,7 +17,6 @@ function RoomId({}: Props) {
   const roomsMeta = useQuery(["rooms", router.query.roomId], () =>
     _getAllRoomsById(router.query.roomId)
   );
-  const [room, setRoom] = useState<any>({});
 
   if (!roomsMeta.isSuccess)
     return (

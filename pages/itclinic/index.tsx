@@ -4,9 +4,11 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import { Input, Pagination, Row, Skeleton } from "antd";
+import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import ITClinicHero from "../../components/itclinic/ITClinicHero";
+import PostHOC from "../../components/post/PostHOC";
 import PostList from "../../components/post/PostList";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
@@ -22,6 +24,7 @@ import {
 interface Props {}
 
 function ITClinic({}: Props): ReactElement {
+  const router = useRouter();
   const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({
     categoryName: EPostCategory.IT,
   });
@@ -38,69 +41,44 @@ function ITClinic({}: Props): ReactElement {
     set.page = page;
     set.search = search;
     set.categoryName = EPostCategory.ANNOUNCEMENT;
+    if(router.query.tag) {
+      set.tag = router.query.tag as string;
+    }
 
     setQueryStr(set);
   }
 
-  function itemRender(current, type, originalElement) {
-    if (type === "prev") {
-      return (
-        <a>
-          <DoubleLeftOutlined />
-        </a>
-      );
-    }
-    if (type === "next") {
-      return (
-        <a>
-          <DoubleRightOutlined />
-        </a>
-      );
-    }
-    return originalElement;
+  function onChangePage(_currentPage: number) {
+    setPage(_currentPage);
   }
 
   useEffect(() => {
     if (itclinicMeta.isSuccess) {
       setItclinic(itclinicMeta.data.items);
     }
-  }, [itclinicMeta.data]);
+  }, [itclinicMeta]);
 
   useEffect(() => {
     setQuery();
-  }, [page, search]);
+  }, [search]);
+
+
+  useEffect(() => {
+    if(!router.query.tag) return;
+    setQuery();
+  },[router.query])
 
   return (
     <LayoutHOC>
       <div>
         <ITClinicHero />
-        <Row justify="end" className="mt-5">
-          <Input
-            style={{ width: 250 }}
-            placeholder="SEARCH"
-            className="ml-auto"
-            onChange={(e) => setSearch(e.target.value)}
-            prefix={
-              <SearchOutlined
-                style={{
-                  color: "#D8D8D8",
-                  marginLeft: "4rem",
-                }}
-              />
-            }
-          />
-        </Row>
-        {itclinicMeta.isLoading &&
-          [1, 2, 3].map((_post) => <Skeleton key={_post} />)}
-        {itclinic.length > 0 && <PostList posts={itclinic} />}
-        <Row justify="center">
-          <Pagination
-            total={itclinicMeta?.data?.total || 0}
-            itemRender={itemRender}
-            current={page}
-            onChange={(cur) => setPage(cur)}
-          />
-        </Row>
+        <PostHOC
+          setSearch={setSearch}
+          page={page}
+          onChangePage={onChangePage}
+          postList={itclinic}
+          metaData={itclinicMeta}
+        />
       </div>
     </LayoutHOC>
   );

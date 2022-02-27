@@ -1,5 +1,19 @@
-import { PlusOutlined } from "@ant-design/icons";
-import { Badge, Button, Calendar, Col, Form, message, Row, Select } from "antd";
+import {
+  CaretLeftOutlined,
+  CaretRightOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
+import {
+  Badge,
+  Button,
+  Calendar,
+  Col,
+  Form,
+  message,
+  Row,
+  Select,
+  Typography,
+} from "antd";
 import moment from "moment";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -25,6 +39,7 @@ function BookingMeetingRoom(): ReactElement {
   const [rooms, setRooms] = useState([]);
   const [floor, setFloor] = useState<string>("1");
   const router = useRouter();
+  const [selectedRoomId, setSelectedRoomId] = useState("");
 
   const meetingEventsQuery = useQuery(["meeting-events"], _getAllBookingEvents);
   const roomsMeta = useQuery(["rooms"], _getAllRooms);
@@ -78,13 +93,67 @@ function BookingMeetingRoom(): ReactElement {
     }
   }
 
+  const onSelectRoomId = (_values) => {
+    setSelectedRoomId(_values);
+  };
+
+  function headerRender({ value, onChange }) {
+    const current = value.clone();
+
+    return (
+      <div>
+        <div className="border-2 rounded-xl text-center p-3 text-xl" style={{borderColor: '#eee'}}>
+            {moment().format("DD MMMM yyyy")}
+        </div>
+        <Row gutter={8} justify="center" className='mt-4'>
+          <Col>
+            <Row align="middle" gutter={20}>
+              <Col>
+                <div
+                  className="h-6 cursor-pointer"
+                  onClick={() => {
+                    const newValue = value.clone();
+                    newValue.month(current.month() - 1);
+                    onChange(newValue);
+                  }}
+                >
+                  <CaretLeftOutlined style={{ fontSize: 16 }} />
+                </div>
+              </Col>
+              <Col>
+                <div className="text-lg">{current.format("MMMM")}</div>
+              </Col>
+              <Col>
+                <div
+                  className="h-6 cursor-pointer"
+                  onClick={() => {
+                    const newValue = value.clone();
+                    newValue.month(current.month() + 1);
+                    onChange(newValue);
+                  }}
+                >
+                  <CaretRightOutlined style={{ fontSize: 16 }} />
+                </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+
   useEffect(() => {
     getAllRooms(floor);
   }, [floor]);
 
+  useEffect(() => {
+    if (!roomsMeta.isSuccess) return;
+    setSelectedRoomId(roomsMeta?.data?.[0]?.id);
+  }, [roomsMeta.isFetched]);
+
   return (
     <LayoutHOC>
-      <div>
+      <div className='meeting-room'>
         <BookingMeetingHero />
         <Row className="container mx-auto pt-10">
           <Col span={24}>
@@ -96,30 +165,48 @@ function BookingMeetingRoom(): ReactElement {
                 <Row>
                   <Form className="flex w-full">
                     <Col md={14}>
-                      {/* <div className="flex">
+                      <div className="flex">
                         <Form.Item>
-                          <Select placeholder="Floor 3" onChange={selectFloor}>
-                            <Select.Option value="1">Floor 1</Select.Option>
-                            <Select.Option value="2">Floor 2</Select.Option>
-                            <Select.Option value="3">Floor 3</Select.Option>
+                          <Select placeholder="Floor">
+                            <Select.Option value="N/A">NA</Select.Option>
                           </Select>
                         </Form.Item>
                         <Form.Item>
-                          <Select placeholder="Production Room">
-                            <Select.Option value="Production Room">
-                              Production Room
-                            </Select.Option>
+                          <Select
+                            style={{ width: 250, marginLeft: 20 }}
+                            placeholder="Creative Room"
+                            onChange={onSelectRoomId}
+                          >
+                            {roomsMeta?.data?.length > 0
+                              ? roomsMeta?.data?.map((room) => (
+                                  <Select.Option key={room.id} value={room.id}>
+                                    {room.name}
+                                  </Select.Option>
+                                ))
+                              : null}
                           </Select>
                         </Form.Item>
-                      </div> */}
+                        <Button
+                          className="rounded-full ml-5"
+                          style={{ borderRadius: "8px" }}
+                          onClick={() =>
+                            router.push(`/booking/${selectedRoomId}`)
+                          }
+                        >
+                          View Room Detail
+                        </Button>
+                      </div>
                     </Col>
-                    <Col md={10}>
+                    <Col md={10} className='-mt-20'>
                       <Form.Item>
                         <Calendar
+                          className='meeting-room-calendar'
                           onPanelChange={onPanelChange}
                           onSelect={onSelect}
                           fullscreen={false}
                           dateCellRender={dateCellRender}
+                          headerRender={headerRender}
+                          value={moment(selectDate)}
                         />
                       </Form.Item>
                     </Col>
@@ -135,6 +222,7 @@ function BookingMeetingRoom(): ReactElement {
               <Button
                 type="primary"
                 className="rounded-full"
+                style={{ borderRadius: "12px" }}
                 onClick={() => router.push(`/booking/make?date=${selectDate}`)}
               >
                 <PlusOutlined />
@@ -146,6 +234,7 @@ function BookingMeetingRoom(): ReactElement {
             <MeetingRoomCalendar
               rooms={roomsMeta?.data}
               selectDate={selectDate}
+              setSelectDate={setSelectDate}
               meetingEventsQuery={meetingEventsQuery}
             />
           </Col>

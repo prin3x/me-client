@@ -10,22 +10,56 @@ import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
 import moment from "moment";
 import { _getAllRooms } from "../../services/meetingRoom/meeting-room.service";
 import { FULL_CANLENDAR_LICENSE } from "../../config";
-import { Badge, Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { Badge, Col, Row, Spin } from "antd";
+import {
+  LeftOutlined,
+  LoadingOutlined,
+  RightOutlined,
+} from "@ant-design/icons";
 import { useRouter } from "next/router";
 
-import 'moment/locale/th'  // without this line it didn't work
-moment.locale('th')
+// import "moment/locale/th"; // without this line it didn't work
+// moment.locale("th");
+
+const colorsMap = [
+  { color: "primary", type: "internal" },
+  { color: "secondary", type: "external" },
+];
+
+const themeValues = {
+  primary: "#5B97F5",
+  secondary: "#F7AB50",
+};
 
 function MeetingRoomCalendar({
   rooms,
   selectDate,
   meetingEventsQuery,
+  setSelectDate,
 }): ReactElement {
   const router = useRouter();
   const calendarRef = useRef<any>(null);
   const { data, isLoading, isSuccess } = meetingEventsQuery;
   const [events, setEvents] = useState([]);
+  const [currentDate, setCurrentDate] = useState(
+    calendarRef?.current?.getApi().getDate()
+  );
+
+  const onNextButtonClick = () => {
+    const calendarApi = calendarRef.current.getApi();
+    calendarApi.next();
+
+    setCurrentDate(calendarRef?.current?.getApi().getDate());
+    setSelectDate(moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD"))
+  };
+
+  const onPrevButtonClick = () => {
+    const calendarApi = calendarRef.current.getApi();
+    calendarApi.prev();
+
+    setCurrentDate(calendarRef?.current?.getApi().getDate());
+    setSelectDate(moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD"))
+  };
 
   const getToday = () => {
     if (calendarRef.current) {
@@ -39,16 +73,23 @@ function MeetingRoomCalendar({
     }
   };
 
-
   async function findAllCalendarEvent() {
     if (!data) return;
     const coloredEvents = data?.map((event) => {
       const coloredEvent = { ...event };
       if (event.roomId) {
-        console.log(event.start,moment(event.start).format())
         coloredEvent.start = moment(event.start).format();
         coloredEvent.end = moment(event.end).format();
         coloredEvent.resourceIds = [event.roomId];
+        coloredEvent.title = `${event.title} <br/> By ${event.staffContactDetail.nameTH} ${event.staffContactDetail.position}`
+      }
+      if (event.type) {
+        const foundColor = colorsMap.find(
+          (x) => (x as any).type === event.type
+        );
+        if (foundColor) {
+          coloredEvent.color = (themeValues as any)[foundColor.color];
+        }
       }
       return coloredEvent;
     });
@@ -60,12 +101,9 @@ function MeetingRoomCalendar({
     const { id, url } = clickInfo.event;
     if (id) {
       targetEvent = events.find((_item: any) => _item.id.toString() === id);
-      console.log(targetEvent);
-      router.push(`/booking/make?id=${targetEvent.id}`)
+      router.push(`/booking/make?id=${targetEvent.id}`);
     }
   };
-
-
 
   useEffect(() => {
     findAllCalendarEvent();
@@ -88,6 +126,31 @@ function MeetingRoomCalendar({
 
   return (
     <div>
+      <Row justify="space-between" className="my-5">
+        <Col>
+          <div
+            onClick={onPrevButtonClick}
+            className="cursor-pointer flex items-center text-slate-400 gap-5"
+          >
+            <LeftOutlined style={{ fontSize: 24 }} />
+            Previous Day
+          </div>
+        </Col>
+        <Col>
+          <div className="text-lg">
+            {moment(currentDate).format("dddd DD MMMM yyyy")}
+          </div>
+        </Col>
+        <Col>
+          <div
+            onClick={onNextButtonClick}
+            className="cursor-pointer flex items-center text-slate-400 gap-5"
+          >
+            Next Day
+            <RightOutlined style={{ fontSize: 24 }} />
+          </div>
+        </Col>
+      </Row>
       <FullCalendar
         ref={calendarRef}
         schedulerLicenseKey={FULL_CANLENDAR_LICENSE}
@@ -117,21 +180,39 @@ function MeetingRoomCalendar({
         selectable
         selectMirror
         dayMaxEvents
-        slotMaxTime={"21:00:00"}
+        slotMaxTime={"21:00:01"}
         slotMinTime={"07:00:00"}
         weekends
-        locale={"th"}
+        allDaySlot={false}
+        locale={"en"}
         events={isSuccess ? events : []}
         eventTimeFormat={{
           hour: "2-digit",
           minute: "2-digit",
-          meridiem: false,
+          hour12: false,
         }}
+        slotLabelInterval={{ minutes: 30 }}
         slotLabelFormat={{
-          hour: '2-digit',
-          minute: '2-digit',
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
         }}
+        eventContent={({event}: any) => { return {html: event.title}}}
       />
+      <Row className="mt-3">
+        <div
+          className="rounded-xl text-center p-2"
+          style={{ backgroundColor: "#5B97F5" }}
+        >
+          Internal
+        </div>
+        <div
+          className="rounded-xl text-center p-2 ml-5"
+          style={{ backgroundColor: "#F7AB50" }}
+        >
+          External
+        </div>
+      </Row>
     </div>
   );
 }

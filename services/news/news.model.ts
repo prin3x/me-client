@@ -30,10 +30,12 @@ export interface ListQueryParamsForPost {
   orderBy?: string;
 
   order?: string;
-  
+
   search?: string;
 
   categoryName?: string;
+
+  tag?: string;
 }
 
 export enum EPostCategory {

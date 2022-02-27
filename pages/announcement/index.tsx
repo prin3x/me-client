@@ -4,9 +4,11 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import { Input, Pagination, Row, Skeleton } from "antd";
+import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import AnnouncementHero from "../../components/announcement/AnnouncementHero";
+import PostHOC from "../../components/post/PostHOC";
 import PostList from "../../components/post/PostList";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
@@ -22,6 +24,7 @@ import {
 interface Props {}
 
 function AnnouncementPage({}: Props): ReactElement {
+  const router = useRouter();
   const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({
     categoryName: EPostCategory.ANNOUNCEMENT,
   });
@@ -36,72 +39,47 @@ function AnnouncementPage({}: Props): ReactElement {
   function setQuery() {
     let set = {} as ListQueryParamsForPost;
     set.limit = 10;
-    set.page = page;
+    set.page = 1;
     set.search = search;
     set.categoryName = EPostCategory.ANNOUNCEMENT;
+    if(router.query.tag) {
+      set.tag = router.query.tag as string;
+    }
 
+    setPage(1);
     setQueryStr(set);
   }
 
-  function itemRender(current, type, originalElement) {
-    if (type === "prev") {
-      return (
-        <a>
-          <DoubleLeftOutlined />
-        </a>
-      );
-    }
-    if (type === "next") {
-      return (
-        <a>
-          <DoubleRightOutlined />
-        </a>
-      );
-    }
-    return originalElement;
+  function onChangePage(_currentPage: number) {
+    setPage(_currentPage);
   }
 
   useEffect(() => {
     if (announcementMeta.isSuccess) {
       setAnnouncementList(announcementMeta.data.items);
     }
-  }, [announcementMeta.data]);
+  }, [announcementMeta]);
 
   useEffect(() => {
     setQuery();
-  }, [page, search]);
+  }, [search]);
+
+  useEffect(() => {
+    if(!router.query.tag) return;
+    setQuery();
+  },[router.query])
 
   return (
     <LayoutHOC>
       <div>
         <AnnouncementHero />
-        <Row justify="end" className="mt-5">
-          <Input
-            style={{ width: 250 }}
-            placeholder="SEARCH"
-            className="ml-auto"
-            onChange={(e) => setSearch(e.target.value)}
-            prefix={
-              <SearchOutlined
-                style={{
-                  color: "#D8D8D8",
-                  marginLeft: "4rem",
-                }}
-              />
-            }
-          />
-        </Row>
-        {announcementMeta.isLoading &&
-          [1, 2, 3].map((_post) => <Skeleton key={_post} />)}
-        {announcementList.length > 0 && <PostList posts={announcementList} />}
-        <Row justify="center">
-          <Pagination
-            total={announcementMeta?.data?.total || 0}
-            itemRender={itemRender}
-            current={page}
-            onChange={(cur) => setPage(cur)}
-          />
-        </Row>
+        <PostHOC
+          setSearch={setSearch}
+          page={page}
+          onChangePage={onChangePage}
+          postList={announcementList}
+          metaData={announcementMeta}
+        />
       </div>
     </LayoutHOC>
   );

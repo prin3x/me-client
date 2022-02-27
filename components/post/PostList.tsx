@@ -1,6 +1,7 @@
 import { ClockCircleOutlined } from "@ant-design/icons";
 import { Col, Divider, Image, List, Row, Tag } from "antd";
 import moment from "moment";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { ASSET_URL } from "../../config";
@@ -17,31 +18,31 @@ function PostList({ posts }: Props) {
         className="p-5 w-full"
         dataSource={posts}
         renderItem={(_post: any) => (
-          <List.Item
-            key={_post.id}
-            className="w-full cursor-pointer"
-            onClick={() => router.push(`/${_post.categoryName}/${_post.slug}/`)}
-          >
+          <List.Item key={_post.id} className="w-full cursor-pointer">
             <Row className="w-full">
               <Col md={3}>
-                <Image
-                  src={ASSET_URL + _post.imageUrl}
-                  preview={false}
-                  width={100}
-                  height={100}
-                  alt=""
-                />
+                <Link href={`/${_post.categoryName}/${_post.slug}/`} passHref>
+                  <Image
+                    src={ASSET_URL + _post.imageUrl}
+                    preview={false}
+                    width={100}
+                    height={100}
+                    alt=""
+                  />
+                </Link>
               </Col>
               <Col md={12} className="mx-2 mt-5 ml-5">
-                <div className="flex flex-col">
-                  <div className="text-lg"> {_post.title}</div>
-                  <p
-                    className="text-slate-400 "
-                    dangerouslySetInnerHTML={{
-                      __html: `${_post.content.slice(0, 75) + " ..."}`,
-                    }}
-                  />
-                </div>
+                <Link href={`/${_post.categoryName}/${_post.slug}/`} passHref>
+                  <div className="flex flex-col">
+                    <div className="text-lg"> {_post.title}</div>
+                    <p
+                      className="text-slate-400 "
+                      dangerouslySetInnerHTML={{
+                        __html: `${_post.content.slice(0, 75) + " ..."}`,
+                      }}
+                    />
+                  </div>
+                </Link>
               </Col>
               <Col md={1}>
                 <Divider
@@ -64,7 +65,9 @@ function PostList({ posts }: Props) {
                 </div>
                 <div className="flex justify-center">
                   <Tag className="tag-round font-bold" color="blue">
-                    {_post.tag}
+                    <Link href={`/${_post.categoryName}/?tag=${_post.tag}`}>
+                      {_post.tag}
+                    </Link>
                   </Tag>
                 </div>
               </Col>

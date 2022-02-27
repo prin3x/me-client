@@ -8,6 +8,15 @@ export interface ICreateMeeting {
   end: string;
 
   roomId: number;
+
+  type: MeetingEventType;
+
+  allDay: boolean;
+}
+
+export enum MeetingEventType {
+  INTERNAL = "internal",
+  EXTERNAL = "external",
 }
 
 export enum EMakeStatus {
