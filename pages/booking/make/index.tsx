@@ -51,7 +51,11 @@ function MakeBooking({}: Props): ReactElement {
         message.success("Created Successfully");
         router.push("/booking/");
       } catch (e) {
-        message.error(e.response.message);
+        let errMessage = e.response.message
+        if(e.response.status === 400){
+          errMessage = 'Unavailble Slot'
+        }
+        message.error(errMessage);
       }
     });
   };

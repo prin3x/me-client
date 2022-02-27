@@ -2,10 +2,9 @@ import { Button, Col, DatePicker, Form, Input, Row, Select } from "antd";
 import Checkbox from "antd/lib/checkbox/Checkbox";
 import moment from "moment";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   EMakeStatus,
-  ICreateMeeting,
 } from "../../services/meetingRoom/meeting-room.model";
 
 type Props = {
