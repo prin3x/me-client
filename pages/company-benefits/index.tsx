@@ -30,7 +30,7 @@ function CompanyBenefits({}: Props): ReactElement {
         <Row className='mt-5'>
           <Col span={24}>
             <Row justify='center'>
-              <Button type='primary'>อ่านฉบับเต็ม</Button>
+              <Button size="large" type='primary'>อ่านฉบับเต็ม</Button>
             </Row>
           </Col>
         </Row>

@@ -106,7 +106,7 @@ function ChangePasswordPage({}: Props) {
               </Form.Item>
               <Row justify="center">
                 <Form.Item>
-                  <Button loading={isLoading} htmlType="submit" type="primary">
+                  <Button size="large" loading={isLoading} htmlType="submit" type="primary">
                     Change Password
                   </Button>
                 </Form.Item>

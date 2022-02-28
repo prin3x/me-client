@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Button, Col, Image, Row } from "antd";
+import { Button, Col, Divider, Image, Row } from "antd";
 import LayoutHOC from "../../layout/LayoutHOC";
 import PrivacyPolicyHero from "../../components/privacy-policy/PrivacyPolicyHero";
 import CompanyContactHero from "../../components/company-contact/CompanyContactHero";
@@ -14,8 +14,8 @@ function CompanyContactPage({}: Props): ReactElement {
         <CompanyContactHero />
         <Row className="container mx-auto text-primary-color">
           <Col span={24}>
-            <Row justify="center" align="middle" className="px-10  pt-10">
-              <Col lg={8} md={12}>
+            <Row justify="center" align="middle" className="pt-10">
+              <Col lg={8} md={16}>
                 <Image
                   preview={false}
                   src="/assets/me-logo.svg"
@@ -23,15 +23,15 @@ function CompanyContactPage({}: Props): ReactElement {
                   width={250}
                 />
               </Col>
-              <Col lg={8} md={12}>
+              <Col lg={8} md={16}>
                 <div className="flex flex-col">
-                  <h3 className="font-semibold  text-primary-color">
+                  <h3 className="text-primary-color">
                     บริษัท มายด์เอจ อินโนเวชั่น จำกัด
                   </h3>
-                  <div>เลขที่ 1 ถนน รามคำแหง ซ. รามคำแหง 60/4, 60/5</div>
-                  <div>แขวง หัวหมาก เขต บางกะปิ กรุงเทพฯ 10240</div>
-                  <div>โทร. 02-374-4484 (Payment & Account) </div>
-                  <div>เลขประจำตัวผู้เสียภาษี : 01355 55014 758</div>
+                  <div className='text-lg'>เลขที่ 1 ถนน รามคำแหง ซ. รามคำแหง 60/4, 60/5</div>
+                  <div className='text-lg'>แขวง หัวหมาก เขต บางกะปิ กรุงเทพฯ 10240</div>
+                  <div className='text-lg'>โทร. 02-374-4484 (Payment & Account) </div>
+                  <div className='text-lg'>เลขประจำตัวผู้เสียภาษี : 01355 55014 758</div>
                 </div>
                 <Row
                   justify="start"
@@ -44,7 +44,7 @@ function CompanyContactPage({}: Props): ReactElement {
                   </Col>
                   <Col>
                     <Link href={`/company-contact/mi`} passHref>
-                      <Button type="primary" style={{ borderRadius: "18px" }}>
+                      <Button size="large" type="primary" style={{ borderRadius: "18px" }}>
                         ภาพแผนที่
                       </Button>
                     </Link>
@@ -55,7 +55,7 @@ function CompanyContactPage({}: Props): ReactElement {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <Button type="primary" style={{ borderRadius: "18px" }}>
+                      <Button size="large" type="primary" style={{ borderRadius: "18px" }}>
                         พิกัด
                       </Button>
                     </a>
@@ -63,9 +63,9 @@ function CompanyContactPage({}: Props): ReactElement {
                 </Row>
               </Col>
             </Row>
-
-            <Row justify="center" align="middle" className="px-10  pt-10">
-              <Col lg={8} md={12}>
+            <Divider style={{borderColor: '#0F52BA'}}/>
+            <Row justify="center" align="middle" className="pt-10">
+              <Col lg={8} md={16}>
                 <Image
                   preview={false}
                   src="/assets/me-recruit.svg"
@@ -73,15 +73,15 @@ function CompanyContactPage({}: Props): ReactElement {
                   width={250}
                 />
               </Col>
-              <Col lg={8} md={12}>
+              <Col lg={8} md={16}>
                 <div className="flex flex-col">
-                  <h3 className="font-semibold  text-primary-color">
+                  <h3 className="text-primary-color">
                     บริษัท จัดหางาน มายด์เอจ จำกัด
                   </h3>
-                  <div>เลขที่ 1 ถนน รามคำแหง ซ. รามคำแหง 60/4, 60/5</div>
-                  <div>แขวง หัวหมาก เขต บางกะปิ กรุงเทพฯ 10240</div>
-                  <div>โทร. 02-374-4484 (Payment & Account)</div>
-                  <div>เลขประจำตัวผู้เสียภาษี : 01355 54007 286</div>
+                  <div className='text-lg'>เลขที่ 1 ถนน รามคำแหง ซ. รามคำแหง 60/4, 60/5</div>
+                  <div className='text-lg'>แขวง หัวหมาก เขต บางกะปิ กรุงเทพฯ 10240</div>
+                  <div className='text-lg'>โทร. 02-374-4484 (Payment & Account)</div>
+                  <div className='text-lg'>เลขประจำตัวผู้เสียภาษี : 01355 54007 286</div>
                 </div>
                 <Row
                   justify="start"
@@ -94,7 +94,7 @@ function CompanyContactPage({}: Props): ReactElement {
                   </Col>
                   <Col>
                     <Link href={`/company-contact/me`} passHref>
-                      <Button type="primary" style={{ borderRadius: "18px" }}>
+                      <Button size="large" type="primary" style={{ borderRadius: "18px" }}>
                         ภาพแผนที่
                       </Button>
                     </Link>
@@ -105,7 +105,7 @@ function CompanyContactPage({}: Props): ReactElement {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <Button type="primary" style={{ borderRadius: "18px" }}>
+                      <Button size="large" type="primary" style={{ borderRadius: "18px" }}>
                         พิกัด
                       </Button>
                     </a>
@@ -113,9 +113,9 @@ function CompanyContactPage({}: Props): ReactElement {
                 </Row>
               </Col>
             </Row>
-
-            <Row justify="center" align="middle" className="px-10  pt-10">
-              <Col lg={8} md={12}>
+            <Divider style={{borderColor: '#0F52BA'}}/>
+            <Row justify="center" align="middle" className="pt-10">
+              <Col lg={8} md={16}>
                 <Image
                   preview={false}
                   src="/assets/meu-logo.svg"
@@ -123,16 +123,16 @@ function CompanyContactPage({}: Props): ReactElement {
                   width={200}
                 />
               </Col>
-              <Col lg={8} md={12}>
+              <Col lg={8} md={16}>
                 <div className="flex flex-col">
-                  <h3 className="font-semibold  text-primary-color">
+                  <h3 className="text-primary-color">
                     บริษัท มี แอนด์ ยู เอ็นเตอร์เทนเมนท์ จำกัด
                   </h3>
-                  <div>1091/241 อาคารซิตี้ลิงค์ ชั้นที่ 6 ห้องเลขที่ ซี 5</div>
-                  <div>ซอยเพชรบุรี 35 ถนนเพชรบุรีตัดใหม่ แขวงมักกะสัน </div>
-                  <div>เขตราชเทวี กรุงเทพมหานคร 10400</div>
-                  <div>โทร. 02-374-4484 (Payment & Account)</div>
-                  <div>เลขประจำตัวผู้เสียภาษี : 01055 63093 882</div>
+                  <div className='text-lg'>1091/241 อาคารซิตี้ลิงค์ ชั้นที่ 6 ห้องเลขที่ ซี 5</div>
+                  <div className='text-lg'>ซอยเพชรบุรี 35 ถนนเพชรบุรีตัดใหม่ แขวงมักกะสัน </div>
+                  <div className='text-lg'>เขตราชเทวี กรุงเทพมหานคร 10400</div>
+                  <div className='text-lg'>โทร. 02-374-4484 (Payment & Account)</div>
+                  <div className='text-lg'>เลขประจำตัวผู้เสียภาษี : 01055 63093 882</div>
                 </div>
                 <Row
                   justify="start"
@@ -145,7 +145,7 @@ function CompanyContactPage({}: Props): ReactElement {
                   </Col>
                   <Col>
                     <Link href={`/company-contact/my`} passHref>
-                      <Button type="primary" style={{ borderRadius: "18px" }}>
+                      <Button size="large" type="primary" style={{ borderRadius: "18px" }}>
                         ภาพแผนที่
                       </Button>
                     </Link>
@@ -156,7 +156,7 @@ function CompanyContactPage({}: Props): ReactElement {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <Button type="primary" style={{ borderRadius: "18px" }}>
+                      <Button size="large" type="primary" style={{ borderRadius: "18px" }}>
                         พิกัด
                       </Button>
                     </a>
@@ -164,9 +164,9 @@ function CompanyContactPage({}: Props): ReactElement {
                 </Row>
               </Col>
             </Row>
-
-            <Row justify="center" align="middle" className="px-10  pt-10">
-              <Col lg={8} md={12}>
+            <Divider style={{borderColor: '#0F52BA'}}/>
+            <Row justify="center" align="middle" className="py-10">
+              <Col lg={8} md={16}>
                 <Image
                   preview={false}
                   src="/assets/foodberg-logo.svg"
@@ -174,15 +174,15 @@ function CompanyContactPage({}: Props): ReactElement {
                   width={150}
                 />
               </Col>
-              <Col lg={8} md={12}>
+              <Col lg={8} md={16}>
                 <div className="flex flex-col">
-                  <h3 className="font-semibold  text-primary-color">
+                  <h3 className="text-primary-color">
                     บริษัท ฟู้ดเบิร์ก จำกัด
                   </h3>
-                  <div>เลขที่ 1 ถนน รามคำแหง ซ. รามคำแหง 60/4, 60/5</div>
-                  <div>แขวง หัวหมาก เขต บางกะปิ กรุงเทพฯ 10240</div>
-                  <div>โทร. 02-374-4484 (Payment & Account)</div>
-                  <div>เลขประจำตัวผู้เสียภาษี : 01055 59123 501</div>
+                  <div className='text-lg'>เลขที่ 1 ถนน รามคำแหง ซ. รามคำแหง 60/4, 60/5</div>
+                  <div className='text-lg'>แขวง หัวหมาก เขต บางกะปิ กรุงเทพฯ 10240</div>
+                  <div className='text-lg'>โทร. 02-374-4484 (Payment & Account)</div>
+                  <div className='text-lg'>เลขประจำตัวผู้เสียภาษี : 01055 59123 501</div>
                 </div>
                 <Row
                   justify="start"
@@ -195,7 +195,7 @@ function CompanyContactPage({}: Props): ReactElement {
                   </Col>
                   <Col>
                     <Link href={`/company-contact/fb`} passHref>
-                      <Button type="primary" style={{ borderRadius: "18px" }}>
+                      <Button size="large" type="primary" style={{ borderRadius: "18px" }}>
                         ภาพแผนที่
                       </Button>
                     </Link>
@@ -206,7 +206,7 @@ function CompanyContactPage({}: Props): ReactElement {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <Button type="primary" style={{ borderRadius: "18px" }}>
+                      <Button size="large" type="primary" style={{ borderRadius: "18px" }}>
                         พิกัด
                       </Button>
                     </a>

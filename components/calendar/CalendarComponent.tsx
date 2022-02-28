@@ -175,74 +175,90 @@ function CalendarPage(): ReactElement {
   }, [calendarEventMeta.data]);
 
   return (
-    <Row className="container mx-auto pt-10">
+    <Row className="container caleandar mx-auto pt-10">
       <Col lg={24}>
-        <Row justify="space-between">
+        <Row justify="space-between" align="middle">
           <Form form={form} layout="inline" className="flex w-full">
-            <Form.Item
-              name="month"
-              initialValue={(moment().month() + 1).toString()}
-            >
-              <Select
-                placeholder="MONTH"
-                style={{ width: 150 }}
-                onChange={onSelectMonth}
+            <Row align="middle">
+              <Form.Item
+                name="month"
+                initialValue={(moment().month() + 1).toString()}
               >
-                <Select.Option value="1">January</Select.Option>
-                <Select.Option value="2">February</Select.Option>
-                <Select.Option value="3">March</Select.Option>
-                <Select.Option value="4">April</Select.Option>
-                <Select.Option value="5">May</Select.Option>
-                <Select.Option value="6">June</Select.Option>
-                <Select.Option value="7">July</Select.Option>
-                <Select.Option value="8">August</Select.Option>
-                <Select.Option value="9">September</Select.Option>
-                <Select.Option value="10">October</Select.Option>
-                <Select.Option value="11">November</Select.Option>
-                <Select.Option value="12">December</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item>
-              <Select placeholder="2022">
-                <Select.Option value="2022">2022</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item className="ml-auto" style={{ marginLeft: "auto" }}>
-              <CheckboxGroup onChange={filterEventType}>
-                <Row gutter={[0, 3]} justify="end">
-                  <Col
-                    lg={10}
-                    className="bg-yellow-custom p-1 rounded-md m-1 ml-5 text-center"
-                  >
-                    <Checkbox value={ECalendarEventType.EVENT} className="text-white">
-                      EVENT
-                    </Checkbox>
-                  </Col>
-                  <Col
-                    lg={10}
-                    className="bg-blue-custom p-1 rounded-md m-1  ml-5 text-center"
-                  >
-                    <Checkbox value={ECalendarEventType.BIRTHDAY} className="text-white">
-                      BIRTHDAY
-                    </Checkbox>
-                  </Col>
-                  <Col
-                    lg={10}
-                    className="bg-red-custom p-1 rounded-md m-1  ml-5 text-center"
-                  >
-                    <Checkbox value={ECalendarEventType.HOLIDAY} className="text-white">
-                      HOLIDAY
-                    </Checkbox>
-                  </Col>
-                  <Col
-                    lg={10}
-                    className="bg-green-custom p-1 rounded-md m-1  ml-5 text-center"
-                  >
-                    <Checkbox value={ECalendarEventType.OTHER} className="text-white">OTHER</Checkbox>
-                  </Col>
-                </Row>
-              </CheckboxGroup>
-            </Form.Item>
+                <Select
+                  placeholder="MONTH"
+                  style={{ width: 200 }}
+                  onChange={onSelectMonth}
+                >
+                  <Select.Option value="1">January</Select.Option>
+                  <Select.Option value="2">February</Select.Option>
+                  <Select.Option value="3">March</Select.Option>
+                  <Select.Option value="4">April</Select.Option>
+                  <Select.Option value="5">May</Select.Option>
+                  <Select.Option value="6">June</Select.Option>
+                  <Select.Option value="7">July</Select.Option>
+                  <Select.Option value="8">August</Select.Option>
+                  <Select.Option value="9">September</Select.Option>
+                  <Select.Option value="10">October</Select.Option>
+                  <Select.Option value="11">November</Select.Option>
+                  <Select.Option value="12">December</Select.Option>
+                </Select>
+              </Form.Item>
+              <Form.Item>
+                <Select style={{ width: 150 }} size="large" placeholder="2022">
+                  <Select.Option value="2022">2022</Select.Option>
+                </Select>
+              </Form.Item>
+              <Form.Item className="ml-auto" style={{ marginLeft: "auto" }}>
+                <CheckboxGroup onChange={filterEventType}>
+                  <Row gutter={[0, 3]} justify="end">
+                    <Col
+                      lg={8}
+                      className="bg-yellow-custom p-1 rounded-md m-1 ml-10 text-center"
+                    >
+                      <Checkbox
+                        value={ECalendarEventType.EVENT}
+                        className="text-white"
+                      >
+                        EVENT
+                      </Checkbox>
+                    </Col>
+                    <Col
+                      lg={8}
+                      className="bg-blue-custom p-1 rounded-md m-1  ml-10 text-center"
+                    >
+                      <Checkbox
+                        value={ECalendarEventType.BIRTHDAY}
+                        className="text-white"
+                      >
+                        BIRTHDAY
+                      </Checkbox>
+                    </Col>
+                    <Col
+                      lg={8}
+                      className="bg-red-custom p-1 rounded-md m-1  ml-10 text-center"
+                    >
+                      <Checkbox
+                        value={ECalendarEventType.HOLIDAY}
+                        className="text-white"
+                      >
+                        HOLIDAY
+                      </Checkbox>
+                    </Col>
+                    <Col
+                      lg={8}
+                      className="bg-green-custom p-1 rounded-md m-1  ml-10 text-center"
+                    >
+                      <Checkbox
+                        value={ECalendarEventType.OTHER}
+                        className="text-white"
+                      >
+                        OTHER
+                      </Checkbox>
+                    </Col>
+                  </Row>
+                </CheckboxGroup>
+              </Form.Item>
+            </Row>
           </Form>
         </Row>
       </Col>
@@ -266,8 +282,8 @@ function CalendarPage(): ReactElement {
           eventClick={handleEventClick}
           events={events}
           weekends
-          dayHeaderClassNames={'day-header'}
-          dayHeaderFormat={{weekday: 'long'}}
+          dayHeaderClassNames={"day-header"}
+          dayHeaderFormat={{ weekday: "long" }}
           eventOrder={["index"]}
           eventTimeFormat={{
             hour: "2-digit",

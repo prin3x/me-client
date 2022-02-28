@@ -101,7 +101,7 @@ const Home: NextPage = () => {
           recentAnnouncementMeta.data.items.length > 0 && (
             <Row className="container mx-auto pt-10">
               <Col span={24}>
-                <h2 className="font-bold heading-en text-primary-color">
+                <h2 className="font-bold heading-en text-primary-color uppercase">
                   Announcement
                 </h2>
                 <CarouselSlider
@@ -141,16 +141,16 @@ const Home: NextPage = () => {
                     height={330}
                   />
                   <div className="absolute top-0 w-full p-5">
-                    <div className="heading-en font-bold text-white">
+                    <div className="heading-en font-bold text-white uppercase">
                       IT Clinic
                     </div>
                   </div>
-                  <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
-                    <div className="heading-th font-bold text-white">
+                  <div className="absolute bottom-4 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
+                    <div className="heading-th font-bold text-white text-xl">
                       {recentItClinicMeta?.data?.items?.[0]?.title}
                     </div>
                     <div
-                      className="font-bold text-white"
+                      className="font-bold text-white text-lg"
                       dangerouslySetInnerHTML={{
                         __html:
                           recentItClinicMeta?.data?.items?.[0]?.content?.slice(
@@ -159,7 +159,7 @@ const Home: NextPage = () => {
                           ) + "...",
                       }}
                     />
-                    <p className="text-white text-right absolute bottom-2 right-5">
+                    <p className="text-white text-right absolute bottom-2 right-5 text-lg">
                       Read More ...
                     </p>
                   </div>
@@ -180,16 +180,16 @@ const Home: NextPage = () => {
                     height={330}
                   />
                   <div className="absolute top-0 w-full p-5">
-                    <div className="heading-en font-bold text-white">
-                      Activity
+                    <div className="heading-en font-bold text-white uppercase">
+                      Activities
                     </div>
                   </div>
-                  <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
-                    <div className="heading-th font-bold text-white">
+                  <div className="absolute bottom-4 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
+                    <div className="heading-th font-bold text-white text-xl">
                       {recentActivityMeta?.data?.items?.[0]?.title}
                     </div>
                     <div
-                      className="font-bold text-white"
+                      className="font-bold text-white text-lg"
                       dangerouslySetInnerHTML={{
                         __html:
                           recentActivityMeta?.data?.items?.[0]?.content?.slice(
@@ -198,7 +198,7 @@ const Home: NextPage = () => {
                           ) + "...",
                       }}
                     />
-                    <p className="text-white text-right absolute bottom-2 right-5">
+                    <p className="text-white text-right absolute bottom-2 right-5 text-lg">
                       Read More ...
                     </p>
                   </div>

@@ -32,8 +32,8 @@ function StaffContactPage({}: Props): ReactElement {
     if (type === "prev") {
       return (
         <a>
-          <div className="flex items-center gap-2">
-            <DoubleLeftOutlined /> <span>ก่อนหน้า</span>
+          <div className="flex items-center gap-2 text-primary-color">
+            <DoubleLeftOutlined /> <span className="text-xs">ก่อนหน้า</span>
           </div>
         </a>
       );
@@ -41,8 +41,8 @@ function StaffContactPage({}: Props): ReactElement {
     if (type === "next") {
       return (
         <a className="ml-auto">
-          <div className="flex items-center gap-2">
-            <span>ถัดไป</span> <DoubleRightOutlined />
+          <div className="flex items-center gap-2 text-primary-color">
+            <span className="text-xs">ถัดไป</span> <DoubleRightOutlined />
           </div>
         </a>
       );
@@ -53,18 +53,16 @@ function StaffContactPage({}: Props): ReactElement {
     {
       title: "NAME",
       dataIndex: "name",
-      width: "230px",
+      width: "300px",
       render: (_self: string, _record: any) => (
         <div className="flex items-center gap-2">
-          <div
-            className="max-w-100 w-20
-          "
-          >
+          <div className="">
             <Image
-              width={75}
-              height={75}
-              alt="No Image"
+              width={50}
+              height={50}
+              alt=""
               src={_record.profilePicUrl}
+              className="staff-image"
               preview={false}
             />
           </div>
@@ -83,13 +81,13 @@ function StaffContactPage({}: Props): ReactElement {
     {
       title: "NICKNAME",
       dataIndex: "nickname",
-      width: "100%",
+      width: "50px",
       render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
       title: "COMPANY",
       dataIndex: "company",
-      width: "100%",
+      width: "50px",
       render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
@@ -99,15 +97,15 @@ function StaffContactPage({}: Props): ReactElement {
       render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
-      title: "POSITION",
+      title: "DIVISION",
       dataIndex: "section",
-      width: "100%",
+      width: "50px",
       render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
       title: "IP-PHONE",
       dataIndex: "ipPhone",
-      width: "100%",
+      width: "75px",
       render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
@@ -130,13 +128,12 @@ function StaffContactPage({}: Props): ReactElement {
   }
 
   function onChangePage() {
-    const currentStr = {...queryStr};
-    
+    const currentStr = { ...queryStr };
+
     currentStr.page = page;
 
     setQueryStr(currentStr);
   }
-
 
   useEffect(() => {
     if (staffContactMeta.isSuccess) {
@@ -170,7 +167,11 @@ function StaffContactPage({}: Props): ReactElement {
                 onValuesChange={setQuery}
               >
                 <Form.Item name="company">
-                  <Select placeholder="COMPANY" style={{ width: 200 }}>
+                  <Select
+                    size="large"
+                    placeholder="COMPANY"
+                    style={{ width: 200 }}
+                  >
                     <Select.Option key={"ทั้งหมด"} value={""}>
                       {"ทั้งหมด"}
                     </Select.Option>
@@ -182,7 +183,11 @@ function StaffContactPage({}: Props): ReactElement {
                   </Select>
                 </Form.Item>
                 <Form.Item name="department">
-                  <Select placeholder="DEPARTMENT" style={{ width: 150 }}>
+                  <Select
+                    size="large"
+                    placeholder="DEPARTMENT"
+                    style={{ width: 350 }}
+                  >
                     <Select.Option key={"ทั้งหมด"} value={""}>
                       {"ทั้งหมด"}
                     </Select.Option>

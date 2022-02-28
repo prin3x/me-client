@@ -130,21 +130,21 @@ function MeetingRoomCalendar({
         <Col>
           <div
             onClick={onPrevButtonClick}
-            className="cursor-pointer flex items-center text-slate-400 gap-5"
+            className="cursor-pointer flex items-center text-slate-400 gap-5 text-sm"
           >
             <LeftOutlined style={{ fontSize: 24 }} />
             Previous Day
           </div>
         </Col>
         <Col>
-          <div className="text-lg">
+          <div className="text-xl">
             {moment(currentDate).format("dddd DD MMMM yyyy")}
           </div>
         </Col>
         <Col>
           <div
             onClick={onNextButtonClick}
-            className="cursor-pointer flex items-center text-slate-400 gap-5"
+            className="cursor-pointer flex items-center text-slate-400 gap-5 text-sm"
           >
             Next Day
             <RightOutlined style={{ fontSize: 24 }} />

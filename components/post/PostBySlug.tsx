@@ -12,7 +12,7 @@ function PostBySlug({ postData }: Props) {
     <div className="content">
       <Row justify='center'>
         <Col>
-          <h1 className='heading text-4xl'>{postData.title}</h1>        
+          <h1 className='heading text-xl font-bold'>{postData.title}</h1>        
         </Col>
       </Row>
       <div className="flex justify-center w-full bg-slate-200 rounded-md">

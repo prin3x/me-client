@@ -84,7 +84,7 @@ function MakeBookingForm({
     <Row justify="center" className="w-full meeting-room">
       <Row justify="center" className="w-full mt-10">
         <Col>
-          <div className="uppercase text-primary-color text-xl font-bold">
+          <div className="uppercase text-primary-color text-2xl">
             Booking Room
           </div>
         </Col>
@@ -202,7 +202,7 @@ function MakeBookingForm({
             {makeStatus === EMakeStatus.MAKE ? (
               <Col>
                 <Form.Item>
-                  <Button
+                  <Button size="large"
                     htmlType="submit"
                     className="rounded-btn ml-6"
                     type="primary"
@@ -215,7 +215,7 @@ function MakeBookingForm({
               <>
                 <Col>
                   <Form.Item>
-                    <Button
+                    <Button size="large"
                       onClick={updateRoomBooking}
                       className="secondary-btn rounded-btn"
                     >
@@ -225,7 +225,7 @@ function MakeBookingForm({
                 </Col>
                 <Col>
                   <Form.Item>
-                    <Button
+                    <Button size="large"
                       onClick={removeRoomBooking}
                       className="rounded-btn ml-6"
                       danger

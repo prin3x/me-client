@@ -57,9 +57,7 @@ function BirthDayPage(): ReactElement {
       render: (_self: string, _record: any) => (
         <div className="flex items-center gap-2">
           <div
-            className="max-w-100 w-20
-          "
-          >
+            className="max-w-100 w-28">
             <Image
               width={75}
               height={75}
@@ -144,7 +142,7 @@ function BirthDayPage(): ReactElement {
                   name="month"
                   initialValue={(moment().month() + 1).toString()}
                 >
-                  <Select placeholder="MONTH" style={{ width: 150 }}>
+                  <Select size="large"placeholder="MONTH" style={{ width: 250 }}>
                     <Select.Option value="1">January</Select.Option>
                     <Select.Option value="2">February</Select.Option>
                     <Select.Option value="3">March</Select.Option>
@@ -160,7 +158,7 @@ function BirthDayPage(): ReactElement {
                   </Select>
                 </Form.Item>
                 <Form.Item name="department">
-                  <Select placeholder="DEPARTMENT" style={{ width: 150 }}>
+                  <Select size="large"placeholder="DEPARTMENT" style={{ width: 300 }}>
                     <Select.Option key={"ทั้งหมด"} value={""}>
                       {"ทั้งหมด"}
                     </Select.Option>

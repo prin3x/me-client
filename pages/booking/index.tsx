@@ -16,6 +16,7 @@ import {
 } from "antd";
 import moment from "moment";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
@@ -102,15 +103,18 @@ function BookingMeetingRoom(): ReactElement {
 
     return (
       <div>
-        <div className="border-2 rounded-xl text-center p-3 text-xl" style={{borderColor: '#eee'}}>
-            {moment().format("DD MMMM yyyy")}
+        <div
+          className="border-2 rounded-xl text-center p-3 text-xl"
+          style={{ borderColor: "#eee" }}
+        >
+          {moment().format("DD MMMM yyyy")}
         </div>
-        <Row gutter={8} justify="center" className='mt-4'>
+        <Row gutter={8} justify="center" className="mt-4">
           <Col>
             <Row align="middle" gutter={20}>
               <Col>
                 <div
-                  className="h-6 cursor-pointer"
+                  className="h-14 cursor-pointer"
                   onClick={() => {
                     const newValue = value.clone();
                     newValue.month(current.month() - 1);
@@ -125,7 +129,7 @@ function BookingMeetingRoom(): ReactElement {
               </Col>
               <Col>
                 <div
-                  className="h-6 cursor-pointer"
+                  className="h-14 cursor-pointer"
                   onClick={() => {
                     const newValue = value.clone();
                     newValue.month(current.month() + 1);
@@ -153,7 +157,7 @@ function BookingMeetingRoom(): ReactElement {
 
   return (
     <LayoutHOC>
-      <div className='meeting-room'>
+      <div className="meeting-room">
         <BookingMeetingHero />
         <Row className="container mx-auto pt-10">
           <Col span={24}>
@@ -164,43 +168,53 @@ function BookingMeetingRoom(): ReactElement {
               <Col span={24}>
                 <Row>
                   <Form className="flex w-full">
-                    <Col md={14}>
-                      <div className="flex">
+                    <Col lg={14} md={14}>
+                      <Row>
                         <Form.Item>
-                          <Select placeholder="Floor">
+                          <Select
+                            style={{ width: 150 }}
+                            size="large"
+                            placeholder="Floor"
+                          >
                             <Select.Option value="N/A">NA</Select.Option>
                           </Select>
                         </Form.Item>
-                        <Form.Item>
-                          <Select
-                            style={{ width: 250, marginLeft: 20 }}
-                            placeholder="Creative Room"
-                            onChange={onSelectRoomId}
+                        <Col>
+                          <Form.Item>
+                            <Select
+                              style={{ width: 350, marginLeft: 20 }}
+                              placeholder="Creative Room"
+                              onChange={onSelectRoomId}
+                            >
+                              {roomsMeta?.data?.length > 0
+                                ? roomsMeta?.data?.map((room) => (
+                                    <Select.Option
+                                      key={room.id}
+                                      value={room.id}
+                                    >
+                                      {room.name}
+                                    </Select.Option>
+                                  ))
+                                : null}
+                            </Select>
+                          </Form.Item>
+                          <Button
+                            size="large"
+                            className="rounded-full ml-5"
+                            style={{ borderRadius: "20px" }}
+                            onClick={() =>
+                              router.push(`/booking/${selectedRoomId}`)
+                            }
                           >
-                            {roomsMeta?.data?.length > 0
-                              ? roomsMeta?.data?.map((room) => (
-                                  <Select.Option key={room.id} value={room.id}>
-                                    {room.name}
-                                  </Select.Option>
-                                ))
-                              : null}
-                          </Select>
-                        </Form.Item>
-                        <Button
-                          className="rounded-full ml-5"
-                          style={{ borderRadius: "8px" }}
-                          onClick={() =>
-                            router.push(`/booking/${selectedRoomId}`)
-                          }
-                        >
-                          View Room Detail
-                        </Button>
-                      </div>
+                            View Room Detail
+                          </Button>
+                        </Col>
+                      </Row>
                     </Col>
-                    <Col md={10} className='-mt-20'>
+                    <Col md={10} className="-mt-20">
                       <Form.Item>
                         <Calendar
-                          className='meeting-room-calendar'
+                          className="meeting-room-calendar"
                           onPanelChange={onPanelChange}
                           onSelect={onSelect}
                           fullscreen={false}
@@ -219,15 +233,17 @@ function BookingMeetingRoom(): ReactElement {
         <Row className="container mx-auto pt-10">
           <Col span={24}>
             <Row justify="start">
-              <Button
-                type="primary"
-                className="rounded-full"
-                style={{ borderRadius: "12px" }}
-                onClick={() => router.push(`/booking/make?date=${selectDate}`)}
-              >
-                <PlusOutlined />
-                Booking Room
-              </Button>
+              <Link href={`/booking/make?date=${selectDate}`} passHref>
+                <Button
+                  size="large"
+                  type="primary"
+                  className="rounded-full"
+                  style={{ borderRadius: "20px" }}
+                >
+                  <PlusOutlined />
+                  Booking Room
+                </Button>
+              </Link>
             </Row>
           </Col>
           <Col span={24}>

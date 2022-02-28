@@ -32,7 +32,7 @@ function EventModal({ visible, event, close }: Props) {
       )}
       <Row justify="center">
         <Col>
-          <Button type="primary" onClick={close}>
+          <Button size="large" type="primary" onClick={close}>
             Close
           </Button>
         </Col>

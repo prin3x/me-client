@@ -8,29 +8,98 @@
 @secondary-color: #fca125;
 
 @font-face {
-  font-family: "DB Ozone reg";
-  src: url("/font/DB_normal.ttf");
-  font-weight: regular;
-  font-style: regular;
+  font-family: "DB Ozone";
+  src: url("/font/DB_Ozone_X_UlLi_v3.2.ttf");
+  font-weight: normal;
+  font-style: normal;
 }
 
+// @font-face {
+//   font-family: "DB Ozone";
+//   src: url("/font/DB_Ozone_X_v3.2.ttf");
+//   font-weight: bolder;
+//   font-style: bolder;
+// }
+
 @font-face {
-  font-family: "DB Ozone bold";
-  src: url("/font/DB_lg.ttf");
+  font-family: "DB Ozone";
+  src: url("/font/DB_Ozone_X_Bold_v3.2.ttf");
   font-weight: bold;
   font-style: bold;
+}
+
+@large-desktop: ~"only screen and (min-width: 1444px)";
+@small-desktop: ~"only screen and (min-width: 960px) and (max-width: 1280px)";
+@tablet: ~"only screen and (max-width: 959px)";
+@mobile: ~"only screen and (min-width: 320px) and (max-width: 719px)";
+
+@font-size-base: 30px;
+@select-dropdown-line-height: 20px;
+@select-item-selected-color: @primary-color;
+
+@btn-height-lg: 50px;
+
+.ant-pagination-item{
+  font-size: 20px;
 }
 
 .fc .fc-scrollgrid-section-liquid {
   height: 1px !important;
 }
 
+.fc-event-title-container{
+  line-height: 1;
+}
+
+.fc-event {
+  height: 20px !important;
+}
+
+.fc-event-title.fc-sticky, .fc-event-title{
+  font-size: 16px !important;
+}
+
+.text-xl {
+  font-size: 30px;
+}
+
+.text-2xl {
+  font-size: 40px;
+}
+
+.text-lg {
+  font-size: 24px;
+}
+
+.text-sm {
+  font-size: 20px;
+}
+
+.text-xs {
+  font-size: 16px;
+}
+
+.ant-select{
+  height: 51.141px;
+}
+
+.ant-select-selector{
+  height: 100% !important;
+  padding-top: 8px !important;
+}
+
+.ant-select-selection-item {
+  
+}
+
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: DB Ozone, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "DB Ozone", -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
   margin: 0 auto;
 }
 
@@ -46,8 +115,21 @@ a {
   text-decoration: none;
 }
 
+p {
+  font-size: 20px;
+}
+
+.ant-table-thead > tr > th {
+  font-size: 20px;
+}
+
 .nav-item {
-  font-size: 1rem;
+  .ant-dropdown-menu-title-content{
+    font-size:24px;
+  }
+}
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+  border-right: 0;
 }
 
 .nav-item:hover {
@@ -56,6 +138,23 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.font-24 {
+  font-size: 24px;
+}
+
+.font-(@fontSize){
+  font-size: (@fontSize)
+}
+
+.user-info {
+  font-size: 20px;
+  line-height: 1;
 }
 
 .user-box {
@@ -153,14 +252,47 @@ a {
   color: #000;
 }
 
+.user-action{
+  @media @large-desktop {
+    margin-left: 75px;
+  }
+}
+
+.gap-20 {
+  gap: 30px;
+  @media @large-desktop {
+    gap: 55px;
+  }
+}
+
+.navbar-container {
+  padding-left: 3rem;
+  max-width: 1300px;
+  @media @large-desktop {
+    max-width: 1500px;
+  }
+}
+
 .navbar {
-  height: 3rem;
+  padding: 0 3rem;
+  height: 70px;
   border-top-left-radius: 9999px;
   border-bottom-right-radius: 9999px;
 }
 
+.navbar-ul{
+  align-items: flex-end;
+}
+
 .main-container {
   max-width: 1004px;
+  position: relative;
+}
+
+.nav-logo {
+  @media @tablet {
+    width: 180px;
+  }
 }
 
 .text-white {
@@ -174,29 +306,47 @@ a {
   border-color: @primary-color !important;
 }
 
+// .table-noshow-pagination .ant-pagination-total-text {
+//   width: 100%;
+// }
+
+// .table-noshow-pagination .ant-pagination-prev,
+// .table-noshow-pagination .ant-pagination-next {
+//   width: 45%;
+// }
+
+.ant-pagination.ant-table-pagination.ant-table-pagination-center{
+  display: flex;
+  justify-content:space-between;
+}
+.table-noshow-pagination .ant-pagination-prev {
+  order: 0;
+}
+
 .table-noshow-pagination .ant-pagination-total-text {
-  width: 100%;
+  order: 1;
+  margin: 0 auto;
 }
 
-.table-noshow-pagination .ant-pagination-prev,
-.table-noshow-pagination .ant-pagination-next {
-  width: 40%;
+.table-noshow-pagination .ant-pagination-next{
+  order: 2;
 }
 
-.table-noshow-pagination .ant-pagination-item {
+.table-noshow-pagination .ant-pagination-item,
+.ant-pagination-jump-next.ant-pagination-jump-next-custom-icon {
   display: none;
 }
 
-.table-noshow-pagination .ant-pagination-prev > a {
-  display: inherit;
-  max-width: 100px;
-  margin-right: auto;
-}
-.table-noshow-pagination .ant-pagination-next > a {
-  display: inherit;
-  margin-left: auto;
-  max-width: 100px;
-}
+// .table-noshow-pagination .ant-pagination-prev > a {
+//   display: inherit;
+//   max-width: 150px;
+//   margin-right: auto;
+// }
+// .table-noshow-pagination .ant-pagination-next > a {
+//   display: inherit;
+//   margin-left: auto;
+//   max-width: 150px;
+// }
 
 .ant-picker {
   border-radius: 8px;
@@ -244,15 +394,6 @@ ul.ant-dropdown-menu {
 
 .detail-font {
   font-size: 24px;
-}
-
-.font-20 {
-  font-size: 20px;
-  font-weight: regular;
-}
-
-.font-10 {
-  font-size: 10px;
 }
 
 .calendar-container .fc-day.fc-day-sun {
@@ -354,8 +495,8 @@ ul.ant-dropdown-menu {
 .meeting-room-calendar
   tr
   > td.ant-picker-cell.ant-picker-cell-in-view.ant-picker-cell-selected:first-child
-  .ant-picker-cell-inner.ant-picker-calendar-date{
-    background-color: #f86e61;
+  .ant-picker-cell-inner.ant-picker-calendar-date {
+  background-color: #f86e61;
 }
 
 .meeting-room-calendar
@@ -365,7 +506,6 @@ ul.ant-dropdown-menu {
   .ant-picker-calendar-date-value {
   color: #ffffff;
 }
-
 
 .ant-picker-cell-inner.ant-picker-calendar-date.ant-picker-calendar-date-today::before {
   border-radius: 50%;
@@ -436,19 +576,19 @@ ul.ant-dropdown-menu {
   padding: 10px 0;
 }
 
-.fc-scroller{
+.fc-scroller {
   border-color: #fff;
 }
 
 .ant-dropdown-menu-item.ant-dropdown-menu-item-only-child:hover {
-  a > div{
+  a > div {
     color: #000;
   }
 }
 
 .ant-dropdown-menu-submenu .ant-menu-item.ant-menu-item-only-child:hover {
   background-color: #fff;
-  a > div{
+  a > div {
     color: #000;
   }
 }
@@ -456,4 +596,88 @@ ul.ant-dropdown-menu {
 .ant-dropdown-menu-submenu .ant-menu-item.ant-menu-item-only-child {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+
+.footer{
+  position: relative;
+  font-weight: regular;
+}
+
+.footer-cloud{
+  width: 500px;
+  position: fixed;
+  bottom: -100px;
+  right: -200px;
+  z-index: -1;
+}
+
+.ant-dropdown-menu-submenu-expand-icon{
+  color: #fff;
+}
+
+.nav-li-item{
+  min-width: 7rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.ant-dropdown-trigger > .anticon.anticon-down {
+  font-size: 16px;
+}
+
+.staff-image{
+  min-width: 3rem;
+  max-width: 3rem;
+  width: 100%;
+}
+
+.footer-header {
+  margin-bottom: 10px;
+}
+
+.footer-nav-item{
+  margin-top: 5px;
+}
+
+.meeting-room .ant-checkbox-inner{
+  width: 20px;
+  height: 20px;
+} 
+
+.meeting-room .ant-checkbox-inner::after {
+  width: 6.714286px;
+  height: 12.142857px;
+}
+
+.calendar .ant-checkbox-inner::after {
+  width: 7.714286px;
+  height: 15.142857px;
+}
+
+.calendar .ant-checkbox {
+  background-color: inherit;
+  border-radius: 9999px;
+  left: -38px;
+}
+
+.ant-checkbox-wrapper{
+  background-color: inherit;
+}
+
+.calendar .ant-checkbox-inner{
+  background-color: inherit;
+  width: 30px;
+  height: 30px;
+} 
+
+.ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner, .ant-checkbox-checked .ant-checkbox-inner{
+  border-color: inherit;
+}
+
+.ant-picker-cell .ant-picker-cell-inner {
+  padding: 5px;
+  height: 36px;
+  width: 36px;
 }

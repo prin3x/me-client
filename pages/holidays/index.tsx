@@ -302,9 +302,9 @@ function HolidaysPage(): ReactElement {
                       <Row
                         key={hol.event}
                         justify="space-between"
-                        className="w-full"
+                        className="w-full items-center"
                       >
-                        <Col span={4}>
+                        <Col span={4} className='flex items-center'>
                           <div className="flex justify-start items-center gap-1">
                             <svg height="20" width="20">
                               <circle

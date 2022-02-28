@@ -35,7 +35,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="http://203.154.66.203.8015/ME"
               >
-                <Button type="primary">ME</Button>
+                <Button size="large" type="primary">ME</Button>
               </a>
               <a
                 className="cursor-pointer"
@@ -43,7 +43,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="http://203.154.66.203.8015/MR"
               >
-                <Button type="primary">MR</Button>
+                <Button size="large" type="primary">MR</Button>
               </a>
               <a
                 className="cursor-pointer"
@@ -51,7 +51,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="http://203.154.66.203.8015/MY"
               >
-                <Button type="primary">MY</Button>
+                <Button size="large" type="primary">MY</Button>
               </a>
               <a
                 className="cursor-pointer"
@@ -59,7 +59,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="http://203.154.66.203.8015/FB"
               >
-                <Button type="primary">FB</Button>
+                <Button size="large" type="primary">FB</Button>
               </a>
             </Row>
           </Col>

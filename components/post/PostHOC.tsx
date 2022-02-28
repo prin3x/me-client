@@ -39,7 +39,7 @@ function PostHOC({ setSearch, metaData, postList, onChangePage, page }: Props) {
     <div>
       <Row justify="end" className="mt-5">
         <Input
-          style={{ width: 250 }}
+          style={{ width: 350 }}
           placeholder="SEARCH"
           className="ml-auto"
           onChange={(e) => setSearch(e.target.value)}
@@ -47,7 +47,7 @@ function PostHOC({ setSearch, metaData, postList, onChangePage, page }: Props) {
             <SearchOutlined
               style={{
                 color: "#D8D8D8",
-                marginLeft: "4rem",
+                marginLeft: "6rem",
               }}
             />
           }
