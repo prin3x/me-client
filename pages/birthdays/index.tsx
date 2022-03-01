@@ -59,6 +59,8 @@ function BirthDayPage(): ReactElement {
           <div
             className="max-w-100 w-28">
             <Image
+  fallback=
+{imagePlaceholder}
               width={75}
               height={75}
               alt="No Image"
@@ -97,20 +99,28 @@ function BirthDayPage(): ReactElement {
         <p className="text-center">
           {_self === "Mindedge Recruitment" ? (
             <Image
+  fallback=
+{imagePlaceholder}
               src="/assets/me-recruit.svg"
               alt="mindedgelogo"
               width={100}
             />
           ) : _self === "Mindedge Innovation" ? (
-            <Image src="/assets/me-logo.svg" alt="mindedgelogo" width={100} />
+            <Image
+  fallback=
+{imagePlaceholder} src="/assets/me-logo.svg" alt="mindedgelogo" width={100} />
           ) : _self === "Foodberg" ? (
             <Image
+  fallback=
+{imagePlaceholder}
               src="/assets/foodberg-logo.svg"
               alt="mindedgelogo"
               width={50}
             />
           ) : (
-            <Image src="/assets/meu-logo.svg" alt="mindedgelogo" width={100} />
+            <Image
+  fallback=
+{imagePlaceholder} src="/assets/meu-logo.svg" alt="mindedgelogo" width={100} />
           )}
         </p>
       ),

@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { ASSET_URL } from "../../config";
 import { _getPostByCategoryId } from "../../services/news/news.service";
+import { imagePlaceholder } from "../../utils/placeholder.image";
 type Props = {
   posts: any[];
 };
@@ -23,6 +24,7 @@ function PostList({ posts }: Props) {
               <Col md={3}>
                 <Link href={`/${_post.categoryName}/${_post.slug}/`} passHref>
                   <Image
+                    fallback={imagePlaceholder}
                     src={ASSET_URL + _post.imageUrl}
                     preview={false}
                     width={100}

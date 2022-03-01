@@ -15,6 +15,7 @@ import {
   DoubleRightOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
+import { imagePlaceholder } from "../../utils/placeholder.image";
 
 interface Props {}
 
@@ -63,6 +64,7 @@ function StaffContactPage({}: Props): ReactElement {
               alt=""
               src={_record.profilePicUrl}
               className="staff-image"
+              fallback={imagePlaceholder}
               preview={false}
             />
           </div>

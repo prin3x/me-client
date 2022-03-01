@@ -8,6 +8,8 @@ function HeroSection({}: Props): ReactElement {
     <Row className='container mx-auto pt-10'>
       <Col span={24}>
         <Image
+  fallback=
+{imagePlaceholder}
           src='/assets/calendar-hero.svg'
           preview={false}
           alt='calendar-hero'

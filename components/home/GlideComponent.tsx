@@ -4,6 +4,7 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Image } from "antd";
 import { ASSET_URL } from "../../config";
 import { useRouter } from "next/router";
+import { imagePlaceholder } from "../../utils/placeholder.image";
 
 const sliderConfiguration = {
   gap: 20,
@@ -36,6 +37,7 @@ const CarouselSlider = (props: any) => {
                 }
               >
                 <Image
+                  fallback={imagePlaceholder}
                   preview={false}
                   src={ASSET_URL + _post.imageUrl}
                   width={250}
@@ -49,7 +51,10 @@ const CarouselSlider = (props: any) => {
                   <p
                     className="text-white text-lg"
                     dangerouslySetInnerHTML={{
-                      __html: _post.content.length > 30 ?  _post.content.slice(0, 30) + "..." : _post.content,
+                      __html:
+                        _post.content.length > 30
+                          ? _post.content.slice(0, 30) + "..."
+                          : _post.content,
                     }}
                   />
                 </div>

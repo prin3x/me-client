@@ -9,6 +9,7 @@ import {
   _getAllRooms,
   _getAllRoomsById,
 } from "../../../services/meetingRoom/meeting-room.service";
+import { imagePlaceholder } from "../../../utils/placeholder.image";
 
 type Props = {};
 
@@ -34,6 +35,7 @@ function RoomId({}: Props) {
         <Row className="mt-10 gap-10" justify="center">
           <Col>
             <Image
+              fallback={imagePlaceholder}
               className="rounded-md"
               src={ASSET_URL + roomsMeta?.data?.imageUrl}
               width={300}

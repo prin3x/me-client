@@ -26,9 +26,7 @@ function Navbar(): ReactElement {
       <Menu.Item key={nanoid(5)}>
         <Link href={"/staff-contact"}>
           <a className="cursor-pointer">
-            <div className="text-white nav-item text-lg ">
-              Staff Contact
-            </div>
+            <div className="text-white nav-item text-lg ">Staff Contact</div>
           </a>
         </Link>
       </Menu.Item>
@@ -66,7 +64,9 @@ function Navbar(): ReactElement {
               rel="noreferrer"
               href="http://203.154.66.203.8015/ME"
             >
-              <div className="text-white hover:text-black nav-item text-lg ">ME</div>
+              <div className="text-white hover:text-black nav-item text-lg ">
+                ME
+              </div>
             </a>
           </Menu.Item>
           <Menu.Item key={nanoid(5)}>
@@ -76,7 +76,9 @@ function Navbar(): ReactElement {
               rel="noreferrer"
               href="http://203.154.66.203.8015/MR"
             >
-              <div className="text-white hover:text-black nav-item text-lg ">MR</div>
+              <div className="text-white hover:text-black nav-item text-lg ">
+                MR
+              </div>
             </a>
           </Menu.Item>
           <Menu.Item key={nanoid(5)}>
@@ -86,7 +88,9 @@ function Navbar(): ReactElement {
               rel="noreferrer"
               href="http://203.154.66.203.8015/MY"
             >
-              <div className="text-white hover:text-black nav-item text-lg ">MY</div>
+              <div className="text-white hover:text-black nav-item text-lg ">
+                MY
+              </div>
             </a>
           </Menu.Item>
           <Menu.Item key={nanoid(5)}>
@@ -96,7 +100,9 @@ function Navbar(): ReactElement {
               rel="noreferrer"
               href="http://203.154.66.203.8015/FB"
             >
-              <div className="text-white hover:text-black nav-item text-lg ">FB</div>
+              <div className="text-white hover:text-black nav-item text-lg ">
+                FB
+              </div>
             </a>
           </Menu.Item>
         </Menu>
@@ -206,7 +212,7 @@ function Navbar(): ReactElement {
   );
 
   return (
-    <Row className="navbar-container mx-auto" align='top'>
+    <Row className="navbar-container mx-auto" align="top">
       <Row align="top" wrap={false}>
         <Col>
           <Link href={"/"} passHref>
@@ -231,23 +237,28 @@ function Navbar(): ReactElement {
               </Dropdown>
               <Dropdown overlay={Services}>
                 <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 ">
-                  service <DownOutlined className="down-icon"/>
+                  service <DownOutlined className="down-icon" />
                 </li>
               </Dropdown>
               <Dropdown overlay={News}>
                 <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 ">
-                  news <DownOutlined className="down-icon"/>
+                  news <DownOutlined className="down-icon" />
                 </li>
               </Dropdown>
               <Dropdown overlay={CompanyProfile}>
                 <li className="nav-li-item text-white uppercase flex justify-between items-center gap-2 font-24 ">
-                 <span>company</span>  <DownOutlined className="down-icon"/>
+                  <span>company</span> <DownOutlined className="down-icon" />
                 </li>
               </Dropdown>
               <li className="nav-li-item text-white flex items-center gap-3">
                 <Avatar
                   shape="circle"
-                  style={{ backgroundColor: "orange", marginRight: "10px",minWidth: '50px', height: '50px' }}
+                  style={{
+                    backgroundColor: "orange",
+                    marginRight: "10px",
+                    minWidth: "50px",
+                    height: "50px",
+                  }}
                   size={48}
                   src={
                     userInfo?.profilePicUrl

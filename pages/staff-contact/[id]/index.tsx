@@ -8,6 +8,7 @@ import LayoutHOC from "../../../layout/LayoutHOC";
 import { IContact } from "../../../services/contact/contact.model";
 import { SINGLE_CONTACT } from "../../../services/contact/contact.queryKey";
 import { _getOneStaff } from "../../../services/contact/contact.service";
+import { imagePlaceholder } from "../../../utils/placeholder.image";
 
 interface Props {}
 
@@ -51,6 +52,7 @@ function SingleCantactPage({}: Props): ReactElement {
         <Row className="container mx-auto pt-10">
           <Col span={24}>
             <Image
+              fallback={imagePlaceholder}
               src="/assets/staff-contact.svg"
               preview={false}
               alt="staff-contact"
@@ -64,75 +66,76 @@ function SingleCantactPage({}: Props): ReactElement {
                 src={contactData?.profilePicUrl}
                 preview={false}
                 alt="staff-contact"
-                height={150}
-                width={150}
+                fallback={imagePlaceholder}
+                height={450}
+                width={450}
               />
             </Row>
           </Col>
           <Col span={12}>
             <Row justify="start" gutter={[0,0]}>
               <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   Name
                 </div>
                 <div className="">{contactData.name}</div>
               </Col>
               <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   Name(TH)
                 </div>
                 <div className="">{contactData.nameTH}</div>
               </Col>
               <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   Nickname
                 </div>
                 <div className="">{contactData.nickname}</div>
               </Col>
               <Col className="flex w-full mt-4">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   Email
                 </div>
                 <div className="">{contactData.email}</div>
               </Col>
               <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   IP Phone
                 </div>
                 <div className="">{contactData.ipPhone}</div>
               </Col>
               <Col className="flex w-full mt-4">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   Staff ID
                 </div>
                 <div className="">{contactData.staffId}</div>
               </Col>
               <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   Company
                 </div>
                 <div className="">Mind Edge Recruitment</div>
               </Col>
               <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   Department
                 </div>
                 <div className="">{contactData.department}</div>
               </Col>
               <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   Division
                 </div>
                 <div className="">{contactData.section}</div>
               </Col>
               <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   Position
                 </div>
                 <div className="">{contactData.position}</div>
               </Col>
               <Col className="flex w-full mt-4">
-                <div className="label min-width-full w-36 text-primary-color font-regular">
+                <div className="label min-width-full w-36 text-primary-color font-bold">
                   Birthday
                 </div>
                 <div className="">{moment(contactData.birthDate).format('DD MMM')}</div>
