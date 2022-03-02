@@ -230,7 +230,7 @@ function StaffContactPage({}: Props): ReactElement {
               position: ["bottomCenter"],
               onChange: (_page) => setPage(_page),
               showTotal: (total, range) => (
-                <div className="text-center">{`ทั้งหมด ${
+                <div className="text-center font-bold">{`ทั้งหมด ${
                   staffContactMeta?.data?.total || 0
                 } คน`}</div>
               ),

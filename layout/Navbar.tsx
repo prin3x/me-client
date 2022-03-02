@@ -231,26 +231,26 @@ function Navbar(): ReactElement {
           <div className="navbar bg-primary-color flex items-center h-full rounded-tl-full rounded-br-full">
             <ul className="navbar-ul flex  flex-wrap items-center gap-20 mb-0 ">
               <Dropdown overlay={Personal}>
-                <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24">
+                <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold">
                   personal <DownOutlined className="down-icon" />
                 </li>
               </Dropdown>
               <Dropdown overlay={Services}>
-                <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 ">
+                <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold ">
                   service <DownOutlined className="down-icon" />
                 </li>
               </Dropdown>
               <Dropdown overlay={News}>
-                <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 ">
+                <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold ">
                   news <DownOutlined className="down-icon" />
                 </li>
               </Dropdown>
               <Dropdown overlay={CompanyProfile}>
-                <li className="nav-li-item text-white uppercase flex justify-between items-center gap-2 font-24 ">
+                <li className="nav-li-item text-white uppercase flex justify-between items-center gap-2 font-24 font-bold">
                   <span>company</span> <DownOutlined className="down-icon" />
                 </li>
               </Dropdown>
-              <li className="nav-li-item text-white flex items-center gap-3">
+              <li className="nav-li-item text-white flex items-center gap-3 font-bold">
                 <Avatar
                   shape="circle"
                   style={{

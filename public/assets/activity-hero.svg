@@ -8,6 +8,6 @@
     <rect width="1004" height="330" rx="20" stroke="none"/>
     <rect x="1.5" y="1.5" width="1001" height="327" rx="18.5" fill="none"/>
   </g>
-  <text id="ACTIVITIES" transform="translate(414 56)" fill="#1655b7" font-size="50" font-family="DBOzoneX, DB Ozone X"><tspan x="0" y="0">ACTIVITIES</tspan></text>
+  <text id="ACTIVITY-2" data-name="ACTIVITY" transform="translate(428 61)" fill="#1655b7" font-size="50" font-family="DBOzoneX-Bold, DB Ozone X" font-weight="700"><tspan x="0" y="0">ACTIVITY</tspan></text>
   <text id="กิจกรรม_ME" data-name="กิจกรรม ME" transform="translate(430 95)" fill="#1655b7" font-size="40" font-family="DBOzoneX, DB Ozone X"><tspan x="0" y="0">กิจกรรม ME</tspan></text>
 </svg>

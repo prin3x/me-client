@@ -8,6 +8,6 @@
     <rect width="1004" height="330" rx="20" stroke="none"/>
     <rect x="1.5" y="1.5" width="1001" height="327" rx="18.5" fill="none"/>
   </g>
-  <text id="Holidays" transform="translate(420 61)" fill="#1655b7" font-size="50" font-family="DBOzoneX, DB Ozone X"><tspan x="0" y="0">HOLIDAYS</tspan></text>
+  <text id="Holidays" transform="translate(420 61)" fill="#1655b7" font-size="50" font-family="DBOzoneX-Bold, DB Ozone X" font-weight="700"><tspan x="0" y="0">HOLIDAYS</tspan></text>
   <text id="วันหยุด" transform="translate(467 92)" fill="#1655b7" font-size="40" font-family="DBOzoneX, DB Ozone X"><tspan x="0" y="0">วันหยุด</tspan></text>
 </svg>

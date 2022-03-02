@@ -45,7 +45,7 @@ const CarouselSlider = (props: any) => {
                   className="rounded-xl "
                 />
                 <div className="absolute bottom-5 left-5 bg-slate-900 opacity-75 rounded-md p-2 w-52 h-36">
-                  <h3 className="text-white text-xl font-bold">
+                  <h3 className="text-white text-xl">
                     {_post.title.slice(0, 20)}
                   </h3>
                   <p

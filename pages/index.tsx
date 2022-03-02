@@ -146,11 +146,11 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                   <div className="absolute bottom-4 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
-                    <div className="heading-th font-bold text-white text-xl">
+                    <div className="heading-th text-white text-xl">
                       {recentItClinicMeta?.data?.items?.[0]?.title}
                     </div>
                     <div
-                      className="font-bold text-white text-lg"
+                      className="text-white text-lg"
                       dangerouslySetInnerHTML={{
                         __html:
                           recentItClinicMeta?.data?.items?.[0]?.content?.slice(
@@ -185,11 +185,11 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                   <div className="absolute bottom-4 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
-                    <div className="heading-th font-bold text-white text-xl">
+                    <div className="heading-th text-white text-xl">
                       {recentActivityMeta?.data?.items?.[0]?.title}
                     </div>
                     <div
-                      className="font-bold text-white text-lg"
+                      className="text-white text-lg"
                       dangerouslySetInnerHTML={{
                         __html:
                           recentActivityMeta?.data?.items?.[0]?.content?.slice(

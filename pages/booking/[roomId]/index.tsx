@@ -29,36 +29,45 @@ function RoomId({}: Props) {
   return (
     <LayoutHOC>
       <div>
-        <div className="text-primary-color text-2xl font-bold text-center mt-10">
+        <div className="text-primary-color text-2xl font-bold text-center mt-20">
           View Room Detail
         </div>
-        <Row className="mt-10 gap-10" justify="center">
+        <Row className="mt-20 mb-32 gap-10" justify="center" align="middle">
           <Col>
             <Image
               fallback={imagePlaceholder}
               className="rounded-md"
               src={ASSET_URL + roomsMeta?.data?.imageUrl}
-              width={300}
-              height={200}
+              width={400}
+              height={300}
               preview={false}
             />
           </Col>
           <Col className="">
-            <div className="flex flex-col items-start justify-center max-w-xs">
-              <div className="font-bold text-xl">
-                Name Room :{" "}
-                <span className="font-thin">{roomsMeta?.data?.name}</span>
-              </div>
-              <div className="font-bold text-xl mt-5">
-                Description :{" "}
-                <span className="font-thin">
-                  {roomsMeta?.data?.description}
-                </span>
-              </div>
-              <div className="font-bold text-xl mt-5">
-                Capacity : <span className="font-thin">10 p</span>
-              </div>
-            </div>
+            <Row>
+              <Col lg={12}>
+                <div className="font-bold">Name Room :</div>
+              </Col>
+              <Col lg={12}>
+                <div className="font-thin">{roomsMeta?.data?.name}</div>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={12}>
+                <div className="font-bold">Description :</div>
+              </Col>
+              <Col lg={12}>
+                <div className="font-thin">{roomsMeta?.data?.description}</div>
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={12}>
+                <div className="font-bold">Capacity :</div>
+              </Col>
+              <Col lg={12}>
+                <div className="font-thin">10 p</div>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </div>
