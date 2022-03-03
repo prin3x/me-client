@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import HeroBirthDays from "../../components/birthdays/HeroBirthDays";
-import { ASSET_URL } from "../../config";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
   DEPT_SELECTOR,
@@ -15,6 +14,7 @@ import {
   _getAllStaffContactBirthdays,
   _getAllStaffContacts,
 } from "../../services/contact/contact.service";
+import { imagePlaceholder } from "../../utils/placeholder.image";
 
 const INIT_QUERY = {
   startDate: moment().format("YYYY-MM-DD"),
