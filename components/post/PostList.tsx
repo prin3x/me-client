@@ -36,7 +36,7 @@ function PostList({ posts }: Props) {
               <Col md={12} className="mx-2 mt-5 ml-5">
                 <Link href={`/${_post.categoryName}/${_post.slug}/`} passHref>
                   <div className="flex flex-col">
-                    <div className="text-xl"> {_post.title}</div>
+                    <div className="text-xl font-bold"> {_post.title}</div>
                     <p
                       className="text-slate-400 "
                       dangerouslySetInnerHTML={{
