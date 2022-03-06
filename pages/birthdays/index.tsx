@@ -56,11 +56,9 @@ function BirthDayPage(): ReactElement {
       width: "280px",
       render: (_self: string, _record: any) => (
         <div className="flex items-center gap-2">
-          <div
-            className="max-w-100 w-28">
+          <div className="max-w-100 w-28">
             <Image
-  fallback=
-{imagePlaceholder}
+              fallback={imagePlaceholder}
               width={75}
               height={75}
               alt="No Image"
@@ -70,7 +68,7 @@ function BirthDayPage(): ReactElement {
           </div>
           <div className="flex flex-col items-start">
             <p
-              className="text-left cursor-pointer text-primary-color mb-0"
+              className="text-left cursor-pointer text-primary-color mb-0 font-semibold	"
               onClick={() => router.push(`/staff-contact/${_record.id}`)}
             >
               {_self}
@@ -99,28 +97,32 @@ function BirthDayPage(): ReactElement {
         <p className="text-center">
           {_self === "Mindedge Recruitment" ? (
             <Image
-  fallback=
-{imagePlaceholder}
+              fallback={imagePlaceholder}
               src="/assets/me-recruit.svg"
               alt="mindedgelogo"
               width={100}
             />
           ) : _self === "Mindedge Innovation" ? (
             <Image
-  fallback=
-{imagePlaceholder} src="/assets/me-logo.svg" alt="mindedgelogo" width={100} />
+              fallback={imagePlaceholder}
+              src="/assets/me-logo.svg"
+              alt="mindedgelogo"
+              width={100}
+            />
           ) : _self === "Foodberg" ? (
             <Image
-  fallback=
-{imagePlaceholder}
+              fallback={imagePlaceholder}
               src="/assets/foodberg-logo.svg"
               alt="mindedgelogo"
               width={50}
             />
           ) : (
             <Image
-  fallback=
-{imagePlaceholder} src="/assets/meu-logo.svg" alt="mindedgelogo" width={100} />
+              fallback={imagePlaceholder}
+              src="/assets/meu-logo.svg"
+              alt="mindedgelogo"
+              width={100}
+            />
           )}
         </p>
       ),
@@ -152,7 +154,11 @@ function BirthDayPage(): ReactElement {
                   name="month"
                   initialValue={(moment().month() + 1).toString()}
                 >
-                  <Select size="large"placeholder="MONTH" style={{ width: 250 }}>
+                  <Select
+                    size="large"
+                    placeholder="MONTH"
+                    style={{ width: 250 }}
+                  >
                     <Select.Option value="1">January</Select.Option>
                     <Select.Option value="2">February</Select.Option>
                     <Select.Option value="3">March</Select.Option>
@@ -168,7 +174,11 @@ function BirthDayPage(): ReactElement {
                   </Select>
                 </Form.Item>
                 <Form.Item name="department">
-                  <Select size="large"placeholder="DEPARTMENT" style={{ width: 300 }}>
+                  <Select
+                    size="large"
+                    placeholder="DEPARTMENT"
+                    style={{ width: 300 }}
+                  >
                     <Select.Option key={"ทั้งหมด"} value={""}>
                       {"ทั้งหมด"}
                     </Select.Option>

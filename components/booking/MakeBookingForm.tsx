@@ -84,7 +84,7 @@ function MakeBookingForm({
     <Row justify="center" className="w-full meeting-room">
       <Row justify="center" className="w-full mt-10">
         <Col>
-          <div className="uppercase text-primary-color text-2xl">
+          <div className="uppercase text-primary-color text-2xl font-bold">
             Booking Room
           </div>
         </Col>

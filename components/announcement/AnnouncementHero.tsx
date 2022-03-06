@@ -6,7 +6,7 @@ function AnnouncementHero(): ReactElement {
     <Row className="container mx-auto pt-10">
       <Col span={24}>
         <Image
-          src="/assets/announcement-hero.svg"
+          src="/assets/announcement-hero.png"
           preview={false}
           height="200"
           alt="calendar-hero"

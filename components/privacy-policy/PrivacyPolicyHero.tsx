@@ -8,7 +8,7 @@ function PrivacyPolicyHero({}: Props): ReactElement {
     <Row className="container mx-auto pt-10">
       <Col span={24}>
         <Image
-          src="/assets/privacy-policy-hero.svg"
+          src="/assets/privacy-policy-hero.png"
           preview={false}
           alt="calendar-hero"
         />

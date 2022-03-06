@@ -218,7 +218,7 @@ function Navbar(): ReactElement {
           <Link href={"/"} passHref>
             <div className="nav-logo flex h-100 items-center cursor-pointer">
               <Image
-                src="/assets/logo-m.svg"
+                src="/assets/logo-m.png"
                 preview={false}
                 width={200}
                 className="cursor-pointer nav-logo"

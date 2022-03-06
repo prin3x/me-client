@@ -7,7 +7,7 @@ function CompanyContactHero({}: Props): ReactElement {
     <Row className='container mx-auto pt-10'>
       <Col span={24}>
         <Image
-          src='/assets/company-contact-hero.svg'
+          src='/assets/company-contact-hero.png'
           preview={false}
           alt='calendar-hero'
         />

@@ -104,7 +104,7 @@ function BookingMeetingRoom(): ReactElement {
     return (
       <div>
         <div
-          className="border-2 rounded-xl text-center p-3 text-xl"
+          className="border-2 rounded-xl text-center p-3 text-xl font-bold"
           style={{ borderColor: "#eee" }}
         >
           {moment().format("DD MMMM yyyy")}
@@ -125,7 +125,7 @@ function BookingMeetingRoom(): ReactElement {
                 </div>
               </Col>
               <Col>
-                <div className="text-lg">{current.format("MMMM")}</div>
+                <div className="text-lg font-bold">{current.format("MMMM")}</div>
               </Col>
               <Col>
                 <div

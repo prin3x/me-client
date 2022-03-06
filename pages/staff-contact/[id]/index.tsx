@@ -53,7 +53,7 @@ function SingleCantactPage({}: Props): ReactElement {
           <Col span={24}>
             <Image
               fallback={imagePlaceholder}
-              src="/assets/staff-contact.svg"
+              src="/assets/staff-hero.png"
               preview={false}
               alt="staff-contact"
             />

@@ -50,7 +50,9 @@ function MeetingRoomCalendar({
     calendarApi.next();
 
     setCurrentDate(calendarRef?.current?.getApi().getDate());
-    setSelectDate(moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD"))
+    setSelectDate(
+      moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD")
+    );
   };
 
   const onPrevButtonClick = () => {
@@ -58,7 +60,9 @@ function MeetingRoomCalendar({
     calendarApi.prev();
 
     setCurrentDate(calendarRef?.current?.getApi().getDate());
-    setSelectDate(moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD"))
+    setSelectDate(
+      moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD")
+    );
   };
 
   const getToday = () => {
@@ -81,7 +85,7 @@ function MeetingRoomCalendar({
         coloredEvent.start = moment(event.start).format();
         coloredEvent.end = moment(event.end).format();
         coloredEvent.resourceIds = [event.roomId];
-        coloredEvent.title = `${event.title} <br/> By ${event.staffContactDetail.nameTH} ${event.staffContactDetail.position}`
+        coloredEvent.title = `<div style="font-weight: bold;text-align: center;">${event.title}</div> <br/> <div style="text-align: center;">By ${event.staffContactDetail.nameTH} ${event.staffContactDetail.position}</div>`;
       }
       if (event.type) {
         const foundColor = colorsMap.find(
@@ -126,18 +130,18 @@ function MeetingRoomCalendar({
 
   return (
     <div>
-      <Row justify="space-between" className="my-5">
+      <Row justify="space-between" className="my-10">
         <Col>
           <div
             onClick={onPrevButtonClick}
-            className="cursor-pointer flex items-center text-slate-400 gap-5 text-sm"
+            className="cursor-pointer flex items-center text-slate-600 gap-5 text-sm"
           >
             <LeftOutlined style={{ fontSize: 24 }} />
             Previous Day
           </div>
         </Col>
         <Col>
-          <div className="text-xl">
+          <div className="text-xl font-bold">
             {moment(currentDate).format("dddd DD MMMM yyyy")}
           </div>
         </Col>
@@ -197,17 +201,19 @@ function MeetingRoomCalendar({
           minute: "2-digit",
           hour12: false,
         }}
-        eventContent={({event}: any) => { return {html: event.title}}}
+        eventContent={({ event }: any) => {
+          return { html: event.title };
+        }}
       />
       <Row className="mt-3">
         <div
-          className="rounded-xl text-center p-2"
+          className="rounded-xl text-center p-2 font-bold"
           style={{ backgroundColor: "#5B97F5" }}
         >
           Internal
         </div>
         <div
-          className="rounded-xl text-center p-2 ml-5"
+          className="rounded-xl text-center p-2 ml-5 font-bold"
           style={{ backgroundColor: "#F7AB50" }}
         >
           External

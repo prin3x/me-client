@@ -70,7 +70,7 @@ function StaffContactPage({}: Props): ReactElement {
           </div>
           <div className="flex flex-col items-start">
             <p
-              className="text-left cursor-pointer text-primary-color mb-0"
+              className="text-left cursor-pointer text-primary-color mb-0 font-semibold	"
               onClick={() => router.push(`/staff-contact/${_record.id}`)}
             >
               {_self}
@@ -153,7 +153,7 @@ function StaffContactPage({}: Props): ReactElement {
         <Row className="container mx-auto pt-10">
           <Col span={24}>
             <Image
-              src="/assets/staff-contact.svg"
+              src="/assets/staff-hero.png"
               preview={false}
               alt="staff-contact"
             />

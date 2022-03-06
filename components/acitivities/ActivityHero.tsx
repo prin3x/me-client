@@ -7,7 +7,7 @@ function ActivityHero(): ReactElement {
     <Row className="container mx-auto pt-10">
       <Col span={24}>
         <Image
-          src="/assets/activity-hero.svg"
+          src="/assets/activity-hero.png"
           preview={false}
           alt="calendar-hero"
         />

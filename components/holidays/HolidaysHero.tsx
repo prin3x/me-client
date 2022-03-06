@@ -8,7 +8,7 @@ function HolidaysHero({}: Props): ReactElement {
     <Row className="container mx-auto pt-10">
       <Col span={24}>
         <Image
-          src="/assets/holiday-hero.svg"
+          src="/assets/holiday-hero.png"
           preview={false}
           alt="calendar-hero"
         />
