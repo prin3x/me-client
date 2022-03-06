@@ -27,6 +27,7 @@ function StaffContactPage({}: Props): ReactElement {
   const staffContactMeta = useQuery([ALL_CONTACT, page, queryStr], () =>
     _getAllStaffContacts(queryStr)
   );
+  const [pageSize, setPageSize] = useState(10)
   const router = useRouter();
 
   function itemRender(current, type, originalElement) {
@@ -120,7 +121,7 @@ function StaffContactPage({}: Props): ReactElement {
 
   function setQuery() {
     let set = {} as ListQueryParams;
-    set.limit = 10;
+    set.limit = pageSize;
     set.search = form.getFieldValue("search") || "";
     set.department = form.getFieldValue("department") || "";
     set.company = form.getFieldValue("company") || "";
@@ -228,6 +229,7 @@ function StaffContactPage({}: Props): ReactElement {
             tableLayout="fixed"
             pagination={{
               position: ["bottomCenter"],
+              pageSize: pageSize,
               onChange: (_page) => setPage(_page),
               showTotal: (total, range) => (
                 <div className="text-center font-bold">{`ทั้งหมด ${

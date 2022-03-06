@@ -41,7 +41,7 @@ const Home: NextPage = () => {
       <Row justify="center">
         <Col lg={24}>
           <Image
-            src="/assets/login.svg"
+            src="/assets/login-hero.png"
             alt="login"
             preview={false}
             width={350}
