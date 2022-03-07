@@ -32,8 +32,8 @@ function RoomId({}: Props) {
         <div className="text-primary-color text-2xl font-bold text-center mt-20">
           View Room Detail
         </div>
-        <Row className="mt-20 mb-32 gap-10" justify="center" align="middle">
-          <Col>
+        <Row className="mt-20 mb-32 gap-10 text-lg" justify="center" align="middle">
+          <Col lg={10}>
             <Image
               fallback={imagePlaceholder}
               className="rounded-md"
@@ -43,28 +43,25 @@ function RoomId({}: Props) {
               preview={false}
             />
           </Col>
-          <Col className="">
-            <Row>
-              <Col lg={12}>
+          <Col lg={10}>
+            <Row  gutter={[0,40]}>
+              <Col lg={8}>
                 <div className="font-bold">Name Room :</div>
               </Col>
-              <Col lg={12}>
+              <Col lg={16}>
                 <div className="font-thin">{roomsMeta?.data?.name}</div>
               </Col>
-            </Row>
-            <Row>
-              <Col lg={12}>
+              <Col lg={8}>
                 <div className="font-bold">Description :</div>
               </Col>
-              <Col lg={12}>
+              <Col lg={16}>
                 <div className="font-thin">{roomsMeta?.data?.description}</div>
               </Col>
-            </Row>
-            <Row>
-              <Col lg={12}>
+
+              <Col lg={8}>
                 <div className="font-bold">Capacity :</div>
               </Col>
-              <Col lg={12}>
+              <Col lg={16}>
                 <div className="font-thin">10 p</div>
               </Col>
             </Row>

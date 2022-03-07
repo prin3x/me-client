@@ -24,16 +24,16 @@ function FormRequest({}: Props): ReactElement {
                 header="Training"
                 key="1"
                 showArrow={true}
-                className="bg-primary-color text-xl"
+                className="bg-primary-color text-xl font-bold"
                 style={{ color: "white" }}
               >
-                <p className="form-download-item text-lg mb-0 py-2 font-regular">
+                <p className="form-download-item text-lg mb-0 py-2 font-normal">
                   &emsp; &emsp; In-House Training Request
                 </p>
-                <p className="form-download-item text-lg mb-0 py-2 font-regular">
+                <p className="form-download-item text-lg mb-0 py-2 font-normal">
                   &emsp; &emsp; Public Training Request
                 </p>
-                <p className="form-download-item text-lg mb-0 py-2 font-regular">
+                <p className="form-download-item text-lg mb-0 py-2 font-normal">
                   &emsp; &emsp; แบบฟอร์มยืม-เบิกอุปกรณ์ตกแต่ง
                 </p>
               </Collapse.Panel>
@@ -41,9 +41,9 @@ function FormRequest({}: Props): ReactElement {
                 header="QMD"
                 key="2"
                 showArrow={true}
-                className="bg-primary-color text-xl"
+                className="bg-primary-color text-xl font-bold"
               >
-                <p className="form-download-item text-lg mb-0 py-2 font-regular">
+                <p className="form-download-item text-lg mb-0 py-2 font-normal">
                   &emsp; &emsp; Job Request
                 </p>
               </Collapse.Panel>
@@ -51,12 +51,12 @@ function FormRequest({}: Props): ReactElement {
                 header="F&A"
                 key="3"
                 showArrow={true}
-                className="bg-primary-color text-xl"
+                className="bg-primary-color text-xl font-bold"
               >
-                <p className="form-download-item text-lg mb-0 py-2 font-regular">
+                <p className="form-download-item text-lg mb-0 py-2 font-normal">
                   &emsp; &emsp; แบบฟอร์มชี้แจ้งค่าใช้จ่าย
                 </p>
-                <p className="form-download-item text-lg mb-0 py-2 font-regular">
+                <p className="form-download-item text-lg mb-0 py-2 font-normal">
                   &emsp; &emsp; แบบฟอร์มเบิกค่าเดินทาง
                 </p>
               </Collapse.Panel>
@@ -64,12 +64,12 @@ function FormRequest({}: Props): ReactElement {
                 header="HR"
                 key="4"
                 showArrow={true}
-                className="bg-primary-color text-xl"
+                className="bg-primary-color text-xl font-bold"
               >
-                <p className="form-download-item text-lg mb-0 py-2 font-regular">
+                <p className="form-download-item text-lg mb-0 py-2 font-normal">
                   &emsp; &emsp; แบบฟอร์มขอหนังสือรับรอง
                 </p>
-                <p className="form-download-item text-lg mb-0 py-2 font-regular">
+                <p className="form-download-item text-lg mb-0 py-2 font-normal">
                   &emsp; &emsp; แบบฟอร์มเบิกค่ารักษาพยาบาล
                 </p>
               </Collapse.Panel>

@@ -26,7 +26,7 @@ function CompanyContactPage({}: Props): ReactElement {
               </Col>
               <Col lg={8} md={16}>
                 <div className="flex flex-col">
-                  <h3 className="text-primary-color">
+                  <h3 className="text-primary-color font-bold text-xl">
                     บริษัท มายด์เอจ อินโนเวชั่น จำกัด
                   </h3>
                   <div className="text-lg">
@@ -98,7 +98,7 @@ function CompanyContactPage({}: Props): ReactElement {
               </Col>
               <Col lg={8} md={16}>
                 <div className="flex flex-col">
-                  <h3 className="text-primary-color">
+                  <h3 className="text-primary-color font-bold text-xl">
                     บริษัท จัดหางาน มายด์เอจ จำกัด
                   </h3>
                   <div className="text-lg">
@@ -170,7 +170,7 @@ function CompanyContactPage({}: Props): ReactElement {
               </Col>
               <Col lg={8} md={16}>
                 <div className="flex flex-col">
-                  <h3 className="text-primary-color">
+                  <h3 className="text-primary-color font-bold text-xl">
                     บริษัท มี แอนด์ ยู เอ็นเตอร์เทนเมนท์ จำกัด
                   </h3>
                   <div className="text-lg">
@@ -243,7 +243,7 @@ function CompanyContactPage({}: Props): ReactElement {
               </Col>
               <Col lg={8} md={16}>
                 <div className="flex flex-col">
-                  <h3 className="text-primary-color">
+                  <h3 className="text-primary-color font-bold text-xl">
                     บริษัท ฟู้ดเบิร์ก จำกัด
                   </h3>
                   <div className="text-lg">

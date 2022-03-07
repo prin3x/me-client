@@ -73,72 +73,114 @@ function SingleCantactPage({}: Props): ReactElement {
             </Row>
           </Col>
           <Col span={12}>
-            <Row justify="start" gutter={[0,0]}>
-              <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  Name
-                </div>
-                <div className="">{contactData.name}</div>
+            <Row justify="start" gutter={[0, 0]}>
+              <Col
+                lg={6}
+                className="label min-width-full w-36 text-primary-color font-bold text-lg"
+              >
+                Name
               </Col>
-              <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  Name(TH)
-                </div>
-                <div className="">{contactData.nameTH}</div>
+              <Col lg={18} className="text-lg">
+                {contactData.name}
               </Col>
-              <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  Nickname
-                </div>
-                <div className="">{contactData.nickname}</div>
+              <Col
+                lg={6}
+                className="label text-lg min-width-full w-36 text-primary-color font-bold"
+              >
+                Name(TH)
               </Col>
-              <Col className="flex w-full mt-4">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  Email
-                </div>
-                <div className="">{contactData.email}</div>
+              <Col lg={18} className="text-lg">
+                {contactData.nameTH}
               </Col>
-              <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  IP Phone
-                </div>
-                <div className="">{contactData.ipPhone}</div>
+
+              <Col
+                lg={6}
+                className="label text-lg min-width-full w-36 text-primary-color font-bold"
+              >
+                Nickname
               </Col>
-              <Col className="flex w-full mt-4">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  Staff ID
-                </div>
-                <div className="">{contactData.staffId}</div>
+              <Col lg={18} className="text-lg">
+                {contactData.nickname}
               </Col>
-              <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  Company
-                </div>
-                <div className="">Mind Edge Recruitment</div>
+
+              <Col
+                lg={6}
+                className="label text-lg min-width-full w-36 text-primary-color font-bold mt-6"
+              >
+                Email
               </Col>
-              <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  Department
-                </div>
-                <div className="">{contactData.department}</div>
+              <Col lg={18} className="text-lg mt-6">
+                {contactData.email}
               </Col>
-              <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  Division
-                </div>
-                <div className="">{contactData.section}</div>
+
+              <Col
+                lg={6}
+                className="label text-lg min-width-full w-36 text-primary-color font-bold "
+              >
+                IP Phone
               </Col>
-              <Col className="flex w-full">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  Position
-                </div>
-                <div className="">{contactData.position}</div>
+              <Col lg={18} className="text-lg">
+                {contactData.ipPhone}
               </Col>
-              <Col className="flex w-full mt-4">
-                <div className="label min-width-full w-36 text-primary-color font-bold">
-                  Birthday
-                </div>
-                <div className="">{moment(contactData.birthDate).format('DD MMM')}</div>
+
+              <Col
+                lg={6}
+                className="label text-lg min-width-full w-36 text-primary-color font-bold mt-6"
+              >
+                Staff ID
+              </Col>
+              <Col lg={18} className="text-lg mt-6">
+                {contactData.staffId}
+              </Col>
+
+              <Col
+                lg={6}
+                className="label text-lg min-width-full w-36 text-primary-color font-bold"
+              >
+                Company
+              </Col>
+              <Col lg={18} className="text-lg">
+                Mind Edge Recruitment
+              </Col>
+
+              <Col
+                lg={6}
+                className="label text-lg min-width-full w-36 text-primary-color font-bold"
+              >
+                Department
+              </Col>
+              <Col lg={18} className="text-lg">
+                {contactData.department}
+              </Col>
+
+              <Col
+                lg={6}
+                className="label text-lg min-width-full w-36 text-primary-color font-bold"
+              >
+                Division
+              </Col>
+              <Col lg={18} className="text-lg">
+                {contactData.section}
+              </Col>
+
+              <Col
+                lg={6}
+                className="label text-lg min-width-full w-36 text-primary-color font-bold"
+              >
+                Position
+              </Col>
+              <Col lg={18} className="text-lg">
+                {contactData.position}
+              </Col>
+
+              <Col
+                lg={6}
+                className="label text-lg min-width-full w-36 text-primary-color font-bold  mt-6"
+              >
+                Birthday
+              </Col>
+              <Col lg={18} className="text-lg   mt-6">
+                {moment(contactData.birthDate).format("DD MMM")}
               </Col>
             </Row>
           </Col>
