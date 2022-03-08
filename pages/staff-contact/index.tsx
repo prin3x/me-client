@@ -222,7 +222,7 @@ function StaffContactPage({}: Props): ReactElement {
         <Row className="container mx-auto pt-10">
           <Table
             loading={staffContactMeta.isLoading}
-            className="table-noshow-pagination unset-border"
+            className="table-noshow-pagination unset-border w-full"
             scroll={{ x: true }}
             bordered
             rowKey={(_row) => _row.id}
