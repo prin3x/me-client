@@ -85,7 +85,7 @@ function MeetingRoomCalendar({
         coloredEvent.start = moment(event.start).format();
         coloredEvent.end = moment(event.end).format();
         coloredEvent.resourceIds = [event.roomId];
-        coloredEvent.title = `<div style="font-weight: bold;text-align: center;">${event.title}</div> <br/> <div style="text-align: center;">By ${event.staffContactDetail.nameTH} ${event.staffContactDetail.position}</div>`;
+        coloredEvent.title = `<div style="font-weight: bold;text-align: center; font-size: 20px">${event.title}</div> <div style="text-align: center;">By ${event.staffContactDetail.nameTH} ${event.staffContactDetail.position}</div>`;
       }
       if (event.type) {
         const foundColor = colorsMap.find(
@@ -121,7 +121,19 @@ function MeetingRoomCalendar({
     getToSelectDay();
   }, [selectDate]);
 
-  if (isLoading)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const els = (window as any).document.querySelectorAll(
+      ".fc-col-header-cell-cushion"
+    );
+    
+    for(let i of els) {
+      i.innerHTML = i.firstChild.nodeValue
+    }
+  }, [window]);
+  
+
+  if (isLoading && !window)
     return (
       <div className="h-screen w-screen flex justify-center items-center">
         <Spin indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />} />
@@ -173,17 +185,18 @@ function MeetingRoomCalendar({
         resources={[
           {
             id: "5",
-            title: "Creative Room",
+            title: "Creative Room <br/> (10 คน)",
           },
           {
             id: "6",
-            title: "Active Room",
+            title: "Active Room <br/> (10 คน)",
           },
         ]}
         editable
         selectable
         selectMirror
         dayMaxEvents
+        resourceAreaWidth={10}
         slotMaxTime={"21:00:01"}
         slotMinTime={"07:00:00"}
         weekends

@@ -88,7 +88,7 @@ function BookingMeetingRoom(): ReactElement {
       return (
         <Badge
           status={badge.type}
-          style={{ position: "absolute", bottom: -17, left: 9 }}
+          style={{ position: "absolute", bottom: -16, left: 16 }}
         />
       );
     }
@@ -111,10 +111,10 @@ function BookingMeetingRoom(): ReactElement {
         </div>
         <Row gutter={8} justify="center" className="mt-4">
           <Col>
-            <Row align="middle" gutter={20}>
+            <Row align="middle" gutter={35}>
               <Col>
                 <div
-                  className="h-14 cursor-pointer"
+                  className="h-12 cursor-pointer"
                   onClick={() => {
                     const newValue = value.clone();
                     newValue.month(current.month() - 1);
@@ -125,11 +125,11 @@ function BookingMeetingRoom(): ReactElement {
                 </div>
               </Col>
               <Col>
-                <div className="text-lg font-bold">{current.format("MMMM")}</div>
+                <div className="text-lg font-bold uppercase">{current.format("MMMM")}</div>
               </Col>
               <Col>
                 <div
-                  className="h-14 cursor-pointer"
+                  className="h-12 cursor-pointer"
                   onClick={() => {
                     const newValue = value.clone();
                     newValue.month(current.month() + 1);
@@ -161,7 +161,7 @@ function BookingMeetingRoom(): ReactElement {
         <BookingMeetingHero />
         <Row className="container mx-auto pt-10">
           <Col span={24}>
-            <div className="font-semibold text-2xl text-primary-color">
+            <div className="font-bold text-xl text-primary-color">
               List Meeting Room
             </div>
             <Row className="container mx-auto pt-10">
@@ -179,7 +179,7 @@ function BookingMeetingRoom(): ReactElement {
                             <Select.Option value="N/A">NA</Select.Option>
                           </Select>
                         </Form.Item>
-                        <Col>
+                        <Col className="flex flex-col items-end">
                           <Form.Item>
                             <Select
                               style={{ width: 350, marginLeft: 20 }}

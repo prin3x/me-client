@@ -12,7 +12,6 @@
   src: url("/font/DB_Ozone_X_UlLi_v3.2.ttf");
   font-weight: normal;
   font-style: normal;
-  
 }
 
 @font-face {
@@ -41,7 +40,7 @@
 
 @btn-height-lg: 50px;
 
-.ant-pagination-item{
+.ant-pagination-item {
   font-size: 20px;
 }
 
@@ -49,7 +48,7 @@
   height: 1px !important;
 }
 
-.fc-event-title-container{
+.fc-event-title-container {
   line-height: 1;
 }
 
@@ -57,7 +56,8 @@
   height: 20px !important;
 }
 
-.fc-event-title.fc-sticky, .fc-event-title{
+.fc-event-title.fc-sticky,
+.fc-event-title {
   font-size: 16px !important;
 }
 
@@ -81,27 +81,27 @@
   font-size: 16px;
 }
 
-.ant-select{
+.ant-select {
   height: 51.141px;
 }
 
-.ant-select-selector{
+.ant-select-selector {
   height: 100% !important;
   padding-top: 8px !important;
 }
 
-.ant-select-selection-item {
-  
+.staff-contact-page {
+  .ant-select-selector {
+    text-align: center !important;
+  }
 }
-
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "DB Ozone", -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif;
+  font-family: "DB Ozone", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   margin: 0 auto;
   font-size: 100%;
 }
@@ -127,11 +127,13 @@ p {
 }
 
 .nav-item {
-  .ant-dropdown-menu-title-content{
-    font-size:24px;
+  .ant-dropdown-menu-title-content {
+    font-size: 24px;
   }
 }
-.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+.ant-menu-inline,
+.ant-menu-vertical,
+.ant-menu-vertical-left {
   border-right: 0;
 }
 
@@ -151,8 +153,8 @@ p {
   font-size: 24px;
 }
 
-.font-(@fontSize){
-  font-size: (@fontSize)
+.font-(@fontSize) {
+  font-size: (@fontSize);
 }
 
 .user-info {
@@ -255,7 +257,7 @@ p {
   color: #000;
 }
 
-.user-action{
+.user-action {
   @media @large-desktop {
     margin-left: 75px;
   }
@@ -283,7 +285,7 @@ p {
   border-bottom-right-radius: 9999px;
 }
 
-.navbar-ul{
+.navbar-ul {
   align-items: flex-end;
 }
 
@@ -302,10 +304,10 @@ p {
   color: #fff;
 }
 
-.ant-table-wrapper,
-.ant-table-container,
-.ant-table-cell,
-.ant-table-row {
+.set-border .ant-table-wrapper,
+.set-border .ant-table-container,
+.set-border .ant-table-cell,
+.set-border .ant-table-row {
   border-color: @primary-color !important;
 }
 
@@ -318,9 +320,23 @@ p {
 //   width: 45%;
 // }
 
-.ant-pagination.ant-table-pagination.ant-table-pagination-center{
+.slick-dots.slick-dots-bottom.circle-dots{
+  bottom: -15px;
+  li button {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+  }
+  li.slick-active button {
+    width: 100%;
+    border-radius: 5%;
+  }
+}
+
+
+.ant-pagination.ant-table-pagination.ant-table-pagination-center {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 .table-noshow-pagination .ant-pagination-prev {
   order: 0;
@@ -331,7 +347,7 @@ p {
   margin: 0 auto;
 }
 
-.table-noshow-pagination .ant-pagination-next{
+.table-noshow-pagination .ant-pagination-next {
   order: 2;
 }
 
@@ -549,21 +565,27 @@ ul.ant-dropdown-menu {
   margin-left: 2rem;
 }
 
-.meeting-room tbody tr td.fc-timegrid-slot.fc-timegrid-slot-lane,
+.meeting-room table tr td.fc-timegrid-slot.fc-timegrid-slot-lane,
 .meeting-room .fc-daygrid-day-frame.fc-scrollgrid-sync-inner,
 .fc-timegrid-now-indicator-container {
   background-color: #fff;
 }
 
 .meeting-room
-  tbody
+  .fc
+  tr:nth-of-type(even),
+  .meeting-room
+  .fc
   tr:nth-of-type(even)
   td.fc-timegrid-slot.fc-timegrid-slot-lane {
   background-color: rgba(214, 227, 248, 0.877);
 }
 
 .meeting-room
-  tbody
+  .fc
+  tr:nth-of-type(even),
+  .meeting-room
+  .fc
   tr:nth-of-type(even)
   td.fc-timegrid-slot.fc-timegrid-slot-label.fc-timegrid-slot-minor {
   background-color: rgba(214, 227, 248, 0.877);
@@ -574,9 +596,21 @@ ul.ant-dropdown-menu {
   width: 5rem;
 }
 
+colgroup col {
+  width: 6rem !important;
+}
+
+.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame{
+  text-align: center !important;
+}
+
+.fc .fc-timegrid-slot {
+  height: 5px !important;
+}
+
 .fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame,
 .fc-timegrid-slot-label-cushion.fc-scrollgrid-shrink-cushion {
-  padding: 10px 0;
+  padding: 0px 0;
 }
 
 .fc-scroller {
@@ -601,13 +635,12 @@ ul.ant-dropdown-menu {
   margin-bottom: 0;
 }
 
-
-.footer{
+.footer {
   position: relative;
   font-weight: regular;
 }
 
-.footer-cloud{
+.footer-cloud {
   width: 500px;
   position: fixed;
   bottom: -100px;
@@ -615,11 +648,11 @@ ul.ant-dropdown-menu {
   z-index: -1;
 }
 
-.ant-dropdown-menu-submenu-expand-icon{
+.ant-dropdown-menu-submenu-expand-icon {
   color: #fff;
 }
 
-.nav-li-item{
+.nav-li-item {
   min-width: 7rem;
   display: flex;
   justify-content: space-between;
@@ -630,7 +663,7 @@ ul.ant-dropdown-menu {
   font-size: 16px;
 }
 
-.staff-image{
+.staff-image {
   min-width: 3rem;
   max-width: 3rem;
   width: 100%;
@@ -640,14 +673,14 @@ ul.ant-dropdown-menu {
   margin-bottom: 10px;
 }
 
-.footer-nav-item{
+.footer-nav-item {
   margin-top: 5px;
 }
 
-.meeting-room .ant-checkbox-inner{
+.meeting-room .ant-checkbox-inner {
   width: 20px;
   height: 20px;
-} 
+}
 
 .meeting-room .ant-checkbox-inner::after {
   width: 6.714286px;
@@ -665,17 +698,17 @@ ul.ant-dropdown-menu {
   left: -38px;
 }
 
-.calendar .ant-checkbox-wrapper{
+.calendar .ant-checkbox-wrapper {
   background-color: inherit;
 }
 
-.calendar .ant-checkbox-inner{
+.calendar .ant-checkbox-inner {
   // background-color: inherit;
   width: 30px;
   height: 30px;
-} 
+}
 
-.calendar .ant-checkbox-checked .ant-checkbox-inner{
+.calendar .ant-checkbox-checked .ant-checkbox-inner {
   border-color: inherit;
   background-color: inherit;
 }
@@ -686,6 +719,21 @@ ul.ant-dropdown-menu {
   width: 36px;
 }
 
-.fc-col-header-cell-cushion  {
+.fc-col-header-cell-cushion {
   font-size: 1.25rem !important;
+}
+
+
+.meeting-room .fc-scrollgrid.fc-scrollgrid-liquid tr th{
+  background-color: @primary-color !important;
+  color: #fff !important;
+}
+
+.meeting-room .fc-timegrid-slot.fc-timegrid-slot-lane,
+.fc-theme-standard td, .fc-theme-standard th  {
+  border: #fff 1px solid !important;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  border: none !important;
 }

@@ -197,6 +197,7 @@ function BirthDayPage(): ReactElement {
           <Table
             loading={staffContactMeta.isLoading}
             bordered
+            className='set-border'
             tableLayout="fixed"
             rowKey={(self) => self.id}
             scroll={{ x: "100%" }}

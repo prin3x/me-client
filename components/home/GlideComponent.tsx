@@ -40,11 +40,11 @@ const CarouselSlider = (props: any) => {
                   fallback={imagePlaceholder}
                   preview={false}
                   src={ASSET_URL + _post.imageUrl}
-                  width={250}
+                  width={236}
                   height={300}
                   className="rounded-xl "
                 />
-                <div className="absolute bottom-5 left-5 bg-slate-900 opacity-75 rounded-md p-2 w-52 h-36">
+                <div className="absolute bottom-4 left-0 right-0 bg-slate-900 opacity-75 rounded-md p-2 w-full h-36">
                   <h3 className="text-white text-xl font-bold">
                     {_post.title.slice(0, 20)}
                   </h3>

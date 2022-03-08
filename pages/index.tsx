@@ -66,29 +66,29 @@ const Home: NextPage = () => {
       <>
         <Row justify="center" className="container mx-auto pt-10">
           <Col className="relative" span={24}>
-            <Carousel afterChange={onChange} dots className="z-10 relative">
+            <Carousel afterChange={onChange} dots={{className: "circle-dots"}} className="z-10 relative">
               <div>
-                <div className="h-56 bg-gray-300 rounded-xl">
+                <div className="h-64 bg-gray-300 rounded-xl">
                   <Image src="/assets/Group_10.png" preview={false} />
                 </div>
               </div>
               <div>
-                <div className="h-56 bg-gray-300 rounded-xl">
+                <div className="h-64 bg-gray-300 rounded-xl">
                   <Image src="/assets/Group_10.png" preview={false} />
                 </div>
               </div>
               <div>
-                <div className="h-56 bg-gray-300 rounded-xl">
+                <div className="h-64 bg-gray-300 rounded-xl">
                   <Image src="/assets/Group_10.png" preview={false} />
                 </div>
               </div>
               <div>
-                <div className="h-56 bg-gray-300 rounded-xl">
+                <div className="h-64 bg-gray-300 rounded-xl">
                   <Image src="/assets/Group_10.png" preview={false} />
                 </div>
               </div>
             </Carousel>
-            <div className="absolute top-5 left-1/4 z-0">
+            <div className="absolute top-12 left-80 z-0">
               <Image
                 src="/assets/fluid-orange.svg"
                 alt="fluid"
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
           recentAnnouncementMeta.data.items.length > 0 && (
             <Row className="container mx-auto pt-10">
               <Col span={24}>
-                <h2 className="font-bold heading-en text-primary-color uppercase">
+                <h2 className="font-bold heading-en text-primary-color uppercase mb-0">
                   Announcement
                 </h2>
                 <CarouselSlider
@@ -117,7 +117,7 @@ const Home: NextPage = () => {
         <Row className="container mx-auto pt-10">
           <Col span={24}>
             <Image
-              src="/assets/service-contact.svg"
+              src="/assets/service-contact-hero.png"
               preview={false}
               alt="service-contact"
             />

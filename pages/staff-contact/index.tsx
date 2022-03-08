@@ -69,14 +69,14 @@ function StaffContactPage({}: Props): ReactElement {
               preview={false}
             />
           </div>
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start ">
             <p
-              className="text-left cursor-pointer text-primary-color mb-0 font-semibold	"
+              className="text-left cursor-pointer text-primary-color mb-0 font-semibold	leading-4	"
               onClick={() => router.push(`/staff-contact/${_record.id}`)}
             >
               {_self}
             </p>
-            <p className="text-left cursor-pointer">{_record.nameTH}</p>
+            <p className="text-left cursor-pointer mb-0">{_record.nameTH}</p>
           </div>
         </div>
       ),
@@ -108,7 +108,7 @@ function StaffContactPage({}: Props): ReactElement {
     {
       title: "IP-PHONE",
       dataIndex: "ipPhone",
-      width: "75px",
+      width: "200px",
       render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
@@ -150,7 +150,7 @@ function StaffContactPage({}: Props): ReactElement {
 
   return (
     <LayoutHOC>
-      <div>
+      <div className='staff-contact-page'>
         <Row className="container mx-auto pt-10">
           <Col span={24}>
             <Image
@@ -222,7 +222,7 @@ function StaffContactPage({}: Props): ReactElement {
         <Row className="container mx-auto pt-10">
           <Table
             loading={staffContactMeta.isLoading}
-            className="table-noshow-pagination"
+            className="table-noshow-pagination unset-border"
             scroll={{ x: true }}
             bordered
             rowKey={(_row) => _row.id}
