@@ -1,4 +1,5 @@
-import { Col, Row, Image } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Col, Row, Image, Spin } from "antd";
 import moment from "moment";
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
@@ -45,6 +46,13 @@ function SingleCantactPage({}: Props): ReactElement {
       setContactData(staffContactMeta.data);
     }
   }, [staffContactMeta.data]);
+
+  if (staffContactMeta.isLoading)
+    return (
+      <div className="h-screen w-screen flex justify-center items-center">
+        <Spin indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />} />
+      </div>
+    );
 
   return (
     <LayoutHOC>
