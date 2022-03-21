@@ -1,5 +1,5 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import { Col, Image, Row, Spin } from "antd";
+import { Button, Col, Image, Row, Spin } from "antd";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
@@ -62,10 +62,13 @@ function RoomId({}: Props) {
                 <div className="font-bold">Capacity :</div>
               </Col>
               <Col lg={16}>
-                <div className="font-thin">10 p</div>
+                <div className="font-thin">{roomsMeta?.data?.capacity} p</div>
               </Col>
             </Row>
           </Col>
+        </Row>
+        <Row justify='end'>
+          <Button type='primary' size="large" onClick={router.back}>Back</Button>
         </Row>
       </div>
     </LayoutHOC>

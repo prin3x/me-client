@@ -12,12 +12,6 @@ function CompanyBenefits({}: Props): ReactElement {
         <CompanyBenefitHero />
         <Row className='container mx-auto rounded-xl pt-5 mt-10 border-primary-color'>
           <Col span={24}>
-            <Row
-              justify='center'
-              className='uppercase text-3xl font-bold text-primary-color'
-            >
-              infographic
-            </Row>
             <Row>
               <Image
                 src='/assets/Company_Benefit.png'
@@ -30,7 +24,7 @@ function CompanyBenefits({}: Props): ReactElement {
         <Row className='mt-5'>
           <Col span={24}>
             <Row justify='center'>
-              <Button size="large" type='primary'>อ่านฉบับเต็ม</Button>
+              <Button size="large" type='primary' style={{borderRadius: '8px'}}>ฉบับเต็ม คลิกที่นี่</Button>
             </Row>
           </Col>
         </Row>

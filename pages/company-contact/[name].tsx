@@ -11,6 +11,7 @@ function CompanyName({}: Props) {
     const imageMapping = {
         mi: "mi-location.svg",
         mr: "mr-location.svg",
+        me: "me-location.svg",
         fb: "fb-location.svg",
         my: "my-location.svg"
     }

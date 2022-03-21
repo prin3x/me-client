@@ -59,7 +59,7 @@ function SingleCantactPage({}: Props): ReactElement {
             />
           </Col>
         </Row>
-        <Row className="container mx-auto pt-10">
+        <Row className="container mx-auto pt-12">
           <Col span={12}>
             <Row justify="center">
               <Image
@@ -67,8 +67,8 @@ function SingleCantactPage({}: Props): ReactElement {
                 preview={false}
                 alt="staff-contact"
                 fallback={imagePlaceholder}
-                height={450}
-                width={450}
+                height={375}
+                width={375}
               />
             </Row>
           </Col>

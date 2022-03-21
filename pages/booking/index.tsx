@@ -3,17 +3,7 @@ import {
   CaretRightOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-import {
-  Badge,
-  Button,
-  Calendar,
-  Col,
-  Form,
-  message,
-  Row,
-  Select,
-  Typography,
-} from "antd";
+import { Badge, Button, Calendar, Col, Form, message, Row, Select } from "antd";
 import moment from "moment";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -22,6 +12,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import BookingMeetingHero from "../../components/booking/BookingMeetingHero";
 import LayoutHOC from "../../layout/LayoutHOC";
+import { ListQueryCalendarDTO } from "../../services/calendar/calendar.model";
 import {
   _getAllBookingEvents,
   _getAllRooms,
@@ -38,12 +29,25 @@ const MeetingRoomCalendar = dynamic(
 function BookingMeetingRoom(): ReactElement {
   const [selectDate, setSelectDate] = useState(moment().format("YYYY-MM-DD"));
   const [rooms, setRooms] = useState([]);
-  const [floor, setFloor] = useState<string>("1");
+  const [floor, setFloor] = useState<string>("4");
   const router = useRouter();
-  const [selectedRoomId, setSelectedRoomId] = useState("");
+  const [form] = Form.useForm();
+  const [selectedRoomId, setSelectedRoomId] = useState<number>(0);
+  const [bookingInterval, setBookingInterval] = useState({
+    startDate: moment().startOf("month").format("YYYY-MM-DD"),
+    endDate: moment().endOf("month").format("YYYY-MM-DD"),
+  });
 
-  const meetingEventsQuery = useQuery(["meeting-events"], _getAllBookingEvents);
-  const roomsMeta = useQuery(["rooms"], _getAllRooms);
+  const meetingEventsQuery = useQuery(
+    ["meeting-events", bookingInterval],
+    () => {
+      let q: ListQueryCalendarDTO = {
+        startDate: bookingInterval.startDate,
+        endDate: bookingInterval.endDate,
+      };
+      return _getAllBookingEvents(q);
+    }
+  );
 
   function onPanelChange(value, mode) {
     console.log(value, mode, "value, mode");
@@ -57,7 +61,7 @@ function BookingMeetingRoom(): ReactElement {
     let res;
     try {
       res = await _getRoomByFloor(floor);
-      setRooms(res.data);
+      setRooms(res);
     } catch (e) {
       message.error("Cannot fetch rooms");
     }
@@ -118,6 +122,11 @@ function BookingMeetingRoom(): ReactElement {
                   onClick={() => {
                     const newValue = value.clone();
                     newValue.month(current.month() - 1);
+                    const setNewMettingInterval = {
+                      startDate: newValue.startOf("month").format("YYYY-MM-DD"),
+                      endDate: newValue.endOf("month").format("YYYY-MM-DD"),
+                    };
+                    setBookingInterval(setNewMettingInterval);
                     onChange(newValue);
                   }}
                 >
@@ -125,7 +134,9 @@ function BookingMeetingRoom(): ReactElement {
                 </div>
               </Col>
               <Col>
-                <div className="text-lg font-bold uppercase">{current.format("MMMM")}</div>
+                <div className="text-lg font-bold uppercase">
+                  {current.format("MMMM")}
+                </div>
               </Col>
               <Col>
                 <div
@@ -133,6 +144,11 @@ function BookingMeetingRoom(): ReactElement {
                   onClick={() => {
                     const newValue = value.clone();
                     newValue.month(current.month() + 1);
+                    const setNewMettingInterval = {
+                      startDate: newValue.startOf("month").format("YYYY-MM-DD"),
+                      endDate: newValue.endOf("month").format("YYYY-MM-DD"),
+                    };
+                    setBookingInterval(setNewMettingInterval);
                     onChange(newValue);
                   }}
                 >
@@ -147,13 +163,18 @@ function BookingMeetingRoom(): ReactElement {
   }
 
   useEffect(() => {
+    if (!floor) return;
     getAllRooms(floor);
   }, [floor]);
 
+  // useEffect(() => {
+  //   if (!roomsMeta.isSuccess) return;
+  //   setSelectedRoomId(roomsMeta?.data?.[0]?.id);
+  // }, [roomsMeta.isFetched]);
+
   useEffect(() => {
-    if (!roomsMeta.isSuccess) return;
-    setSelectedRoomId(roomsMeta?.data?.[0]?.id);
-  }, [roomsMeta.isFetched]);
+    form.setFieldsValue({ room: rooms?.[0]?.id });
+  }, [rooms]);
 
   return (
     <LayoutHOC>
@@ -167,27 +188,29 @@ function BookingMeetingRoom(): ReactElement {
             <Row className="container mx-auto pt-10">
               <Col span={24}>
                 <Row>
-                  <Form className="flex w-full">
+                  <Form form={form} className="flex w-full">
                     <Col lg={14} md={14}>
                       <Row>
-                        <Form.Item>
+                        <Form.Item name="floor">
                           <Select
                             style={{ width: 150 }}
                             size="large"
                             placeholder="Floor"
+                            onChange={selectFloor}
                           >
-                            <Select.Option value="N/A">NA</Select.Option>
+                            <Select.Option value="3">3</Select.Option>
+                            <Select.Option value="4">4</Select.Option>
                           </Select>
                         </Form.Item>
                         <Col className="flex flex-col items-end">
-                          <Form.Item>
+                          <Form.Item name="room">
                             <Select
                               style={{ width: 350, marginLeft: 20 }}
                               placeholder="Creative Room"
                               onChange={onSelectRoomId}
                             >
-                              {roomsMeta?.data?.length > 0
-                                ? roomsMeta?.data?.map((room) => (
+                              {rooms.length > 0
+                                ? rooms.map((room) => (
                                     <Select.Option
                                       key={room.id}
                                       value={room.id}
@@ -230,7 +253,7 @@ function BookingMeetingRoom(): ReactElement {
             </Row>
           </Col>
         </Row>
-        <Row className="container mx-auto pt-10">
+        <Row className="container mx-auto -mt-20">
           <Col span={24}>
             <Row justify="start">
               <Link href={`/booking/make?date=${selectDate}`} passHref>
@@ -246,9 +269,9 @@ function BookingMeetingRoom(): ReactElement {
               </Link>
             </Row>
           </Col>
-          <Col span={24}>
+          <Col span={24} className="mt-20">
             <MeetingRoomCalendar
-              rooms={roomsMeta?.data}
+              rooms={rooms}
               selectDate={selectDate}
               setSelectDate={setSelectDate}
               meetingEventsQuery={meetingEventsQuery}

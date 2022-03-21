@@ -24,7 +24,6 @@ const CarouselSlider = (props: any) => {
 
   return (
     <>
-      {" "}
       <div className="glide relative">
         <div className="glide__track" data-glide-el="track">
           <ul className="glide__slides">
@@ -44,12 +43,12 @@ const CarouselSlider = (props: any) => {
                   height={300}
                   className="rounded-xl "
                 />
-                <div className="absolute bottom-4 left-0 right-0 bg-slate-900 opacity-75 rounded-md p-2 w-full h-36">
+                <div className="absolute bottom-2 left-0 right-0 bg-slate-900 opacity-75 rounded-md p-2 w-full h-28">
                   <h3 className="text-white text-xl font-bold">
-                    {_post.title.slice(0, 20)}
+                    {_post.title.slice(0, 18)}
                   </h3>
                   <p
-                    className="text-white text-lg"
+                    className="text-white text-md"
                     dangerouslySetInnerHTML={{
                       __html:
                         _post.content.length > 30

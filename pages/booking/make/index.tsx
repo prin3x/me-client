@@ -22,6 +22,7 @@ import {
   _createBooking,
   _getAllBookingEvents,
   _getAllRooms,
+  _getAllRoomsAvb,
   _getBookingEventById,
   _removeMeetingEvent,
   _updateMeetingEvent,
@@ -32,28 +33,35 @@ interface Props {}
 function MakeBooking({}: Props): ReactElement {
   const router = useRouter();
   const [form] = Form.useForm();
-  const roomsMeta = useQuery(["rooms"], _getAllRooms);
+  const roomsMeta = useQuery(["rooms"],() => _getAllRoomsAvb());
   const [makeStatus, setMakeStatus] = useState(EMakeStatus.MAKE);
 
   const submitRoomBooking = (): void => {
     form.validateFields().then(async (_formValues: ICreateMeeting) => {
+      const formResult = await form.validateFields();
+      const startTime = _formValues.date.set({
+        hour: formResult.startHour - 1,
+        minute: formResult.startMinute + 30,
+        second: 0,
+      });
+      const endTime = startTime.clone().add("minute", formResult.endHour + 30);
       let set = {} as any;
-      set.title = _formValues.title;
-      set.description = _formValues.description;
-      set.start = _formValues.start;
-      set.end = _formValues.end;
-      set.roomId = _formValues.roomId;
-      set.type = _formValues.type;
-      set.allDay = _formValues.allDay;
+      set.title = formResult.title;
+      set.description = formResult.description;
+      set.start = startTime;
+      set.end = endTime;
+      set.roomId = formResult.roomId;
+      set.type = formResult.type;
+      set.allDay = formResult.allDay;
 
       try {
         await _createBooking(set);
         message.success("Created Successfully");
         router.push("/booking/");
       } catch (e) {
-        let errMessage = e.response.message
-        if(e.response.status === 400){
-          errMessage = 'Unavailble Slot'
+        let errMessage = e.response.message;
+        if (e.response.status === 400) {
+          errMessage = "Unavailble Slot";
         }
         message.error(errMessage);
       }
@@ -62,11 +70,17 @@ function MakeBooking({}: Props): ReactElement {
 
   const updateRoomBooking = async (): Promise<void> => {
     const formResult = await form.validateFields();
+    const startTime = formResult.date.set({
+      hour: formResult.startHour - 1,
+      minute: formResult.startMinute + 30,
+      second: 0,
+    });
+    const endTime = startTime.clone().add("minute", formResult.endHour + 30);
     let set = {} as any;
     set.title = formResult.title;
     set.description = formResult.description;
-    set.start = formResult.start;
-    set.end = formResult.end;
+    set.start = startTime;
+    set.end = endTime;
     set.roomId = formResult.roomId;
     set.type = formResult.type;
     set.allDay = formResult.allDay;

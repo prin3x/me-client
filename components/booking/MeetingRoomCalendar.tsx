@@ -126,12 +126,11 @@ function MeetingRoomCalendar({
     const els = (window as any).document.querySelectorAll(
       ".fc-col-header-cell-cushion"
     );
-    
-    for(let i of els) {
-      i.innerHTML = i.firstChild.nodeValue
+
+    for (let i of els) {
+      i.innerHTML = i.firstChild.nodeValue;
     }
   }, [window]);
-  
 
   if (isLoading && !window)
     return (
@@ -182,22 +181,22 @@ function MeetingRoomCalendar({
         headerToolbar={false}
         initialView="resourceTimeGridDay"
         themeSystem="standard"
-        resources={[
-          {
-            id: "5",
-            title: "Creative Room <br/> (10 คน)",
-          },
-          {
-            id: "6",
-            title: "Active Room <br/> (10 คน)",
-          },
-        ]}
+        resources={(_, successCallback, __) =>
+          successCallback(
+            rooms.map((_room) => {
+              return {
+                id: _room.id,
+                title: `${_room.name} (${_room.capacity} คน)`,
+              };
+            })
+          )
+        }
         editable
         selectable
         selectMirror
         dayMaxEvents
         resourceAreaWidth={10}
-        slotMaxTime={"21:00:01"}
+        slotMaxTime={"19:00:01"}
         slotMinTime={"07:00:00"}
         weekends
         allDaySlot={false}

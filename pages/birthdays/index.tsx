@@ -53,7 +53,7 @@ function BirthDayPage(): ReactElement {
     {
       title: "NAME",
       dataIndex: "name",
-      width: "280px",
+      className: 'name-col',
       render: (_self: string, _record: any) => (
         <div className="flex items-center gap-2">
           <div className="max-w-100 w-28">
@@ -80,19 +80,19 @@ function BirthDayPage(): ReactElement {
     {
       title: "NICKNAME",
       dataIndex: "nickname",
-      width: "100%",
+      className: "normal-col",
       render: (_self, _record) => <p className="text-center">{_self}</p>,
     },
     {
       title: "DEPARTMENT",
       dataIndex: "department",
-      width: "100%",
+      className: "normal-col",
       render: (_self, _record) => <p className="text-center">{_self}</p>,
     },
     {
       title: "COMPANY",
       dataIndex: "company",
-      width: "100%",
+      className: "normal-col",
       render: (_self, _record) => (
         <p className="text-center">
           {_self === "Mindedge Recruitment" ? (
@@ -100,6 +100,7 @@ function BirthDayPage(): ReactElement {
               fallback={imagePlaceholder}
               src="/assets/me-recruit.svg"
               alt="mindedgelogo"
+              preview={false}
               width={100}
             />
           ) : _self === "Mindedge Innovation" ? (
@@ -107,6 +108,7 @@ function BirthDayPage(): ReactElement {
               fallback={imagePlaceholder}
               src="/assets/me-logo.svg"
               alt="mindedgelogo"
+              preview={false}
               width={100}
             />
           ) : _self === "Foodberg" ? (
@@ -114,6 +116,7 @@ function BirthDayPage(): ReactElement {
               fallback={imagePlaceholder}
               src="/assets/foodberg-logo.svg"
               alt="mindedgelogo"
+              preview={false}
               width={50}
             />
           ) : (
@@ -121,6 +124,7 @@ function BirthDayPage(): ReactElement {
               fallback={imagePlaceholder}
               src="/assets/meu-logo.svg"
               alt="mindedgelogo"
+              preview={false}
               width={100}
             />
           )}
@@ -128,9 +132,8 @@ function BirthDayPage(): ReactElement {
       ),
     },
     {
-      title: "BIRTHDATE",
+      title: "BIRTHDAY",
       dataIndex: "birthDate",
-      width: "100%",
       render: (_self, _record) => (
         <p className="text-center">{moment(_self).format("DD MMM")}</p>
       ),
@@ -200,7 +203,7 @@ function BirthDayPage(): ReactElement {
             className='set-border'
             tableLayout="fixed"
             rowKey={(self) => self.id}
-            scroll={{ x: "100%" }}
+            scroll={{ x: true }}
             pagination={{
               showTotal: (total, range) => `ทั้งหมด`,
               current: page,

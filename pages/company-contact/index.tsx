@@ -91,7 +91,7 @@ function CompanyContactPage({}: Props): ReactElement {
                 <Image
                   fallback={imagePlaceholder}
                   preview={false}
-                  src="/assets/me-recruit.svg"
+                  src="/assets/mr-logo.png"
                   alt="mindedgelogo"
                   width={250}
                 />
@@ -163,7 +163,7 @@ function CompanyContactPage({}: Props): ReactElement {
                 <Image
                   fallback={imagePlaceholder}
                   preview={false}
-                  src="/assets/meu-logo.svg"
+                  src="/assets/meu-logo.png"
                   alt="mindedgelogo"
                   width={200}
                 />

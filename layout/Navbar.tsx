@@ -62,7 +62,7 @@ function Navbar(): ReactElement {
               className="cursor-pointer"
               target="_blank"
               rel="noreferrer"
-              href="http://203.154.66.203.8015/ME"
+              href="http://203.154.66.203:8015/ME"
             >
               <div className="text-white hover:text-black nav-item text-lg ">
                 ME
@@ -74,7 +74,7 @@ function Navbar(): ReactElement {
               className="cursor-pointer"
               target="_blank"
               rel="noreferrer"
-              href="http://203.154.66.203.8015/MR"
+              href="http://203.154.66.203:8015/MR"
             >
               <div className="text-white hover:text-black nav-item text-lg ">
                 MR
@@ -86,7 +86,7 @@ function Navbar(): ReactElement {
               className="cursor-pointer"
               target="_blank"
               rel="noreferrer"
-              href="http://203.154.66.203.8015/MY"
+              href="http://203.154.66.203:8015/MY"
             >
               <div className="text-white hover:text-black nav-item text-lg ">
                 MY
@@ -98,7 +98,7 @@ function Navbar(): ReactElement {
               className="cursor-pointer"
               target="_blank"
               rel="noreferrer"
-              href="http://203.154.66.203.8015/FB"
+              href="http://203.154.66.203:8015/FB"
             >
               <div className="text-white hover:text-black nav-item text-lg ">
                 FB

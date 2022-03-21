@@ -39,9 +39,19 @@
 @select-item-selected-color: @primary-color;
 
 @btn-height-lg: 50px;
+@btn-height-sm: 50px;
+
+.meeting-room .fc-timegrid-slot-label-cushion.fc-scrollgrid-shrink-cushion {
+  font-weight: 700 !important;
+}
 
 .ant-pagination-item {
   font-size: 20px;
+}
+
+.fc-daygrid-day-number,
+fc-daygrid-day-number {
+  font-size: 1.5rem !important;
 }
 
 .fc .fc-scrollgrid-section-liquid {
@@ -205,6 +215,14 @@ p {
       border-radius: 999rem;
     }
   }
+  .ant-select-selector {
+    text-align: center !important;
+  }
+
+  .ant-select-selection-item,
+  .ant-select-lg {
+    font-size: 20px;
+  }
 }
 
 .rounded-btn {
@@ -320,7 +338,7 @@ p {
 //   width: 45%;
 // }
 
-.slick-dots.slick-dots-bottom.circle-dots{
+.slick-dots.slick-dots-bottom.circle-dots {
   bottom: -15px;
   li button {
     height: 10px;
@@ -331,7 +349,6 @@ p {
     width: 16px;
   }
 }
-
 
 .ant-pagination.ant-table-pagination.ant-table-pagination-center {
   display: flex;
@@ -570,26 +587,21 @@ ul.ant-dropdown-menu {
   background-color: #fff;
 }
 
+.meeting-room .fc tr:nth-of-type(even),
 .meeting-room
-  .fc
-  tr:nth-of-type(even),
-  .meeting-room
   .fc
   tr:nth-of-type(even)
   td.fc-timegrid-slot.fc-timegrid-slot-lane {
   background-color: rgba(214, 227, 248, 0.877);
 }
 
+.meeting-room .fc tr:nth-of-type(even),
 .meeting-room
-  .fc
-  tr:nth-of-type(even),
-  .meeting-room
   .fc
   tr:nth-of-type(even)
   td.fc-timegrid-slot.fc-timegrid-slot-label.fc-timegrid-slot-minor {
   background-color: rgba(214, 227, 248, 0.877);
 }
-
 
 .fc-timegrid-axis-frame::before {
   content: "Time";
@@ -603,7 +615,7 @@ colgroup col {
   width: 6rem !important;
 }
 
-.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame{
+.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame {
   text-align: center !important;
 }
 
@@ -726,17 +738,45 @@ colgroup col {
   font-size: 1.25rem !important;
 }
 
-
-.meeting-room .fc-scrollgrid.fc-scrollgrid-liquid tr th{
+.meeting-room .fc-scrollgrid.fc-scrollgrid-liquid tr th {
   background-color: @primary-color !important;
   color: #fff !important;
 }
 
 .meeting-room .fc-timegrid-slot.fc-timegrid-slot-lane,
-.fc-theme-standard td, .fc-theme-standard th  {
+.fc-theme-standard td,
+.fc-theme-standard th {
   border: #fff 1px solid !important;
 }
 
 .fc-theme-standard .fc-scrollgrid {
   border: none !important;
+}
+
+.add-padding .ant-checkbox {
+  padding-bottom: 3px;
+}
+
+.name-col {
+  width: 330px;
+}
+
+.normal-col {
+  width: 250px;
+}
+
+.ant-picker-content tr th {
+  padding: 5px !important;
+  height: 36px !important;
+  width: 36px;
+}
+
+.pad-left-form-label{
+  label {
+    padding-left: 0.8rem;
+  }
+}
+
+.fc th {
+  vertical-align: middle !important;
 }

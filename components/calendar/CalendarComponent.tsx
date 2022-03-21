@@ -89,7 +89,6 @@ function CalendarPage(): ReactElement {
   function setEventState() {
     let nextState;
     nextState = displayColoredEvents(calendarEventMeta?.data);
-    console.log(nextState, "nextState");
 
     setEvents(nextState);
   }
@@ -179,7 +178,7 @@ function CalendarPage(): ReactElement {
       <Col lg={24}>
         <Row justify="space-between" align="middle">
           <Form form={form} layout="inline" className="flex w-full">
-            <Row align="middle">
+            <Row align="middle" className="w-full">
               <Form.Item
                 name="month"
                 initialValue={(moment().month() + 1).toString()}
@@ -209,48 +208,56 @@ function CalendarPage(): ReactElement {
                 </Select>
               </Form.Item>
               <Form.Item className="ml-auto" style={{ marginLeft: "auto" }}>
-                <CheckboxGroup onChange={filterEventType}>
+                <CheckboxGroup
+                  onChange={filterEventType}
+                  defaultValue={[
+                    ECalendarEventType.EVENT,
+                    ECalendarEventType.BIRTHDAY,
+                    ECalendarEventType.HOLIDAY,
+                    ECalendarEventType.OTHER,
+                  ]}
+                >
                   <Row gutter={[0, 3]} justify="end">
                     <Col
-                      lg={8}
-                      className="bg-yellow-custom p-1 rounded-md m-1 ml-10 text-center"
+                      lg={6}
+                      className="bg-yellow-custom p-1 rounded-md m-2 ml-10 text-center"
                     >
                       <Checkbox
                         value={ECalendarEventType.EVENT}
-                        className="text-white"
+                        className="text-white font-bold"
                       >
                         EVENT
                       </Checkbox>
                     </Col>
                     <Col
-                      lg={8}
-                      className="bg-blue-custom p-1 rounded-md m-1  ml-10 text-center"
+                      lg={6}
+                      className="bg-blue-custom p-1 rounded-md m-2  ml-10 text-center"
                     >
                       <Checkbox
                         value={ECalendarEventType.BIRTHDAY}
-                        className="text-white"
+                        className="text-white font-bold"
                       >
                         BIRTHDAY
                       </Checkbox>
                     </Col>
                     <Col
-                      lg={8}
-                      className="bg-red-custom p-1 rounded-md m-1  ml-10 text-center"
+                      lg={6}
+                      className="bg-red-custom p-1 rounded-md m-2  ml-10 text-center"
                     >
                       <Checkbox
                         value={ECalendarEventType.HOLIDAY}
-                        className="text-white"
+                        className="text-white font-bold"
                       >
                         HOLIDAY
                       </Checkbox>
                     </Col>
                     <Col
-                      lg={8}
-                      className="bg-green-custom p-1 rounded-md m-1  ml-10 text-center"
+                      lg={6}
+                      className="bg-green-custom p-1 rounded-md m-2  ml-10 text-center"
                     >
                       <Checkbox
                         value={ECalendarEventType.OTHER}
-                        className="text-white"
+                        className="text-white font-bold"
                       >
                         OTHER
                       </Checkbox>

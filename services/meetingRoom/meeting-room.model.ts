@@ -3,6 +3,8 @@ export interface ICreateMeeting {
 
   description: string;
 
+  date: any;
+
   start: string;
 
   end: string;
@@ -12,6 +14,18 @@ export interface ICreateMeeting {
   type: MeetingEventType;
 
   allDay: boolean;
+}
+
+export interface IRoom {
+  id: number;
+  imageUrl: string;
+  name: string;
+  capacity: number;
+  description: string;
+  floor: string;
+  createdDate: Date;
+  updatedDate: Date;
+  createdBy: number;
 }
 
 export enum MeetingEventType {

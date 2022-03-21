@@ -6,40 +6,40 @@ interface Props {}
 
 function Footer({}: Props): ReactElement {
   return (
-    <div className="footer bg-primary-color p-5 mt-10 px-10 rounded-md">
+    <div style={{marginTop: "3.5rem"}} className="footer bg-primary-color p-5 px-10 rounded-md">
       <Row className="main-container mx-auto pt-5" justify="space-between">
         <Col>
           <ul className="text-white">
-            <li className="footer-header text-2xl font-bold uppercase cursor-pointer">
+            <li className="footer-header text-xl font-bold uppercase cursor-pointer">
               personal
             </li>
             <Link href={"/staff-contact"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Staff Contact</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Staff Contact</li>
             </Link>
             <Link href={"/calendar"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Calendar</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Calendar</li>
             </Link>
             <Link href={"/birthdays"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Birthday</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Birthday</li>
             </Link>
             <Link href={"/holidays"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Holiday</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Holiday</li>
             </Link>
-            <li className="footer-nav-item text-xl cursor-pointer">TA Online</li>
+            <li className="footer-nav-item text-lg cursor-pointer">TA Online</li>
           </ul>
         </Col>
         <Col>
           <ul className="text-white">
-            <li className="footer-header text-2xl font-bold uppercase mb-2">service</li>
+            <li className="footer-header text-xl font-bold uppercase mb-2">service</li>
             <Link href={"/booking"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Meeting Room</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Meeting Room</li>
             </Link>
             {/* <Link href={'/'} passHref>
-              <li className='footer-nav-item text-xl cursor-pointer'>Request Service</li>
+              <li className='footer-nav-item text-lg cursor-pointer'>Request Service</li>
             </Link>
-            <li className='footer-nav-item text-xl cursor-pointer'>Repair Service</li> */}
+            <li className='footer-nav-item text-lg cursor-pointer'>Repair Service</li> */}
             <Link href={"/form-request"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">
+              <li className="footer-nav-item text-lg cursor-pointer">
                 Forms / Flow / Job Request
               </li>
             </Link>
@@ -47,35 +47,35 @@ function Footer({}: Props): ReactElement {
         </Col>
         <Col>
           <ul className="text-white">
-            <li className="footer-header text-2xl font-bold uppercase mb-2">News</li>
+            <li className="footer-header text-xl font-bold uppercase mb-2">News</li>
             <Link href={"/announcement"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Announcements</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Announcements</li>
             </Link>
             <Link href={"/itclinic"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">IT Clinic</li>
+              <li className="footer-nav-item text-lg cursor-pointer">IT Clinic</li>
             </Link>
             <Link href={"/activity"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Activities</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Activities</li>
             </Link>
           </ul>
         </Col>
         <Col>
           <ul className="text-white">
-            <li className="footer-header text-2xl font-bold uppercase mb-2">company</li>
+            <li className="footer-header text-xl font-bold uppercase mb-2">company</li>
             <Link href={"/company-profile"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Profile</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Profile</li>
             </Link>
             <Link href={"/company-policy"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Policy</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Policy</li>
             </Link>
             <Link href={"/company-benefits"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Benefit</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Benefit</li>
             </Link>
             <Link href={"/privacy-policy"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Privacy Policy</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Privacy Policy</li>
             </Link>
             <Link href={"/company-contact"} passHref>
-              <li className="footer-nav-item text-xl cursor-pointer">Contact</li>
+              <li className="footer-nav-item text-lg cursor-pointer">Contact</li>
             </Link>
           </ul>
         </Col>

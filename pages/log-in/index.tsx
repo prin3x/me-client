@@ -68,12 +68,19 @@ const Home: NextPage = () => {
               />
             </Form.Item>
             <Form.Item name="remember" valuePropName="checked">
-              <Checkbox>Remember Me</Checkbox>
+              <Checkbox className='add-padding'>
+                <span>Remember Me</span>
+              </Checkbox>
             </Form.Item>
             <Row justify="center">
               <Form.Item>
-                <Button size="large" loading={isLoading} htmlType="submit" type="primary">
-                  Sign In
+                <Button
+                  size="large"
+                  loading={isLoading}
+                  htmlType="submit"
+                  type="primary"
+                >
+                  <span className="font-bold">Sign In</span>
                 </Button>
               </Form.Item>
             </Row>

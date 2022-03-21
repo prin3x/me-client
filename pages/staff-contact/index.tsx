@@ -84,25 +84,19 @@ function StaffContactPage({}: Props): ReactElement {
     {
       title: "NICKNAME",
       dataIndex: "nickname",
-      width: "50px",
+      width: "25px",
       render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
       title: "COMPANY",
       dataIndex: "company",
-      width: "50px",
+      width: "25px",
       render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
-      title: "DEPTARTMENT",
+      title: "DEPARTMENT",
       dataIndex: "department",
       width: "130px",
-      render: (_self) => <p className="text-center">{_self}</p>,
-    },
-    {
-      title: "DIVISION",
-      dataIndex: "section",
-      width: "50px",
       render: (_self) => <p className="text-center">{_self}</p>,
     },
     {
@@ -173,10 +167,10 @@ function StaffContactPage({}: Props): ReactElement {
                   <Select
                     size="large"
                     placeholder="COMPANY"
-                    style={{ width: 200 }}
+                    style={{ width: 300 }}
                   >
-                    <Select.Option key={"ทั้งหมด"} value={""}>
-                      {"ทั้งหมด"}
+                    <Select.Option key={"ALL"} value={""}>
+                      {"ALL"}
                     </Select.Option>
                     {COMPANY_SELECTOR.map((_comp) => (
                       <Select.Option key={_comp} value={_comp}>
@@ -191,8 +185,8 @@ function StaffContactPage({}: Props): ReactElement {
                     placeholder="DEPARTMENT"
                     style={{ width: 350 }}
                   >
-                    <Select.Option key={"ทั้งหมด"} value={""}>
-                      {"ทั้งหมด"}
+                    <Select.Option key={"ALL"} value={""}>
+                      {"ALL"}
                     </Select.Option>
                     {DEPT_SELECTOR.map((_dept) => (
                       <Select.Option key={_dept} value={_dept}>
@@ -204,12 +198,11 @@ function StaffContactPage({}: Props): ReactElement {
                 <Form.Item name="search" style={{ marginLeft: "auto" }}>
                   <Input
                     placeholder="SEARCH"
-                    className="ml-auto"
+                    className="ml-auto text-right search-text-right"
                     prefix={
                       <SearchOutlined
                         style={{
                           color: "#D8D8D8",
-                          marginLeft: "4rem",
                         }}
                       />
                     }

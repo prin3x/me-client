@@ -3,9 +3,34 @@ import Checkbox from "antd/lib/checkbox/Checkbox";
 import moment from "moment";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import {
-  EMakeStatus,
-} from "../../services/meetingRoom/meeting-room.model";
+import { EMakeStatus } from "../../services/meetingRoom/meeting-room.model";
+
+const availableHours = [
+  { label: "07", value: 7 },
+  { label: "08", value: 8 },
+  { label: "09", value: 9 },
+  { label: "10", value: 10 },
+  { label: "11", value: 11 },
+  { label: "12", value: 12 },
+  { label: "13", value: 13 },
+  { label: "14", value: 14 },
+  { label: "15", value: 15 },
+  { label: "16", value: 16 },
+  { label: "17", value: 17 },
+  { label: "18", value: 18 },
+  { label: "19", value: 19 },
+];
+const availableMinutes = [
+  { label: "30 minute", value: 30 },
+  { label: "00 minute", value: 0 },
+];
+const availableDutaion = [
+  { label: "30 minutes", value: 30 },
+  { label: "1 hour", value: 60 },
+  { label: "2 hours", value: 120 },
+  { label: "3 hours", value: 180 },
+  { label: "4 hours", value: 240 },
+];
 
 type Props = {
   submitRoomBooking: () => void;
@@ -27,6 +52,7 @@ function MakeBookingForm({
   const router = useRouter();
   const [startDate, setStartDate] = useState(moment());
   const [isCheckedAllDay, setIsCheckedAllDay] = useState(false);
+  const [filteredAvailableHours, setFilteredAvailableHours] = useState(availableHours);
 
   function defaultDisabledDate(current) {
     return current < moment().subtract(23, "h");
@@ -54,31 +80,35 @@ function MakeBookingForm({
     return result;
   }
 
-  function disabledDateTime() {
-    return {
-      disabledHours: () => {
-        const hours = range(0, 24);
-        hours.splice(7, 20);
-        return hours;
-      },
-      disabledMinutes: () => {
-        const minutes = range(0, 60);
-        minutes.splice(0, 29);
-        minutes.splice(31, 59);
-        return minutes;
-      },
-      disabledSeconds: () => {
-        const minutes = range(0, 60);
-        minutes.splice(0, 29);
-        minutes.splice(31, 59);
-        return minutes;
-      },
-    };
-  }
-
+  // function disabledDateTime() {
+  //   return {
+  //     disabledHours: () => {
+  //       const hours = range(0, 24);
+  //       hours.splice(7, 19);
+  //       return hours;
+  //     },
+  //     disabledMinutes: () => {
+  //       const minutes = range(0, 60);
+  //       minutes.splice(0, 29);
+  //       minutes.splice(31, 59);
+  //       return minutes;
+  //     },
+  //     disabledSeconds: () => {
+  //       const minutes = range(0, 60);
+  //       minutes.splice(0, 29);
+  //       minutes.splice(31, 59);
+  //       return minutes;
+  //     },
+  //   };
+  // }
+  
+  
   useEffect(() => {
     form.setFieldsValue({ roomId: roomsMeta?.data?.[0]?.id, allDay: false });
-  }, [roomsMeta]);
+    if (router.query.date) {
+      form.setFieldsValue({ date: moment(router.query.date) });
+    }
+  }, [roomsMeta, router]);
 
   return (
     <Row justify="center" className="w-full meeting-room">
@@ -102,7 +132,11 @@ function MakeBookingForm({
               disabled={makeStatus === EMakeStatus.READ}
             />
           </Form.Item>
-          <Form.Item name="description" label="Description">
+          <Form.Item
+            name="description"
+            label="Description"
+            className="pad-left-form-label"
+          >
             <Input.TextArea
               rows={4}
               size="large"
@@ -110,25 +144,37 @@ function MakeBookingForm({
               disabled={makeStatus === EMakeStatus.READ}
             />
           </Form.Item>
+          <Form.Item name="date" label="Date" rules={[{ required: true }]}>
+            <DatePicker disabledDate={defaultDisabledDate} />
+          </Form.Item>
+          <Form.Item
+            name="startHour"
+            label="Start Hour"
+            rules={[{ required: true }]}
+            initialValue={filteredAvailableHours[0].value}
+          >
+            <Select style={{ width: 300 }}>
+              {availableHours.map((el) => (
+                <Select.Option key={el.label} value={el.value}>
+                  {el.label}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
           <Row>
-            <Form.Item name="start" label="Start" rules={[{ required: true }]}>
-              <DatePicker
-                size="large"
-                disabledDate={defaultDisabledDate}
-                onChange={onSelectStartDate}
-                showTime={{
-                  format: "HH:mm",
-                  minuteStep: 30,
-                  disabledHours: () => {
-                    const hours = range(0, 24);
-                    hours.splice(7, 20);
-                    return hours;
-                  },
-                  hideDisabledOptions: true,
-                }}
-                style={{ width: 500 }}
-                disabled={makeStatus === EMakeStatus.READ}
-              />
+            <Form.Item
+              name="startMinute"
+              label="Minute"
+              rules={[{ required: true }]}
+              initialValue={availableMinutes[0].value}
+            >
+              <Select style={{ width: 300 }}>
+                {availableMinutes.map((el) => (
+                  <Select.Option key={el.label} value={el.value}>
+                    {el.label}
+                  </Select.Option>
+                ))}
+              </Select>
             </Form.Item>
             <Form.Item name="allDay">
               <Checkbox onChange={onCheck} style={{ marginLeft: 24 }}>
@@ -136,7 +182,21 @@ function MakeBookingForm({
               </Checkbox>
             </Form.Item>
           </Row>
-          <Form.Item name="end" label="End" rules={[{ required: true }]}>
+          <Form.Item
+            label="Duration"
+            name="endHour"
+            rules={[{ required: true }]}
+            initialValue={availableDutaion[0].value}
+          >
+            <Select disabled={isCheckedAllDay}>
+              {availableDutaion.map((el) => (
+                <Select.Option key={el.label} value={el.value}>
+                  {el.label}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          {/* <Form.Item name="end" label="End" rules={[{ required: true }]}>
             <DatePicker
               size="large"
               value={moment(router.query.date)}
@@ -150,7 +210,7 @@ function MakeBookingForm({
               style={{ width: 500 }}
               disabled={makeStatus === EMakeStatus.READ || isCheckedAllDay}
             />
-          </Form.Item>
+          </Form.Item> */}
           {/* <Form.Item label="Area">
             <Select
               defaultValue={"4"}
@@ -202,7 +262,8 @@ function MakeBookingForm({
             {makeStatus === EMakeStatus.MAKE ? (
               <Col>
                 <Form.Item>
-                  <Button size="large"
+                  <Button
+                    size="large"
                     htmlType="submit"
                     className="rounded-btn ml-6"
                     type="primary"
@@ -215,7 +276,8 @@ function MakeBookingForm({
               <>
                 <Col>
                   <Form.Item>
-                    <Button size="large"
+                    <Button
+                      size="large"
                       onClick={updateRoomBooking}
                       className="secondary-btn rounded-btn"
                     >
@@ -225,7 +287,8 @@ function MakeBookingForm({
                 </Col>
                 <Col>
                   <Form.Item>
-                    <Button size="large"
+                    <Button
+                      size="large"
                       onClick={removeRoomBooking}
                       className="rounded-btn ml-6"
                       danger

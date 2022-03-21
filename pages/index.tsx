@@ -17,6 +17,8 @@ import { ASSET_URL } from "../config";
 import { useRouter } from "next/router";
 import { UserContext } from "../context/UserContext";
 import { LoadingOutlined } from "@ant-design/icons";
+import { imagePlaceholder } from "../utils/placeholder.image";
+import Link from "next/link";
 
 const CarouselSlider = dynamic(
   () => import("../components/home/GlideComponent")
@@ -66,7 +68,11 @@ const Home: NextPage = () => {
       <>
         <Row justify="center" className="container mx-auto pt-10">
           <Col className="relative" span={24}>
-            <Carousel afterChange={onChange} dots={{className: "circle-dots"}} className="z-10 relative">
+            <Carousel
+              afterChange={onChange}
+              dots={{ className: "circle-dots" }}
+              className="z-10 relative"
+            >
               <div>
                 <div className="h-64 bg-gray-300 rounded-xl">
                   <Image src="/assets/Group_10.png" preview={false} />
@@ -99,7 +105,7 @@ const Home: NextPage = () => {
         </Row>
         {recentAnnouncementMeta.isSuccess &&
           recentAnnouncementMeta.data.items.length > 0 && (
-            <Row className="container mx-auto pt-10">
+            <Row className="container mx-auto pt-10" justify="end">
               <Col span={24}>
                 <h2 className="font-bold heading-en text-primary-color uppercase mb-0">
                   Announcement
@@ -111,6 +117,13 @@ const Home: NextPage = () => {
                       : []
                   }
                 />
+              </Col>
+              <Col>
+                <Link href="/announcement" passHref>
+                  <div className="text-lg cursor-pointer">
+                    More ...
+                  </div>
+                </Link>
               </Col>
             </Row>
           )}
@@ -127,6 +140,9 @@ const Home: NextPage = () => {
           <Col span={24}>
             <Row justify="space-between">
               <Col md={12} className="p-1">
+                <div className="heading-en  p-5 font-bold uppercase">
+                  IT Clinic
+                </div>
                 <div
                   className="mask-on-hover cursor-pointer relative"
                   onClick={() => router.push("/itclinic")}
@@ -137,15 +153,13 @@ const Home: NextPage = () => {
                       ASSET_URL + recentItClinicMeta?.data?.items?.[0].imageUrl
                     }
                     preview={false}
+                    fallback={imagePlaceholder}
                     alt=""
+                    width="100%"
                     height={330}
                   />
-                  <div className="absolute top-0 w-full p-5">
-                    <div className="heading-en font-bold text-white uppercase">
-                      IT Clinic
-                    </div>
-                  </div>
-                  <div className="absolute bottom-4 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
+
+                  <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
                     <div className="heading-th text-white text-xl font-bold">
                       {recentItClinicMeta?.data?.items?.[0]?.title}
                     </div>
@@ -159,13 +173,18 @@ const Home: NextPage = () => {
                           ) + "...",
                       }}
                     />
-                    <p className="text-white text-right absolute bottom-2 right-5 text-lg">
-                      Read More ...
-                    </p>
                   </div>
                 </div>
+                <Row justify="end">
+                  <Link href="/itclinic" passHref>
+                    <div className="text-lg cursor-pointer">More ...</div>
+                  </Link>
+                </Row>
               </Col>
               <Col md={12} className="p-1">
+                <div className="heading-en  p-5 font-bold uppercase">
+                  Activities
+                </div>
                 <div
                   className="mask-on-hover cursor-pointer relative"
                   onClick={() => router.push("/activity")}
@@ -176,15 +195,13 @@ const Home: NextPage = () => {
                       ASSET_URL + recentActivityMeta?.data?.items?.[0].imageUrl
                     }
                     preview={false}
+                    fallback={imagePlaceholder}
                     alt=""
+                    width="100%"
                     height={330}
                   />
-                  <div className="absolute top-0 w-full p-5">
-                    <div className="heading-en font-bold text-white uppercase">
-                      Activities
-                    </div>
-                  </div>
-                  <div className="absolute bottom-4 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
+
+                  <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
                     <div className="heading-th text-white text-xl font-bold">
                       {recentActivityMeta?.data?.items?.[0]?.title}
                     </div>
@@ -198,11 +215,13 @@ const Home: NextPage = () => {
                           ) + "...",
                       }}
                     />
-                    <p className="text-white text-right absolute bottom-2 right-5 text-lg">
-                      Read More ...
-                    </p>
                   </div>
                 </div>
+                <Row justify="end">
+                  <Link href="/activity" passHref>
+                    <div className="text-lg cursor-pointer">More ...</div>
+                  </Link>
+                </Row>
               </Col>
             </Row>
           </Col>
