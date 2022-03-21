@@ -52,7 +52,8 @@ function MakeBookingForm({
   const router = useRouter();
   const [startDate, setStartDate] = useState(moment());
   const [isCheckedAllDay, setIsCheckedAllDay] = useState(false);
-  const [filteredAvailableHours, setFilteredAvailableHours] = useState(availableHours);
+  const [filteredAvailableHours, setFilteredAvailableHours] =
+    useState(availableHours);
 
   function defaultDisabledDate(current) {
     return current < moment().subtract(23, "h");
@@ -101,8 +102,7 @@ function MakeBookingForm({
   //     },
   //   };
   // }
-  
-  
+
   useEffect(() => {
     form.setFieldsValue({ roomId: roomsMeta?.data?.[0]?.id, allDay: false });
     if (router.query.date) {
@@ -122,6 +122,7 @@ function MakeBookingForm({
       <Row justify="start" className=" mt-5 w-full">
         <Form onFinish={submitRoomBooking} form={form} colon={false}>
           <Form.Item
+            className="font-bold"
             name="title"
             label="Name Meeting"
             rules={[{ required: true }]}
@@ -133,9 +134,9 @@ function MakeBookingForm({
             />
           </Form.Item>
           <Form.Item
+            className="font-bold pad-left-form-label"
             name="description"
             label="Description"
-            className="pad-left-form-label"
           >
             <Input.TextArea
               rows={4}
@@ -144,10 +145,16 @@ function MakeBookingForm({
               disabled={makeStatus === EMakeStatus.READ}
             />
           </Form.Item>
-          <Form.Item name="date" label="Date" rules={[{ required: true }]}>
+          <Form.Item
+            className="font-bold"
+            name="date"
+            label="Date"
+            rules={[{ required: true }]}
+          >
             <DatePicker disabledDate={defaultDisabledDate} />
           </Form.Item>
           <Form.Item
+            className="font-bold"
             name="startHour"
             label="Start Hour"
             rules={[{ required: true }]}
@@ -163,6 +170,7 @@ function MakeBookingForm({
           </Form.Item>
           <Row>
             <Form.Item
+              className="font-bold"
               name="startMinute"
               label="Minute"
               rules={[{ required: true }]}
@@ -183,6 +191,7 @@ function MakeBookingForm({
             </Form.Item>
           </Row>
           <Form.Item
+            className="font-bold"
             label="Duration"
             name="endHour"
             rules={[{ required: true }]}
@@ -196,7 +205,8 @@ function MakeBookingForm({
               ))}
             </Select>
           </Form.Item>
-          {/* <Form.Item name="end" label="End" rules={[{ required: true }]}>
+          {/* <Form.Item
+          className="font-bold" name="end" label="End" rules={[{ required: true }]}>
             <DatePicker
               size="large"
               value={moment(router.query.date)}
@@ -211,7 +221,8 @@ function MakeBookingForm({
               disabled={makeStatus === EMakeStatus.READ || isCheckedAllDay}
             />
           </Form.Item> */}
-          {/* <Form.Item label="Area">
+          {/* <Form.Item
+          className="font-bold" label="Area">
             <Select
               defaultValue={"4"}
               style={{ width: 600 }} disabled={makeStatus === EMakeStatus.READ} 
@@ -220,7 +231,8 @@ function MakeBookingForm({
               <Select.Option value="4">Floor 4th</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item label="Type">
+          <Form.Item
+          className="font-bold" label="Type">
             <Select
               defaultValue={"4"}
               style={{ width: 600 }} disabled={makeStatus === EMakeStatus.READ} 
@@ -229,7 +241,12 @@ function MakeBookingForm({
               <Select.Option value="4">Floor 4th</Select.Option>
             </Select>
           </Form.Item> */}
-          <Form.Item name="roomId" label="Rooms" rules={[{ required: true }]}>
+          <Form.Item
+            className="font-bold"
+            name="roomId"
+            label="Rooms"
+            rules={[{ required: true }]}
+          >
             <Select
               size="large"
               style={{ width: 600 }}
@@ -244,6 +261,7 @@ function MakeBookingForm({
             </Select>
           </Form.Item>
           <Form.Item
+            className="font-bold"
             name="type"
             label="Type"
             rules={[{ required: true }]}

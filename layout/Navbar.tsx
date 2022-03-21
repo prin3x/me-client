@@ -216,11 +216,11 @@ function Navbar(): ReactElement {
       <Row align="top" wrap={false}>
         <Col>
           <Link href={"/"} passHref>
-            <div className="nav-logo flex h-100 items-center cursor-pointer">
+            <div className="nav-logo mt-4 flex h-100 items-center cursor-pointer">
               <Image
                 src="/assets/logo-m.png"
                 preview={false}
-                width={200}
+                width={150}
                 className="cursor-pointer nav-logo"
                 alt="logo"
               />
@@ -251,23 +251,25 @@ function Navbar(): ReactElement {
                 </li>
               </Dropdown>
               <li className="nav-li-item text-white flex items-center gap-3 font-bold">
-                <Avatar
-                  shape="circle"
-                  style={{
-                    backgroundColor: "orange",
-                    marginRight: "10px",
-                    minWidth: "50px",
-                    height: "50px",
-                  }}
-                  size={48}
-                  src={
-                    userInfo?.profilePicUrl
-                      ? userInfo?.profilePicUrl
-                      : undefined
-                  }
-                />
+                <Link passHref href={`/staff-contact/${userInfo?.id}`}>
+                  <Avatar
+                    shape="circle"
+                    style={{
+                      backgroundColor: "orange",
+                      marginRight: "10px",
+                      minWidth: "50px",
+                      height: "50px",
+                    }}
+                    size={48}
+                    src={
+                      userInfo?.profilePicUrl
+                        ? userInfo?.profilePicUrl
+                        : undefined
+                    }
+                  />
+                </Link>
                 <div className="user-info welcom-text text-white">
-                  Welcome... {userInfo?.name?.slice(0, 8)}
+                  Welcome {userInfo?.nickname?.slice(0, 8)}
                 </div>
                 <div className="user-info user-action flex flex-col">
                   <div
@@ -275,7 +277,7 @@ function Navbar(): ReactElement {
                     style={{ marginLeft: 10, cursor: "pointer" }}
                     onClick={signOutAndReturnToLogin}
                   >
-                    Log Out /
+                    Log Out
                   </div>
                   <div
                     className="user-info text-white"

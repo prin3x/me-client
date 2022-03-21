@@ -29,7 +29,7 @@ export async function _getAllRoomsById(_id) {
 }
 
 export async function _getRoomByFloor(floor: string) {
-  return axios.get(`/rooms/${floor}`).then((res) => res.data);
+  return axios.get(`/rooms/floor/${floor}`).then((res) => res.data);
 }
 
 export async function _updateMeetingEvent(

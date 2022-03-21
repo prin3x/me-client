@@ -173,7 +173,10 @@ function BookingMeetingRoom(): ReactElement {
   // }, [roomsMeta.isFetched]);
 
   useEffect(() => {
+    if(rooms.length <= 0) return;
+    console.log(rooms,'rooms')
     form.setFieldsValue({ room: rooms?.[0]?.id });
+    setSelectedRoomId(rooms?.[0]?.id);
   }, [rooms]);
 
   return (
@@ -271,7 +274,7 @@ function BookingMeetingRoom(): ReactElement {
           </Col>
           <Col span={24} className="mt-20">
             <MeetingRoomCalendar
-              rooms={rooms}
+              rooms={rooms || []}
               selectDate={selectDate}
               setSelectDate={setSelectDate}
               meetingEventsQuery={meetingEventsQuery}

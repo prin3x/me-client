@@ -74,27 +74,27 @@ const Home: NextPage = () => {
               className="z-10 relative"
             >
               <div>
-                <div className="h-64 bg-gray-300 rounded-xl">
+                <div className="h-72 bg-gray-300 rounded-xl">
                   <Image src="/assets/Group_10.png" preview={false} />
                 </div>
               </div>
               <div>
-                <div className="h-64 bg-gray-300 rounded-xl">
+                <div className="h-72 bg-gray-300 rounded-xl">
                   <Image src="/assets/Group_10.png" preview={false} />
                 </div>
               </div>
               <div>
-                <div className="h-64 bg-gray-300 rounded-xl">
+                <div className="h-72 bg-gray-300 rounded-xl">
                   <Image src="/assets/Group_10.png" preview={false} />
                 </div>
               </div>
               <div>
-                <div className="h-64 bg-gray-300 rounded-xl">
+                <div className="h-72 bg-gray-300 rounded-xl">
                   <Image src="/assets/Group_10.png" preview={false} />
                 </div>
               </div>
             </Carousel>
-            <div className="absolute top-12 left-80 z-0">
+            <div className="absolute top-16 left-80 z-0">
               <Image
                 src="/assets/fluid-orange.svg"
                 alt="fluid"

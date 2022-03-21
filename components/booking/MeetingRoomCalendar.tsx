@@ -219,13 +219,13 @@ function MeetingRoomCalendar({
       />
       <Row className="mt-3">
         <div
-          className="rounded-xl text-center p-2 font-bold"
+          className="rounded-2xl text-center p-2 font-bold w-24 h-8 leading-4"
           style={{ backgroundColor: "#5B97F5" }}
         >
           Internal
         </div>
         <div
-          className="rounded-xl text-center p-2 ml-5 font-bold"
+          className="rounded-2xl text-center p-2 font-bold w-24 h-8 leading-4 ml-3"
           style={{ backgroundColor: "#F7AB50" }}
         >
           External

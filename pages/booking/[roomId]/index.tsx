@@ -68,7 +68,7 @@ function RoomId({}: Props) {
           </Col>
         </Row>
         <Row justify='end'>
-          <Button type='primary' size="large" onClick={router.back}>Back</Button>
+          <Button type='primary' size="large" onClick={() => router.push(`/booking`)} style={{borderRadius: '8px'}}>Back</Button>
         </Row>
       </div>
     </LayoutHOC>
