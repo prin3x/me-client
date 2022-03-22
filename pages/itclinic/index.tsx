@@ -18,6 +18,7 @@ import {
 import { ALL_RECENT_IT } from "../../services/news/news.queryKey";
 import {
   _getPostByCategoryId,
+  _getRecentITClinic,
   _getRecentNews,
 } from "../../services/news/news.service";
 
@@ -25,13 +26,11 @@ interface Props {}
 
 function ITClinic({}: Props): ReactElement {
   const router = useRouter();
-  const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({
-    categoryName: EPostCategory.IT,
-  });
+  const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({});
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const itclinicMeta = useQuery([ALL_RECENT_IT, queryStr, page], () =>
-    _getRecentNews(queryStr)
+    _getRecentITClinic(queryStr)
   );
   const [itclinic, setItclinic] = useState([]);
 
@@ -40,8 +39,7 @@ function ITClinic({}: Props): ReactElement {
     set.limit = 10;
     set.page = page;
     set.search = search;
-    set.categoryName = EPostCategory.ANNOUNCEMENT;
-    if(router.query.tag) {
+    if (router.query.tag) {
       set.tag = router.query.tag as string;
     }
 
@@ -62,11 +60,10 @@ function ITClinic({}: Props): ReactElement {
     setQuery();
   }, [search]);
 
-
   useEffect(() => {
-    if(!router.query.tag) return;
+    if (!router.query.tag) return;
     setQuery();
-  },[router.query])
+  }, [router.query]);
 
   return (
     <LayoutHOC>

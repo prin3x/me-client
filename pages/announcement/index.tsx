@@ -1,15 +1,8 @@
-import {
-  DoubleLeftOutlined,
-  DoubleRightOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
-import { Input, Pagination, Row, Skeleton } from "antd";
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import AnnouncementHero from "../../components/announcement/AnnouncementHero";
 import PostHOC from "../../components/post/PostHOC";
-import PostList from "../../components/post/PostList";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
   EPostCategory,
@@ -25,9 +18,7 @@ interface Props {}
 
 function AnnouncementPage({}: Props): ReactElement {
   const router = useRouter();
-  const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({
-    categoryName: EPostCategory.ANNOUNCEMENT,
-  });
+  const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const announcementMeta = useQuery(
@@ -41,7 +32,6 @@ function AnnouncementPage({}: Props): ReactElement {
     set.limit = 10;
     set.page = 1;
     set.search = search;
-    set.categoryName = EPostCategory.ANNOUNCEMENT;
     if(router.query.tag) {
       set.tag = router.query.tag as string;
     }

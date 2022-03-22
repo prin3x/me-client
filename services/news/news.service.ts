@@ -8,7 +8,17 @@ export function _getAllNewsCategories() {
 
 export function _getRecentNews(q: ListQueryParamsForPost) {
   const stringQuery = queryString.stringify(q);
-  return axios.get(`/posts?${stringQuery}`).then((res) => res.data);
+  return axios.get(`/posts?categoryName=announcement&${stringQuery}`).then((res) => res.data);
+}
+
+export function _getRecentITClinic(q: ListQueryParamsForPost) {
+  const stringQuery = queryString.stringify(q);
+  return axios.get(`/posts?categoryName=itclinic&${stringQuery}`).then((res) => res.data);
+}
+
+export function _getRecentActivity(q: ListQueryParamsForPost) {
+  const stringQuery = queryString.stringify(q);
+  return axios.get(`/posts?categoryName=activity&${stringQuery}`).then((res) => res.data);
 }
 
 export function _getOnePost(_slug: string) {

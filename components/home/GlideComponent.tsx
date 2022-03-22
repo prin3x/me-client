@@ -22,6 +22,8 @@ const CarouselSlider = (props: any) => {
     slider.mount();
   }, [slider]);
 
+  
+
   return (
     <>
       <div className="glide relative">
@@ -38,10 +40,11 @@ const CarouselSlider = (props: any) => {
                 <Image
                   fallback={imagePlaceholder}
                   preview={false}
-                  src={ASSET_URL + _post.imageUrl}
+                  src={_post.imageUrl}
                   width={236}
                   height={300}
                   className="rounded-xl "
+                  alt=""
                 />
                 <div className="absolute bottom-2 left-0 right-0 bg-slate-900 opacity-75 rounded-md p-2 w-full h-28">
                   <h3 className="text-white text-xl font-bold">

@@ -37,7 +37,7 @@ function RoomId({}: Props) {
             <Image
               fallback={imagePlaceholder}
               className="rounded-md"
-              src={ASSET_URL + roomsMeta?.data?.imageUrl}
+              src={roomsMeta?.data?.imageUrl}
               width={400}
               height={300}
               preview={false}

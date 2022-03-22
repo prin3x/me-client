@@ -19,7 +19,7 @@ function PostBySlug({ postData }: Props) {
       <div className="flex justify-center w-full bg-slate-200 rounded-md">
         <Image
           fallback={imagePlaceholder}
-          src={ASSET_URL + postData.imageUrl}
+          src={postData.imageUrl}
           alt={postData.title}
           width="100"
           preview={false}

@@ -25,7 +25,7 @@ function PostList({ posts }: Props) {
                 <Link href={`/${_post.categoryName}/${_post.slug}/`} passHref>
                   <Image
                     fallback={imagePlaceholder}
-                    src={ASSET_URL + _post.imageUrl}
+                    src={_post.imageUrl}
                     preview={false}
                     width={100}
                     height={100}

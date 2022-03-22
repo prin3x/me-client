@@ -18,6 +18,7 @@ import {
 import { ALL_RECENT_ACTIVITIES } from "../../services/news/news.queryKey";
 import {
   _getPostByCategoryId,
+  _getRecentActivity,
   _getRecentNews,
 } from "../../services/news/news.service";
 
@@ -25,13 +26,11 @@ interface Props {}
 
 function ActivitiesPage({}: Props): ReactElement {
   const router = useRouter();
-  const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({
-    categoryName: EPostCategory.ACTIVITY,
-  });
+  const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({});
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const activityMeta = useQuery([ALL_RECENT_ACTIVITIES, queryStr, page], () =>
-    _getRecentNews(queryStr)
+    _getRecentActivity(queryStr)
   );
   const [activities, setActivities] = useState([]);
 
@@ -40,8 +39,7 @@ function ActivitiesPage({}: Props): ReactElement {
     set.limit = 10;
     set.page = page;
     set.search = search;
-    set.categoryName = EPostCategory.ACTIVITY;
-    if(router.query.tag) {
+    if (router.query.tag) {
       set.tag = router.query.tag as string;
     }
 
