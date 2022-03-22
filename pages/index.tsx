@@ -17,7 +17,7 @@ import {
   EPostCategory,
   ListQueryParamsForPost,
 } from "../services/news/news.model";
-import { ASSET_URL } from "../config";
+import LazyLoad from "react-lazyload";
 import { useRouter } from "next/router";
 import { UserContext } from "../context/UserContext";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -35,7 +35,10 @@ const Home: NextPage = () => {
   const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({});
   const [carouselSet, setCarouselSet] = useState([]);
   const recentAnnouncementMeta = useQuery(
-    [ALL_RECENT_ANNCOUNCEMENT, { limit: 10, categoryName: EPostCategory.ANNOUNCEMENT }],
+    [
+      ALL_RECENT_ANNCOUNCEMENT,
+      { limit: 10, categoryName: EPostCategory.ANNOUNCEMENT },
+    ],
     () => _getRecentNews(queryStr)
   );
   const recentActivityMeta = useQuery(
@@ -92,7 +95,9 @@ const Home: NextPage = () => {
               {carouselSet.map((_item) => (
                 <div key={_item.id}>
                   <div className="h-72 bg-gray-300 rounded-xl">
-                    <Image src={_item.imageUrl} preview={false} />
+                    <LazyLoad height={"300px"}>
+                      <Image src={_item.imageUrl} preview={false} />
+                    </LazyLoad>
                   </div>
                 </div>
               ))}
@@ -149,15 +154,17 @@ const Home: NextPage = () => {
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() => router.push("/itclinic")}
                   >
-                    <Image
-                      className="rounded-xl"
-                      src={recentItClinicMeta?.data?.items?.[0]?.imageUrl}
-                      preview={false}
-                      fallback={imagePlaceholder}
-                      alt=""
-                      width="100%"
-                      height={330}
-                    />
+                    <LazyLoad height={"330px"}>
+                      <Image
+                        className="rounded-xl"
+                        src={recentItClinicMeta?.data?.items?.[0]?.imageUrl}
+                        preview={false}
+                        fallback={imagePlaceholder}
+                        alt=""
+                        width="100%"
+                        height={330}
+                      />
+                    </LazyLoad>
 
                     <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
                       <div className="heading-th text-white text-xl font-bold">
@@ -191,15 +198,17 @@ const Home: NextPage = () => {
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() => router.push("/activity")}
                   >
-                    <Image
-                      className="rounded-xl"
-                      src={recentActivityMeta?.data?.items?.[0]?.imageUrl}
-                      preview={false}
-                      fallback={imagePlaceholder}
-                      alt=""
-                      width="100%"
-                      height={330}
-                    />
+                    <LazyLoad height={"330px"}>
+                      <Image
+                        className="rounded-xl"
+                        src={recentActivityMeta?.data?.items?.[0]?.imageUrl}
+                        preview={false}
+                        fallback={imagePlaceholder}
+                        alt=""
+                        width="100%"
+                        height={330}
+                      />
+                    </LazyLoad>
 
                     <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
                       <div className="heading-th text-white text-xl font-bold">

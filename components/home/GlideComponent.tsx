@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import Glide from "@glidejs/glide";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Image } from "antd";
-import { ASSET_URL } from "../../config";
 import { useRouter } from "next/router";
 import { imagePlaceholder } from "../../utils/placeholder.image";
+import LazyLoad from "react-lazyload";
 
 const sliderConfiguration = {
   gap: 20,
@@ -22,8 +22,6 @@ const CarouselSlider = (props: any) => {
     slider.mount();
   }, [slider]);
 
-  
-
   return (
     <>
       <div className="glide relative">
@@ -37,15 +35,17 @@ const CarouselSlider = (props: any) => {
                   router.push(`/${_post.categoryName}/${_post.slug}`)
                 }
               >
-                <Image
-                  fallback={imagePlaceholder}
-                  preview={false}
-                  src={_post.imageUrl}
-                  width={236}
-                  height={300}
-                  className="rounded-xl "
-                  alt=""
-                />
+                <LazyLoad height={"300px"}>
+                  <Image
+                    fallback={imagePlaceholder}
+                    preview={false}
+                    src={_post.imageUrl}
+                    width={236}
+                    height={300}
+                    className="rounded-xl "
+                    alt=""
+                  />
+                </LazyLoad>
                 <div className="absolute bottom-2 left-0 right-0 bg-slate-900 opacity-75 rounded-md p-2 w-full h-28">
                   <h3 className="text-white text-xl font-bold">
                     {_post.title.slice(0, 18)}
