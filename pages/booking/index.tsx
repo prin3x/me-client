@@ -57,7 +57,7 @@ function BookingMeetingRoom(): ReactElement {
     setSelectDate(date.format("YYYY-MM-DD"));
   }
 
-  const getAllRooms = async (floor: string) => {
+  const getAllRooms = async (floor: string = "4") => {
     let res;
     try {
       res = await _getRoomByFloor(floor);
@@ -163,7 +163,6 @@ function BookingMeetingRoom(): ReactElement {
   }
 
   useEffect(() => {
-    if (!floor) return;
     getAllRooms(floor);
   }, [floor]);
 
@@ -173,8 +172,7 @@ function BookingMeetingRoom(): ReactElement {
   // }, [roomsMeta.isFetched]);
 
   useEffect(() => {
-    if(rooms.length <= 0) return;
-    console.log(rooms,'rooms')
+    if (rooms.length <= 0) return;
     form.setFieldsValue({ room: rooms?.[0]?.id });
     setSelectedRoomId(rooms?.[0]?.id);
   }, [rooms]);
