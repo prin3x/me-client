@@ -17,7 +17,6 @@ import {
   EPostCategory,
   ListQueryParamsForPost,
 } from "../services/news/news.model";
-import LazyLoad from "react-lazyload";
 import { useRouter } from "next/router";
 import { UserContext } from "../context/UserContext";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -95,9 +94,7 @@ const Home: NextPage = () => {
               {carouselSet.map((_item) => (
                 <div key={_item.id}>
                   <div className="h-72 bg-gray-300 rounded-xl">
-                    <LazyLoad height={"300px"}>
-                      <Image src={_item.imageUrl} preview={false} />
-                    </LazyLoad>
+                      <Image src={_item.imageUrl} preview={false} alt="" height={300} />
                   </div>
                 </div>
               ))}
@@ -154,7 +151,6 @@ const Home: NextPage = () => {
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() => router.push("/itclinic")}
                   >
-                    <LazyLoad height={"330px"}>
                       <Image
                         className="rounded-xl"
                         src={recentItClinicMeta?.data?.items?.[0]?.imageUrl}
@@ -164,7 +160,6 @@ const Home: NextPage = () => {
                         width="100%"
                         height={330}
                       />
-                    </LazyLoad>
 
                     <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
                       <div className="heading-th text-white text-xl font-bold">
@@ -198,7 +193,6 @@ const Home: NextPage = () => {
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() => router.push("/activity")}
                   >
-                    <LazyLoad height={"330px"}>
                       <Image
                         className="rounded-xl"
                         src={recentActivityMeta?.data?.items?.[0]?.imageUrl}
@@ -208,7 +202,6 @@ const Home: NextPage = () => {
                         width="100%"
                         height={330}
                       />
-                    </LazyLoad>
 
                     <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
                       <div className="heading-th text-white text-xl font-bold">
