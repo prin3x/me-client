@@ -33,6 +33,18 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  function (error) {
+    if (error.response.status && error.response.status === 401) {
+      window.location.replace("/log-in");
+    }
+    return Promise.reject(error);
+  }
+);
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   axios.interceptors.response.use(
