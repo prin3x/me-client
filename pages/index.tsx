@@ -93,8 +93,8 @@ const Home: NextPage = () => {
             >
               {carouselSet.map((_item) => (
                 <div key={_item.id}>
-                  <div className="h-72 bg-gray-300 rounded-xl">
-                      <Image src={_item.imageUrl} preview={false} alt="" height={300} />
+                  <div className="h-72 min-h-full bg-gray-300 rounded-xl">
+                      <Image src={_item.imageUrl} preview={false} alt="" height={300} placeholder={true} />
                   </div>
                 </div>
               ))}
