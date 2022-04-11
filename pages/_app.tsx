@@ -46,23 +46,6 @@ axios.interceptors.response.use(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-  axios.interceptors.response.use(
-    function (response) {
-      return response;
-    },
-    function (error) {
-      if (error?.response?.status === 401) {
-        router.push("/log-in");
-        return Promise.reject(error.response);
-      }
-
-      if (error?.response?.status === 404) {
-        router.push("/404");
-      }
-      return Promise.reject(error);
-    }
-  );
   return (
     <QueryClientProvider client={queryClient}>
       <title>MindEdge</title>
