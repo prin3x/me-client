@@ -12,7 +12,6 @@ import axios from "axios";
 import { API_URL } from "../config";
 import { getAuthToken } from "../services/auth/auth.service";
 import { UserProvider } from "../context/UserContext";
-import { useRouter } from "next/router";
 
 export const queryClient = new QueryClient({
   defaultOptions: {

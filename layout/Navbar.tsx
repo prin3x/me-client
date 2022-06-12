@@ -112,10 +112,17 @@ function Navbar(): ReactElement {
 
   const Services = (
     <Menu className="bg-primary-color text-white text-lg ">
-      <Menu.Item className="text-white">
+      <Menu.Item   key={nanoid(5)} className="text-white">
         <Link href={"/booking"}>
           <a className="cursor-pointer">
             <div className="text-white nav-item text-lg ">Meeting Room</div>
+          </a>
+        </Link>
+      </Menu.Item>
+      <Menu.Item   key={nanoid(5)} className="text-white">
+        <Link href={"/service-contact"}>
+          <a className="cursor-pointer">
+            <div className="text-white nav-item text-lg ">Service Contact</div>
           </a>
         </Link>
       </Menu.Item>

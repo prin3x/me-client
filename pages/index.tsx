@@ -94,7 +94,13 @@ const Home: NextPage = () => {
               {carouselSet.map((_item) => (
                 <div key={_item.id}>
                   <div className="h-72 min-h-full bg-gray-300 rounded-xl">
-                      <Image src={_item.imageUrl} preview={false} alt="" height={300} placeholder={true} />
+                    <Image
+                      src={_item.imageUrl}
+                      preview={false}
+                      alt=""
+                      height={300}
+                      placeholder={true}
+                    />
                   </div>
                 </div>
               ))}
@@ -132,11 +138,13 @@ const Home: NextPage = () => {
           )}
         <Row className="container mx-auto pt-10">
           <Col span={24}>
-            <Image
-              src="/assets/service-contact-hero.png"
-              preview={false}
-              alt="service-contact"
-            />
+            <Link href="/service-contact" passHref>
+              <Image
+                src="/assets/service-contact-hero.png"
+                preview={false}
+                alt="service-contact"
+              />
+            </Link>
           </Col>
         </Row>
         <Row className="container mx-auto pt-10">
@@ -151,15 +159,15 @@ const Home: NextPage = () => {
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() => router.push("/itclinic")}
                   >
-                      <Image
-                        className="rounded-xl"
-                        src={recentItClinicMeta?.data?.items?.[0]?.imageUrl}
-                        preview={false}
-                        fallback={imagePlaceholder}
-                        alt=""
-                        width="100%"
-                        height={330}
-                      />
+                    <Image
+                      className="rounded-xl"
+                      src={recentItClinicMeta?.data?.items?.[0]?.imageUrl}
+                      preview={false}
+                      fallback={imagePlaceholder}
+                      alt=""
+                      width="100%"
+                      height={330}
+                    />
 
                     <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
                       <div className="heading-th text-white text-xl font-bold">
@@ -193,15 +201,15 @@ const Home: NextPage = () => {
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() => router.push("/activity")}
                   >
-                      <Image
-                        className="rounded-xl"
-                        src={recentActivityMeta?.data?.items?.[0]?.imageUrl}
-                        preview={false}
-                        fallback={imagePlaceholder}
-                        alt=""
-                        width="100%"
-                        height={330}
-                      />
+                    <Image
+                      className="rounded-xl"
+                      src={recentActivityMeta?.data?.items?.[0]?.imageUrl}
+                      preview={false}
+                      fallback={imagePlaceholder}
+                      alt=""
+                      width="100%"
+                      height={330}
+                    />
 
                     <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
                       <div className="heading-th text-white text-xl font-bold">
