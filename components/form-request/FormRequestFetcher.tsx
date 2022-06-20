@@ -2,26 +2,26 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { message, Spin } from "antd";
 import React from "react";
 import { useQuery } from "react-query";
-import { IServiceContact } from "../../services/serviceContact/service-contact.model";
-import { SERVICE_CONTACT } from "../../services/serviceContact/service-contact.queryKey";
-import { _getContactServiceList } from "../../services/serviceContact/service-contact.service";
+import { IFormsRequest } from "../../services/formsRequest/forms-request.model";
+import { FORMS_REQUEST } from "../../services/formsRequest/forms-request.queryKey";
+import { _getFormRequestContent } from "../../services/formsRequest/forms-request.service";
 import ServerError from "../errorComp/ServerError";
-import ServiceContactTableList from "./ServiceContactTableList";
+import FormRequestList from "./FormRequestList";
 
 type Props = {};
 
-function ServiceContactFetcher({}: Props) {
+function FormRequestFetcher({}: Props) {
   const { data, isLoading, isSuccess, isError } = useQuery(
-    [SERVICE_CONTACT],
+    [FORMS_REQUEST],
     () => getContactServiceList()
   );
 
   async function getContactServiceList() {
-    let res: IServiceContact[];
+    let res: IFormsRequest[] = [];
     try {
-      res = await _getContactServiceList();
+      res = await _getFormRequestContent();
     } catch (e) {
-      message.error(e);
+      message.error(e.error);
     }
 
     return res;
@@ -34,9 +34,9 @@ function ServiceContactFetcher({}: Props) {
       </div>
     );
 
-  if (isSuccess) return <ServiceContactTableList data={data} />;
+  if (isSuccess) return <FormRequestList data={data} />;
 
   if (isError) return <ServerError/>;
 }
 
-export default ServiceContactFetcher;
+export default FormRequestFetcher;
