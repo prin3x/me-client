@@ -20,6 +20,7 @@
     "antd": "^4.17.2",
     "autoprefixer": "^10.4.0",
     "axios": "^0.24.0",
+    "draftjs-to-html": "^0.9.1",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "lodash": "^4.17.21",

@@ -7,6 +7,8 @@ import React from "react";
 import { ASSET_URL } from "../../config";
 import { _getPostByCategoryId } from "../../services/news/news.service";
 import { imagePlaceholder } from "../../utils/placeholder.image";
+import draftToHtml from "draftjs-to-html";
+
 type Props = {
   posts: any[];
 };
@@ -35,12 +37,12 @@ function PostList({ posts }: Props) {
               </Col>
               <Col md={12} className="mx-2 mt-5 ml-5">
                 <Link href={`/${_post.categoryName}/${_post.slug}/`} passHref>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col h-20">
                     <div className="text-xl font-bold"> {_post.title}</div>
                     <p
-                      className="text-slate-400 "
+                      className="text-slate-400 truncate"
                       dangerouslySetInnerHTML={{
-                        __html: `${_post.content.slice(0, 75) + " ..."}`,
+                        __html: `${draftToHtml(JSON.parse(_post.content))}`,
                       }}
                     />
                   </div>

@@ -4,6 +4,7 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Image } from "antd";
 import { useRouter } from "next/router";
 import { imagePlaceholder } from "../../utils/placeholder.image";
+import draftToHtml from "draftjs-to-html";
 
 const sliderConfiguration = {
   gap: 20,
@@ -43,18 +44,15 @@ const CarouselSlider = (props: any) => {
                   className="rounded-xl "
                   alt=""
                 />
-                <div className="absolute bottom-2 left-0 right-0 bg-slate-900 opacity-75 rounded-md p-2 w-full h-28">
+                <div className="absolute bottom-2 left-0 right-0 bg-slate-900 opacity-75 rounded-md p-2 w-full h-[6.75rem]">
                   <h3 className="text-white text-xl font-bold">
                     {_post.title.slice(0, 18)}
                   </h3>
                   <p
-                    className="text-white text-md"
+                    className="text-white text-md truncate"
                     dangerouslySetInnerHTML={{
                       __html:
-                        _post.content.length > 30
-                          ? _post.content.slice(0, 30) + "..."
-                          : _post.content,
-                    }}
+                        `${draftToHtml(JSON.parse(_post.content))}`}}
                   />
                 </div>
               </li>

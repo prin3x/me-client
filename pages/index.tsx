@@ -23,6 +23,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { imagePlaceholder } from "../utils/placeholder.image";
 import Link from "next/link";
 import { _getAllEnabledCarousel } from "../services/carousel/carousel.service";
+import draftToHtml from "draftjs-to-html";
 
 const CarouselSlider = dynamic(
   () => import("../components/home/GlideComponent")
@@ -174,13 +175,10 @@ const Home: NextPage = () => {
                         {recentItClinicMeta?.data?.items?.[0]?.title}
                       </div>
                       <div
-                        className="text-white text-lg"
+                        className="text-white text-lg truncate"
                         dangerouslySetInnerHTML={{
                           __html:
-                            recentItClinicMeta?.data?.items?.[0]?.content?.slice(
-                              0,
-                              15
-                            ) + "...",
+                          `${draftToHtml(JSON.parse(recentItClinicMeta?.data?.items?.[0]?.content))}`
                         }}
                       />
                     </div>
@@ -216,13 +214,10 @@ const Home: NextPage = () => {
                         {recentActivityMeta?.data?.items?.[0]?.title}
                       </div>
                       <div
-                        className="text-white text-lg"
+                        className="text-white text-lg truncate"
                         dangerouslySetInnerHTML={{
                           __html:
-                            recentActivityMeta?.data?.items?.[0]?.content?.slice(
-                              0,
-                              15
-                            ) + "...",
+                          `${draftToHtml(JSON.parse(recentActivityMeta?.data?.items?.[0]?.content))}`
                         }}
                       />
                     </div>
