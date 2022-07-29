@@ -55,7 +55,7 @@ function StaffContactPage({}: Props): ReactElement {
     {
       title: "NAME",
       dataIndex: "name",
-      width: "300px",
+      width: "400px",
       render: (_self: string, _record: any) => (
         <div className="flex items-center gap-2">
           <div className="">
@@ -71,7 +71,7 @@ function StaffContactPage({}: Props): ReactElement {
           </div>
           <div className="flex flex-col items-start ">
             <p
-              className="text-left cursor-pointer text-primary-color mb-0 font-semibold	leading-4	"
+              className="text-left cursor-pointer text-primary-color mb-0 font-semibold	leading-4	truncate"
               onClick={() => router.push(`/staff-contact/${_record.id}`)}
             >
               {_self}
@@ -108,7 +108,7 @@ function StaffContactPage({}: Props): ReactElement {
     {
       title: "E-MAIL",
       dataIndex: "email",
-      width: "210px",
+      width: "150px",
       render: (_self) => <p className="text-center">{_self}</p>,
     },
   ];

@@ -1,4 +1,4 @@
-import { UpOutlined } from "@ant-design/icons";
+import { CaretUpOutlined } from "@ant-design/icons";
 import { Col, Collapse, Row } from "antd";
 import React from "react";
 import { IFormsRequest } from "../../services/formsRequest/forms-request.model";
@@ -13,9 +13,9 @@ function FormRequestList({ data }: Props) {
       <Col span={24}>
         <Collapse
           expandIcon={({ isActive }) => (
-            <UpOutlined
+            <CaretUpOutlined
               style={{ fontSize: "24px" }}
-              rotate={isActive ? 180 : 0}
+              rotate={isActive ? 0 : 180}
             />
           )}
           className="form-collapse"
@@ -32,7 +32,7 @@ function FormRequestList({ data }: Props) {
             >
               {form?.formsRequestDetail?.map((fr) => (
                 <p
-                  className="form-download-item text-lg mb-0 py-2 font-normal"
+                  className="form-download-item text-lg mb-0 py-2 font-semibold"
                   key={fr.id}
                 >
                   &emsp; &emsp; {fr.content}

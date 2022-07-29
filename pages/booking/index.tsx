@@ -171,11 +171,11 @@ function BookingMeetingRoom(): ReactElement {
   //   setSelectedRoomId(roomsMeta?.data?.[0]?.id);
   // }, [roomsMeta.isFetched]);
 
-  useEffect(() => {
-    if (rooms.length <= 0) return;
-    form.setFieldsValue({ room: rooms?.[0]?.id });
-    setSelectedRoomId(rooms?.[0]?.id);
-  }, [rooms]);
+  // useEffect(() => {
+  //   if (rooms.length <= 0) return;
+  //   form.setFieldsValue({ room: rooms?.[0]?.id });
+  //   setSelectedRoomId(rooms?.[0]?.id);
+  // }, [rooms]);
 
   return (
     <LayoutHOC>
@@ -207,7 +207,7 @@ function BookingMeetingRoom(): ReactElement {
                           <Form.Item name="room">
                             <Select
                               style={{ width: 350, marginLeft: 20 }}
-                              placeholder="Creative Room"
+                              placeholder="Room"
                               onChange={onSelectRoomId}
                             >
                               {rooms.length > 0
@@ -264,8 +264,10 @@ function BookingMeetingRoom(): ReactElement {
                   className="rounded-full"
                   style={{ borderRadius: "20px" }}
                 >
-                  <PlusOutlined />
-                  Booking Room
+                  <div className="flex items-center">
+                    <PlusOutlined />
+                    <span className="ml-2">Booking Room</span>
+                  </div>
                 </Button>
               </Link>
             </Row>

@@ -53,7 +53,8 @@ function BirthDayPage(): ReactElement {
     {
       title: "NAME",
       dataIndex: "name",
-      className: 'name-col',
+      ellipsis: true,
+      width: 200,
       render: (_self: string, _record: any) => (
         <div className="flex items-center gap-2">
           <div className="max-w-100 w-28">
@@ -80,21 +81,21 @@ function BirthDayPage(): ReactElement {
     {
       title: "NICKNAME",
       dataIndex: "nickname",
-      className: "normal-col",
-      render: (_self, _record) => <p className="text-center">{_self}</p>,
+      width: 200,
+      render: (_self, _record) => <p className="text-center  mb-0">{_self}</p>,
     },
     {
       title: "DEPARTMENT",
       dataIndex: "department",
-      className: "normal-col",
-      render: (_self, _record) => <p className="text-center">{_self}</p>,
+      width: 200,
+      render: (_self, _record) => <p className="text-center  mb-0">{_self}</p>,
     },
     {
       title: "COMPANY",
       dataIndex: "company",
-      className: "normal-col",
+      width: 200,
       render: (_self, _record) => (
-        <p className="text-center">
+        <p className="text-center  mb-0">
           {_self === "Mindedge Recruitment" ? (
             <Image
               fallback={imagePlaceholder}
@@ -134,8 +135,9 @@ function BirthDayPage(): ReactElement {
     {
       title: "BIRTHDAY",
       dataIndex: "birthDate",
+      width: 200,
       render: (_self, _record) => (
-        <p className="text-center">{moment(_self).format("DD MMM")}</p>
+        <p className="text-center  mb-0">{moment(_self).format("DD MMM")}</p>
       ),
     },
   ];
@@ -198,12 +200,12 @@ function BirthDayPage(): ReactElement {
         </Row>
         <Row className="container mx-auto pt-10">
           <Table
+            tableLayout="auto"
             loading={staffContactMeta.isLoading}
             bordered
-            className='set-border'
-            tableLayout="fixed"
+            className='set-border custom-table-width'
             rowKey={(self) => self.id}
-            scroll={{ x: true }}
+            scroll={{ x: 1000 }}
             pagination={{
               showTotal: (total, range) => `ทั้งหมด`,
               current: page,

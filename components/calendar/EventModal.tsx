@@ -24,9 +24,14 @@ function EventModal({ visible, event, close }: Props) {
       {event.categoryName === ECalendarEventType.BIRTHDAY && (
         <Row>
           <Col>
-            <Link href={`/staff-contact/${event.staffId}`}>
-              Go To Employee&apos;s Page
-            </Link>
+            <p>
+              Staff Contact{" "}
+              <Link href={`/staff-contact/${event.staffId}`} passHref>
+                <span className="underline text-primary-color cursor-pointer">
+                  CLICK
+                </span>
+              </Link>
+            </p>
           </Col>
         </Row>
       )}

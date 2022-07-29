@@ -33,26 +33,27 @@ interface Props {}
 function MakeBooking({}: Props): ReactElement {
   const router = useRouter();
   const [form] = Form.useForm();
-  const roomsMeta = useQuery(["rooms"],() => _getAllRoomsAvb());
+  const roomsMeta = useQuery(["rooms"], () => _getAllRoomsAvb());
   const [makeStatus, setMakeStatus] = useState(EMakeStatus.MAKE);
 
   const submitRoomBooking = (): void => {
-    form.validateFields().then(async (_formValues: ICreateMeeting) => {
-      const formResult = await form.validateFields();
-      const startTime = _formValues.date.set({
-        hour: formResult.startHour - 1,
-        minute: formResult.startMinute + 30,
-        second: 0,
-      });
-      const endTime = startTime.clone().add("minute", formResult.endHour + 30);
+    form.validateFields().then(async (_formValues) => {
+      const startTime =
+        moment(_formValues.startDate).format("YYYY-MM-DD") +
+        " " +
+        moment(_formValues.startHour).format("HH:mm");
+      const endTime =
+        moment(_formValues.endDate).format("YYYY-MM-DD") +
+        " " +
+        moment(_formValues.endHour).format("HH:mm");
       let set = {} as any;
-      set.title = formResult.title;
-      set.description = formResult.description;
+      set.title = _formValues.title;
+      set.description = _formValues.description;
       set.start = startTime;
       set.end = endTime;
-      set.roomId = formResult.roomId;
-      set.type = formResult.type;
-      set.allDay = formResult.allDay;
+      set.roomId = _formValues.roomId;
+      set.type = _formValues.type;
+      set.allDay = _formValues.allDay;
 
       try {
         await _createBooking(set);
@@ -69,29 +70,32 @@ function MakeBooking({}: Props): ReactElement {
   };
 
   const updateRoomBooking = async (): Promise<void> => {
-    const formResult = await form.validateFields();
-    const startTime = formResult.date.set({
-      hour: formResult.startHour - 1,
-      minute: formResult.startMinute + 30,
-      second: 0,
-    });
-    const endTime = startTime.clone().add("minute", formResult.endHour + 30);
-    let set = {} as any;
-    set.title = formResult.title;
-    set.description = formResult.description;
-    set.start = startTime;
-    set.end = endTime;
-    set.roomId = formResult.roomId;
-    set.type = formResult.type;
-    set.allDay = formResult.allDay;
+    form.validateFields().then(async (_formValues) => {
+      const startTime =
+        moment(_formValues.startDate).format("YYYY-MM-DD") +
+        " " +
+        moment(_formValues.startHour).format("HH:mm");
+      const endTime =
+        moment(_formValues.endDate).format("YYYY-MM-DD") +
+        " " +
+        moment(_formValues.endHour).format("HH:mm");
+      let set = {} as any;
+      set.title = _formValues.title;
+      set.description = _formValues.description;
+      set.start = startTime;
+      set.end = endTime;
+      set.roomId = _formValues.roomId;
+      set.type = _formValues.type;
+      set.allDay = _formValues.allDay;
 
-    try {
-      await _updateMeetingEvent(router.query.id, set);
-      message.success("Updated Successfully");
-      router.push("/booking/");
-    } catch (e) {
-      message.error(e.response.message);
-    }
+      try {
+        await _updateMeetingEvent(router.query.id, set);
+        message.success("Updated Successfully");
+        router.push("/booking/");
+      } catch (e) {
+        message.error(e.response.message);
+      }
+    });
   };
 
   const removeRoomBooking = async (): Promise<void> => {
@@ -113,11 +117,14 @@ function MakeBooking({}: Props): ReactElement {
         setMakeStatus(EMakeStatus.READ);
       }
 
+
       form.setFieldsValue({
         title: meetingDetails.title,
         description: meetingDetails.description,
-        start: moment(meetingDetails.start),
-        end: moment(meetingDetails.end),
+        startDate: moment(meetingDetails.start),
+        startHour: moment(meetingDetails.start),
+        endDate: moment(meetingDetails.end),
+        endHour: moment(meetingDetails.end),
       });
     } catch (e) {
       router.push("/");

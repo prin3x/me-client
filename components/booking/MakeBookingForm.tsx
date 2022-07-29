@@ -1,4 +1,13 @@
-import { Button, Col, DatePicker, Form, Input, Row, Select } from "antd";
+import {
+  Button,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  Row,
+  Select,
+  TimePicker,
+} from "antd";
 import Checkbox from "antd/lib/checkbox/Checkbox";
 import moment from "moment";
 import { useRouter } from "next/router";
@@ -70,7 +79,7 @@ function MakeBookingForm({
 
   function onSelectStartDate(_values) {
     setStartDate(_values);
-    form.setFieldsValue({ end: moment(_values).add(1, "h") });
+    form.setFieldsValue({ end: moment(_values).add(30, "minute") });
   }
 
   function range(start, end) {
@@ -104,7 +113,7 @@ function MakeBookingForm({
   // }
 
   useEffect(() => {
-    form.setFieldsValue({ roomId: roomsMeta?.data?.[0]?.id, allDay: false });
+    form.setFieldsValue({ roomId: roomsMeta?.data?.items?.[0]?.id, allDay: false });
     if (router.query.date) {
       form.setFieldsValue({ date: moment(router.query.date) });
     }
@@ -145,30 +154,49 @@ function MakeBookingForm({
               disabled={makeStatus === EMakeStatus.READ}
             />
           </Form.Item>
-          <Form.Item
-            className="font-bold"
-            name="date"
-            label="Date"
-            rules={[{ required: true }]}
-          >
-            <DatePicker disabledDate={defaultDisabledDate} />
-          </Form.Item>
-          <Form.Item
-            className="font-bold"
-            name="startHour"
-            label="Start Hour"
-            rules={[{ required: true }]}
-            initialValue={filteredAvailableHours[0].value}
-          >
-            <Select style={{ width: 300 }}>
-              {availableHours.map((el) => (
-                <Select.Option key={el.label} value={el.value}>
-                  {el.label}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
           <Row>
+            <Form.Item
+              className="font-bold"
+              name="startDate"
+              label="Start Date"
+              rules={[{ required: true }]}
+            >
+              <DatePicker disabledDate={defaultDisabledDate} />
+            </Form.Item>
+            <Form.Item
+              className="font-bold"
+              name="startHour"
+              rules={[{ required: true }]}
+              // initialValue={filteredAvailableHours[0].value}
+            >
+              <TimePicker minuteStep={30} format="HH:mm" style={{marginLeft: '1rem'}}/>
+            </Form.Item>
+            {/* <Form.Item name="allDay">
+              <Checkbox onChange={onCheck} style={{ marginLeft: 24 }}>
+                All day
+              </Checkbox>
+            </Form.Item> */}
+          </Row>
+          <Row>
+            <Form.Item
+              className="font-bold"
+              name="endDate"
+              label="End Date"
+              rules={[{ required: true }]}
+            >
+              <DatePicker disabledDate={defaultDisabledDate} disabled={isCheckedAllDay} />
+            </Form.Item>
+            <Form.Item
+              className="font-bold"
+              name="endHour"
+              rules={[{ required: true }]}
+              // initialValue={filteredAvailableHours[0].value}
+            >
+              <TimePicker minuteStep={30} format="HH:mm" style={{marginLeft: '1rem'}} disabled={isCheckedAllDay}  />
+            </Form.Item>
+          </Row>
+
+          {/* <Row>
             <Form.Item
               className="font-bold"
               name="startMinute"
@@ -184,11 +212,7 @@ function MakeBookingForm({
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item name="allDay">
-              <Checkbox onChange={onCheck} style={{ marginLeft: 24 }}>
-                All day
-              </Checkbox>
-            </Form.Item>
+
           </Row>
           <Form.Item
             className="font-bold"
@@ -204,7 +228,7 @@ function MakeBookingForm({
                 </Select.Option>
               ))}
             </Select>
-          </Form.Item>
+          </Form.Item> */}
           {/* <Form.Item
           className="font-bold" name="end" label="End" rules={[{ required: true }]}>
             <DatePicker
@@ -252,8 +276,8 @@ function MakeBookingForm({
               style={{ width: 600 }}
               disabled={makeStatus === EMakeStatus.READ}
             >
-              {Array.isArray(roomsMeta?.data) &&
-                roomsMeta?.data?.map((_room) => (
+              {Array.isArray(roomsMeta?.data?.items) &&
+                roomsMeta?.data?.items.map((_room) => (
                   <Select.Option key={_room.id} value={_room.id}>
                     {_room.name}
                   </Select.Option>

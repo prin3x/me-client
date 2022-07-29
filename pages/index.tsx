@@ -99,7 +99,8 @@ const Home: NextPage = () => {
                       src={_item.imageUrl}
                       preview={false}
                       alt=""
-                      height={300}
+                      width={1004}
+                      height={565}
                       placeholder={true}
                     />
                   </div>
@@ -119,9 +120,11 @@ const Home: NextPage = () => {
           recentAnnouncementMeta.data.items.length > 0 && (
             <Row className="container mx-auto pt-10" justify="end">
               <Col span={24}>
-                <h2 className="font-bold heading-en text-primary-color uppercase mb-0">
-                  Announcement
-                </h2>
+                <Link href={"/announcement"} passHref>
+                  <h2 className="font-bold heading-en text-primary-color uppercase mb-0 cursor-pointer">
+                    Announcement
+                  </h2>
+                </Link>
                 <CarouselSlider
                   items={
                     recentAnnouncementMeta.isSuccess
@@ -153,9 +156,11 @@ const Home: NextPage = () => {
             <Row justify="space-between">
               {recentItClinicMeta?.data?.items?.length > 0 && (
                 <Col md={12} className="p-1">
-                  <div className="heading-en  p-5 font-bold uppercase">
-                    IT Clinic
-                  </div>
+                  <Link href={"/itclinic"} passHref>
+                    <div className="heading-en  p-5 font-bold uppercase text-primary-color">
+                      IT Clinic
+                    </div>
+                  </Link>
                   <div
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() => router.push("/itclinic")}
@@ -177,8 +182,11 @@ const Home: NextPage = () => {
                       <div
                         className="text-white text-lg truncate"
                         dangerouslySetInnerHTML={{
-                          __html:
-                          `${draftToHtml(JSON.parse(recentItClinicMeta?.data?.items?.[0]?.content))}`
+                          __html: `${draftToHtml(
+                            JSON.parse(
+                              recentItClinicMeta?.data?.items?.[0]?.content
+                            )
+                          )}`,
                         }}
                       />
                     </div>
@@ -192,9 +200,11 @@ const Home: NextPage = () => {
               )}
               {recentActivityMeta?.data?.items?.length > 0 && (
                 <Col md={12} className="p-1">
-                  <div className="heading-en  p-5 font-bold uppercase">
-                    Activities
-                  </div>
+                  <Link href={"/activity"} passHref>
+                    <div className="heading-en  p-5 font-bold uppercase text-primary-color">
+                      Activities
+                    </div>
+                  </Link>
                   <div
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() => router.push("/activity")}
@@ -216,8 +226,11 @@ const Home: NextPage = () => {
                       <div
                         className="text-white text-lg truncate"
                         dangerouslySetInnerHTML={{
-                          __html:
-                          `${draftToHtml(JSON.parse(recentActivityMeta?.data?.items?.[0]?.content))}`
+                          __html: `${draftToHtml(
+                            JSON.parse(
+                              recentActivityMeta?.data?.items?.[0]?.content
+                            )
+                          )}`,
                         }}
                       />
                     </div>

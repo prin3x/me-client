@@ -82,8 +82,8 @@ function MeetingRoomCalendar({
     const coloredEvents = data?.map((event) => {
       const coloredEvent = { ...event };
       if (event.roomId) {
-        coloredEvent.start = moment(event.start).format();
-        coloredEvent.end = moment(event.end).format();
+        coloredEvent.start = event.start;
+        coloredEvent.end = event.end;
         coloredEvent.resourceIds = [event.roomId];
         coloredEvent.title = `<div style="font-weight: bold;text-align: center; font-size: 20px">${event.title}</div> <div style="text-align: center;">By ${event.staffContactDetail.nameTH} ${event.staffContactDetail.position}</div>`;
       }
@@ -95,6 +95,7 @@ function MeetingRoomCalendar({
           coloredEvent.color = (themeValues as any)[foundColor.color];
         }
       }
+
       return coloredEvent;
     });
     setEvents(coloredEvents);

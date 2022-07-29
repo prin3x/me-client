@@ -2,7 +2,7 @@ import { Col, Dropdown, Menu, Row } from "antd";
 import React, { ReactElement, useContext, useEffect } from "react";
 import { Image } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
-import { DownOutlined, SettingOutlined } from "@ant-design/icons";
+import { CaretDownOutlined, SettingOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { UserContext } from "../context/UserContext";
 import { useRouter } from "next/router";
@@ -98,7 +98,7 @@ function Navbar(): ReactElement {
               className="cursor-pointer"
               target="_blank"
               rel="noreferrer"
-              href="http://203.154.66.203:8015/FB"
+              href="http://203.154.66.203:8015/Foodberg/center/login.php?"
             >
               <div className="text-white hover:text-black nav-item text-lg ">
                 FB
@@ -239,22 +239,22 @@ function Navbar(): ReactElement {
             <ul className="navbar-ul flex  flex-wrap items-center gap-20 mb-0 ">
               <Dropdown overlay={Personal}>
                 <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold">
-                  personal <DownOutlined className="down-icon" />
+                  personal <CaretDownOutlined  style={{color: '#F7941D'}} className="down-icon" />
                 </li>
               </Dropdown>
               <Dropdown overlay={Services}>
                 <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold ">
-                  service <DownOutlined className="down-icon" />
+                  service <CaretDownOutlined  style={{color: '#F7941D'}} className="down-icon" />
                 </li>
               </Dropdown>
               <Dropdown overlay={News}>
                 <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold ">
-                  news <DownOutlined className="down-icon" />
+                  news <CaretDownOutlined  style={{color: '#F7941D'}} className="down-icon" />
                 </li>
               </Dropdown>
               <Dropdown overlay={CompanyProfile}>
                 <li className="nav-li-item text-white uppercase flex justify-between items-center gap-2 font-24 font-bold">
-                  <span>company</span> <DownOutlined className="down-icon" />
+                  <span>company</span> <CaretDownOutlined  style={{color: '#F7941D'}} className="down-icon" />
                 </li>
               </Dropdown>
               <li className="nav-li-item text-white flex items-center gap-3 font-bold">

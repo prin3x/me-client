@@ -1,19 +1,54 @@
-import { Col, Image, Row } from "antd";
+import { Breadcrumb, Col, Image, Row } from "antd";
 import moment from "moment";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { imagePlaceholder } from "../../utils/placeholder.image";
 import draftToHtml from "draftjs-to-html";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 type Props = {
   postData: any;
 };
 
+const urls = {
+  announcement: "Announcement",
+  itclinic: "IT Clinic",
+  activity: "Activity",
+  undefined: "undefined",
+};
+
 function PostBySlug({ postData }: Props) {
+  const [foundPath, setFoundPath] = useState("");
+  const router = useRouter();
+
+  function findUrlInPathname() {
+    const availableUrl = Object.keys(urls);
+    const pathname = router.pathname.split("/")?.[1];
+    console.log(pathname, "foundPath");
+
+    const foundPath =
+      availableUrl.find((_url) => _url === pathname) || "undefined";
+    setFoundPath(foundPath);
+  }
+
+  useEffect(() => {
+    findUrlInPathname();
+  }, [router]);
+
   return (
     <div className="content">
-      <Row justify="center">
+      <Breadcrumb>
+        <Breadcrumb.Item>News</Breadcrumb.Item>
+        <Breadcrumb.Item className="cursor-pointer">
+          <Link href={foundPath} passHref>
+            <span>{urls[foundPath]}</span>
+          </Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>{postData?.title}</Breadcrumb.Item>
+      </Breadcrumb>
+      <Row justify="center" className="pt-10">
         <Col>
-          <h1 className="heading text-xl font-bold">{postData?.title}</h1>
+          <h1 className="heading text-4xl font-bold">{postData?.title}</h1>
         </Col>
       </Row>
       <div className="flex justify-center w-full bg-slate-200 rounded-md">
@@ -28,12 +63,14 @@ function PostBySlug({ postData }: Props) {
       <div className="mt-5">
         <div
           dangerouslySetInnerHTML={{
-            __html: `${draftToHtml(JSON.parse(postData.content))}`,
+            __html: `${draftToHtml(JSON.parse(postData?.content))}`,
           }}
         />
       </div>
       <Row justify="end">
-        <Col>{moment(postData.createdAt).format("DD MMMM yyyy | hh:mm A")}</Col>
+        <Col>
+          {moment(postData?.createdAt).format("DD MMMM yyyy | hh:mm A")}
+        </Col>
       </Row>
     </div>
   );

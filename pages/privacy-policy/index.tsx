@@ -33,33 +33,33 @@ function PrivacyPolicy({}: Props): ReactElement {
                 className="cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
-                href="http://203.154.66.203:8015/ME"
+                href="https://www.mindedge.co.th/information/me-privacy"
               >
-                <Button size="large" type="primary" className="font-bold">ME</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px', lineHeight: 1, fontWeight: 'bold'}}>ME</Button>
               </a>
               <a
                 className="cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
-                href="http://203.154.66.203:8015/MR"
+                href="https://www.mindedge.co.th/information/mr-privacy"
               >
-                <Button size="large" type="primary" className="font-bold">MR</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px', lineHeight: 1, fontWeight: 'bold'}}>MR</Button>
               </a>
               <a
                 className="cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
-                href="http://203.154.66.203:8015/MY"
+                href="https://www.meandyou.co.th/privacy"
               >
-                <Button size="large" type="primary" className="font-bold">MY</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px', lineHeight: 1, fontWeight: 'bold'}}>MY</Button>
               </a>
               <a
                 className="cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
-                href="http://203.154.66.203:8015/FoodBerg"
+                href="https://www.foodfinity.co.th/privacy"
               >
-                <Button size="large" type="primary" className="font-bold">FB</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px', lineHeight: 1, fontWeight: 'bold'}}>FB</Button>
               </a>
             </Row>
           </Col>

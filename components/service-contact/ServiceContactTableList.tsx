@@ -38,16 +38,16 @@ function ServiceContactTableList({ data }: Props) {
             </tr>
             {item.serviceContactDetail.map((contact) => (
               <tr key={contact.id} className="text-[24px] h-[62px]">
-                <td className="border border-slate-300 pl-7">
+                <td className="border border-slate-300 pl-7 font-semibold">
                   {contact.objective}
                 </td>
                 <td className="border border-slate-300 text-center">
-                  <p className="mb-0">{contact.contactID}</p>
-                  <p className="mb-0 text-[19px]" style={{ color: "#0F52BA" }}>
+                  <p className="mb-0  font-semibold">{contact.contactID}</p>
+                  <p className="mb-0 text-[19px]  font-semibold" style={{ color: "#0F52BA" }}>
                     {contact.contactPhoneNumber}
                   </p>
                 </td>
-                <td className="border border-slate-300 text-center">
+                <td className="border border-slate-300 text-center font-semibold" >
                   {contact.name}
                 </td>
               </tr>

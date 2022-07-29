@@ -39,8 +39,8 @@ const CarouselSlider = (props: any) => {
                   fallback={imagePlaceholder}
                   preview={false}
                   src={_post.imageUrl}
-                  width={236}
-                  height={300}
+                  width={240}
+                  height={353}
                   className="rounded-xl "
                   alt=""
                 />

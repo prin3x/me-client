@@ -39,12 +39,13 @@ function PostList({ posts }: Props) {
                 <Link href={`/${_post.categoryName}/${_post.slug}/`} passHref>
                   <div className="flex flex-col h-20">
                     <div className="text-xl font-bold"> {_post.title}</div>
-                    <p
+                    {/* <p
                       className="text-slate-400 truncate"
                       dangerouslySetInnerHTML={{
                         __html: `${draftToHtml(JSON.parse(_post.content))}`,
                       }}
-                    />
+                    /> */}
+                    <p className="text-slate-400 truncate">{_post.description}</p>
                   </div>
                 </Link>
               </Col>
