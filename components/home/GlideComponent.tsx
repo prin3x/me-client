@@ -48,12 +48,9 @@ const CarouselSlider = (props: any) => {
                   <h3 className="text-white text-xl font-bold">
                     {_post.title.slice(0, 18)}
                   </h3>
-                  <p
-                    className="text-white text-md truncate"
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        `${draftToHtml(JSON.parse(_post.description))}`}}
-                  />
+                  <p className="text-white text-md truncate">
+                    {_post.description}
+                  </p>
                 </div>
               </li>
             ))}

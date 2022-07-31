@@ -181,16 +181,9 @@ const Home: NextPage = () => {
                       <div className="heading-th text-white text-xl font-bold">
                         {recentItClinicMeta?.data?.items?.[0]?.title}
                       </div>
-                      <div
-                        className="text-white text-lg truncate"
-                        dangerouslySetInnerHTML={{
-                          __html: `${draftToHtml(
-                            JSON.parse(
-                              recentItClinicMeta?.data?.items?.[0]?.description
-                            )
-                          )}`,
-                        }}
-                      />
+                      <div className="text-white text-lg truncate">
+                        {recentActivityMeta?.data?.items?.[0]?.description}
+                      </div>
                     </div>
                   </div>
                   <Row justify="end">
@@ -225,16 +218,9 @@ const Home: NextPage = () => {
                       <div className="heading-th text-white text-xl font-bold">
                         {recentActivityMeta?.data?.items?.[0]?.title}
                       </div>
-                      <div
-                        className="text-white text-lg truncate"
-                        dangerouslySetInnerHTML={{
-                          __html: `${draftToHtml(
-                            JSON.parse(
-                              recentActivityMeta?.data?.items?.[0]?.description
-                            )
-                          )}`,
-                        }}
-                      />
+                      <div className="text-white text-lg truncate">
+                        {recentActivityMeta?.data?.items?.[0]?.description}
+                      </div>
                     </div>
                   </div>
                   <Row justify="end">
