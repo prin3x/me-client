@@ -94,16 +94,18 @@ const Home: NextPage = () => {
             >
               {carouselSet.map((_item) => (
                 <div key={_item.id}>
-                  <div className="h-72 min-h-full bg-gray-300 rounded-xl">
-                    <Image
-                      src={_item.imageUrl}
-                      preview={false}
-                      alt=""
-                      width={1004}
-                      height={565}
-                      placeholder={true}
-                    />
-                  </div>
+                  <a href={_item.linkOut}>
+                    <div className="h-72 min-h-full bg-gray-300 rounded-xl">
+                      <Image
+                        src={_item.imageUrl}
+                        preview={false}
+                        alt=""
+                        width={1004}
+                        height={565}
+                        placeholder={true}
+                      />
+                    </div>
+                  </a>
                 </div>
               ))}
             </Carousel>
@@ -184,7 +186,7 @@ const Home: NextPage = () => {
                         dangerouslySetInnerHTML={{
                           __html: `${draftToHtml(
                             JSON.parse(
-                              recentItClinicMeta?.data?.items?.[0]?.content
+                              recentItClinicMeta?.data?.items?.[0]?.description
                             )
                           )}`,
                         }}
@@ -228,7 +230,7 @@ const Home: NextPage = () => {
                         dangerouslySetInnerHTML={{
                           __html: `${draftToHtml(
                             JSON.parse(
-                              recentActivityMeta?.data?.items?.[0]?.content
+                              recentActivityMeta?.data?.items?.[0]?.description
                             )
                           )}`,
                         }}
