@@ -63,6 +63,8 @@ function MakeBookingForm({
   const [isCheckedAllDay, setIsCheckedAllDay] = useState(false);
   const [filteredAvailableHours, setFilteredAvailableHours] =
     useState(availableHours);
+  const [formValues, setFormValues] = useState<any>({});
+  const [hourDiff, setHourDiff] = useState(0);
 
   function defaultDisabledDate(current) {
     return current < moment().subtract(23, "h");
@@ -90,6 +92,8 @@ function MakeBookingForm({
     return result;
   }
 
+  const onFieldChange = (_formValues) => setFormValues(_formValues);
+
   // function disabledDateTime() {
   //   return {
   //     disabledHours: () => {
@@ -112,12 +116,38 @@ function MakeBookingForm({
   //   };
   // }
 
+  function mergeDate(formValues) {
+    const startTime =
+      moment(formValues.startDate).format("YYYY-MM-DD") +
+      " " +
+      moment(formValues.startHour).format("HH:mm");
+    const endTime =
+      moment(formValues.endDate).format("YYYY-MM-DD") +
+      " " +
+      moment(formValues.endHour).format("HH:mm");
+
+    const hourDiff = moment(endTime).diff(moment(startTime), "minutes") / 60;
+
+    return isNaN(hourDiff) ? 0 : hourDiff;
+  }
+
   useEffect(() => {
-    form.setFieldsValue({ roomId: roomsMeta?.data?.items?.[0]?.id, allDay: false });
+    form.setFieldsValue({
+      roomId: roomsMeta?.data?.items?.[0]?.id,
+      allDay: false,
+    });
     if (router.query.date) {
       form.setFieldsValue({ date: moment(router.query.date) });
     }
   }, [roomsMeta, router]);
+
+  useEffect(() => {
+    const hourDiff = mergeDate(formValues);
+
+    setHourDiff(hourDiff);
+
+    return () => setHourDiff(0);
+  }, [formValues]);
 
   return (
     <Row justify="center" className="w-full meeting-room">
@@ -129,7 +159,12 @@ function MakeBookingForm({
         </Col>
       </Row>
       <Row justify="start" className=" mt-5 w-full">
-        <Form onFinish={submitRoomBooking} form={form} colon={false}>
+        <Form
+          onFinish={submitRoomBooking}
+          form={form}
+          colon={false}
+          onValuesChange={(_, form) => onFieldChange(form)}
+        >
           <Form.Item
             className="font-bold"
             name="title"
@@ -156,20 +191,26 @@ function MakeBookingForm({
           </Form.Item>
           <Row>
             <Form.Item
-              className="font-bold"
+              className="font-bold  strict-error-form-item"
               name="startDate"
               label="Start Date"
-              rules={[{ required: true }]}
+              rules={[{ required: true, message: "Please input start date!" }]}
             >
               <DatePicker disabledDate={defaultDisabledDate} />
             </Form.Item>
             <Form.Item
               className="font-bold"
               name="startHour"
-              rules={[{ required: true }]}
+              rules={[{ required: true, message: "Please input start time!" }]}
               // initialValue={filteredAvailableHours[0].value}
             >
-              <TimePicker minuteStep={30} format="HH:mm" style={{marginLeft: '1rem'}}/>
+              <TimePicker
+                minuteStep={30}
+                format="HH:mm"
+                style={{ marginLeft: "1rem" }}
+                disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 20, 21, 22, 23]}
+                hideDisabledOptions
+              />
             </Form.Item>
             {/* <Form.Item name="allDay">
               <Checkbox onChange={onCheck} style={{ marginLeft: 24 }}>
@@ -179,21 +220,75 @@ function MakeBookingForm({
           </Row>
           <Row>
             <Form.Item
-              className="font-bold"
+              className="font-bold strict-error-form-item"
               name="endDate"
               label="End Date"
-              rules={[{ required: true }]}
+              dependencies={["startDate"]}
+              rules={[
+                { required: true, message: "Please input end date!" },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (value && getFieldValue("startDate").isBefore(value)) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error(
+                        "Please Select Only Possible Date (Day after start date)"
+                      )
+                    );
+                  },
+                }),
+              ]}
             >
-              <DatePicker disabledDate={defaultDisabledDate} disabled={isCheckedAllDay} />
+              <DatePicker
+                disabledDate={defaultDisabledDate}
+                disabled={isCheckedAllDay}
+              />
             </Form.Item>
             <Form.Item
               className="font-bold"
               name="endHour"
-              rules={[{ required: true }]}
+              dependencies={["startHour"]}
+              rules={[
+                { required: true, message: "Please input end time!" },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    const formValues = {
+                      startDate: getFieldValue("startDate"),
+                      startHour: getFieldValue("startHour"),
+                      endDate: getFieldValue("endDate"),
+                      endHour: value,
+                    };
+
+                    const hourDiff = mergeDate(formValues);
+
+                    if (hourDiff <= 0) {
+                      return Promise.reject(
+                        new Error(
+                          "Please Select Only Possible Time (time after start hour)"
+                        )
+                      );
+                    }
+                    return Promise.resolve();
+                  },
+                }),
+              ]}
               // initialValue={filteredAvailableHours[0].value}
             >
-              <TimePicker minuteStep={30} format="HH:mm" style={{marginLeft: '1rem'}} disabled={isCheckedAllDay}  />
+              <TimePicker
+                minuteStep={30}
+                format="HH:mm"
+                style={{ marginLeft: "1rem" }}
+                disabled={isCheckedAllDay}
+                disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 20, 21, 22, 23]}
+                hideDisabledOptions
+              />
             </Form.Item>
+            {hourDiff > 0 && (
+              <div className="hour-diff text-xl leading-9	ml-10">
+                {hourDiff} Hour(s)
+              </div>
+            )}
           </Row>
 
           {/* <Row>
@@ -345,6 +440,14 @@ function MakeBookingForm({
           </Row>
         </Form>
       </Row>
+
+      <Select style={{ width: 300 }}>
+        {availableMinutes.map((el) => (
+          <Select.Option key={el.label} value={el.value}>
+            {el.label}
+          </Select.Option>
+        ))}
+      </Select>
     </Row>
   );
 }
