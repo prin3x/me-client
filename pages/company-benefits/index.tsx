@@ -24,7 +24,7 @@ function CompanyBenefits({}: Props): ReactElement {
         <Row className='mt-5'>
           <Col span={24}>
             <Row justify='center'>
-              <Button size="middle" type='primary' style={{borderRadius: '36px', width: '10rem', lineHeight: 1, fontWeight: 'bold'}}>ฉบับเต็มคลิกที่นี่</Button>
+              <Button size="middle" type='primary' style={{borderRadius: '36px', width: '14rem', lineHeight: 1, fontWeight: 'bold', height: '2.5rem'}}>ฉบับเต็มคลิกที่นี่</Button>
             </Row>
           </Col>
         </Row>

@@ -35,7 +35,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="https://www.mindedge.co.th/information/me-privacy"
               >
-                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px', lineHeight: 1, fontWeight: 'bold'}}>ME</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '5rem', lineHeight: 1, fontWeight: 'bold'}}>ME</Button>
               </a>
               <a
                 className="cursor-pointer"
@@ -43,7 +43,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="https://www.mindedge.co.th/information/mr-privacy"
               >
-                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px', lineHeight: 1, fontWeight: 'bold'}}>MR</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '5rem', lineHeight: 1, fontWeight: 'bold'}}>MR</Button>
               </a>
               <a
                 className="cursor-pointer"
@@ -51,7 +51,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="https://www.meandyou.co.th/privacy"
               >
-                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px', lineHeight: 1, fontWeight: 'bold'}}>MY</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '5rem', lineHeight: 1, fontWeight: 'bold'}}>MY</Button>
               </a>
               <a
                 className="cursor-pointer"
@@ -59,7 +59,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="https://www.foodfinity.co.th/privacy"
               >
-                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px', lineHeight: 1, fontWeight: 'bold'}}>FB</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '5rem', lineHeight: 1, fontWeight: 'bold'}}>FB</Button>
               </a>
             </Row>
           </Col>

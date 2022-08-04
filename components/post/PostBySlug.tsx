@@ -46,6 +46,11 @@ function PostBySlug({ postData }: Props) {
         </Breadcrumb.Item>
         <Breadcrumb.Item>{postData?.title}</Breadcrumb.Item>
       </Breadcrumb>
+      <Row justify="end">
+        <Col>
+          {moment(postData?.createdAt).format("DD MMMM yyyy | hh:mm A")}
+        </Col>
+      </Row>
       <Row justify="center" className="pt-10">
         <Col>
           <h1 className="heading text-4xl font-bold">{postData?.title}</h1>
@@ -67,11 +72,7 @@ function PostBySlug({ postData }: Props) {
           }}
         />
       </div>
-      <Row justify="end">
-        <Col>
-          {moment(postData?.createdAt).format("DD MMMM yyyy | hh:mm A")}
-        </Col>
-      </Row>
+
     </div>
   );
 }

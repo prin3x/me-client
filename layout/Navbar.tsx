@@ -7,6 +7,7 @@ import Link from "next/link";
 import { UserContext } from "../context/UserContext";
 import { useRouter } from "next/router";
 import { nanoid } from "nanoid";
+import { RiUser3Fill } from "react-icons/ri";
 
 function Navbar(): ReactElement {
   const { userInfo, signOut, getUser } = useContext(UserContext);
@@ -112,14 +113,14 @@ function Navbar(): ReactElement {
 
   const Services = (
     <Menu className="bg-primary-color text-white text-lg ">
-      <Menu.Item   key={nanoid(5)} className="text-white">
+      <Menu.Item key={nanoid(5)} className="text-white">
         <Link href={"/booking"}>
           <a className="cursor-pointer">
             <div className="text-white nav-item text-lg ">Meeting Room</div>
           </a>
         </Link>
       </Menu.Item>
-      <Menu.Item   key={nanoid(5)} className="text-white">
+      <Menu.Item key={nanoid(5)} className="text-white">
         <Link href={"/service-contact"}>
           <a className="cursor-pointer">
             <div className="text-white nav-item text-lg ">Service Contact</div>
@@ -162,17 +163,13 @@ function Navbar(): ReactElement {
         </Link>
       </Menu.Item>
       <Menu.Item key={nanoid(5)}>
-        <Link href={"/itclinic"}>
-          <a className="cursor-pointer">
-            <div className="text-white nav-item text-lg ">IT Clinic</div>
-          </a>
+        <Link href={"/itclinic"} passHref>
+            <div className="text-white nav-item text-lg cursor-pointer">IT Clinic</div>
         </Link>
       </Menu.Item>
       <Menu.Item key={nanoid(5)}>
-        <Link href={"/activity"}>
-          <a className="cursor-pointer">
-            <div className="text-white nav-item text-lg ">Activities</div>
-          </a>
+        <Link href={"/activity"} passHref>
+            <div className="text-white nav-item text-lg cursor-pointer">Activities</div>
         </Link>
       </Menu.Item>
     </Menu>
@@ -222,39 +219,47 @@ function Navbar(): ReactElement {
     <Row className="navbar-container mx-auto" align="top">
       <Row align="top" wrap={false}>
         <Col>
-          <Link href={"/"} passHref>
-            <div className="nav-logo mt-4 flex h-100 items-center cursor-pointer">
-              <Image
-                src="/assets/logo-m.png"
-                preview={false}
-                width={150}
-                className="cursor-pointer nav-logo"
-                alt="logo"
-              />
-            </div>
-          </Link>
-        </Col>
-        <Col>
-          <div className="navbar bg-primary-color flex items-center h-full rounded-tl-full rounded-br-full">
-            <ul className="navbar-ul flex  flex-wrap items-center gap-20 mb-0 ">
+          <div className="navbar bg-primary-color flex items-center h-full rounded-tr-full rounded-bl-full">
+            <ul className="navbar-ul flex flex-wrap gap-20 mb-0 ">
+              <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold">
+                <Link href='/' passHref>
+                <div className="home-logo text-4xl font-bold">HOME</div>
+                </Link>
+              </li>
               <Dropdown overlay={Personal}>
                 <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold">
-                  personal <CaretDownOutlined  style={{color: '#F7941D'}} className="down-icon" />
+                  personal{" "}
+                  <CaretDownOutlined
+                    style={{ color: "#fca125" }}
+                    className="down-icon"
+                  />
                 </li>
               </Dropdown>
               <Dropdown overlay={Services}>
                 <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold ">
-                  service <CaretDownOutlined  style={{color: '#F7941D'}} className="down-icon" />
+                  service{" "}
+                  <CaretDownOutlined
+                    style={{ color: "#fca125" }}
+                    className="down-icon"
+                  />
                 </li>
               </Dropdown>
               <Dropdown overlay={News}>
                 <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold ">
-                  news <CaretDownOutlined  style={{color: '#F7941D'}} className="down-icon" />
+                  news{" "}
+                  <CaretDownOutlined
+                    style={{ color: "#fca125" }}
+                    className="down-icon"
+                  />
                 </li>
               </Dropdown>
               <Dropdown overlay={CompanyProfile}>
                 <li className="nav-li-item text-white uppercase flex justify-between items-center gap-2 font-24 font-bold">
-                  <span>company</span> <CaretDownOutlined  style={{color: '#F7941D'}} className="down-icon" />
+                  <span>company</span>{" "}
+                  <CaretDownOutlined
+                    style={{ color: "#fca125" }}
+                    className="down-icon"
+                  />
                 </li>
               </Dropdown>
               <li className="nav-li-item text-white flex items-center gap-3 font-bold">
@@ -262,12 +267,22 @@ function Navbar(): ReactElement {
                   <Avatar
                     shape="circle"
                     style={{
-                      backgroundColor: "orange",
+                      backgroundColor: "white",
                       marginRight: "10px",
                       minWidth: "50px",
                       height: "50px",
+                      border: "3px solid white",
                     }}
                     size={48}
+                    icon={
+                      <RiUser3Fill
+                        style={{
+                          fill: "#1655b7",
+                          fontSize: "2.75rem",
+                          marginTop: "0.3rem",
+                        }}
+                      />
+                    }
                     src={
                       userInfo?.profilePicUrl
                         ? userInfo?.profilePicUrl
@@ -275,23 +290,19 @@ function Navbar(): ReactElement {
                     }
                   />
                 </Link>
-                <div className="user-info welcom-text text-white">
-                  Welcome {userInfo?.nickname?.slice(0, 8)}
-                </div>
                 <div className="user-info user-action flex flex-col">
-                  <div
-                    className="text-white"
-                    style={{ marginLeft: 10, cursor: "pointer" }}
-                    onClick={signOutAndReturnToLogin}
-                  >
-                    Log Out
+                  <div className="user-info welcom-text text-white">
+                    Welcome{" "}
+                    <span className="font-bold">
+                      {userInfo?.nickname?.slice(0, 8)}
+                    </span>
                   </div>
                   <div
                     className="user-info text-white"
-                    style={{ marginLeft: 10, cursor: "pointer" }}
                     onClick={() => router.push("/change-password/")}
                   >
-                    Change Password
+                    Change Password /
+                    <span onClick={signOutAndReturnToLogin}> Log Out</span>
                   </div>
                 </div>
               </li>
