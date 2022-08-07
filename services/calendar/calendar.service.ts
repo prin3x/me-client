@@ -5,8 +5,11 @@ import {
   UpdateNewsDto,
 } from "./calendar.model";
 import * as queryString from "query-string";
+import moment from "moment";
 
-export async function _findAllCalendarEvent(q: ListQueryCalendarDTO):Promise<any> {
+export async function _findAllCalendarEvent(
+  q: ListQueryCalendarDTO
+): Promise<any> {
   const query = queryString.stringify(q);
   return await axios.get(`/calendar-event?${query}`).then((res) => res.data);
 }
@@ -28,4 +31,10 @@ export function _updateEvent(id: number | string, eventInfo: UpdateNewsDto) {
 
 export function _deleteEvent(id: number | string) {
   return axios.delete(`/calendar-event/${id}`).then((res) => res.data);
+}
+
+export function _getHolidays() {
+  return axios
+    .get(`/calendar-event/list?category=holiday&year=${moment().year()}`)
+    .then((res) => res.data);
 }

@@ -31,12 +31,19 @@ function FormRequestList({ data }: Props) {
               style={{ color: "white" }}
             >
               {form?.formsRequestDetail?.map((fr) => (
-                <p
-                  className="form-download-item text-lg mb-0 py-2 font-semibold"
+                <a
+                  href={fr.downloadLink}
                   key={fr.id}
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  &emsp; &emsp; {fr.content}
-                </p>
+                  <p
+                    className="form-download-item text-lg mb-0 py-2 font-semibold"
+                    key={fr.id}
+                  >
+                    &emsp; &emsp; {fr.content}
+                  </p>
+                </a>
               ))}
             </Collapse.Panel>
           ))}

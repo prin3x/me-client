@@ -71,7 +71,6 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
-    getUser();
     getCarousel();
   }, []);
 
@@ -94,7 +93,24 @@ const Home: NextPage = () => {
             >
               {carouselSet.map((_item) => (
                 <div key={_item.id}>
-                  <a href={_item.linkOut}>
+                  {_item.linkOut ? (
+                    <a
+                      href={"https://" + _item.linkOut.replace('https://', '')}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <div className="h-72 min-h-full bg-gray-300 rounded-xl">
+                        <Image
+                          src={_item.imageUrl}
+                          preview={false}
+                          alt=""
+                          width={1004}
+                          height={565}
+                          placeholder={true}
+                        />
+                      </div>
+                    </a>
+                  ) : (
                     <div className="h-72 min-h-full bg-gray-300 rounded-xl">
                       <Image
                         src={_item.imageUrl}
@@ -105,7 +121,7 @@ const Home: NextPage = () => {
                         placeholder={true}
                       />
                     </div>
-                  </a>
+                  )}
                 </div>
               ))}
             </Carousel>
@@ -169,7 +185,10 @@ const Home: NextPage = () => {
                   >
                     <Image
                       className="rounded-xl"
-                      src={recentItClinicMeta?.data?.items?.[0]?.imageUrl}
+                      src={
+                        recentItClinicMeta?.data?.items?.[0]?.homeImageUrl ||
+                        recentItClinicMeta?.data?.items?.[0]?.imageUrl
+                      }
                       preview={false}
                       fallback={imagePlaceholder}
                       alt=""
@@ -206,7 +225,10 @@ const Home: NextPage = () => {
                   >
                     <Image
                       className="rounded-xl"
-                      src={recentActivityMeta?.data?.items?.[0]?.imageUrl}
+                      src={
+                        recentItClinicMeta?.data?.items?.[0]?.homeImageUrl ||
+                        recentItClinicMeta?.data?.items?.[0]?.imageUrl
+                      }
                       preview={false}
                       fallback={imagePlaceholder}
                       alt=""

@@ -26,9 +26,12 @@ const Home: NextPage = () => {
     setIsLoading(true);
     try {
       const { accessToken } = await _login(user);
-      setTokenToStorage(accessToken);
-      message.success("เข้าสู่ระบบ");
-      router.push("/");
+      if (accessToken) {
+        setTokenToStorage(accessToken);
+        
+        message.success("เข้าสู่ระบบ");
+        router.push("/");
+      }
     } catch (e) {
       Modal.error({ title: "กรุณาตรวจสอบข้อมูลของท่านใหม่" });
     } finally {
@@ -68,7 +71,7 @@ const Home: NextPage = () => {
               />
             </Form.Item>
             <Form.Item name="remember" valuePropName="checked">
-              <Checkbox className='add-padding'>
+              <Checkbox className="add-padding">
                 <span>Remember Me</span>
               </Checkbox>
             </Form.Item>

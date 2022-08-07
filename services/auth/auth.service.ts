@@ -20,3 +20,11 @@ export function clearToken() {
 export async function checkAuth(): Promise<IContact> {
   return await axios.get("/auth/checkauth").then((res) => res.data);
 }
+
+export async function checkToken(
+  token: string
+): Promise<{ accessToken: string }> {
+  return await axios
+    .post("/auth/checktoken", { token })
+    .then((res) => res.data);
+}

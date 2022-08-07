@@ -199,6 +199,8 @@ function BookingMeetingRoom(): ReactElement {
                             placeholder="Floor"
                             onChange={selectFloor}
                           >
+                            <Select.Option value="1">1</Select.Option>
+                            <Select.Option value="2">2</Select.Option>
                             <Select.Option value="3">3</Select.Option>
                             <Select.Option value="4">4</Select.Option>
                           </Select>

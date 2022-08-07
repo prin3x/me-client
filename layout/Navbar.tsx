@@ -19,7 +19,6 @@ function Navbar(): ReactElement {
   }
 
   useEffect(() => {
-    getUser();
   }, []);
 
   const Personal = (
@@ -294,7 +293,7 @@ function Navbar(): ReactElement {
                   <div className="user-info welcom-text text-white">
                     Welcome{" "}
                     <span className="font-bold">
-                      {userInfo?.nickname?.slice(0, 8)}
+                      {userInfo?.name?.split(' ')[0]}
                     </span>
                   </div>
                   <div
