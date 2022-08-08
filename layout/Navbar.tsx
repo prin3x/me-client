@@ -18,8 +18,7 @@ function Navbar(): ReactElement {
     router.push("/log-in");
   }
 
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   const Personal = (
     <Menu className="bg-primary-color text-white text-lg ">
@@ -163,12 +162,16 @@ function Navbar(): ReactElement {
       </Menu.Item>
       <Menu.Item key={nanoid(5)}>
         <Link href={"/itclinic"} passHref>
-            <div className="text-white nav-item text-lg cursor-pointer">IT Clinic</div>
+          <div className="text-white nav-item text-lg cursor-pointer">
+            IT Clinic
+          </div>
         </Link>
       </Menu.Item>
       <Menu.Item key={nanoid(5)}>
         <Link href={"/activity"} passHref>
-            <div className="text-white nav-item text-lg cursor-pointer">Activities</div>
+          <div className="text-white nav-item text-lg cursor-pointer">
+            Activities
+          </div>
         </Link>
       </Menu.Item>
     </Menu>
@@ -216,13 +219,13 @@ function Navbar(): ReactElement {
 
   return (
     <Row className="navbar-container" align="top">
-      <Row align="top" wrap={false} className='block mx-auto'>
+      <Row align="top" wrap={false} className="block mx-auto">
         <Col>
           <div className="navbar bg-primary-color flex items-center h-full rounded-tr-full rounded-bl-full">
             <ul className="navbar-ul flex flex-wrap gap-20 mb-0 ">
               <li className="nav-li-item text-white uppercase flex items-center gap-2 font-24 font-bold">
-                <Link href='/' passHref>
-                <div className="home-logo text-4xl font-bold">HOME</div>
+                <Link href="/" passHref>
+                  <div className="home-logo text-4xl font-bold">HOME</div>
                 </Link>
               </li>
               <Dropdown overlay={Personal}>
@@ -293,14 +296,13 @@ function Navbar(): ReactElement {
                   <div className="user-info welcom-text text-white">
                     Welcome{" "}
                     <span className="font-bold">
-                      {userInfo?.name?.split(' ')[0]}
+                      {userInfo?.name?.split(" ")[0]}
                     </span>
                   </div>
-                  <div
-                    className="user-info text-white"
-                    onClick={() => router.push("/change-password/")}
-                  >
-                    Change Password /
+                  <div className="user-info text-white">
+                    <span onClick={() => router.push("/change-password/")}>
+                      Change Password /
+                    </span>
                     <span onClick={signOutAndReturnToLogin}> Log Out</span>
                   </div>
                 </div>
