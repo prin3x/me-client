@@ -218,8 +218,12 @@ function Navbar(): ReactElement {
   );
 
   return (
-    <Row className="navbar-container" align="top">
-      <Row align="top" wrap={false} className="block mx-auto">
+    <Row className="w-full" align="top">
+      <Row
+        align="top"
+        wrap={false}
+        className=" navbar-container  block mx-auto"
+      >
         <Col>
           <div className="navbar bg-primary-color flex items-center h-full rounded-tr-full rounded-bl-full">
             <ul className="navbar-ul flex flex-wrap gap-20 mb-0 ">
