@@ -55,9 +55,9 @@ export function UserProvider(props: any) {
       getUser();
     }
 
-    if(!router.pathname.includes("log-in") && localStorage.getItem("token")){
-      checkTokenAndRenew();
-    }
+    // if(!router.pathname.includes("log-in") && localStorage.getItem("token")){
+    //   checkTokenAndRenew();
+    // }
   }, [router]);
 
   return (
