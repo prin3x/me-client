@@ -142,9 +142,12 @@ function MakeBookingForm({
   }, [roomsMeta, router]);
 
   useEffect(() => {
-    const hourDiff = mergeDate(formValues);
+    if(formValues.endHour && formValues.endDate) {
 
-    setHourDiff(hourDiff);
+      const hourDiff = mergeDate(formValues);
+      
+      setHourDiff(hourDiff);
+    }
 
     return () => setHourDiff(0);
   }, [formValues]);
@@ -440,14 +443,14 @@ function MakeBookingForm({
           </Row>
         </Form>
       </Row>
-
+{/* 
       <Select style={{ width: 300 }}>
         {availableMinutes.map((el) => (
           <Select.Option key={el.label} value={el.value}>
             {el.label}
           </Select.Option>
         ))}
-      </Select>
+      </Select> */}
     </Row>
   );
 }
