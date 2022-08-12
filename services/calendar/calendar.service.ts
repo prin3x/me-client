@@ -35,6 +35,6 @@ export function _deleteEvent(id: number | string) {
 
 export function _getHolidays() {
   return axios
-    .get(`/calendar-event/list?category=holiday&year=${moment().year()}`)
+    .get(`/calendar-event/list?category=holiday&year=${moment().year()}&limit=100`)
     .then((res) => res.data);
 }
