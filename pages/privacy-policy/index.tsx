@@ -57,7 +57,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 className="cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
-                href="https://www.foodfinity.co.th/privacy"
+                href="https://drive.google.com/file/d/172d9O-xywEwZ4cc_qw656AMdoXLxDSkg/view?usp=sharing"
               >
                 <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '5rem', lineHeight: 1, fontWeight: 'bold'}}>FB</Button>
               </a>
