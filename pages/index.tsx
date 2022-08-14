@@ -49,9 +49,6 @@ const Home: NextPage = () => {
     [ALL_RECENT_POST, { limit: 1, categoryName: EPostCategory.IT }],
     () => _getRecentITClinic(queryStr)
   );
-  function onChange(a: any) {
-    console.log(a);
-  }
 
   function setQuery() {
     let set = {} as ListQueryParamsForPost;
@@ -87,7 +84,6 @@ const Home: NextPage = () => {
         <Row justify="center" className="container mx-auto pt-10">
           <Col className="relative" span={24}>
             <Carousel
-              afterChange={onChange}
               dots={{ className: "circle-dots" }}
               className="z-10 relative"
             >
@@ -159,7 +155,7 @@ const Home: NextPage = () => {
             </Row>
           )}
         <Row className="container mx-auto pt-10">
-          <Col span={24}>
+          <Col span={24} className='cursor-pointer'>
             <Link href="/service-contact" passHref>
               <Image
                 src="/assets/service-contact-hero.png"

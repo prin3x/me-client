@@ -5,6 +5,7 @@ import { imagePlaceholder } from "../../utils/placeholder.image";
 import draftToHtml from "draftjs-to-html";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { _readOnePost } from "../../services/news/news.service";
 
 type Props = {
   postData: any;
@@ -24,12 +25,24 @@ function PostBySlug({ postData }: Props) {
   function findUrlInPathname() {
     const availableUrl = Object.keys(urls);
     const pathname = router.pathname.split("/")?.[1];
-    console.log(pathname, "foundPath");
 
     const foundPath =
       availableUrl.find((_url) => _url === pathname) || "undefined";
     setFoundPath(foundPath);
   }
+
+  useEffect(() => {
+    if (!postData?.id) return;
+
+    if(sessionStorage.getItem(`post-${postData?.id}`)) return;
+
+    sessionStorage.setItem(
+      `post-${postData?.id}`,
+      JSON.stringify(new Date().getTime())
+    );
+
+    _readOnePost(postData?.id)
+  }, [postData?._id]);
 
   useEffect(() => {
     findUrlInPathname();
@@ -72,7 +85,6 @@ function PostBySlug({ postData }: Props) {
           }}
         />
       </div>
-
     </div>
   );
 }

@@ -12,8 +12,13 @@ type Props = {};
 function ItClinicById({}: Props) {
   const router = useRouter();
   const postMeta = useQuery([POST_QUERY, router.query.id], () =>
-    _getOnePost(router.query.id as string)
+    getOnePost(router.query.id as string)
   );
+
+  function getOnePost(id: string) {
+    if (!id) return;
+    return _getOnePost(id);
+  }
 
   return (
     <LayoutHOC>

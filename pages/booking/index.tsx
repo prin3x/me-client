@@ -50,7 +50,6 @@ function BookingMeetingRoom(): ReactElement {
   );
 
   function onPanelChange(value, mode) {
-    console.log(value, mode, "value, mode");
   }
 
   function onSelect(date) {

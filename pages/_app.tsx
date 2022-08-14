@@ -10,7 +10,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import axios from "axios";
 import { API_URL } from "../config";
-import { getAuthToken } from "../services/auth/auth.service";
+import { clearToken, getAuthToken } from "../services/auth/auth.service";
 import { UserProvider } from "../context/UserContext";
 
 export const queryClient = new QueryClient({
@@ -38,6 +38,7 @@ axios.interceptors.response.use(
   },
   function (error) {
     if (error.response.status && error.response.status === 401) {
+      // clearToken();
       window.location.replace("/log-in");
     }
     return Promise.reject(error);

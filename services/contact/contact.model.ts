@@ -22,6 +22,7 @@ export interface IContact {
   createdBy: number;
   createdDate: string;
   updatedDate: string;
+  role? : string
 }
 
 export interface ListQueryParams {

@@ -1,5 +1,5 @@
 import { List } from "antd";
-import React from "react";
+import React, { Fragment } from "react";
 import { IServiceContact } from "../../services/serviceContact/service-contact.model";
 
 type Props = {
@@ -21,7 +21,7 @@ function ServiceContactTableList({ data }: Props) {
       </thead>
       <tbody>
         {data?.map((item) => (
-          <>
+          <Fragment key={item.id}>
             <tr
               key={item.id}
               style={{ backgroundColor: "rgba(22,85,183,0.1)" }}
@@ -43,16 +43,19 @@ function ServiceContactTableList({ data }: Props) {
                 </td>
                 <td className="border border-slate-300 text-center">
                   <p className="mb-0  font-semibold">{contact.contactID}</p>
-                  <p className="mb-0 text-[19px]  font-semibold" style={{ color: "#0F52BA" }}>
+                  <p
+                    className="mb-0 text-[19px]  font-semibold"
+                    style={{ color: "#0F52BA" }}
+                  >
                     {contact.contactPhoneNumber}
                   </p>
                 </td>
-                <td className="border border-slate-300 text-center font-semibold" >
+                <td className="border border-slate-300 text-center font-semibold">
                   {contact.name}
                 </td>
               </tr>
             ))}
-          </>
+          </Fragment>
         ))}
       </tbody>
     </table>

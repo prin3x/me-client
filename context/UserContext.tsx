@@ -24,11 +24,11 @@ export function UserProvider(props: any) {
   const [isLoadingUserInfo, setIsLoadingUserInfo] = useState(true);
 
   const getUser = async () => {
-    console.log('aikdhaiopshdio')
     // const user = await checkAuth();
     if (localStorage.getItem("token")) {
       const user: IContact = jwt_decode(localStorage.getItem("token"));
       if (!user) return false;
+      if (user.role) signOut();
       setUserInfo(user);
     }
   };

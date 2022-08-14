@@ -17,7 +17,7 @@ export function clearToken() {
   return localStorage.removeItem("token");
 }
 
-export async function checkAuth(): Promise<IContact> {
+export async function checkAuth(): Promise<{ accessToken: string }> {
   return await axios.get("/auth/checkauth").then((res) => res.data);
 }
 

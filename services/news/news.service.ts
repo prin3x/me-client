@@ -28,3 +28,7 @@ export function _getOnePost(_slug: string) {
 export function _getPostByCategoryId(_id: string | number) {
   return axios.get(`posts/category/${_id}`).then((res) => res.data);
 }
+
+export function _readOnePost(_slug: string) {
+  return axios.post(`/posts/read/${_slug}`).then((res) => res.data);
+}

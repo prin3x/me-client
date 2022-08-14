@@ -8,6 +8,7 @@ import { UserContext } from "../context/UserContext";
 import { useRouter } from "next/router";
 import { nanoid } from "nanoid";
 import { RiUser3Fill } from "react-icons/ri";
+import { checkAuth, setTokenToStorage } from "../services/auth/auth.service";
 
 function Navbar(): ReactElement {
   const { userInfo, signOut, getUser } = useContext(UserContext);
@@ -18,7 +19,16 @@ function Navbar(): ReactElement {
     router.push("/log-in");
   }
 
-  useEffect(() => {}, []);
+  async function checkAuthAndSetNewToken() {
+    const { accessToken } = await checkAuth();
+    if (accessToken) {
+      setTokenToStorage(accessToken);
+    }
+  }
+
+  useEffect(() => {
+    checkAuthAndSetNewToken();
+  }, []);
 
   const Personal = (
     <Menu className="bg-primary-color text-white text-lg ">
@@ -179,7 +189,7 @@ function Navbar(): ReactElement {
 
   const CompanyProfile = (
     <Menu className="bg-primary-color text-white text-lg ">
-      <Menu.Item className="text-white">
+      <Menu.Item key={nanoid(5)} className="text-white">
         <Link href={"/company-profile"}>
           <a className="cursor-pointer">
             <div className="text-white nav-item text-lg ">Profile</div>
