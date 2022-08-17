@@ -71,7 +71,7 @@ function MeetingRoomCalendar({
     }
   };
 
-  const getToSelectDay = () => {
+  const getToSelectDay = (selectDate) => {
     if (calendarRef.current) {
       calendarRef.current.getApi().gotoDate(selectDate);
     }
@@ -119,7 +119,7 @@ function MeetingRoomCalendar({
   }, []);
 
   useEffect(() => {
-    getToSelectDay();
+    getToSelectDay(selectDate);
   }, [selectDate]);
 
   useEffect(() => {
@@ -154,7 +154,7 @@ function MeetingRoomCalendar({
         </Col>
         <Col>
           <div className="text-xl font-bold">
-            {moment(currentDate).format("dddd DD MMMM yyyy")}
+            {moment(selectDate).format("dddd DD MMMM yyyy")}
           </div>
         </Col>
         <Col>

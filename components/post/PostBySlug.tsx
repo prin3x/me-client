@@ -53,7 +53,7 @@ function PostBySlug({ postData }: Props) {
       <Breadcrumb>
         <Breadcrumb.Item>News</Breadcrumb.Item>
         <Breadcrumb.Item className="cursor-pointer">
-          <Link href={foundPath} passHref>
+          <Link href={'/' + foundPath} passHref>
             <span>{urls[foundPath]}</span>
           </Link>
         </Breadcrumb.Item>

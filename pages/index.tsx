@@ -91,7 +91,7 @@ const Home: NextPage = () => {
                 <div key={_item.id}>
                   {_item.linkOut ? (
                     <a
-                      href={"https://" + _item.linkOut.replace('https://', '')}
+                      href={"https://" + _item.linkOut.replace("https://", "")}
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -155,7 +155,7 @@ const Home: NextPage = () => {
             </Row>
           )}
         <Row className="container mx-auto pt-10">
-          <Col span={24} className='cursor-pointer'>
+          <Col span={24} className="cursor-pointer">
             <Link href="/service-contact" passHref>
               <Image
                 src="/assets/service-contact-hero.png"
@@ -170,11 +170,11 @@ const Home: NextPage = () => {
             <Row justify="space-between">
               {recentItClinicMeta?.data?.items?.length > 0 && (
                 <Col md={12} className="p-1">
-                  <Link href={"/itclinic"} passHref>
-                    <div className="heading-en  p-5 font-bold uppercase text-primary-color">
-                      IT Clinic
-                    </div>
-                  </Link>
+                  <div className="heading-en  p-5 font-bold uppercase text-primary-color">
+                    <Link href={"/itclinic"} passHref>
+                      <span className="cursor-pointer">IT Clinic</span>
+                    </Link>
+                  </div>
                   <div
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() => router.push("/itclinic")}
@@ -210,11 +210,11 @@ const Home: NextPage = () => {
               )}
               {recentActivityMeta?.data?.items?.length > 0 && (
                 <Col md={12} className="p-1">
-                  <Link href={"/activity"} passHref>
-                    <div className="heading-en  p-5 font-bold uppercase text-primary-color">
-                      Activities
-                    </div>
-                  </Link>
+                  <div className="heading-en  p-5 font-bold uppercase text-primary-color">
+                    <Link href={"/activity"} passHref>
+                      <span className="cursor-pointer">Activities</span>
+                    </Link>
+                  </div>
                   <div
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() => router.push("/activity")}
