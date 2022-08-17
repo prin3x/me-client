@@ -168,7 +168,7 @@ function SingleCantactPage({}: Props): ReactElement {
                 Division
               </Col>
               <Col lg={18} className="text-lg">
-                {contactData.section}
+                {contactData.division}
               </Col>
 
               <Col
