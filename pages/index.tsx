@@ -222,8 +222,8 @@ const Home: NextPage = () => {
                     <Image
                       className="rounded-xl"
                       src={
-                        recentItClinicMeta?.data?.items?.[0]?.homeImageUrl ||
-                        recentItClinicMeta?.data?.items?.[0]?.imageUrl
+                        recentActivityMeta?.data?.items?.[0]?.homeImageUrl ||
+                        recentActivityMeta?.data?.items?.[0]?.imageUrl
                       }
                       preview={false}
                       fallback={imagePlaceholder}

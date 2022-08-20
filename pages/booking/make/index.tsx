@@ -33,7 +33,6 @@ interface Props {}
 function MakeBooking({}: Props): ReactElement {
   const router = useRouter();
   const [form] = Form.useForm();
-  const roomsMeta = useQuery(["rooms"], () => _getAllRoomsAvb());
   const [makeStatus, setMakeStatus] = useState(EMakeStatus.MAKE);
 
   const submitRoomBooking = (): void => {
@@ -142,16 +141,13 @@ function MakeBooking({}: Props): ReactElement {
 
   return (
     <LayoutHOC>
-      <>
         <MakeBookingForm
           submitRoomBooking={submitRoomBooking}
           form={form}
-          roomsMeta={roomsMeta}
           updateRoomBooking={updateRoomBooking}
           removeRoomBooking={removeRoomBooking}
           makeStatus={makeStatus}
         />
-      </>
     </LayoutHOC>
   );
 }

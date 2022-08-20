@@ -10,7 +10,7 @@ function CompanyProfilePage({}: Props): ReactElement {
     <LayoutHOC>
       <div>
         <CompanyProfileHero />
-        <Row className='container mx-auto rounded-xl pt-5 mt-10 border-primary-color h-full'>
+        <Row className='container mx-auto rounded-xl pt-5 mt-10 h-full border-[3px] border-primary'>
           <Col span={24}>
             <Row>
               <Image

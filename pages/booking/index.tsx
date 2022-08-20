@@ -13,6 +13,7 @@ import { useQuery } from "react-query";
 import BookingMeetingHero from "../../components/booking/BookingMeetingHero";
 import LayoutHOC from "../../layout/LayoutHOC";
 import { ListQueryCalendarDTO } from "../../services/calendar/calendar.model";
+import { _getAllFloors } from "../../services/floor/floor.service";
 import {
   _getAllBookingEvents,
   _getAllRooms,
@@ -28,6 +29,10 @@ const MeetingRoomCalendar = dynamic(
 
 function BookingMeetingRoom(): ReactElement {
   const [selectDate, setSelectDate] = useState(moment().format("YYYY-MM-DD"));
+  const floorMetaData = useQuery(
+    ["available floors"],
+    () => _getAllFloors()
+  );
   const [rooms, setRooms] = useState([]);
   const [floor, setFloor] = useState<string>("0");
   const router = useRouter();
@@ -68,6 +73,7 @@ function BookingMeetingRoom(): ReactElement {
 
   const selectFloor = (_floor) => {
     setFloor(_floor);
+    form.setFieldsValue({room : undefined})
   };
 
   function getListData(value) {
@@ -165,17 +171,6 @@ function BookingMeetingRoom(): ReactElement {
     getAllRooms(floor);
   }, [floor]);
 
-  // useEffect(() => {
-  //   if (!roomsMeta.isSuccess) return;
-  //   setSelectedRoomId(roomsMeta?.data?.[0]?.id);
-  // }, [roomsMeta.isFetched]);
-
-  // useEffect(() => {
-  //   if (rooms.length <= 0) return;
-  //   form.setFieldsValue({ room: rooms?.[0]?.id });
-  //   setSelectedRoomId(rooms?.[0]?.id);
-  // }, [rooms]);
-
   return (
     <LayoutHOC>
       <div className="meeting-room">
@@ -198,14 +193,20 @@ function BookingMeetingRoom(): ReactElement {
                             placeholder="Floor"
                             onChange={selectFloor}
                           >
-                            <Select.Option value="1">1</Select.Option>
-                            <Select.Option value="2">2</Select.Option>
-                            <Select.Option value="3">3</Select.Option>
-                            <Select.Option value="4">4</Select.Option>
+                            {floorMetaData.isSuccess && floorMetaData.data.length > 0
+                                ? floorMetaData.data.map((floor) => (
+                                    <Select.Option
+                                      key={floor.floor}
+                                      value={floor.floor}
+                                    >
+                                      {floor.floor}
+                                    </Select.Option>
+                                  ))
+                                : null}
                           </Select>
                         </Form.Item>
                         <Col className="flex flex-col items-end">
-                          <Form.Item name="room">
+                          <Form.Item name="room" initialValue={undefined}>
                             <Select
                               style={{ width: 350, marginLeft: 20 }}
                               placeholder="Room"

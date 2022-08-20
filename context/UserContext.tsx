@@ -25,8 +25,8 @@ export function UserProvider(props: any) {
 
   const getUser = async () => {
     // const user = await checkAuth();
-    if (localStorage.getItem("token")) {
-      const user: IContact = jwt_decode(localStorage.getItem("token"));
+    if (sessionStorage.getItem("token")) {
+      const user: IContact = jwt_decode(sessionStorage.getItem("token"));
       if (!user) return false;
       if (user.role) signOut();
       setUserInfo(user);
@@ -40,7 +40,7 @@ export function UserProvider(props: any) {
 
   const checkTokenAndRenew = async () => {
     try {
-      const {accessToken} = await checkToken(localStorage.getItem("token"));
+      const {accessToken} = await checkToken(sessionStorage.getItem("token"));
 
       if (accessToken) {
         setTokenToStorage(accessToken);

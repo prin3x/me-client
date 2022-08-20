@@ -6,15 +6,15 @@ import { IContact } from "../contact/contact.model";
  * @param _token - The token to be stored in localStorage.
  */
 export function setTokenToStorage(_token) {
-  localStorage.setItem("token", _token);
+  sessionStorage.setItem("token", _token);
 }
 
 export function getAuthToken(): string {
-  return localStorage.getItem("token");
+  return sessionStorage.getItem("token");
 }
 
 export function clearToken() {
-  return localStorage.removeItem("token");
+  return sessionStorage.removeItem("token");
 }
 
 export async function checkAuth(): Promise<{ accessToken: string }> {

@@ -38,7 +38,7 @@ function ChangePasswordPage({}: Props) {
       <div>
         <Row justify="center" className="pb-52 pt-40 w-full">
           <Col lg={12}>
-            <Form form={form} onFinish={loginUser} labelCol={{lg:8}} wrapperCol={{lg:12}}>
+            <Form form={form} onFinish={loginUser} labelAlign='left' labelCol={{lg:12}} wrapperCol={{lg:12}}>
               <Form.Item
                 label="Password"
                 rules={[

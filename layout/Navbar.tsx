@@ -21,6 +21,7 @@ function Navbar(): ReactElement {
 
   async function checkAuthAndSetNewToken() {
     const { accessToken } = await checkAuth();
+    console.log(accessToken,'accessToken')
     if (accessToken) {
       setTokenToStorage(accessToken);
     }

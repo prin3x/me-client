@@ -4,15 +4,18 @@ import {
   DatePicker,
   Form,
   Input,
+  message,
   Row,
   Select,
   TimePicker,
 } from "antd";
-import Checkbox from "antd/lib/checkbox/Checkbox";
 import moment from "moment";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { _getAllFloors } from "../../services/floor/floor.service";
 import { EMakeStatus } from "../../services/meetingRoom/meeting-room.model";
+import { _getRoomByFloor } from "../../services/meetingRoom/meeting-room.service";
 
 const availableHours = [
   { label: "07", value: 7 },
@@ -46,7 +49,6 @@ type Props = {
   updateRoomBooking: () => Promise<void>;
   removeRoomBooking: () => Promise<void>;
   makeStatus: EMakeStatus;
-  roomsMeta: any;
   form: any;
 };
 
@@ -54,17 +56,17 @@ function MakeBookingForm({
   submitRoomBooking,
   updateRoomBooking,
   removeRoomBooking,
-  roomsMeta,
   form,
   makeStatus,
 }: Props) {
+  const floorMetaData = useQuery(["available floors"], () => _getAllFloors());
   const router = useRouter();
   const [startDate, setStartDate] = useState(moment());
   const [isCheckedAllDay, setIsCheckedAllDay] = useState(false);
-  const [filteredAvailableHours, setFilteredAvailableHours] =
-    useState(availableHours);
   const [formValues, setFormValues] = useState<any>({});
   const [hourDiff, setHourDiff] = useState(0);
+  const [rooms, setRooms] = useState([]);
+  const [floor, setFloor] = useState<string>("0");
 
   function defaultDisabledDate(current) {
     return current < moment().subtract(23, "h");
@@ -94,27 +96,15 @@ function MakeBookingForm({
 
   const onFieldChange = (_formValues) => setFormValues(_formValues);
 
-  // function disabledDateTime() {
-  //   return {
-  //     disabledHours: () => {
-  //       const hours = range(0, 24);
-  //       hours.splice(7, 19);
-  //       return hours;
-  //     },
-  //     disabledMinutes: () => {
-  //       const minutes = range(0, 60);
-  //       minutes.splice(0, 29);
-  //       minutes.splice(31, 59);
-  //       return minutes;
-  //     },
-  //     disabledSeconds: () => {
-  //       const minutes = range(0, 60);
-  //       minutes.splice(0, 29);
-  //       minutes.splice(31, 59);
-  //       return minutes;
-  //     },
-  //   };
-  // }
+  const getAllRooms = async (floor: string) => {
+    let res;
+    try {
+      res = await _getRoomByFloor(floor);
+      setRooms(res);
+    } catch (e) {
+      message.error("Cannot get rooms");
+    }
+  };
 
   function mergeDate(formValues) {
     const startTime =
@@ -131,21 +121,24 @@ function MakeBookingForm({
     return isNaN(hourDiff) ? 0 : hourDiff;
   }
 
-  useEffect(() => {
-    form.setFieldsValue({
-      roomId: roomsMeta?.data?.items?.[0]?.id,
-      allDay: false,
-    });
-    if (router.query.date) {
-      form.setFieldsValue({ date: moment(router.query.date) });
-    }
-  }, [roomsMeta, router]);
+
+  const selectFloor = (_floor) => {
+    setFloor(_floor);
+    form.setFieldsValue({room : undefined})
+  };
+
 
   useEffect(() => {
-    if(formValues.endHour && formValues.endDate) {
+    if (floor === "0") return setRooms([]);
+    getAllRooms(floor);
 
+    return () => setRooms([]);
+  }, [floor]);
+
+  useEffect(() => {
+    if (formValues.endHour && formValues.endDate) {
       const hourDiff = mergeDate(formValues);
-      
+
       setHourDiff(hourDiff);
     }
 
@@ -205,7 +198,6 @@ function MakeBookingForm({
               className="font-bold"
               name="startHour"
               rules={[{ required: true, message: "Please input start time!" }]}
-              // initialValue={filteredAvailableHours[0].value}
             >
               <TimePicker
                 minuteStep={30}
@@ -215,11 +207,6 @@ function MakeBookingForm({
                 hideDisabledOptions
               />
             </Form.Item>
-            {/* <Form.Item name="allDay">
-              <Checkbox onChange={onCheck} style={{ marginLeft: 24 }}>
-                All day
-              </Checkbox>
-            </Form.Item> */}
           </Row>
           <Row>
             <Form.Item
@@ -293,76 +280,22 @@ function MakeBookingForm({
               </div>
             )}
           </Row>
-
-          {/* <Row>
-            <Form.Item
-              className="font-bold"
-              name="startMinute"
-              label="Minute"
-              rules={[{ required: true }]}
-              initialValue={availableMinutes[0].value}
-            >
-              <Select style={{ width: 300 }}>
-                {availableMinutes.map((el) => (
-                  <Select.Option key={el.label} value={el.value}>
-                    {el.label}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-
-          </Row>
           <Form.Item
             className="font-bold"
-            label="Duration"
-            name="endHour"
+            name="floor"
+            label="Floor"
             rules={[{ required: true }]}
-            initialValue={availableDutaion[0].value}
           >
-            <Select disabled={isCheckedAllDay}>
-              {availableDutaion.map((el) => (
-                <Select.Option key={el.label} value={el.value}>
-                  {el.label}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item> */}
-          {/* <Form.Item
-          className="font-bold" name="end" label="End" rules={[{ required: true }]}>
-            <DatePicker
-              size="large"
-              value={moment(router.query.date)}
-              disabledDate={disabledStartDate}
-              showTime={{
-                ...disabledDateTime,
-                format: "HH:mm",
-                minuteStep: 30,
-                hideDisabledOptions: true,
-              }}
-              style={{ width: 500 }}
-              disabled={makeStatus === EMakeStatus.READ || isCheckedAllDay}
-            />
-          </Form.Item> */}
-          {/* <Form.Item
-          className="font-bold" label="Area">
-            <Select
-              defaultValue={"4"}
-              style={{ width: 600 }} disabled={makeStatus === EMakeStatus.READ} 
-              className="selector-w-10"
-            >
-              <Select.Option value="4">Floor 4th</Select.Option>
+            <Select className="selector-w-10"   onChange={selectFloor}>
+              {floorMetaData.isSuccess && floorMetaData.data.length > 0
+                ? floorMetaData.data.map((floor) => (
+                    <Select.Option key={floor.floor} value={floor.floor}>
+                      {floor.floor}
+                    </Select.Option>
+                  ))
+                : null}
             </Select>
           </Form.Item>
-          <Form.Item
-          className="font-bold" label="Type">
-            <Select
-              defaultValue={"4"}
-              style={{ width: 600 }} disabled={makeStatus === EMakeStatus.READ} 
-              className="selector-w-10"
-            >
-              <Select.Option value="4">Floor 4th</Select.Option>
-            </Select>
-          </Form.Item> */}
           <Form.Item
             className="font-bold"
             name="roomId"
@@ -372,10 +305,11 @@ function MakeBookingForm({
             <Select
               size="large"
               style={{ width: 600 }}
+              placeholder="Select Room"
               disabled={makeStatus === EMakeStatus.READ}
             >
-              {Array.isArray(roomsMeta?.data?.items) &&
-                roomsMeta?.data?.items.map((_room) => (
+              {rooms.length > 0 &&
+                rooms.map((_room) => (
                   <Select.Option key={_room.id} value={_room.id}>
                     {_room.name}
                   </Select.Option>
@@ -443,14 +377,6 @@ function MakeBookingForm({
           </Row>
         </Form>
       </Row>
-{/* 
-      <Select style={{ width: 300 }}>
-        {availableMinutes.map((el) => (
-          <Select.Option key={el.label} value={el.value}>
-            {el.label}
-          </Select.Option>
-        ))}
-      </Select> */}
     </Row>
   );
 }
