@@ -41,6 +41,7 @@ function RoomId({}: Props) {
               width={400}
               height={300}
               preview={false}
+              alt=""
             />
           </Col>
           <Col lg={10}>

@@ -23,11 +23,9 @@ function StaffContactPage({}: Props): ReactElement {
   const [form] = Form.useForm();
   const [staffContactData, setStaffContactData] = useState([]);
   const [queryStr, setQueryStr] = useState<ListQueryParams>({});
-  const [page, setPage] = useState(1);
-  const staffContactMeta = useQuery([ALL_CONTACT, page, queryStr], () =>
+  const staffContactMeta = useQuery([ALL_CONTACT, queryStr], () =>
     _getAllStaffContacts(queryStr)
   );
-  const [pageSize, setPageSize] = useState(10)
   const router = useRouter();
 
   function itemRender(current, type, originalElement) {
@@ -115,7 +113,7 @@ function StaffContactPage({}: Props): ReactElement {
 
   function setQuery() {
     let set = {} as ListQueryParams;
-    set.limit = pageSize;
+    set.limit = queryStr.limit;
     set.search = form.getFieldValue("search") || "";
     set.department = form.getFieldValue("department") || "";
     set.company = form.getFieldValue("company") || "";
@@ -124,13 +122,13 @@ function StaffContactPage({}: Props): ReactElement {
     setQueryStr(set);
   }
 
-  function onChangePage() {
+  const onChangePagesize = (_page, _pageSize) => {
     const currentStr = { ...queryStr };
-
-    currentStr.page = page;
+    currentStr.limit = _pageSize;
+    currentStr.page = _page;
 
     setQueryStr(currentStr);
-  }
+  };
 
   useEffect(() => {
     if (staffContactMeta.isSuccess) {
@@ -139,12 +137,21 @@ function StaffContactPage({}: Props): ReactElement {
   }, [staffContactMeta.data]);
 
   useEffect(() => {
-    onChangePage();
-  }, [page]);
+    if(Object.keys(queryStr).length === 0) return;
+    sessionStorage.setItem(`staff-contact-query`, JSON.stringify(queryStr));
+  },[queryStr]);
+
+  useEffect(() => {
+    const query = sessionStorage.getItem(`staff-contact-query`);
+    if(query){
+      setQueryStr(JSON.parse(query));
+    }
+
+  },[])
 
   return (
     <LayoutHOC>
-      <div className='staff-contact-page'>
+      <div className="staff-contact-page">
         <Row className="container mx-auto pt-10">
           <Col span={24}>
             <Image
@@ -215,22 +222,23 @@ function StaffContactPage({}: Props): ReactElement {
         <Row className="container mx-auto pt-10">
           <Table
             loading={staffContactMeta.isLoading}
-            className="table-noshow-pagination unset-border w-full"
+            className="table-noshow-pagination unset-border w-full mb-10"
             scroll={{ x: true }}
             bordered
             rowKey={(_row) => _row.id}
             tableLayout="fixed"
             pagination={{
               position: ["bottomCenter"],
-              pageSize: pageSize,
-              onChange: (_page) => setPage(_page),
+              pageSize: queryStr.limit,
+              onChange: (_page, _pageSize) =>
+                onChangePagesize(_page, _pageSize),
               showTotal: (total, range) => (
                 <div className="text-center font-bold">{`ทั้งหมด ${
                   staffContactMeta?.data?.total || 0
                 } คน`}</div>
               ),
               total: staffContactMeta?.data?.total,
-              showSizeChanger: false,
+              showSizeChanger: true,
               itemRender,
             }}
             columns={columns}

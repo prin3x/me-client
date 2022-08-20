@@ -101,7 +101,7 @@ const Home: NextPage = () => {
                           preview={false}
                           alt=""
                           width={1004}
-                          height={565}
+                          height={360}
                           placeholder={true}
                         />
                       </div>
@@ -113,7 +113,7 @@ const Home: NextPage = () => {
                         preview={false}
                         alt=""
                         width={1004}
-                        height={565}
+                        height={360}
                         placeholder={true}
                       />
                     </div>

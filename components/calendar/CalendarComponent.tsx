@@ -299,11 +299,13 @@ function CalendarPage(): ReactElement {
           }}
         />
       </Col>
-      <EventModal
-        event={selectedEvent}
-        visible={isEventModalOpen}
-        close={handleCloseModal}
-      />
+      {isEventModalOpen && (
+        <EventModal
+          event={selectedEvent}
+          visible={isEventModalOpen}
+          close={handleCloseModal}
+        />
+      )}
     </Row>
   );
 }

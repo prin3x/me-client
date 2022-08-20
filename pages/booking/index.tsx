@@ -29,7 +29,7 @@ const MeetingRoomCalendar = dynamic(
 function BookingMeetingRoom(): ReactElement {
   const [selectDate, setSelectDate] = useState(moment().format("YYYY-MM-DD"));
   const [rooms, setRooms] = useState([]);
-  const [floor, setFloor] = useState<string>("4");
+  const [floor, setFloor] = useState<string>("0");
   const router = useRouter();
   const [form] = Form.useForm();
   const [selectedRoomId, setSelectedRoomId] = useState<number>(0);
@@ -56,7 +56,7 @@ function BookingMeetingRoom(): ReactElement {
     setSelectDate(date.format("YYYY-MM-DD"));
   }
 
-  const getAllRooms = async (floor: string = "4") => {
+  const getAllRooms = async (floor: string = "") => {
     let res;
     try {
       res = await _getRoomByFloor(floor);
@@ -110,7 +110,7 @@ function BookingMeetingRoom(): ReactElement {
           className="border-2 rounded-xl text-center p-3 text-xl font-bold"
           style={{ borderColor: "#eee" }}
         >
-          {moment().format("DD MMMM yyyy")}
+          {moment(selectDate).format("DD MMMM yyyy")}
         </div>
         <Row gutter={8} justify="center" className="mt-4">
           <Col>

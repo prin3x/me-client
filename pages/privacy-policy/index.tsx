@@ -22,20 +22,20 @@ function PrivacyPolicy({}: Props): ReactElement {
           </Col>
         </Row>
         <Row justify="center" className="mt-5">
-          <div>
+          <div className='text-primary-color text-xl font-bold'>
             สามารถศึกษานโยบายการใช้ข้อมูลส่วนบุคคลของแต่ละบริษัทเพิ่มเติม ได้ที่{" "}
           </div>
         </Row>
         <Row className="mt-5">
           <Col span={24}>
-            <Row justify="center" className="gap-5">
+            <Row justify="center" className="gap-8">
               <a
                 className="cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
                 href="https://www.mindedge.co.th/information/me-privacy"
               >
-                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '5rem', lineHeight: 1, fontWeight: 'bold'}}>ME</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '6rem', lineHeight: 1, fontWeight: 'bold'}}>ME</Button>
               </a>
               <a
                 className="cursor-pointer"
@@ -43,7 +43,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="https://www.mindedge.co.th/information/mr-privacy"
               >
-                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '5rem', lineHeight: 1, fontWeight: 'bold'}}>MR</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '6rem', lineHeight: 1, fontWeight: 'bold'}}>MR</Button>
               </a>
               <a
                 className="cursor-pointer"
@@ -51,7 +51,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="https://www.meandyou.co.th/privacy"
               >
-                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '5rem', lineHeight: 1, fontWeight: 'bold'}}>MY</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '6rem', lineHeight: 1, fontWeight: 'bold'}}>MY</Button>
               </a>
               <a
                 className="cursor-pointer"
@@ -59,7 +59,7 @@ function PrivacyPolicy({}: Props): ReactElement {
                 rel="noreferrer"
                 href="https://drive.google.com/file/d/172d9O-xywEwZ4cc_qw656AMdoXLxDSkg/view?usp=sharing"
               >
-                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '5rem', lineHeight: 1, fontWeight: 'bold'}}>FB</Button>
+                <Button size="middle" type="primary" className="font-bold" style={{borderRadius: '36px',width: '6rem', lineHeight: 1, fontWeight: 'bold'}}>FB</Button>
               </a>
             </Row>
           </Col>

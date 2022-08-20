@@ -362,6 +362,7 @@ p {
 .ant-pagination.ant-table-pagination.ant-table-pagination-center {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 .table-noshow-pagination .ant-pagination-prev {
   order: 0;
@@ -379,6 +380,12 @@ p {
 .table-noshow-pagination .ant-pagination-item,
 .ant-pagination-jump-next.ant-pagination-jump-next-custom-icon {
   display: none;
+}
+
+.table-noshow-pagination .ant-pagination-options{
+  position: absolute;
+  right: 0%;
+  top: 37px;
 }
 
 // .table-noshow-pagination .ant-pagination-prev > a {

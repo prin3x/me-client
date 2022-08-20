@@ -74,7 +74,6 @@ function PostBySlug({ postData }: Props) {
           fallback={imagePlaceholder}
           src={postData?.imageUrl}
           alt={postData?.title}
-          width="100"
           preview={false}
         />
       </div>

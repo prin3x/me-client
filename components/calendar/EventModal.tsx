@@ -35,6 +35,15 @@ function EventModal({ visible, event, close }: Props) {
           </Col>
         </Row>
       )}
+      <Row>
+        <Col>
+          <a href={event.hyperlink} target="_blank" rel="noreferrer">
+            <span className="underline text-primary-color cursor-pointer">
+              {event.hyperlink}
+            </span>
+          </a>
+        </Col>
+      </Row>
       <Row justify="center">
         <Col>
           <Button size="large" type="primary" onClick={close}>
