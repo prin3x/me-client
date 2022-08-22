@@ -1,10 +1,7 @@
-import { Breadcrumb, Image, Skeleton } from "antd";
-import Link from "next/link";
+import { Skeleton } from "antd";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import PostBySlug from "../../../components/post/PostBySlug";
-import { ASSET_URL } from "../../../config";
 import LayoutHOC from "../../../layout/LayoutHOC";
 import { POST_QUERY } from "../../../services/news/news.queryKey";
 import { _getOnePost } from "../../../services/news/news.service";

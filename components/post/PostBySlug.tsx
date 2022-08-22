@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { _readOnePost } from "../../services/news/news.service";
 import { EditorState, convertFromRaw } from "draft-js";
-// import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import dynamic from "next/dynamic";
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
@@ -59,7 +59,7 @@ function PostBySlug({ postData }: Props) {
   }, [router]);
 
   useEffect(() => {
-    if (postData.content) {
+    if (postData?.content) {
       const editorState = convertFromRaw(JSON.parse(postData.content));
       setTextState({ editorState: EditorState.createWithContent(editorState) });
     }
@@ -94,19 +94,20 @@ function PostBySlug({ postData }: Props) {
           preview={false}
         />
       </div>
-      <div className="mt-5">
-        {/* <div
+      {/* <div
           dangerouslySetInnerHTML={{
             __html: `${draftToHtml(JSON.parse(postData?.content))}`,
           }}
         /> */}
-
-        <Editor
-          toolbar={false}
-          readOnly={true}
-          editorState={textState.editorState}
-        />
-      </div>
+      <Row justify="center" className="mt-5">
+        <Col lg={24} md={24} className="bg-white">
+          <Editor
+            toolbar={false}
+            readOnly={true}
+            editorState={textState.editorState}
+          />
+        </Col>
+      </Row>
     </div>
   );
 }
