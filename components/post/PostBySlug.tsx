@@ -6,8 +6,13 @@ import draftToHtml from "draftjs-to-html";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { _readOnePost } from "../../services/news/news.service";
-import { EditorState, convertFromHTML, convertFromRaw } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertFromRaw } from "draft-js";
+// import { Editor } from "react-draft-wysiwyg";
+import dynamic from "next/dynamic";
+const Editor = dynamic(
+  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  { ssr: false }
+) as any;
 
 type Props = {
   postData: any;
@@ -54,7 +59,6 @@ function PostBySlug({ postData }: Props) {
   }, [router]);
 
   useEffect(() => {
-    console.log(postData, "postData");
     if (postData.content) {
       const editorState = convertFromRaw(JSON.parse(postData.content));
       setTextState({ editorState: EditorState.createWithContent(editorState) });
