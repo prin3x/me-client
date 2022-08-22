@@ -23,7 +23,6 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { imagePlaceholder } from "../utils/placeholder.image";
 import Link from "next/link";
 import { _getAllEnabledCarousel } from "../services/carousel/carousel.service";
-import draftToHtml from "draftjs-to-html";
 
 const CarouselSlider = dynamic(
   () => import("../components/home/GlideComponent")
@@ -86,6 +85,8 @@ const Home: NextPage = () => {
             <Carousel
               dots={{ className: "circle-dots" }}
               className="z-10 relative"
+              autoplay
+              autoplaySpeed={5000}
             >
               {carouselSet.map((_item) => (
                 <div key={_item.id}>
