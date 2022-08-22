@@ -104,9 +104,7 @@ function PostBySlug({ postData }: Props) {
         <Editor
           toolbar={false}
           readOnly={true}
-          editorState={EditorState.createWithContent(
-            textState.editorState.getCurrentContent()
-          )}
+          editorState={textState.editorState}
         />
       </div>
     </div>
