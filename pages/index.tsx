@@ -95,7 +95,7 @@ const Home: NextPage = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <div className="h-72 min-h-full bg-gray-300 rounded-xl">
+                      <div className="h-[360px] min-h-full bg-gray-300 rounded-xl">
                         <Image
                           src={_item.imageUrl}
                           preview={false}

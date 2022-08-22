@@ -32,7 +32,7 @@ function FormRequestList({ data }: Props) {
             >
               {form?.formsRequestDetail?.map((fr) => (
                 <a
-                  href={fr.downloadLink}
+                  href={fr.downloadLink || fr.filePath}
                   key={fr.id}
                   target="_blank"
                   rel="noreferrer"

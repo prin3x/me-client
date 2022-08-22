@@ -121,12 +121,10 @@ function MakeBookingForm({
     return isNaN(hourDiff) ? 0 : hourDiff;
   }
 
-
   const selectFloor = (_floor) => {
     setFloor(_floor);
-    form.setFieldsValue({room : undefined})
+    form.setFieldsValue({ room: undefined });
   };
-
 
   useEffect(() => {
     if (floor === "0") return setRooms([]);
@@ -192,7 +190,7 @@ function MakeBookingForm({
               label="Start Date"
               rules={[{ required: true, message: "Please input start date!" }]}
             >
-              <DatePicker disabledDate={defaultDisabledDate} />
+              <DatePicker disabledDate={defaultDisabledDate} disabled={makeStatus === EMakeStatus.READ} />
             </Form.Item>
             <Form.Item
               className="font-bold"
@@ -205,6 +203,7 @@ function MakeBookingForm({
                 style={{ marginLeft: "1rem" }}
                 disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 20, 21, 22, 23]}
                 hideDisabledOptions
+                disabled={makeStatus === EMakeStatus.READ}
               />
             </Form.Item>
           </Row>
@@ -232,7 +231,7 @@ function MakeBookingForm({
             >
               <DatePicker
                 disabledDate={defaultDisabledDate}
-                disabled={isCheckedAllDay}
+                disabled={makeStatus === EMakeStatus.READ}
               />
             </Form.Item>
             <Form.Item
@@ -269,7 +268,7 @@ function MakeBookingForm({
                 minuteStep={30}
                 format="HH:mm"
                 style={{ marginLeft: "1rem" }}
-                disabled={isCheckedAllDay}
+                disabled={makeStatus === EMakeStatus.READ}
                 disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 20, 21, 22, 23]}
                 hideDisabledOptions
               />
@@ -286,7 +285,11 @@ function MakeBookingForm({
             label="Floor"
             rules={[{ required: true }]}
           >
-            <Select className="selector-w-10"   onChange={selectFloor}>
+            <Select
+              disabled={makeStatus === EMakeStatus.READ}
+              className="selector-w-10"
+              onChange={selectFloor}
+            >
               {floorMetaData.isSuccess && floorMetaData.data.length > 0
                 ? floorMetaData.data.map((floor) => (
                     <Select.Option key={floor.floor} value={floor.floor}>

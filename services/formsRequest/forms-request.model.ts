@@ -5,6 +5,7 @@ export enum EFormsRequest {
 }
 
 export interface IFormsRequestDetail {
+  filePath: string;
   id: string;
   content: string;
   downloadLink: EFormsRequest;

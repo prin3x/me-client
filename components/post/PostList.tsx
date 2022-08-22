@@ -35,17 +35,17 @@ function PostList({ posts }: Props) {
                   />
                 </Link>
               </Col>
-              <Col md={12} className="mx-2 mt-5 ml-5">
+              <Col md={12} className="mx-2 ml-5">
                 <Link href={`/${_post.categoryName}/${_post.slug}/`} passHref>
                   <div className="flex flex-col h-20">
-                    <div className="text-xl font-bold"> {_post.title}</div>
+                    <div className="text-xl font-bold"> {_post.title.slice(0,104)}</div>
                     {/* <p
                       className="text-slate-400 truncate"
                       dangerouslySetInnerHTML={{
                         __html: `${draftToHtml(JSON.parse(_post.content))}`,
                       }}
                     /> */}
-                    <p className="text-slate-400 truncate">{_post.description}</p>
+                    <p className="text-slate-400 truncate mb-0">{_post.description}</p>
                   </div>
                 </Link>
               </Col>

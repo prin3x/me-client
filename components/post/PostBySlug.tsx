@@ -6,6 +6,8 @@ import draftToHtml from "draftjs-to-html";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { _readOnePost } from "../../services/news/news.service";
+import { EditorState, convertFromHTML, convertFromRaw } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
 
 type Props = {
   postData: any;
@@ -21,6 +23,9 @@ const urls = {
 function PostBySlug({ postData }: Props) {
   const [foundPath, setFoundPath] = useState("");
   const router = useRouter();
+  const [textState, setTextState] = useState({
+    editorState: EditorState.createEmpty(),
+  });
 
   function findUrlInPathname() {
     const availableUrl = Object.keys(urls);
@@ -34,26 +39,34 @@ function PostBySlug({ postData }: Props) {
   useEffect(() => {
     if (!postData?.id) return;
 
-    if(sessionStorage.getItem(`post-${postData?.id}`)) return;
+    if (sessionStorage.getItem(`post-${postData?.id}`)) return;
 
     sessionStorage.setItem(
       `post-${postData?.id}`,
       JSON.stringify(new Date().getTime())
     );
 
-    _readOnePost(postData?.id)
+    _readOnePost(postData?.id);
   }, [postData?._id]);
 
   useEffect(() => {
     findUrlInPathname();
   }, [router]);
 
+  useEffect(() => {
+    console.log(postData, "postData");
+    if (postData.content) {
+      const editorState = convertFromRaw(JSON.parse(postData.content));
+      setTextState({ editorState: EditorState.createWithContent(editorState) });
+    }
+  }, [postData]);
+
   return (
     <div className="content">
       <Breadcrumb>
         <Breadcrumb.Item>News</Breadcrumb.Item>
         <Breadcrumb.Item className="cursor-pointer">
-          <Link href={'/' + foundPath} passHref>
+          <Link href={"/" + foundPath} passHref>
             <span>{urls[foundPath]}</span>
           </Link>
         </Breadcrumb.Item>
@@ -78,10 +91,18 @@ function PostBySlug({ postData }: Props) {
         />
       </div>
       <div className="mt-5">
-        <div
+        {/* <div
           dangerouslySetInnerHTML={{
             __html: `${draftToHtml(JSON.parse(postData?.content))}`,
           }}
+        /> */}
+
+        <Editor
+          toolbar={false}
+          readOnly={true}
+          editorState={EditorState.createWithContent(
+            textState.editorState.getCurrentContent()
+          )}
         />
       </div>
     </div>

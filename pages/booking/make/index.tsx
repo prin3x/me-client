@@ -116,10 +116,13 @@ function MakeBooking({}: Props): ReactElement {
         setMakeStatus(EMakeStatus.READ);
       }
 
+      console.log(meetingDetails.room.name,'meetingDetails')
 
       form.setFieldsValue({
         title: meetingDetails.title,
         description: meetingDetails.description,
+        floor: meetingDetails.room.floor,
+        roomId: meetingDetails.room.name,
         startDate: moment(meetingDetails.start),
         startHour: moment(meetingDetails.start),
         endDate: moment(meetingDetails.end),

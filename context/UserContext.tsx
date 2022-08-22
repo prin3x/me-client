@@ -32,7 +32,6 @@ export function UserProvider(props: any) {
       setUserInfo(user);
     }
   };
-
   const signOut = async () => {
     setUserInfo(null);
     clearToken();
