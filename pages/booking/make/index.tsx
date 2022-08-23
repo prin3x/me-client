@@ -92,7 +92,11 @@ function MakeBooking({}: Props): ReactElement {
         message.success("Updated Successfully");
         router.push("/booking/");
       } catch (e) {
-        message.error(e.response.message);
+        let errMessage = e.response.message;
+        if (e.response.status === 400) {
+          errMessage = "Unavailble Slot";
+        }
+        message.error(errMessage);
       }
     });
   };
@@ -115,8 +119,6 @@ function MakeBooking({}: Props): ReactElement {
       } else {
         setMakeStatus(EMakeStatus.READ);
       }
-
-      console.log(meetingDetails.room.name,'meetingDetails')
 
       form.setFieldsValue({
         title: meetingDetails.title,
@@ -144,13 +146,13 @@ function MakeBooking({}: Props): ReactElement {
 
   return (
     <LayoutHOC>
-        <MakeBookingForm
-          submitRoomBooking={submitRoomBooking}
-          form={form}
-          updateRoomBooking={updateRoomBooking}
-          removeRoomBooking={removeRoomBooking}
-          makeStatus={makeStatus}
-        />
+      <MakeBookingForm
+        submitRoomBooking={submitRoomBooking}
+        form={form}
+        updateRoomBooking={updateRoomBooking}
+        removeRoomBooking={removeRoomBooking}
+        makeStatus={makeStatus}
+      />
     </LayoutHOC>
   );
 }
