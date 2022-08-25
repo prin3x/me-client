@@ -90,7 +90,7 @@ const Home: NextPage = () => {
             >
               {carouselSet.map((_item) => (
                 <div key={_item.id}>
-                  {_item.linkOut ? (
+                  {_item.linkOut && _item.linkOut !== "undefined" ? (
                     <a
                       href={"https://" + _item.linkOut.replace("https://", "")}
                       target="_blank"
@@ -108,7 +108,7 @@ const Home: NextPage = () => {
                       </div>
                     </a>
                   ) : (
-                    <div className="h-72 min-h-full bg-gray-300 rounded-xl">
+                    <div className="h-[360px] min-h-full bg-gray-300 rounded-xl">
                       <Image
                         src={_item.imageUrl}
                         preview={false}
@@ -178,7 +178,11 @@ const Home: NextPage = () => {
                   </div>
                   <div
                     className="mask-on-hover cursor-pointer relative"
-                    onClick={() => router.push(`/itclinic/${recentItClinicMeta?.data?.items?.[0]?.slug}`)}
+                    onClick={() =>
+                      router.push(
+                        `/itclinic/${recentItClinicMeta?.data?.items?.[0]?.slug}`
+                      )
+                    }
                   >
                     <Image
                       className="rounded-xl"
@@ -218,7 +222,11 @@ const Home: NextPage = () => {
                   </div>
                   <div
                     className="mask-on-hover cursor-pointer relative"
-                    onClick={() => router.push(`/activity/${recentActivityMeta?.data?.items?.[0]?.slug}`)}
+                    onClick={() =>
+                      router.push(
+                        `/activity/${recentActivityMeta?.data?.items?.[0]?.slug}`
+                      )
+                    }
                   >
                     <Image
                       className="rounded-xl"
