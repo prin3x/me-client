@@ -122,7 +122,7 @@ const Home: NextPage = () => {
                 </div>
               ))}
             </Carousel>
-            <div className="absolute top-16 left-80 z-0">
+            <div className="absolute top-[9rem] left-80 z-0">
               <Image
                 src="/assets/fluid-orange.svg"
                 alt="fluid"
@@ -178,7 +178,7 @@ const Home: NextPage = () => {
                   </div>
                   <div
                     className="mask-on-hover cursor-pointer relative"
-                    onClick={() => router.push("/itclinic")}
+                    onClick={() => router.push(`/itclinic/${recentItClinicMeta?.data?.items?.[0]?.slug}`)}
                   >
                     <Image
                       className="rounded-xl"
@@ -194,11 +194,11 @@ const Home: NextPage = () => {
                     />
 
                     <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
-                      <div className="heading-th text-white text-xl font-bold">
+                      <div className="heading-th text-white text-xl font-bold truncate">
                         {recentItClinicMeta?.data?.items?.[0]?.title}
                       </div>
                       <div className="text-white text-lg truncate">
-                        {recentActivityMeta?.data?.items?.[0]?.description}
+                        {recentItClinicMeta?.data?.items?.[0]?.description}
                       </div>
                     </div>
                   </div>
@@ -218,7 +218,7 @@ const Home: NextPage = () => {
                   </div>
                   <div
                     className="mask-on-hover cursor-pointer relative"
-                    onClick={() => router.push("/activity")}
+                    onClick={() => router.push(`/activity/${recentActivityMeta?.data?.items?.[0]?.slug}`)}
                   >
                     <Image
                       className="rounded-xl"
@@ -234,7 +234,7 @@ const Home: NextPage = () => {
                     />
 
                     <div className="absolute bottom-2 rounded-b-lg w-full bg-slate-900 opacity-80 p-5 h-32 max-h-full">
-                      <div className="heading-th text-white text-xl font-bold">
+                      <div className="heading-th text-white text-xl font-bold truncate">
                         {recentActivityMeta?.data?.items?.[0]?.title}
                       </div>
                       <div className="text-white text-lg truncate">
