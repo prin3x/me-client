@@ -226,6 +226,7 @@ function BookingMeetingRoom(): ReactElement {
                           </Form.Item>
                           <Button
                             size="large"
+                            disabled={!selectedRoomId}
                             className="rounded-full ml-5"
                             style={{ borderRadius: "20px" }}
                             onClick={() =>

@@ -19,6 +19,15 @@ function RoomId({}: Props) {
     _getAllRoomsById(router.query.roomId)
   );
 
+  function renderRoomDescription(description: string) {
+    const arrayOfDescription = description.split("[nl]");
+    return arrayOfDescription.map((desc) => (
+      <div className="font-thin leading-10" key={desc}>
+        {desc}
+      </div>
+    ));
+  }
+
   if (!roomsMeta.isSuccess)
     return (
       <div className="h-screen w-screen flex justify-center items-center">
@@ -32,7 +41,11 @@ function RoomId({}: Props) {
         <div className="text-primary-color text-2xl font-bold text-center mt-20">
           View Room Detail
         </div>
-        <Row className="mt-20 mb-32 gap-10 text-lg" justify="center" align="middle">
+        <Row
+          className="mt-20 mb-32 gap-10 text-lg"
+          justify="center"
+          align="middle"
+        >
           <Col lg={10}>
             <Image
               fallback={imagePlaceholder}
@@ -45,7 +58,7 @@ function RoomId({}: Props) {
             />
           </Col>
           <Col lg={10}>
-            <Row  gutter={[0,40]}>
+            <Row gutter={[0, 40]}>
               <Col lg={8}>
                 <div className="font-bold">Name Room :</div>
               </Col>
@@ -56,7 +69,7 @@ function RoomId({}: Props) {
                 <div className="font-bold">Description :</div>
               </Col>
               <Col lg={16}>
-                <div className="font-thin">{roomsMeta?.data?.description}</div>
+                <div className="font-thin">{renderRoomDescription(roomsMeta?.data?.description)}</div>
               </Col>
 
               <Col lg={8}>
@@ -68,8 +81,15 @@ function RoomId({}: Props) {
             </Row>
           </Col>
         </Row>
-        <Row justify='end'>
-          <Button type='primary' size="large" onClick={() => router.push(`/booking`)} style={{borderRadius: '8px'}}>Back</Button>
+        <Row justify="end">
+          <Button
+            type="primary"
+            size="large"
+            onClick={() => router.push(`/booking`)}
+            style={{ borderRadius: "8px" }}
+          >
+            Back
+          </Button>
         </Row>
       </div>
     </LayoutHOC>
