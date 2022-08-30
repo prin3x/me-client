@@ -10,7 +10,12 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import axios from "axios";
 import { API_URL } from "../config";
-import { clearToken, getAuthToken } from "../services/auth/auth.service";
+import {
+  checkLastRequestExceedLimit,
+  clearToken,
+  getAuthToken,
+  setLastRequestToken,
+} from "../services/auth/auth.service";
 import { UserProvider } from "../context/UserContext";
 
 export const queryClient = new QueryClient({
@@ -25,6 +30,12 @@ export const queryClient = new QueryClient({
 axios.defaults.baseURL = API_URL;
 
 axios.interceptors.request.use((config) => {
+  if (checkLastRequestExceedLimit()) {
+    clearToken();
+    window.location.replace("/log-in");
+  }
+
+  setLastRequestToken();
   const jwtToken = getAuthToken();
   if (jwtToken !== null) {
     config.headers["Authorization"] = `Bearer ${jwtToken}`;

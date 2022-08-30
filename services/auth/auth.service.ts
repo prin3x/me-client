@@ -13,6 +13,24 @@ export function getAuthToken(): string {
   return sessionStorage.getItem("token");
 }
 
+export function setLastRequestToken() {
+  sessionStorage.setItem('iat', new Date().getTime().toString())
+}
+
+export function checkLastRequestExceedLimit(): boolean {
+  const token = sessionStorage.getItem('iat');
+
+  if(!token) return false;
+
+  const timeFromToken = parseInt(token, 10);
+
+  if(new Date().getTime() - timeFromToken > 1000 * 60 * 10){
+    return true;
+  }
+
+  return false;
+}
+
 export function clearToken() {
   return sessionStorage.removeItem("token");
 }

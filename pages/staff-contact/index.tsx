@@ -16,6 +16,7 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import { imagePlaceholder } from "../../utils/placeholder.image";
+import Link from "next/link";
 
 interface Props {}
 
@@ -55,28 +56,27 @@ function StaffContactPage({}: Props): ReactElement {
       dataIndex: "name",
       width: "400px",
       render: (_self: string, _record: any) => (
-        <div className="flex items-center gap-2">
-          <div className="">
-            <Image
-              width={50}
-              height={50}
-              alt=""
-              src={_record.profilePicUrl}
-              className="staff-image"
-              fallback={imagePlaceholder}
-              preview={false}
-            />
+        <Link href={`/staff-contact/${_record.id}`} passHref>
+          <div className="flex items-center gap-2">
+            <div className="">
+              <Image
+                width={50}
+                height={50}
+                alt=""
+                src={_record.profilePicUrl}
+                className="staff-image"
+                fallback={imagePlaceholder}
+                preview={false}
+              />
+            </div>
+            <div className="flex flex-col items-start ">
+              <p className="text-left cursor-pointer text-primary-color mb-0 font-semibold	leading-4	truncate">
+                {_self}
+              </p>
+              <p className="text-left cursor-pointer mb-0">{_record.nameTH}</p>
+            </div>
           </div>
-          <div className="flex flex-col items-start ">
-            <p
-              className="text-left cursor-pointer text-primary-color mb-0 font-semibold	leading-4	truncate"
-              onClick={() => router.push(`/staff-contact/${_record.id}`)}
-            >
-              {_self}
-            </p>
-            <p className="text-left cursor-pointer mb-0">{_record.nameTH}</p>
-          </div>
-        </div>
+        </Link>
       ),
     },
     {
@@ -137,17 +137,16 @@ function StaffContactPage({}: Props): ReactElement {
   }, [staffContactMeta.data]);
 
   useEffect(() => {
-    if(Object.keys(queryStr).length === 0) return;
+    if (Object.keys(queryStr).length === 0) return;
     sessionStorage.setItem(`staff-contact-query`, JSON.stringify(queryStr));
-  },[queryStr]);
+  }, [queryStr]);
 
   useEffect(() => {
     const query = sessionStorage.getItem(`staff-contact-query`);
-    if(query){
+    if (query) {
       setQueryStr(JSON.parse(query));
     }
-
-  },[])
+  }, []);
 
   return (
     <LayoutHOC>

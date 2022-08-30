@@ -1,5 +1,6 @@
 import { Col, Form, Image, Row, Select, Table } from "antd";
 import moment from "moment";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
@@ -56,26 +57,25 @@ function BirthDayPage(): ReactElement {
       ellipsis: true,
       width: 200,
       render: (_self: string, _record: any) => (
-        <div className="flex items-center gap-2">
-          <div className="max-w-100 w-28">
-            <Image
-              fallback={imagePlaceholder}
-              width={75}
-              height={75}
-              alt="No Image"
-              src={_record.profilePicUrl}
-              preview={false}
-            />
+        <Link href={`/staff-contact/${_record.id}`} passHref>
+          <div className="flex items-center gap-2">
+            <div className="max-w-100 w-28">
+              <Image
+                fallback={imagePlaceholder}
+                width={75}
+                height={75}
+                alt="No Image"
+                src={_record.profilePicUrl}
+                preview={false}
+              />
+            </div>
+            <div className="flex flex-col items-start">
+              <p className="text-left cursor-pointer text-primary-color mb-0 font-semibold	">
+                {_self}
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col items-start">
-            <p
-              className="text-left cursor-pointer text-primary-color mb-0 font-semibold	"
-              onClick={() => router.push(`/staff-contact/${_record.id}`)}
-            >
-              {_self}
-            </p>
-          </div>
-        </div>
+        </Link>
       ),
     },
     {
@@ -203,7 +203,7 @@ function BirthDayPage(): ReactElement {
             tableLayout="auto"
             loading={staffContactMeta.isLoading}
             bordered
-            className='set-border custom-table-width'
+            className="set-border custom-table-width"
             rowKey={(self) => self.id}
             scroll={{ x: 1000 }}
             pagination={{
