@@ -145,6 +145,7 @@ function StaffContactPage({}: Props): ReactElement {
     const query = sessionStorage.getItem(`staff-contact-query`);
     if (query) {
       setQueryStr(JSON.parse(query));
+      form.setFieldsValue(queryStr);
     }
   }, []);
 

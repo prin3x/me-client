@@ -11,24 +11,13 @@ import { RiUser3Fill } from "react-icons/ri";
 import { checkAuth, setTokenToStorage } from "../services/auth/auth.service";
 
 function Navbar(): ReactElement {
-  const { userInfo, signOut, getUser } = useContext(UserContext);
+  const { userInfo, signOut } = useContext(UserContext);
   const router = useRouter();
 
   function signOutAndReturnToLogin() {
     signOut();
     router.push("/log-in");
   }
-
-  async function checkAuthAndSetNewToken() {
-    const { accessToken } = await checkAuth();
-    if (accessToken) {
-      setTokenToStorage(accessToken);
-    }
-  }
-
-  useEffect(() => {
-    checkAuthAndSetNewToken();
-  }, []);
 
   const Personal = (
     <Menu className="bg-primary-color text-white text-lg ">

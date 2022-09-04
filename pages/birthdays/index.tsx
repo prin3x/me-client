@@ -1,4 +1,5 @@
-import { Col, Form, Image, Row, Select, Table } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Col, Form, Image, Row, Select, Spin, Table } from "antd";
 import moment from "moment";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -26,7 +27,9 @@ function BirthDayPage(): ReactElement {
   const router = useRouter();
   const [form] = Form.useForm();
   const [staffContactData, setStaffContactData] = useState([]);
-  const [queryStr, setQueryStr] = useState<ListQueryParamsBirthday>(INIT_QUERY);
+  const [queryStr, setQueryStr] = useState<ListQueryParamsBirthday>(
+    {} as ListQueryParamsBirthday
+  );
   const [page, setPage] = useState(1);
   const staffContactMeta = useQuery([BIRTHDAY, queryStr, page], () =>
     _getAllStaffContactBirthdays(queryStr)
@@ -47,8 +50,23 @@ function BirthDayPage(): ReactElement {
     if (staffContactMeta.isSuccess) {
       setStaffContactData(staffContactMeta?.data?.items);
     }
-    setQuery();
   }, [staffContactMeta.data, page]);
+
+  useEffect(() => {
+    if (Object.keys(queryStr).length === 0) return;
+    sessionStorage.setItem(`bd-query`, JSON.stringify(queryStr));
+  }, [queryStr]);
+
+  useEffect(() => {
+    const query = sessionStorage.getItem(`bd-query`);
+    if (query) {
+      const cur = JSON.parse(query);
+      setQueryStr(cur);
+      form.setFieldsValue({ month: moment(cur.startDate).month() + 1 + '', ...cur });
+    } else {
+      setQuery();
+    }
+  }, []);
 
   const columns = [
     {
@@ -141,6 +159,13 @@ function BirthDayPage(): ReactElement {
       ),
     },
   ];
+
+  if (!queryStr.startDate)
+    return (
+      <div className="h-screen w-screen flex justify-center items-center">
+        <Spin indicator={<LoadingOutlined style={{ fontSize: 36 }} spin />} />
+      </div>
+    );
 
   return (
     <LayoutHOC>

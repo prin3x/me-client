@@ -6,19 +6,19 @@ import { IContact } from "../contact/contact.model";
  * @param _token - The token to be stored in localStorage.
  */
 export function setTokenToStorage(_token) {
-  sessionStorage.setItem("token", _token);
+  localStorage.setItem("token", _token);
 }
 
 export function getAuthToken(): string {
-  return sessionStorage.getItem("token");
+  return localStorage.getItem("token");
 }
 
 export function setLastRequestToken() {
-  sessionStorage.setItem('iat', new Date().getTime().toString())
+  localStorage.setItem('iat', new Date().getTime().toString())
 }
 
 export function checkLastRequestExceedLimit(): boolean {
-  const token = sessionStorage.getItem('iat');
+  const token = localStorage.getItem('iat');
 
   if(!token) return false;
 
@@ -32,7 +32,7 @@ export function checkLastRequestExceedLimit(): boolean {
 }
 
 export function clearToken() {
-  return sessionStorage.removeItem("token");
+  return localStorage.removeItem("token");
 }
 
 export async function checkAuth(): Promise<{ accessToken: string }> {

@@ -3,6 +3,7 @@ import {
   checkAuth,
   checkToken,
   clearToken,
+  getAuthToken,
   setTokenToStorage,
 } from "../services/auth/auth.service";
 import { IContact } from "../services/contact/contact.model";
@@ -25,8 +26,8 @@ export function UserProvider(props: any) {
 
   const getUser = async () => {
     // const user = await checkAuth();
-    if (sessionStorage.getItem("token")) {
-      const user: IContact = jwt_decode(sessionStorage.getItem("token"));
+    if (getAuthToken()) {
+      const user: IContact = jwt_decode(getAuthToken());
       if (!user) return false;
       if (user.role) signOut();
       setUserInfo(user);
@@ -39,7 +40,7 @@ export function UserProvider(props: any) {
 
   const checkTokenAndRenew = async () => {
     try {
-      const {accessToken} = await checkToken(sessionStorage.getItem("token"));
+      const { accessToken } = await checkToken(sessionStorage.getItem("token"));
 
       if (accessToken) {
         setTokenToStorage(accessToken);
@@ -54,7 +55,7 @@ export function UserProvider(props: any) {
       getUser();
     }
 
-    // if(!router.pathname.includes("log-in") && localStorage.getItem("token")){
+    // if(!router.pathname.includes("log-in") && getAuthToken()){
     //   checkTokenAndRenew();
     // }
   }, [router]);
