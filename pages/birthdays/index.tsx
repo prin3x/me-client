@@ -61,8 +61,16 @@ function BirthDayPage(): ReactElement {
     const query = sessionStorage.getItem(`bd-query`);
     if (query) {
       const cur = JSON.parse(query);
+      const month = moment(cur.startDate).month() + 1;
       setQueryStr(cur);
-      form.setFieldsValue({ month: moment(cur.startDate).month() + 1 + '', ...cur });
+      if (isNaN(month)) {
+        form.setFieldsValue({ month: "0" });
+      } else {
+        form.setFieldsValue({
+          month: moment(cur.startDate).month() + 1 + "",
+          ...cur,
+        });
+      }
     } else {
       setQuery();
     }
@@ -189,6 +197,7 @@ function BirthDayPage(): ReactElement {
                     placeholder="MONTH"
                     style={{ width: 250 }}
                   >
+                    <Select.Option value="0">ทั้งหมด</Select.Option>
                     <Select.Option value="1">January</Select.Option>
                     <Select.Option value="2">February</Select.Option>
                     <Select.Option value="3">March</Select.Option>

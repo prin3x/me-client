@@ -17,6 +17,8 @@ import {
   setLastRequestToken,
 } from "../services/auth/auth.service";
 import { UserProvider } from "../context/UserContext";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,6 +59,12 @@ axios.interceptors.response.use(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  useEffect(() => {
+    if (router.asPath.includes("staff-contact")) {
+      sessionStorage.removeItem(`staff-contact-query`);
+    }
+  }, [router]);
   return (
     <QueryClientProvider client={queryClient}>
       <title>MindEdge</title>
