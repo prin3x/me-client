@@ -386,7 +386,7 @@ p {
   display: none;
 }
 
-.table-noshow-pagination .ant-pagination-options{
+.table-noshow-pagination .ant-pagination-options {
   position: absolute;
   right: 0%;
   top: 37px;
@@ -811,11 +811,17 @@ colgroup col {
   }
 }
 
-.rdw-editor-toolbar{
+.rdw-editor-toolbar {
   display: none !important;
 }
 
-
 figure iframe {
   display: initial !important;
+}
+.list-custom li::before {
+  content: "•";
+  color: #0F52BA;
+  display: inline-block;
+  width: 1em;
+  margin-left: -14px;
 }
