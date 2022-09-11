@@ -11,7 +11,6 @@ function CompanyBenefits({}: Props): ReactElement {
     <LayoutHOC>
       <div>
         <CompanyBenefitHero />
-
         <CompanyBenefitsList />
       </div>
     </LayoutHOC>
