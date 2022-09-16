@@ -2,7 +2,6 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Col, Form, Image, Row, Select, Spin, Table } from "antd";
 import moment from "moment";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import HeroBirthDays from "../../components/birthdays/HeroBirthDays";
@@ -21,17 +20,16 @@ import { imagePlaceholder } from "../../utils/placeholder.image";
 const INIT_QUERY = {
   startDate: moment().format("YYYY-MM-DD"),
   endDate: moment().format("YYYY-MM-DD"),
+  page: 1,
+  limit: 10,
 };
 
 function BirthDayPage(): ReactElement {
-  const router = useRouter();
   const [form] = Form.useForm();
-  const [staffContactData, setStaffContactData] = useState([]);
   const [queryStr, setQueryStr] = useState<ListQueryParamsBirthday>(
-    {} as ListQueryParamsBirthday
+    INIT_QUERY as ListQueryParamsBirthday
   );
-  const [page, setPage] = useState(1);
-  const staffContactMeta = useQuery([BIRTHDAY, queryStr, page], () =>
+  const staffContactMeta = useQuery([BIRTHDAY, { ...queryStr }], () =>
     _getAllStaffContactBirthdays(queryStr)
   );
 
@@ -40,17 +38,19 @@ function BirthDayPage(): ReactElement {
     set.limit = 10;
     set.search = form.getFieldValue("search") || "";
     set.department = form.getFieldValue("department") || "";
-    set.page = page;
     set.startDate = `2022-${form.getFieldValue("month")?.padStart(2, "0")}-01`;
 
     setQueryStr(set);
   }
 
-  useEffect(() => {
-    if (staffContactMeta.isSuccess) {
-      setStaffContactData(staffContactMeta?.data?.items);
-    }
-  }, [staffContactMeta.data, page]);
+  function changePage(page, pageSize) {
+    const currentSetQuery = { ...queryStr };
+
+    currentSetQuery.page = page;
+    currentSetQuery.limit = pageSize;
+
+    setQueryStr(currentSetQuery);
+  }
 
   useEffect(() => {
     if (Object.keys(queryStr).length === 0) return;
@@ -242,13 +242,13 @@ function BirthDayPage(): ReactElement {
             scroll={{ x: 1000 }}
             pagination={{
               showTotal: (total, range) => `ทั้งหมด`,
-              current: page,
-              defaultPageSize: 10,
+              current: queryStr.page,
+              pageSize: queryStr.limit,
               total: staffContactMeta?.data?.total,
-              onChange: (current) => setPage(current),
+              onChange: (current, pageSize) => changePage(current, pageSize),
             }}
             columns={columns}
-            dataSource={staffContactData}
+            dataSource={staffContactMeta.isSuccess ? staffContactMeta.data.items : []}
           />
         </Row>
       </div>

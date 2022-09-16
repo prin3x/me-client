@@ -61,8 +61,12 @@ axios.interceptors.response.use(
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
-    if (router.asPath.includes("staff-contact")) {
+    if (!router.asPath.includes("staff-contact")) {
       sessionStorage.removeItem(`staff-contact-query`);
+    }
+
+    if (!router.asPath.includes("birthdays")){
+      sessionStorage.removeItem(`bd-query`);
     }
   }, [router]);
   return (
