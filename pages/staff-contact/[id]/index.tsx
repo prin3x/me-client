@@ -148,7 +148,7 @@ function SingleCantactPage({}: Props): ReactElement {
                 Company
               </Col>
               <Col lg={18} className="text-lg">
-                Mind Edge Recruitment
+                {contactData.company}
               </Col>
 
               <Col
