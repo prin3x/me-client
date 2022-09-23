@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       sessionStorage.removeItem(`staff-contact-query`);
     }
 
-    if (!router.asPath.includes("birthdays")){
+    if (!router.asPath.includes("birthdays") && !router.asPath.includes("staff-contact")){
       sessionStorage.removeItem(`bd-query`);
     }
   }, [router]);

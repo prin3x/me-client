@@ -20,17 +20,15 @@ import { imagePlaceholder } from "../../utils/placeholder.image";
 
 const INIT_QUERY = {
   startDate: moment().format("YYYY-MM-DD"),
-  endDate: moment().format("YYYY-MM-DD"),
+  endDate: moment().endOf('month').format("YYYY-MM-DD"),
   page: 1,
   limit: 10,
 };
 
 function BirthDayPage(): ReactElement {
   const [form] = Form.useForm();
-  const [queryStr, setQueryStr] = useState<ListQueryParamsBirthday>(
-    INIT_QUERY as ListQueryParamsBirthday
-  );
-  const staffContactMeta = useQuery([BIRTHDAY, { ...queryStr }], () =>
+  const [queryStr, setQueryStr] = useState<ListQueryParamsBirthday>({} as ListQueryParamsBirthday);
+  const staffContactMeta = useQuery([BIRTHDAY, { ...queryStr }], () => queryStr.startDate &&
     _getAllStaffContactBirthdays(queryStr)
   );
 
@@ -55,12 +53,14 @@ function BirthDayPage(): ReactElement {
 
   useEffect(() => {
     if (Object.keys(queryStr).length === 0) return;
+    if (!queryStr.startDate) return;
     sessionStorage.setItem(`bd-query`, JSON.stringify(queryStr));
   }, [queryStr]);
 
   useEffect(() => {
     const query = sessionStorage.getItem(`bd-query`);
     if (query) {
+      console.log(query,'query')
       const cur = JSON.parse(query);
       const month = moment(cur.startDate).month() + 1;
       setQueryStr(cur);
