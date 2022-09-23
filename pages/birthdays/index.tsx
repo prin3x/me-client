@@ -8,6 +8,7 @@ import HeroBirthDays from "../../components/birthdays/HeroBirthDays";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
   DEPT_SELECTOR,
+  ECompanyList,
   ListQueryParamsBirthday,
 } from "../../services/contact/contact.model";
 import { BIRTHDAY } from "../../services/contact/contact.queryKey";
@@ -122,7 +123,7 @@ function BirthDayPage(): ReactElement {
       width: 200,
       render: (_self, _record) => (
         <p className="text-center  mb-0">
-          {_self === "Mindedge Recruitment" ? (
+          {_self.trim() === ECompanyList.MR ? (
             <Image
               fallback={imagePlaceholder}
               src="/assets/me-recruit.svg"
@@ -130,7 +131,7 @@ function BirthDayPage(): ReactElement {
               preview={false}
               width={100}
             />
-          ) : _self === "Mindedge Innovation" ? (
+          ) : _self.trim() === ECompanyList.MI ? (
             <Image
               fallback={imagePlaceholder}
               src="/assets/me-logo.svg"
@@ -138,7 +139,7 @@ function BirthDayPage(): ReactElement {
               preview={false}
               width={100}
             />
-          ) : _self === "Foodberg" ? (
+          ) : _self.trim() === ECompanyList.FB ? (
             <Image
               fallback={imagePlaceholder}
               src="/assets/foodberg-logo.svg"
@@ -146,7 +147,7 @@ function BirthDayPage(): ReactElement {
               preview={false}
               width={50}
             />
-          ) : (
+          ) : _self.trim() === ECompanyList.MY ? (
             <Image
               fallback={imagePlaceholder}
               src="/assets/meu-logo.svg"
@@ -154,7 +155,7 @@ function BirthDayPage(): ReactElement {
               preview={false}
               width={100}
             />
-          )}
+          ) : null}
         </p>
       ),
     },
@@ -248,7 +249,9 @@ function BirthDayPage(): ReactElement {
               onChange: (current, pageSize) => changePage(current, pageSize),
             }}
             columns={columns}
-            dataSource={staffContactMeta.isSuccess ? staffContactMeta.data.items : []}
+            dataSource={
+              staffContactMeta.isSuccess ? staffContactMeta.data.items : []
+            }
           />
         </Row>
       </div>
