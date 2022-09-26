@@ -50,7 +50,7 @@ function CalendarPage(): ReactElement {
   const [calendarMeta, setCalendarMeta] = useState({
     month: moment().format("MMMM"),
     startDate: moment().startOf("month").format("YYYY-MM-DD"),
-    endDate: moment().endOf("month").format("YYYY-MM-DD"),
+    endDate: moment().endOf("month").add(1, 'day').format("YYYY-MM-DD"),
   });
   const [isEventModalOpen, setIsEventModalOpen] = useState(false);
 
@@ -101,7 +101,7 @@ function CalendarPage(): ReactElement {
         .startOf("month")
         .format("YYYY-MM-DD"),
       endDate: moment(calendarRef.current.getApi().getDate())
-        .endOf("month")
+        .endOf("month").add(1, 'day')
         .format("YYYY-MM-DD"),
       month: moment(calendarRef.current.getApi().getDate()).format("MMMM"),
     });
