@@ -3,7 +3,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html>
-      <title>Mindedge Innovation</title>
+      <title>Mind Edge Innovation</title>
       <Head>
         <link
           rel="apple-touch-icon"
