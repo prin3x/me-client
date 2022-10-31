@@ -40,7 +40,7 @@ function BookingMeetingRoom(): ReactElement {
   const [selectedRoomId, setSelectedRoomId] = useState<number>(0);
   const [bookingInterval, setBookingInterval] = useState({
     startDate: moment().startOf("month").format("YYYY-MM-DD"),
-    endDate: moment().endOf("month").format("YYYY-MM-DD"),
+    endDate: moment().add(1,"M").endOf("month").format("YYYY-MM-DD"),
   });
 
   const meetingEventsQuery = useQuery(
@@ -129,7 +129,7 @@ function BookingMeetingRoom(): ReactElement {
                     newValue.month(current.month() - 1);
                     const setNewMettingInterval = {
                       startDate: newValue.startOf("month").format("YYYY-MM-DD"),
-                      endDate: newValue.endOf("month").format("YYYY-MM-DD"),
+                      endDate: newValue.add(1,"M").endOf("month").format("YYYY-MM-DD"),
                     };
                     setBookingInterval(setNewMettingInterval);
                     onChange(newValue);
@@ -151,7 +151,7 @@ function BookingMeetingRoom(): ReactElement {
                     newValue.month(current.month() + 1);
                     const setNewMettingInterval = {
                       startDate: newValue.startOf("month").format("YYYY-MM-DD"),
-                      endDate: newValue.endOf("month").format("YYYY-MM-DD"),
+                      endDate: newValue.add(1,"M").endOf("month").format("YYYY-MM-DD"),
                     };
                     setBookingInterval(setNewMettingInterval);
                     onChange(newValue);

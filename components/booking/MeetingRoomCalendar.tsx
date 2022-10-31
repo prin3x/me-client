@@ -69,7 +69,7 @@ function MeetingRoomCalendar({
   useEffect(() => {
     const setNewMettingInterval = {
       startDate: currentDate.startOf("month").format("YYYY-MM-DD"),
-      endDate: currentDate.endOf("month").format("YYYY-MM-DD"),
+      endDate: currentDate.add(1, "M").endOf("month").format("YYYY-MM-DD"),
     };
     setBookingInterval(setNewMettingInterval);
   }, [currentDate]);
