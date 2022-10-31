@@ -277,6 +277,7 @@ function BookingMeetingRoom(): ReactElement {
           </Col>
           <Col span={24} className="mt-20">
             <MeetingRoomCalendar
+              setBookingInterval={setBookingInterval}
               rooms={rooms || []}
               selectDate={selectDate}
               setSelectDate={setSelectDate}

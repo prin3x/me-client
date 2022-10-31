@@ -36,20 +36,21 @@ function MeetingRoomCalendar({
   selectDate,
   meetingEventsQuery,
   setSelectDate,
+  setBookingInterval,
 }): ReactElement {
   const router = useRouter();
   const calendarRef = useRef<any>(null);
   const { data, isLoading, isSuccess } = meetingEventsQuery;
   const [events, setEvents] = useState([]);
   const [currentDate, setCurrentDate] = useState(
-    calendarRef?.current?.getApi().getDate()
+    calendarRef?.current?.getApi().getDate() || moment()
   );
 
   const onNextButtonClick = () => {
     const calendarApi = calendarRef.current.getApi();
     calendarApi.next();
 
-    setCurrentDate(calendarRef?.current?.getApi().getDate());
+    setCurrentDate(moment(calendarRef?.current?.getApi().getDate()));
     setSelectDate(
       moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD")
     );
@@ -59,11 +60,19 @@ function MeetingRoomCalendar({
     const calendarApi = calendarRef.current.getApi();
     calendarApi.prev();
 
-    setCurrentDate(calendarRef?.current?.getApi().getDate());
+    setCurrentDate(moment(calendarRef?.current?.getApi().getDate()));
     setSelectDate(
       moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD")
     );
   };
+
+  useEffect(() => {
+    const setNewMettingInterval = {
+      startDate: currentDate.startOf("month").format("YYYY-MM-DD"),
+      endDate: currentDate.endOf("month").format("YYYY-MM-DD"),
+    };
+    setBookingInterval(setNewMettingInterval);
+  }, [currentDate]);
 
   const getToday = () => {
     if (calendarRef.current) {
