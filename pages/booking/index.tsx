@@ -107,6 +107,7 @@ function BookingMeetingRoom(): ReactElement {
     setSelectedRoomId(_values);
   };
 
+
   function headerRender({ value, onChange }) {
     const current = value.clone();
 
@@ -126,7 +127,7 @@ function BookingMeetingRoom(): ReactElement {
                   className="h-12 cursor-pointer"
                   onClick={() => {
                     const newValue = value.clone();
-                    newValue.month(current.month() - 1);
+                    newValue.month(current.month() - 2);
                     const setNewMettingInterval = {
                       startDate: newValue.startOf("month").format("YYYY-MM-DD"),
                       endDate: newValue.add(1,"M").endOf("month").format("YYYY-MM-DD"),
@@ -148,7 +149,7 @@ function BookingMeetingRoom(): ReactElement {
                   className="h-12 cursor-pointer"
                   onClick={() => {
                     const newValue = value.clone();
-                    newValue.month(current.month() + 1);
+                    newValue.month(current.month());
                     const setNewMettingInterval = {
                       startDate: newValue.startOf("month").format("YYYY-MM-DD"),
                       endDate: newValue.add(1,"M").endOf("month").format("YYYY-MM-DD"),
