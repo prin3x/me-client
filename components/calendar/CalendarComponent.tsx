@@ -48,9 +48,10 @@ function CalendarPage(): ReactElement {
   const [form] = Form.useForm();
   const [events, setEvents] = useState<any[]>([]);
   const [calendarMeta, setCalendarMeta] = useState({
+    year: moment().format("yyyy"),
     month: moment().format("MMMM"),
     startDate: moment().startOf("month").format("YYYY-MM-DD"),
-    endDate: moment().endOf("month").add(1, 'day').format("YYYY-MM-DD"),
+    endDate: moment().endOf("month").add(1, "day").format("YYYY-MM-DD"),
   });
   const [isEventModalOpen, setIsEventModalOpen] = useState(false);
 
@@ -95,15 +96,33 @@ function CalendarPage(): ReactElement {
 
   const onSelectMonth = (_monthNumber) => {
     const calendarApi = calendarRef.current.getApi();
-    calendarApi.gotoDate(`2022-${_monthNumber?.padStart(2, "0")}-01`);
+    calendarApi.gotoDate(`${moment(calendarRef.current.getApi().getDate()).format("yyyy")}-${_monthNumber?.padStart(2, "0")}-01`);
     setCalendarMeta({
       startDate: moment(calendarRef.current.getApi().getDate())
         .startOf("month")
         .format("YYYY-MM-DD"),
       endDate: moment(calendarRef.current.getApi().getDate())
-        .endOf("month").add(1, 'day')
+        .endOf("month")
+        .add(1, "day")
         .format("YYYY-MM-DD"),
       month: moment(calendarRef.current.getApi().getDate()).format("MMMM"),
+      year: moment(calendarRef.current.getApi().getDate()).format("yyyy"),
+    });
+  };
+
+  const onSelectYear = (_year) => {
+    const calendarApi = calendarRef.current.getApi();
+    calendarApi.gotoDate(`${_year}-${moment(calendarRef.current.getApi().getDate()).format("MM")}-01`);
+    setCalendarMeta({
+      startDate: moment(calendarRef.current.getApi().getDate())
+        .startOf("month")
+        .format("YYYY-MM-DD"),
+      endDate: moment(calendarRef.current.getApi().getDate())
+        .endOf("month")
+        .add(1, "day")
+        .format("YYYY-MM-DD"),
+      month: moment(calendarRef.current.getApi().getDate()).format("MMMM"),
+      year: moment(calendarRef.current.getApi().getDate()).format("yyyy"),
     });
   };
 
@@ -203,7 +222,13 @@ function CalendarPage(): ReactElement {
                 </Select>
               </Form.Item>
               <Form.Item>
-                <Select style={{ width: 150 }} size="large" placeholder="2022">
+                <Select
+                  style={{ width: 150 }}
+                  size="large"
+                  placeholder="2023"
+                  onSelect={onSelectYear}
+                >
+                  <Select.Option value="2023">2023</Select.Option>
                   <Select.Option value="2022">2022</Select.Option>
                 </Select>
               </Form.Item>

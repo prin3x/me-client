@@ -37,7 +37,7 @@ function BirthDayPage(): ReactElement {
     set.limit = 10;
     set.search = form.getFieldValue("search") || "";
     set.department = form.getFieldValue("department") || "";
-    set.startDate = `2022-${form.getFieldValue("month")?.padStart(2, "0")}-01`;
+    set.startDate = `${moment().format("yyyy")}-${form.getFieldValue("month")?.padStart(2, "0")}-01`;
 
     setQueryStr(set);
   }
