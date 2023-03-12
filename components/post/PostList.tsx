@@ -14,7 +14,11 @@ type Props = {
 };
 
 function PostList({ posts }: Props) {
-  const router = useRouter();
+  const categoryUrlMapper = {
+    itclinic: 'healthcare',
+    announcement: 'announcement',
+    activity: 'activity'
+  }
   return (
     <Row className="container mx-auto pt-5" justify="center">
       <List
@@ -24,7 +28,7 @@ function PostList({ posts }: Props) {
           <List.Item key={_post.id} className="w-full cursor-pointer">
             <Row className="w-full">
               <Col md={3}>
-                <Link href={`/${_post.categoryName}/${_post.slug}/`} passHref>
+                <Link href={`/${categoryUrlMapper[_post.categoryName]}/${_post.slug}/`} passHref>
                   <Image
                     fallback={imagePlaceholder}
                     src={_post.imageUrl}
