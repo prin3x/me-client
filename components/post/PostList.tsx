@@ -40,7 +40,7 @@ function PostList({ posts }: Props) {
                 </Link>
               </Col>
               <Col md={12} className="mx-2 ml-5">
-                <Link href={`/${_post.categoryName}/${_post.slug}/`} passHref>
+                <Link href={`/${categoryUrlMapper[_post.categoryName]}/${_post.slug}/`} passHref>
                   <div className="flex flex-col h-20">
                     <div className="text-xl font-bold"> {_post.title.slice(0,104)}</div>
                     {/* <p
@@ -74,7 +74,7 @@ function PostList({ posts }: Props) {
                 </div>
                 <div className="flex justify-center">
                   <Link
-                    href={`/${_post.categoryName}/?tag=${_post.tag}`}
+                    href={`/${categoryUrlMapper[_post.categoryName]}/?tag=${_post.tag}`}
                     passHref
                   >
                     <Tag className="tag-round font-bold" color="blue">
