@@ -23,7 +23,7 @@ function CompanyBenefits({}: Props): ReactElement {
             </Row>
           </Col>
         </Row>
-        <Row className="mt-5">
+        {/* <Row className="mt-5">
           <Col span={24}>
             <Row justify="center">
               <Link href="/company-benefits/full-version" passHref>
@@ -43,7 +43,7 @@ function CompanyBenefits({}: Props): ReactElement {
               </Link>
             </Row>
           </Col>
-        </Row>
+        </Row> */}
       </div>
     </LayoutHOC>
   );

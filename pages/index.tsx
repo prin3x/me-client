@@ -173,7 +173,7 @@ const Home: NextPage = () => {
                 <Col md={12} className="p-1">
                   <div className="heading-en  p-5 font-bold uppercase text-primary-color">
                     <Link href={"/itclinic"} passHref>
-                      <span className="cursor-pointer">IT Clinic</span>
+                      <span className="cursor-pointer">Health Care</span>
                     </Link>
                   </div>
                   <div

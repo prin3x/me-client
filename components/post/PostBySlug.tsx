@@ -20,7 +20,7 @@ type Props = {
 
 const urls = {
   announcement: "Announcement",
-  itclinic: "IT Clinic",
+  itclinic: "Health Care",
   activity: "Activity",
   undefined: "undefined",
 };
