@@ -160,9 +160,9 @@ function Navbar(): ReactElement {
         </Link>
       </Menu.Item>
       <Menu.Item key={nanoid(5)}>
-        <Link href={"/healthcare"} passHref>
+        <Link href={"/lifestyle"} passHref>
           <div className="text-white nav-item text-lg cursor-pointer">
-            Health Care
+            Lifestyle
           </div>
         </Link>
       </Menu.Item>

@@ -1,25 +1,15 @@
-import {
-  DoubleLeftOutlined,
-  DoubleRightOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
-import { Input, Pagination, Row, Skeleton } from "antd";
 import { useRouter } from "next/router";
-import React, { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import ITClinicHero from "../../components/itclinic/ITClinicHero";
 import PostHOC from "../../components/post/PostHOC";
-import PostList from "../../components/post/PostList";
 import LayoutHOC from "../../layout/LayoutHOC";
 import {
-  EPostCategory,
-  ListQueryParamsForPost,
+  ListQueryParamsForPost
 } from "../../services/news/news.model";
 import { ALL_RECENT_IT } from "../../services/news/news.queryKey";
 import {
-  _getPostByCategoryId,
-  _getRecentITClinic,
-  _getRecentNews,
+  _getRecentITClinic
 } from "../../services/news/news.service";
 
 interface Props {}

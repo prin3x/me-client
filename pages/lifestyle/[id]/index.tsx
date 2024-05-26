@@ -1,6 +1,5 @@
 import { Skeleton } from "antd";
 import { useRouter } from "next/router";
-import React from "react";
 import { useQuery } from "react-query";
 import PostBySlug from "../../../components/post/PostBySlug";
 import LayoutHOC from "../../../layout/LayoutHOC";

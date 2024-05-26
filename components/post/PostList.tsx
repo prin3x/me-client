@@ -15,7 +15,7 @@ type Props = {
 
 function PostList({ posts }: Props) {
   const categoryUrlMapper = {
-    itclinic: 'healthcare',
+    itclinic: 'lifestyle',
     announcement: 'announcement',
     activity: 'activity'
   }

@@ -172,15 +172,15 @@ const Home: NextPage = () => {
               {recentItClinicMeta?.data?.items?.length > 0 && (
                 <Col md={12} className="p-1">
                   <div className="heading-en  p-5 font-bold uppercase text-primary-color">
-                    <Link href={"/healthcare"} passHref>
-                      <span className="cursor-pointer">Health Care</span>
+                    <Link href={"/lifestyle"} passHref>
+                      <span className="cursor-pointer">Lifestyle</span>
                     </Link>
                   </div>
                   <div
                     className="mask-on-hover cursor-pointer relative"
                     onClick={() =>
                       router.push(
-                        `/healthcare/${recentItClinicMeta?.data?.items?.[0]?.slug}`
+                        `/lifestyle/${recentItClinicMeta?.data?.items?.[0]?.slug}`
                       )
                     }
                   >
@@ -207,7 +207,7 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                   <Row justify="end">
-                    <Link href="/healthcare" passHref>
+                    <Link href="/lifestyle" passHref>
                       <div className="text-lg cursor-pointer">More ...</div>
                     </Link>
                   </Row>
