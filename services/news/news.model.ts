@@ -42,4 +42,5 @@ export enum EPostCategory {
   ANNOUNCEMENT = "announcement",
   IT = "itclinic",
   ACTIVITY = "activity",
+  LIFESTYLE = "lifestyle",
 }
