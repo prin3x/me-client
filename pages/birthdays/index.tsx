@@ -20,16 +20,19 @@ import { imagePlaceholder } from "../../utils/placeholder.image";
 
 const INIT_QUERY = {
   startDate: moment().format("YYYY-MM-DD"),
-  endDate: moment().endOf('month').format("YYYY-MM-DD"),
+  endDate: moment().endOf("month").format("YYYY-MM-DD"),
   page: 1,
   limit: 10,
 };
 
 function BirthDayPage(): ReactElement {
   const [form] = Form.useForm();
-  const [queryStr, setQueryStr] = useState<ListQueryParamsBirthday>({} as ListQueryParamsBirthday);
-  const staffContactMeta = useQuery([BIRTHDAY, { ...queryStr }], () => queryStr.startDate &&
-    _getAllStaffContactBirthdays(queryStr)
+  const [queryStr, setQueryStr] = useState<ListQueryParamsBirthday>(
+    {} as ListQueryParamsBirthday
+  );
+  const staffContactMeta = useQuery(
+    [BIRTHDAY, { ...queryStr }],
+    () => queryStr.startDate && _getAllStaffContactBirthdays(queryStr)
   );
 
   function setQuery() {
@@ -37,7 +40,9 @@ function BirthDayPage(): ReactElement {
     set.limit = 10;
     set.search = form.getFieldValue("search") || "";
     set.department = form.getFieldValue("department") || "";
-    set.startDate = `${moment().format("yyyy")}-${form.getFieldValue("month")?.padStart(2, "0")}-01`;
+    set.startDate = `${moment().format("yyyy")}-${form
+      .getFieldValue("month")
+      ?.padStart(2, "0")}-01`;
 
     setQueryStr(set);
   }
@@ -60,7 +65,7 @@ function BirthDayPage(): ReactElement {
   useEffect(() => {
     const query = sessionStorage.getItem(`bd-query`);
     if (query) {
-      console.log(query,'query')
+      console.log(query, "query");
       const cur = JSON.parse(query);
       const month = moment(cur.startDate).month() + 1;
       setQueryStr(cur);
@@ -138,14 +143,6 @@ function BirthDayPage(): ReactElement {
               alt="mindedgelogo"
               preview={false}
               width={100}
-            />
-          ) : _self.trim() === ECompanyList.FB ? (
-            <Image
-              fallback={imagePlaceholder}
-              src="/assets/foodberg-logo.svg"
-              alt="mindedgelogo"
-              preview={false}
-              width={50}
             />
           ) : _self.trim() === ECompanyList.MY ? (
             <Image

@@ -22,7 +22,7 @@ export interface IContact {
   createdBy: number;
   createdDate: string;
   updatedDate: string;
-  role? : string
+  role?: string;
 }
 
 export interface ListQueryParams {
@@ -61,10 +61,8 @@ export enum EDepartment {
 export enum ECompanyList {
   MI = "Mind Edge Innovation",
   MR = "Mind Edge Recruitment",
-  FB = "Foodberg",
-  MY = "Me and You Entertainment"
+  MY = "Me and You Entertainment",
 }
-
 
 export const DEPT_SELECTOR = [
   EDepartment.BD,
@@ -79,7 +77,6 @@ export const DEPT_SELECTOR = [
 ];
 
 export const COMPANY_SELECTOR = [
-  ECompanyList.FB,
   ECompanyList.MI,
   ECompanyList.MR,
   ECompanyList.MY,

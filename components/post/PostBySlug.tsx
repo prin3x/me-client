@@ -1,4 +1,5 @@
 import { Breadcrumb, Col, Image, Row } from "antd";
+import { EyeOutlined } from "@ant-design/icons";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { imagePlaceholder } from "../../utils/placeholder.image";
@@ -76,7 +77,13 @@ function PostBySlug({ postData }: Props) {
         </Breadcrumb.Item>
         <Breadcrumb.Item>{postData?.title}</Breadcrumb.Item>
       </Breadcrumb>
-      <Row justify="end">
+      <Row justify="space-between">
+        <Col>
+          <Row align="middle">
+            <EyeOutlined />
+            <span className="ml-2">{postData?.readers}</span>
+          </Row>
+        </Col>
         <Col>
           {moment(postData?.createdAt).format("DD MMMM yyyy | hh:mm A")}
         </Col>

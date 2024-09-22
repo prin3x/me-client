@@ -13,7 +13,7 @@ function CompanyName({}: Props) {
         mr: "mr-location.svg",
         me: "me-location.svg",
         fb: "fb-location.svg",
-        my: "my-location.svg"
+        my: "my-location.jpg"
     }
 
     useEffect(() => {
@@ -33,7 +33,6 @@ function CompanyName({}: Props) {
             preview={false}
             src={currentCompany ? `/assets/${imageMapping[currentCompany]}` : ''}
             width={750}
-            height={750}
             alt="location"
           />
         </Row>
