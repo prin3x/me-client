@@ -45,14 +45,14 @@ function PostBySlug({ postData }: Props) {
   useEffect(() => {
     if (!postData?.id) return;
 
-    if (sessionStorage.getItem(`post-${postData?.id}`)) return;
+    if (sessionStorage.getItem(`post-${postData?.slug}`)) return;
 
     sessionStorage.setItem(
-      `post-${postData?.id}`,
+      `post-${postData?.slug}`,
       JSON.stringify(new Date().getTime())
     );
 
-    _readOnePost(postData?.id);
+    _readOnePost(postData?.slug);
   }, [postData?._id]);
 
   useEffect(() => {
