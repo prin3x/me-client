@@ -1,15 +1,14 @@
-import { Breadcrumb, Col, Image, Row } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
-import moment from "moment";
-import React, { useEffect, useState } from "react";
-import { imagePlaceholder } from "../../utils/placeholder.image";
-import draftToHtml from "draftjs-to-html";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { _readOnePost } from "../../services/news/news.service";
+import { Breadcrumb, Col, Image, Row } from "antd";
 import { EditorState, convertFromRaw } from "draft-js";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import moment from "moment";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { _readOnePost } from "../../services/news/news.service";
+import { imagePlaceholder } from "../../utils/placeholder.image";
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
   { ssr: false }
@@ -32,7 +31,6 @@ function PostBySlug({ postData }: Props) {
   const [textState, setTextState] = useState({
     editorState: EditorState.createEmpty(),
   });
-
   function findUrlInPathname() {
     const availableUrl = Object.keys(urls);
     const pathname = router.pathname.split("/")?.[1];
@@ -42,18 +40,22 @@ function PostBySlug({ postData }: Props) {
     setFoundPath(foundPath);
   }
 
+  const readPost = useCallback(() => {
+    if (!postData) return;
+    const { id, slug } = postData;
+
+    if (!id) return;
+
+    const postKey = `post-${slug}`;
+    if (localStorage.getItem(postKey)) return;
+
+    localStorage.setItem(postKey, JSON.stringify(new Date().getTime()));
+    _readOnePost(slug);
+  }, [postData]);
+
   useEffect(() => {
-    if (!postData?.id) return;
-
-    if (sessionStorage.getItem(`post-${postData?.slug}`)) return;
-
-    sessionStorage.setItem(
-      `post-${postData?.slug}`,
-      JSON.stringify(new Date().getTime())
-    );
-
-    _readOnePost(postData?.slug);
-  }, [postData?._id]);
+    readPost();
+  }, [readPost]);
 
   useEffect(() => {
     findUrlInPathname();
