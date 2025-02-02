@@ -46,10 +46,11 @@ function PostBySlug({ postData }: Props) {
 
     if (!id) return;
 
-    const postKey = `post-${slug}`;
-    if (localStorage.getItem(postKey)) return;
+    // TODO: uncomment this when we have a way to track user's reading history
+    // const postKey = `post-${slug}`;
+    // if (localStorage.getItem(postKey)) return;
 
-    localStorage.setItem(postKey, JSON.stringify(new Date().getTime()));
+    // localStorage.setItem(postKey, JSON.stringify(new Date().getTime()));
     _readOnePost(slug);
   }, [postData]);
 
