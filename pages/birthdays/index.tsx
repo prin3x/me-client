@@ -17,6 +17,8 @@ import {
   _getAllStaffContacts,
 } from "../../services/contact/contact.service";
 import { imagePlaceholder } from "../../utils/placeholder.image";
+import { DEPARTMENT } from "../../services/department/department.queryKey";
+import { _getAllDepartments } from "../../services/department/department.service";
 
 const INIT_QUERY = {
   startDate: moment().format("YYYY-MM-DD"),
@@ -34,6 +36,19 @@ function BirthDayPage(): ReactElement {
     [BIRTHDAY, { ...queryStr }],
     () => queryStr.startDate && _getAllStaffContactBirthdays(queryStr)
   );
+
+  const departmentMeta = useQuery([DEPARTMENT], () => _getAllDepartments());
+
+  const [departments, setDepartments] = useState([]);
+
+  useEffect(() => {
+    if (departmentMeta.data) {
+      const newDepartments = departmentMeta.data
+        .filter((dept) => !DEPT_SELECTOR.includes(dept.department))
+        .map((dept) => dept.department);
+      setDepartments([...DEPT_SELECTOR, ...newDepartments]);
+    }
+  }, [departmentMeta.data]);
 
   function setQuery() {
     let set = {} as ListQueryParamsBirthday;
@@ -219,7 +234,7 @@ function BirthDayPage(): ReactElement {
                     <Select.Option key={"ทั้งหมด"} value={""}>
                       {"ทั้งหมด"}
                     </Select.Option>
-                    {DEPT_SELECTOR.map((_dept) => (
+                    {departments.map((_dept) => (
                       <Select.Option key={_dept} value={_dept}>
                         {_dept}
                       </Select.Option>

@@ -1,22 +1,23 @@
-import { Col, Row, Image, Form, Select, Input, Table } from "antd";
-import { useRouter } from "next/router";
-import React, { ReactElement, useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import LayoutHOC from "../../layout/LayoutHOC";
-import { ALL_CONTACT } from "../../services/contact/contact.queryKey";
-import { _getAllStaffContacts } from "../../services/contact/contact.service";
-import {
-  COMPANY_SELECTOR,
-  DEPT_SELECTOR,
-  ListQueryParams,
-} from "../../services/contact/contact.model";
 import {
   DoubleLeftOutlined,
   DoubleRightOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-import { imagePlaceholder } from "../../utils/placeholder.image";
+import { Col, Form, Image, Input, Row, Select, Table } from "antd";
 import Link from "next/link";
+import { ReactElement, useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import LayoutHOC from "../../layout/LayoutHOC";
+import {
+  COMPANY_SELECTOR,
+  DEPT_SELECTOR,
+  ListQueryParams,
+} from "../../services/contact/contact.model";
+import { ALL_CONTACT } from "../../services/contact/contact.queryKey";
+import { _getAllStaffContacts } from "../../services/contact/contact.service";
+import { _getAllDepartments } from "../../services/department/department.service";
+import { imagePlaceholder } from "../../utils/placeholder.image";
+import { DEPARTMENT } from "../../services/department/department.queryKey";
 
 interface Props {}
 
@@ -27,9 +28,20 @@ function StaffContactPage({}: Props): ReactElement {
   const staffContactMeta = useQuery([ALL_CONTACT, queryStr], () =>
     _getAllStaffContacts(queryStr)
   );
-  const router = useRouter();
+  const departmentMeta = useQuery([DEPARTMENT], () => _getAllDepartments());
 
-  function itemRender(current, type, originalElement) {
+  const [departments, setDepartments] = useState([]);
+
+  useEffect(() => {
+    if (departmentMeta.data) {
+      const newDepartments = departmentMeta.data
+        .filter((dept) => !DEPT_SELECTOR.includes(dept.department))
+        .map((dept) => dept.department);
+      setDepartments([...DEPT_SELECTOR, ...newDepartments]);
+    }
+  }, [departmentMeta.data]);
+
+  function itemRender(_, type) {
     if (type === "prev") {
       return (
         <a>
@@ -195,7 +207,7 @@ function StaffContactPage({}: Props): ReactElement {
                     <Select.Option key={"ALL"} value={""}>
                       {"ALL"}
                     </Select.Option>
-                    {DEPT_SELECTOR.map((_dept) => (
+                    {departments.map((_dept) => (
                       <Select.Option key={_dept} value={_dept}>
                         {_dept}
                       </Select.Option>

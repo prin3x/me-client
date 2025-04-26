@@ -28,7 +28,12 @@ function PostList({ posts }: Props) {
           <List.Item key={_post.id} className="w-full cursor-pointer">
             <Row className="w-full">
               <Col md={3}>
-                <Link href={`/${categoryUrlMapper[_post.categoryName]}/${_post.slug}/`} passHref>
+                <Link
+                  href={`/${categoryUrlMapper[_post.categoryName]}/${
+                    _post.slug
+                  }/`}
+                  passHref
+                >
                   <Image
                     fallback={imagePlaceholder}
                     src={_post.imageUrl}
@@ -40,16 +45,26 @@ function PostList({ posts }: Props) {
                 </Link>
               </Col>
               <Col md={12} className="mx-2 ml-5">
-                <Link href={`/${categoryUrlMapper[_post.categoryName]}/${_post.slug}/`} passHref>
+                <Link
+                  href={`/${categoryUrlMapper[_post.categoryName]}/${
+                    _post.slug
+                  }/`}
+                  passHref
+                >
                   <div className="flex flex-col h-20">
-                    <div className="text-xl font-bold"> {_post.title.slice(0,104)}</div>
+                    <div className="text-xl font-bold">
+                      {" "}
+                      {_post.title.slice(0, 104)}
+                    </div>
                     {/* <p
                       className="text-slate-400 truncate"
                       dangerouslySetInnerHTML={{
                         __html: `${draftToHtml(JSON.parse(_post.content))}`,
                       }}
                     /> */}
-                    <p className="text-slate-400 truncate mb-0">{_post.description}</p>
+                    <p className="text-slate-400 truncate mb-0">
+                      {_post.description}
+                    </p>
                   </div>
                 </Link>
               </Col>
@@ -69,12 +84,14 @@ function PostList({ posts }: Props) {
                     className="text-slate-400"
                   />
                   <p className="text-xs text-slate-400">
-                    {moment(_post.createdAt).format("DD MMMM yyyy | hh:mm A")}
+                    {moment(_post.createdDate).format("DD MMMM yyyy | hh:mm A")}
                   </p>
                 </div>
                 <div className="flex justify-center">
                   <Link
-                    href={`/${categoryUrlMapper[_post.categoryName]}/?tag=${_post.tag}`}
+                    href={`/${categoryUrlMapper[_post.categoryName]}/?tag=${
+                      _post.tag
+                    }`}
                     passHref
                   >
                     <Tag className="tag-round font-bold" color="blue">

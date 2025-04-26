@@ -129,6 +129,7 @@ function MakeBooking({}: Props): ReactElement {
         startHour: moment(meetingDetails.start),
         endDate: moment(meetingDetails.end),
         endHour: moment(meetingDetails.end),
+        creator: meetingDetails.creator?.nameTH,
       });
     } catch (e) {
       router.push("/");

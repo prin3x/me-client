@@ -91,18 +91,6 @@ function Navbar(): ReactElement {
               </div>
             </a>
           </Menu.Item>
-          <Menu.Item key={nanoid(5)}>
-            <a
-              className="cursor-pointer"
-              target="_blank"
-              rel="noreferrer"
-              href="http://203.154.66.203:8015/Foodberg/center/login.php?"
-            >
-              <div className="text-white hover:text-black nav-item text-lg ">
-                FB
-              </div>
-            </a>
-          </Menu.Item>
         </Menu>
       </Menu.SubMenu>
     </Menu>

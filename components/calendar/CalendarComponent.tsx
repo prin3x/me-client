@@ -87,44 +87,17 @@ function CalendarPage(): ReactElement {
     return _findAllCalendarEvent(q);
   });
 
-  function setEventState() {
-    let nextState;
-    nextState = displayColoredEvents(calendarEventMeta?.data);
+  useEffect(() => {
+    function setEventState() {
+      let nextState;
+      nextState = displayColoredEvents(calendarEventMeta?.data);
+      setEvents(nextState);
+    }
 
-    setEvents(nextState);
-  }
-
-  const onSelectMonth = (_monthNumber) => {
-    const calendarApi = calendarRef.current.getApi();
-    calendarApi.gotoDate(`${moment(calendarRef.current.getApi().getDate()).format("yyyy")}-${_monthNumber?.padStart(2, "0")}-01`);
-    setCalendarMeta({
-      startDate: moment(calendarRef.current.getApi().getDate())
-        .startOf("month")
-        .format("YYYY-MM-DD"),
-      endDate: moment(calendarRef.current.getApi().getDate())
-        .endOf("month")
-        .add(1, "day")
-        .format("YYYY-MM-DD"),
-      month: moment(calendarRef.current.getApi().getDate()).format("MMMM"),
-      year: moment(calendarRef.current.getApi().getDate()).format("yyyy"),
-    });
-  };
-
-  const onSelectYear = (_year) => {
-    const calendarApi = calendarRef.current.getApi();
-    calendarApi.gotoDate(`${_year}-${moment(calendarRef.current.getApi().getDate()).format("MM")}-01`);
-    setCalendarMeta({
-      startDate: moment(calendarRef.current.getApi().getDate())
-        .startOf("month")
-        .format("YYYY-MM-DD"),
-      endDate: moment(calendarRef.current.getApi().getDate())
-        .endOf("month")
-        .add(1, "day")
-        .format("YYYY-MM-DD"),
-      month: moment(calendarRef.current.getApi().getDate()).format("MMMM"),
-      year: moment(calendarRef.current.getApi().getDate()).format("yyyy"),
-    });
-  };
+    if (calendarEventMeta.isSuccess) {
+      setEventState();
+    }
+  }, [calendarEventMeta.data, calendarEventMeta.isSuccess]);
 
   function displayColoredEvents(events) {
     if (!Array.isArray(events)) return;
@@ -186,11 +159,45 @@ function CalendarPage(): ReactElement {
     setEvents(events);
   }
 
-  useEffect(() => {
-    if (calendarEventMeta.isSuccess) {
-      setEventState();
-    }
-  }, [calendarEventMeta.data]);
+  const onSelectMonth = (_monthNumber) => {
+    const calendarApi = calendarRef.current.getApi();
+    calendarApi.gotoDate(
+      `${moment(calendarRef.current.getApi().getDate()).format(
+        "yyyy"
+      )}-${_monthNumber?.padStart(2, "0")}-01`
+    );
+    setCalendarMeta({
+      startDate: moment(calendarRef.current.getApi().getDate())
+        .startOf("month")
+        .format("YYYY-MM-DD"),
+      endDate: moment(calendarRef.current.getApi().getDate())
+        .endOf("month")
+        .add(1, "day")
+        .format("YYYY-MM-DD"),
+      month: moment(calendarRef.current.getApi().getDate()).format("MMMM"),
+      year: moment(calendarRef.current.getApi().getDate()).format("yyyy"),
+    });
+  };
+
+  const onSelectYear = (_year) => {
+    const calendarApi = calendarRef.current.getApi();
+    calendarApi.gotoDate(
+      `${_year}-${moment(calendarRef.current.getApi().getDate()).format(
+        "MM"
+      )}-01`
+    );
+    setCalendarMeta({
+      startDate: moment(calendarRef.current.getApi().getDate())
+        .startOf("month")
+        .format("YYYY-MM-DD"),
+      endDate: moment(calendarRef.current.getApi().getDate())
+        .endOf("month")
+        .add(1, "day")
+        .format("YYYY-MM-DD"),
+      month: moment(calendarRef.current.getApi().getDate()).format("MMMM"),
+      year: moment(calendarRef.current.getApi().getDate()).format("yyyy"),
+    });
+  };
 
   return (
     <Row className="container caleandar mx-auto pt-10">
@@ -225,11 +232,17 @@ function CalendarPage(): ReactElement {
                 <Select
                   style={{ width: 150 }}
                   size="large"
-                  placeholder="2023"
+                  placeholder={moment().format("YYYY")}
                   onSelect={onSelectYear}
                 >
-                  <Select.Option value="2023">2023</Select.Option>
-                  <Select.Option value="2022">2022</Select.Option>
+                  {Array.from({ length: 5 }, (_, i) => {
+                    const year = moment().year() - i;
+                    return (
+                      <Select.Option key={year} value={year.toString()}>
+                        {year}
+                      </Select.Option>
+                    );
+                  })}
                 </Select>
               </Form.Item>
               <Form.Item className="ml-auto" style={{ marginLeft: "auto" }}>

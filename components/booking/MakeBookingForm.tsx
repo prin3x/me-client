@@ -17,33 +17,6 @@ import { _getAllFloors } from "../../services/floor/floor.service";
 import { EMakeStatus } from "../../services/meetingRoom/meeting-room.model";
 import { _getRoomByFloor } from "../../services/meetingRoom/meeting-room.service";
 
-const availableHours = [
-  { label: "07", value: 7 },
-  { label: "08", value: 8 },
-  { label: "09", value: 9 },
-  { label: "10", value: 10 },
-  { label: "11", value: 11 },
-  { label: "12", value: 12 },
-  { label: "13", value: 13 },
-  { label: "14", value: 14 },
-  { label: "15", value: 15 },
-  { label: "16", value: 16 },
-  { label: "17", value: 17 },
-  { label: "18", value: 18 },
-  { label: "19", value: 19 },
-];
-const availableMinutes = [
-  { label: "30 minute", value: 30 },
-  { label: "00 minute", value: 0 },
-];
-const availableDutaion = [
-  { label: "30 minutes", value: 30 },
-  { label: "1 hour", value: 60 },
-  { label: "2 hours", value: 120 },
-  { label: "3 hours", value: 180 },
-  { label: "4 hours", value: 240 },
-];
-
 type Props = {
   submitRoomBooking: () => void;
   updateRoomBooking: () => Promise<void>;
@@ -60,9 +33,6 @@ function MakeBookingForm({
   makeStatus,
 }: Props) {
   const floorMetaData = useQuery(["available floors"], () => _getAllFloors());
-  const router = useRouter();
-  const [startDate, setStartDate] = useState(moment());
-  const [isCheckedAllDay, setIsCheckedAllDay] = useState(false);
   const [formValues, setFormValues] = useState<any>({});
   const [hourDiff, setHourDiff] = useState(0);
   const [rooms, setRooms] = useState([]);
@@ -71,29 +41,6 @@ function MakeBookingForm({
   function defaultDisabledDate(current) {
     return current < moment().subtract(23, "h");
   }
-
-  function disabledStartDate(current) {
-    return current < startDate;
-  }
-
-  function onCheck(e) {
-    setIsCheckedAllDay(e.target.checked);
-    form.setFieldsValue({ allDay: e.target.checked });
-  }
-
-  function onSelectStartDate(_values) {
-    setStartDate(_values);
-    form.setFieldsValue({ end: moment(_values).add(30, "minute") });
-  }
-
-  function range(start, end) {
-    const result = [];
-    for (let i = start; i < end; i++) {
-      result.push(i);
-    }
-    return result;
-  }
-
   const onFieldChange = (_formValues) => setFormValues(_formValues);
 
   const getAllRooms = async (floor: string) => {
@@ -190,7 +137,10 @@ function MakeBookingForm({
               label="Start Date"
               rules={[{ required: true, message: "Please input start date!" }]}
             >
-              <DatePicker disabledDate={defaultDisabledDate} disabled={makeStatus === EMakeStatus.READ} />
+              <DatePicker
+                disabledDate={defaultDisabledDate}
+                disabled={makeStatus === EMakeStatus.READ}
+              />
             </Form.Item>
             <Form.Item
               className="font-bold"
@@ -334,6 +284,9 @@ function MakeBookingForm({
               <Select.Option value="internal">Internal</Select.Option>
               <Select.Option value="external">External</Select.Option>
             </Select>
+          </Form.Item>
+          <Form.Item className="font-bold" name={"creator"} label="Created By">
+            <Input size="large" style={{ width: 600 }} disabled={true} />
           </Form.Item>
           <Row className="mt-10" justify="center">
             {makeStatus === EMakeStatus.MAKE ? (

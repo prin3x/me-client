@@ -80,15 +80,9 @@ function PostBySlug({ postData }: Props) {
         </Breadcrumb.Item>
         <Breadcrumb.Item>{postData?.title}</Breadcrumb.Item>
       </Breadcrumb>
-      <Row justify="space-between">
+      <Row justify="end">
         <Col>
-          <Row align="middle">
-            <EyeOutlined />
-            <span className="ml-2">{postData?.readers}</span>
-          </Row>
-        </Col>
-        <Col>
-          {moment(postData?.createdAt).format("DD MMMM yyyy | hh:mm A")}
+          {moment(postData?.createdDate).format("DD MMMM yyyy | hh:mm A")}
         </Col>
       </Row>
       <Row justify="center" className="pt-10">
