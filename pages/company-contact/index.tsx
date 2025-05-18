@@ -29,14 +29,12 @@ function CompanyContactPage({}: Props): ReactElement {
                   <h3 className="text-primary-color font-bold text-xl">
                     บริษัท มายด์เอจ อินโนเวชั่น จำกัด
                   </h3>
+                  <div className="text-lg">ลขที่ 111 ถนน ประเสริฐมนูกิจ</div>
                   <div className="text-lg">
-                    เลขที่ 1 ถนน รามคำแหง ซ. รามคำแหง 60/4, 60/5
+                    แขวง คลองกุ่ม เขต บึงกุ่ม กรุงเทพฯ 10240
                   </div>
                   <div className="text-lg">
-                    แขวง หัวหมาก เขต บางกะปิ กรุงเทพฯ 10240
-                  </div>
-                  <div className="text-lg">
-                    โทร. 02-374-4484 (Payment & Account){" "}
+                    โทร. 02-374-4484 , 02-374-4489 (Payment & Account){" "}
                   </div>
                   <div className="text-lg">
                     เลขประจำตัวผู้เสียภาษี : 01355 55014 758
@@ -102,14 +100,12 @@ function CompanyContactPage({}: Props): ReactElement {
                   <h3 className="text-primary-color font-bold text-xl">
                     บริษัท จัดหางาน มายด์เอจ จำกัด
                   </h3>
+                  <div className="text-lg">เลขที่ 111 ถนน ประเสริฐมนูกิจ</div>
                   <div className="text-lg">
-                    เลขที่ 1 ถนน รามคำแหง ซ. รามคำแหง 60/4, 60/5
+                    แขวง คลองกุ่ม เขต บึงกุ่ม กรุงเทพฯ 10240
                   </div>
                   <div className="text-lg">
-                    แขวง หัวหมาก เขต บางกะปิ กรุงเทพฯ 10240
-                  </div>
-                  <div className="text-lg">
-                    โทร. 02-374-4484 (Payment & Account)
+                    โทร. 02-374-4484 , 02-374-4489 (Payment & Account)
                   </div>
                   <div className="text-lg">
                     เลขประจำตัวผู้เสียภาษี : 01355 54007 286
@@ -175,15 +171,12 @@ function CompanyContactPage({}: Props): ReactElement {
                   <h3 className="text-primary-color font-bold text-xl">
                     บริษัท มี แอนด์ ยู เอ็นเตอร์เทนเมนท์ จำกัด
                   </h3>
+                  <div className="text-lg">เลขที่ 111 ถนน ประเสริฐมนูกิจ</div>
                   <div className="text-lg">
-                    1091/241 อาคารซิตี้ลิงค์ ชั้นที่ 6 ห้องเลขที่ ซี 5
+                    แขวง คลองกุ่ม เขต บึงกุ่ม กรุงเทพฯ 10240{" "}
                   </div>
                   <div className="text-lg">
-                    ซอยเพชรบุรี 35 ถนนเพชรบุรีตัดใหม่ แขวงมักกะสัน{" "}
-                  </div>
-                  <div className="text-lg">เขตราชเทวี กรุงเทพมหานคร 10400</div>
-                  <div className="text-lg">
-                    โทร. 02-374-4484 (Payment & Account)
+                    โทร. 02-374-4484 , 02-374-4489 (Payment & Account)
                   </div>
                   <div className="text-lg">
                     เลขประจำตัวผู้เสียภาษี : 01055 63093 882
@@ -217,7 +210,7 @@ function CompanyContactPage({}: Props): ReactElement {
                   </Col>
                   <Col>
                     <a
-                      href="https://www.google.com/maps/place/City+Link+Building+A/@13.7515057,100.5449452,17z/data=!3m1!4b1!4m5!3m4!1s0x30e29ec3f95f6101:0x32091fdcf277503!8m2!3d13.7515057!4d100.5471392"
+                      href="https://www.google.com/maps?q=mindedge+innovation&rlz=1C5CHFA_enTH990TH991&sxsrf=APq-WBs81-MILaSH6YbjtyBEm56ubxuDLw:1645846379722&gs_lcp=Cgdnd3Mtd2l6EAMYADILCC4QxwEQrwEQywEyBQgAEIAEMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yAggmOgQIABBHOgcIABBHELADOgcIABCwAxBDOgoIABCxAxCDARBDOgQIABBDOgsILhCxAxDHARCjAjoICAAQsQMQgwE6CAguELEDEIMBOggIABCABBCxAzoLCAAQgAQQsQMQgwE6BQguEIAEOgQIIxAnOgUIABCRAjoHCAAQsQMQQzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOhEILhCABBCxAxDHARCjAhDUAjoHCC4QsQMQQzoOCC4QgAQQsQMQxwEQowI6DgguEIAEELEDEIMBENQCOggILhCABBDUAjoFCAAQywFKBAhBGABKBAhGGABQ3PaQAViSi5EBYKqWkQFoBHACeACAAWqIAc0HkgEDOS4ymAEAoAEByAEKwAEB&um=1&ie=UTF-8&sa=X&ved=2ahUKEwjHlp-1wJz2AhWATWwGHeukAjQQ_AUoA3oECAIQBQ"
                       target="_blank"
                       rel="noreferrer"
                     >

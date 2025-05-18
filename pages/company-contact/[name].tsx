@@ -9,12 +9,12 @@ function CompanyName({}: Props) {
     const router: any = useRouter();
     const [currentCompany, setCurrentCompany] = useState('')
     const imageMapping = {
-        mi: "mi-location.svg",
-        mr: "mr-location.svg",
-        me: "me-location.svg",
-        fb: "fb-location.svg",
-        my: "my-location.jpg"
-    }
+      mi: "mi-location.svg",
+      mr: "mr-location.svg",
+      me: "me-location.svg",
+      fb: "fb-location.svg",
+      my: "me-location.svg",
+    };
 
     useEffect(() => {
         const companyName = router.query.name;

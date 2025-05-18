@@ -10,19 +10,19 @@ function CompanyProfilePage({}: Props): ReactElement {
     <LayoutHOC>
       <div>
         <CompanyProfileHero />
-        <Row className='container mx-auto rounded-xl pt-5 mt-10 h-full border-[3px] border-primary'>
+        <Row className="container mx-auto rounded-xl pt-5 mt-10 h-full border-[3px] border-primary">
           <Col span={24}>
             <Row>
               <Image
-                src='/assets/Company_Profile_1.png'
-                alt='Company_Profile_1'
+                src="/assets/Company_Profile_1.jpg"
+                alt="Company_Profile_1"
                 preview={false}
               />
             </Row>
             <Row>
               <Image
-                src='/assets/Company_Profile_2.png'
-                alt='Company_Profile_2'
+                src="/assets/Company_Profile_2.png"
+                alt="Company_Profile_2"
                 preview={false}
               />
             </Row>

@@ -16,7 +16,7 @@ function CompanyBenefits({}: Props): ReactElement {
           <Col span={24}>
             <Row>
               <Image
-                src="/assets/Company_Benefit.png"
+                src="/assets/Company_Benefit.jpg"
                 alt="Company_Benefit"
                 preview={false}
               />

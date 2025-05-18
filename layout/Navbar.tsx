@@ -60,7 +60,7 @@ function Navbar(): ReactElement {
               className="cursor-pointer"
               target="_blank"
               rel="noreferrer"
-              href="http://203.154.66.203:8015/ME"
+              href="https://humano.mindedge.co.th/ME/center/login.php?lgt=Y"
             >
               <div className="text-white hover:text-black nav-item text-lg ">
                 ME
@@ -72,7 +72,7 @@ function Navbar(): ReactElement {
               className="cursor-pointer"
               target="_blank"
               rel="noreferrer"
-              href="http://203.154.66.203:8015/MR"
+              href="https://humano.mindedge.co.th/MR/center/login.php?lgt=Y"
             >
               <div className="text-white hover:text-black nav-item text-lg ">
                 MR
@@ -84,7 +84,7 @@ function Navbar(): ReactElement {
               className="cursor-pointer"
               target="_blank"
               rel="noreferrer"
-              href="http://203.154.66.203:8015/MY"
+              href="https://humano.mindedge.co.th/MY/center/login.php?lgt=Y"
             >
               <div className="text-white hover:text-black nav-item text-lg ">
                 MY
