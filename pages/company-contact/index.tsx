@@ -71,15 +71,7 @@ function CompanyContactPage({}: Props): ReactElement {
                       href="https://www.google.com/maps?q=mindedge+innovation&rlz=1C5CHFA_enTH990TH991&sxsrf=APq-WBs81-MILaSH6YbjtyBEm56ubxuDLw:1645846379722&gs_lcp=Cgdnd3Mtd2l6EAMYADILCC4QxwEQrwEQywEyBQgAEIAEMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yAggmOgQIABBHOgcIABBHELADOgcIABCwAxBDOgoIABCxAxCDARBDOgQIABBDOgsILhCxAxDHARCjAjoICAAQsQMQgwE6CAguELEDEIMBOggIABCABBCxAzoLCAAQgAQQsQMQgwE6BQguEIAEOgQIIxAnOgUIABCRAjoHCAAQsQMQQzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOhEILhCABBCxAxDHARCjAhDUAjoHCC4QsQMQQzoOCC4QgAQQsQMQxwEQowI6DgguEIAEELEDEIMBENQCOggILhCABBDUAjoFCAAQywFKBAhBGABKBAhGGABQ3PaQAViSi5EBYKqWkQFoBHACeACAAWqIAc0HkgEDOS4ymAEAoAEByAEKwAEB&um=1&ie=UTF-8&sa=X&ved=2ahUKEwjHlp-1wJz2AhWATWwGHeukAjQQ_AUoA3oECAIQBQ"
                       target="_blank"
                       rel="noreferrer"
-                    >
-                      <Button
-                        size="large"
-                        type="primary"
-                        style={{ borderRadius: "18px" }}
-                      >
-                        พิกัด
-                      </Button>
-                    </a>
+                    ></a>
                   </Col>
                 </Row>
               </Col>
@@ -142,15 +134,7 @@ function CompanyContactPage({}: Props): ReactElement {
                       href="https://www.google.com/maps?q=mindedge+innovation&rlz=1C5CHFA_enTH990TH991&sxsrf=APq-WBs81-MILaSH6YbjtyBEm56ubxuDLw:1645846379722&gs_lcp=Cgdnd3Mtd2l6EAMYADILCC4QxwEQrwEQywEyBQgAEIAEMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yAggmOgQIABBHOgcIABBHELADOgcIABCwAxBDOgoIABCxAxCDARBDOgQIABBDOgsILhCxAxDHARCjAjoICAAQsQMQgwE6CAguELEDEIMBOggIABCABBCxAzoLCAAQgAQQsQMQgwE6BQguEIAEOgQIIxAnOgUIABCRAjoHCAAQsQMQQzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOhEILhCABBCxAxDHARCjAhDUAjoHCC4QsQMQQzoOCC4QgAQQsQMQxwEQowI6DgguEIAEELEDEIMBENQCOggILhCABBDUAjoFCAAQywFKBAhBGABKBAhGGABQ3PaQAViSi5EBYKqWkQFoBHACeACAAWqIAc0HkgEDOS4ymAEAoAEByAEKwAEB&um=1&ie=UTF-8&sa=X&ved=2ahUKEwjHlp-1wJz2AhWATWwGHeukAjQQ_AUoA3oECAIQBQ"
                       target="_blank"
                       rel="noreferrer"
-                    >
-                      <Button
-                        size="large"
-                        type="primary"
-                        style={{ borderRadius: "18px" }}
-                      >
-                        พิกัด
-                      </Button>
-                    </a>
+                    ></a>
                   </Col>
                 </Row>
               </Col>
@@ -213,15 +197,7 @@ function CompanyContactPage({}: Props): ReactElement {
                       href="https://www.google.com/maps?q=mindedge+innovation&rlz=1C5CHFA_enTH990TH991&sxsrf=APq-WBs81-MILaSH6YbjtyBEm56ubxuDLw:1645846379722&gs_lcp=Cgdnd3Mtd2l6EAMYADILCC4QxwEQrwEQywEyBQgAEIAEMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yAggmOgQIABBHOgcIABBHELADOgcIABCwAxBDOgoIABCxAxCDARBDOgQIABBDOgsILhCxAxDHARCjAjoICAAQsQMQgwE6CAguELEDEIMBOggIABCABBCxAzoLCAAQgAQQsQMQgwE6BQguEIAEOgQIIxAnOgUIABCRAjoHCAAQsQMQQzoLCC4QgAQQxwEQ0QM6CAguEIAEELEDOhEILhCABBCxAxDHARCjAhDUAjoHCC4QsQMQQzoOCC4QgAQQsQMQxwEQowI6DgguEIAEELEDEIMBENQCOggILhCABBDUAjoFCAAQywFKBAhBGABKBAhGGABQ3PaQAViSi5EBYKqWkQFoBHACeACAAWqIAc0HkgEDOS4ymAEAoAEByAEKwAEB&um=1&ie=UTF-8&sa=X&ved=2ahUKEwjHlp-1wJz2AhWATWwGHeukAjQQ_AUoA3oECAIQBQ"
                       target="_blank"
                       rel="noreferrer"
-                    >
-                      <Button
-                        size="large"
-                        type="primary"
-                        style={{ borderRadius: "18px" }}
-                      >
-                        พิกัด
-                      </Button>
-                    </a>
+                    ></a>
                   </Col>
                 </Row>
               </Col>
