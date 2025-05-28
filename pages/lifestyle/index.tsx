@@ -48,11 +48,13 @@ function ITClinic({}: Props): ReactElement {
 
   useEffect(() => {
     setQuery();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   useEffect(() => {
     if (!router.query.tag) return;
     setQuery();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
 
   return (

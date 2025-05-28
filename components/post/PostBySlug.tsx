@@ -1,4 +1,3 @@
-import { EyeOutlined } from "@ant-design/icons";
 import { Breadcrumb, Col, Image, Row } from "antd";
 import { EditorState, convertFromRaw } from "draft-js";
 import moment from "moment";

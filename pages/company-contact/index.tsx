@@ -1,9 +1,7 @@
 import React, { ReactElement } from "react";
 import { Button, Col, Divider, Image, Row } from "antd";
 import LayoutHOC from "../../layout/LayoutHOC";
-import PrivacyPolicyHero from "../../components/privacy-policy/PrivacyPolicyHero";
 import CompanyContactHero from "../../components/company-contact/CompanyContactHero";
-import Link from "next/link";
 import { imagePlaceholder } from "../../utils/placeholder.image";
 
 interface Props {}

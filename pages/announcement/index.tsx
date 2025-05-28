@@ -1,18 +1,12 @@
 import { useRouter } from "next/router";
-import React, { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import AnnouncementHero from "../../components/announcement/AnnouncementHero";
 import PostHOC from "../../components/post/PostHOC";
 import LayoutHOC from "../../layout/LayoutHOC";
-import {
-  EPostCategory,
-  ListQueryParamsForPost,
-} from "../../services/news/news.model";
+import { ListQueryParamsForPost } from "../../services/news/news.model";
 import { ALL_RECENT_ANNCOUNCEMENT } from "../../services/news/news.queryKey";
-import {
-  _getPostByCategoryId,
-  _getRecentNews,
-} from "../../services/news/news.service";
+import { _getRecentNews } from "../../services/news/news.service";
 
 interface Props {}
 
@@ -52,11 +46,13 @@ function AnnouncementPage({}: Props): ReactElement {
 
   useEffect(() => {
     setQuery();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   useEffect(() => {
-    if(!router.query.tag) return;
+    if (!router.query.tag) return;
     setQuery();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[router.query])
 
   return (

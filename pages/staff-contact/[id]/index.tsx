@@ -1,10 +1,9 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import { Col, Row, Image, Spin } from "antd";
+import { Col, Image, Row, Spin } from "antd";
 import moment from "moment";
 import { useRouter } from "next/router";
-import React, { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { ASSET_URL } from "../../../config";
 import LayoutHOC from "../../../layout/LayoutHOC";
 import { IContact } from "../../../services/contact/contact.model";
 import { SINGLE_CONTACT } from "../../../services/contact/contact.queryKey";

@@ -2,7 +2,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Col, Form, Image, Row, Select, Spin, Table } from "antd";
 import moment from "moment";
 import Link from "next/link";
-import React, { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import HeroBirthDays from "../../components/birthdays/HeroBirthDays";
 import LayoutHOC from "../../layout/LayoutHOC";
@@ -12,20 +12,10 @@ import {
   ListQueryParamsBirthday,
 } from "../../services/contact/contact.model";
 import { BIRTHDAY } from "../../services/contact/contact.queryKey";
-import {
-  _getAllStaffContactBirthdays,
-  _getAllStaffContacts,
-} from "../../services/contact/contact.service";
-import { imagePlaceholder } from "../../utils/placeholder.image";
+import { _getAllStaffContactBirthdays } from "../../services/contact/contact.service";
 import { DEPARTMENT } from "../../services/department/department.queryKey";
 import { _getAllDepartments } from "../../services/department/department.service";
-
-const INIT_QUERY = {
-  startDate: moment().format("YYYY-MM-DD"),
-  endDate: moment().endOf("month").format("YYYY-MM-DD"),
-  page: 1,
-  limit: 10,
-};
+import { imagePlaceholder } from "../../utils/placeholder.image";
 
 function BirthDayPage(): ReactElement {
   const [form] = Form.useForm();

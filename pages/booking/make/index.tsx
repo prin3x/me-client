@@ -1,28 +1,12 @@
-import {
-  Button,
-  Col,
-  DatePicker,
-  Form,
-  Input,
-  message,
-  Row,
-  Select,
-} from "antd";
+import { Form, message } from "antd";
 import moment from "moment";
 import { useRouter } from "next/router";
-import React, { ReactElement, useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { ReactElement, useEffect, useState } from "react";
 import MakeBookingForm from "../../../components/booking/MakeBookingForm";
 import LayoutHOC from "../../../layout/LayoutHOC";
-import {
-  EMakeStatus,
-  ICreateMeeting,
-} from "../../../services/meetingRoom/meeting-room.model";
+import { EMakeStatus } from "../../../services/meetingRoom/meeting-room.model";
 import {
   _createBooking,
-  _getAllBookingEvents,
-  _getAllRooms,
-  _getAllRoomsAvb,
   _getBookingEventById,
   _removeMeetingEvent,
   _updateMeetingEvent,
@@ -143,6 +127,7 @@ function MakeBooking({}: Props): ReactElement {
     }
 
     return () => setMakeStatus(EMakeStatus.MAKE);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   return (

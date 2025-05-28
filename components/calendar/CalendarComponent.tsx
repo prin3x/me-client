@@ -1,23 +1,19 @@
-import { Checkbox, Col, Form, Row, Select } from "antd";
-import dynamic from "next/dynamic";
-import React, { ReactElement, useEffect, useRef, useState } from "react";
-import HeroSection from "../../components/calendar/HeroSection";
-import LayoutHOC from "../../layout/LayoutHOC";
-import { CALENDAR_EVENT } from "../../services/calendar/calendar.queryKey";
-import { _findAllCalendarEvent } from "../../services/calendar/calendar.service";
-import { useQuery } from "react-query";
-import { CheckboxValueType } from "antd/lib/checkbox/Group";
-import moment from "moment";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
 import bootstrapPlugin from "@fullcalendar/bootstrap";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import FullCalendar from "@fullcalendar/react";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import { Checkbox, Col, Form, Row, Select } from "antd";
+import moment from "moment";
+import { ReactElement, useEffect, useRef, useState } from "react";
+import { useQuery } from "react-query";
 import { FULL_CANLENDAR_LICENSE } from "../../config";
 import {
   ECalendarEventType,
   ListQueryCalendarDTO,
 } from "../../services/calendar/calendar.model";
+import { CALENDAR_EVENT } from "../../services/calendar/calendar.queryKey";
+import { _findAllCalendarEvent } from "../../services/calendar/calendar.service";
 import EventModal from "./EventModal";
 
 const colorsMap = [
@@ -97,6 +93,7 @@ function CalendarPage(): ReactElement {
     if (calendarEventMeta.isSuccess) {
       setEventState();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [calendarEventMeta.data, calendarEventMeta.isSuccess]);
 
   function displayColoredEvents(events) {

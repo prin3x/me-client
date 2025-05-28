@@ -146,6 +146,7 @@ function StaffContactPage({}: Props): ReactElement {
     if (staffContactMeta.isSuccess) {
       setStaffContactData(staffContactMeta?.data?.items);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [staffContactMeta.data]);
 
   useEffect(() => {
@@ -159,6 +160,7 @@ function StaffContactPage({}: Props): ReactElement {
       setQueryStr(JSON.parse(query));
       form.setFieldsValue(queryStr);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

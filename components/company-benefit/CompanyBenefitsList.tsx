@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import BlueTickIcon from "../icons/BlueTickIcon";
 
 type Props = {};
@@ -384,7 +383,7 @@ function CompanyBenefitsList({}: Props) {
               </div>
             </td>
             <td className="border border-slate-300 text-left p-7">
-              <img src="/assets/benefit-saving.png" alt="" />
+              <img src="/assets/benefit-saving.png" alt="benefit-saving" />
             </td>
             <td className="border border-slate-300 text-center font-semibold">
               <BlueTickIcon />
@@ -421,7 +420,7 @@ function CompanyBenefitsList({}: Props) {
               <BlueTickIcon />
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
           </tr>
           {/* ANOTHER */}
@@ -453,7 +452,7 @@ function CompanyBenefitsList({}: Props) {
               <BlueTickIcon />
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
           </tr>
           {/* ANOTHER */}
@@ -491,10 +490,10 @@ function CompanyBenefitsList({}: Props) {
               </p>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
               <BlueTickIcon />
@@ -524,10 +523,10 @@ function CompanyBenefitsList({}: Props) {
               </p>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
               <BlueTickIcon />
@@ -552,10 +551,10 @@ function CompanyBenefitsList({}: Props) {
               </ul>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
               <BlueTickIcon />
@@ -581,10 +580,10 @@ function CompanyBenefitsList({}: Props) {
               </ul>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
             <td className="border border-slate-300 text-center font-semibold">
               <BlueTickIcon />
@@ -694,12 +693,11 @@ function CompanyBenefitsList({}: Props) {
                 <li>สามารถลาได้ตั้งแต่วันแรกที่เริ่มงาน</li>
               </ul>
               ตัวอย่างการลากิจ
-              <ul className='font-[12px]'>
+              <ul className="font-[12px]">
                 <li>
                   - การลาเพื่อติดต่อหน่วยงานราชการต่างๆ เช่น ต่ออายุบัตรประชาชน,
-                  ทำ - ต่ออายุใบขับขี่,
-                  จดทะเบียนสมรส, โอนย้ายที่ดิน, แจ้งเกิด – แจ้งเสียชีวิต,
-                  ทำเรื่องทะเบียนบ้าน, ทำวีซ่า, ทำพาสปอร์ต
+                  ทำ - ต่ออายุใบขับขี่, จดทะเบียนสมรส, โอนย้ายที่ดิน, แจ้งเกิด –
+                  แจ้งเสียชีวิต, ทำเรื่องทะเบียนบ้าน, ทำวีซ่า, ทำพาสปอร์ต
                 </li>
                 <li>- ติดต่อประสานงานกับสถานีตำรวจ, ศาล</li>
                 <li>­- ติดต่อทำธุระเกี่ยวกับสถานศึกษาของตนเองหรือของบุตร</li>
@@ -721,11 +719,15 @@ function CompanyBenefitsList({}: Props) {
               </ul>
             </td>
             <td className="border border-slate-300 px-5">
-              <p className="mb-0  font-semibold font-[17px]">ลาได้ 7 วันต่อปี</p>
+              <p className="mb-0  font-semibold font-[17px]">
+                ลาได้ 7 วันต่อปี
+              </p>
               <p>
-                <span className="font-semibold">หมายเหตุ: {" "}</span> <span className="font-[14px]">การลาใดๆ ที่นอกเหนือจากตัวอย่างการลากิจ และไม่อยู่ใน
-                ดุลยพินิจของหัวหน้างาน พนักงานจะต้องเลือกลาแบบพักร้อน (ถ้ามี)
-                </span>  
+                <span className="font-semibold">หมายเหตุ: </span>{" "}
+                <span className="font-[14px]">
+                  การลาใดๆ ที่นอกเหนือจากตัวอย่างการลากิจ และไม่อยู่ใน
+                  ดุลยพินิจของหัวหน้างาน พนักงานจะต้องเลือกลาแบบพักร้อน (ถ้ามี)
+                </span>
                 หรือลาแบบไม่รับค่าจ้างแทน
               </p>
             </td>
@@ -769,10 +771,10 @@ function CompanyBenefitsList({}: Props) {
               <ul className="list-custom text-[17px] pl-3">
                 <li>
                   พนักงานต้องยื่นใบลา หรือลาในระบบ TA Online ล่วงหน้าไม่น้อยกว่า
-                  <br/>
+                  <br />
                   <span className="font-thin">
-                  1-5 วัน หากติดภารกิจสามารถใช้สิทธิ์ได้ภายใน 30 วัน
-                  นับจากวันคล้ายวันเกิด
+                    1-5 วัน หากติดภารกิจสามารถใช้สิทธิ์ได้ภายใน 30 วัน
+                    นับจากวันคล้ายวันเกิด
                   </span>
                 </li>
               </ul>
@@ -952,7 +954,7 @@ function CompanyBenefitsList({}: Props) {
               <BlueTickIcon />
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
           </tr>
           {/* ANOTHER */}
@@ -1051,7 +1053,7 @@ function CompanyBenefitsList({}: Props) {
               <BlueTickIcon />
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
           </tr>
           {/* ANOTHER */}
@@ -1119,7 +1121,7 @@ function CompanyBenefitsList({}: Props) {
               <BlueTickIcon />
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
           </tr>
           {/* ANOTHER */}
@@ -1178,7 +1180,7 @@ function CompanyBenefitsList({}: Props) {
               <BlueTickIcon />
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
           </tr>
           {/* ANOTHER */}
@@ -1211,7 +1213,7 @@ function CompanyBenefitsList({}: Props) {
               <BlueTickIcon />
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
           </tr>
           {/* ANOTHER */}
@@ -1240,7 +1242,7 @@ function CompanyBenefitsList({}: Props) {
               <BlueTickIcon />
             </td>
             <td className="border border-slate-300 text-center font-semibold">
-               <div className="text-[46px] text-[#0F52BA]">-</div>
+              <div className="text-[46px] text-[#0F52BA]">-</div>
             </td>
           </tr>
         </tbody>
