@@ -1,21 +1,22 @@
-import { ReactElement, useEffect, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 // Calendar
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import bootstrapPlugin from "@fullcalendar/bootstrap";
+import resourceTimelinePlugin from "@fullcalendar/resource-timeline"; // a plugin!
+import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
+import moment from "moment";
+import { _getAllRooms } from "../../services/meetingRoom/meeting-room.service";
+import { FULL_CANLENDAR_LICENSE } from "../../config";
+import { Col, Row, Spin } from "antd";
 import {
   LeftOutlined,
   LoadingOutlined,
   RightOutlined,
 } from "@ant-design/icons";
-import bootstrapPlugin from "@fullcalendar/bootstrap";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import FullCalendar from "@fullcalendar/react";
-import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
-import resourceTimelinePlugin from "@fullcalendar/resource-timeline"; // a plugin!
-import timeGridPlugin from "@fullcalendar/timegrid";
-import { Col, Row, Spin } from "antd";
-import moment from "moment";
 import { useRouter } from "next/router";
-import { FULL_CANLENDAR_LICENSE } from "../../config";
 
 // import "moment/locale/th"; // without this line it didn't work
 // moment.locale("th");
@@ -71,7 +72,6 @@ function MeetingRoomCalendar({
       endDate: currentDate.add(1, "M").endOf("month").format("YYYY-MM-DD"),
     };
     setBookingInterval(setNewMettingInterval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentDate]);
 
   const getToday = () => {
@@ -121,7 +121,6 @@ function MeetingRoomCalendar({
 
   useEffect(() => {
     findAllCalendarEvent();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   useEffect(() => {
