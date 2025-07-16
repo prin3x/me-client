@@ -197,6 +197,7 @@ function MeetingRoomCalendar({
               return {
                 id: _room.id,
                 title: `${_room.name} (${_room.capacity} คน)`,
+                order: _room.order,
               };
             })
           )
@@ -206,6 +207,7 @@ function MeetingRoomCalendar({
         selectMirror
         dayMaxEvents
         resourceAreaWidth={10}
+        resourceOrder="order"
         slotMaxTime={"19:00:01"}
         slotMinTime={"07:00:00"}
         weekends
