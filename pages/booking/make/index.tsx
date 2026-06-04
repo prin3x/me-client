@@ -43,9 +43,17 @@ function MakeBooking({}: Props): ReactElement {
         message.success("Created Successfully");
         router.push("/booking/");
       } catch (e) {
-        let errMessage = e.response.message;
-        if (e.response.status === 400) {
-          errMessage = "Unavailble Slot";
+        const apiMessage =
+          e?.response?.data?.message || e?.response?.data?.error;
+        let errMessage = Array.isArray(apiMessage)
+          ? apiMessage.join(", ")
+          : apiMessage || "Booking failed";
+        if (e?.response?.status === 400) {
+          errMessage =
+            errMessage === "Duplicated Booking" ||
+            String(errMessage).includes("Duplicated Booking")
+              ? "This room is already booked for the selected time. Please choose another room or time slot."
+              : errMessage;
         }
         message.error(errMessage);
       }
@@ -76,9 +84,17 @@ function MakeBooking({}: Props): ReactElement {
         message.success("Updated Successfully");
         router.push("/booking/");
       } catch (e) {
-        let errMessage = e.response.message;
-        if (e.response.status === 400) {
-          errMessage = "Unavailble Slot";
+        const apiMessage =
+          e?.response?.data?.message || e?.response?.data?.error;
+        let errMessage = Array.isArray(apiMessage)
+          ? apiMessage.join(", ")
+          : apiMessage || "Update failed";
+        if (e?.response?.status === 400) {
+          errMessage =
+            errMessage === "Duplicated Booking" ||
+            String(errMessage).includes("Duplicated Booking")
+              ? "This room is already booked for the selected time. Please choose another room or time slot."
+              : errMessage;
         }
         message.error(errMessage);
       }

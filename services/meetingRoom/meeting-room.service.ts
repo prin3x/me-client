@@ -32,13 +32,21 @@ export async function _getRoomByFloor(floor: string) {
   return axios.get(`/rooms/floor/${floor}`).then((res) => res.data);
 }
 
-export async function _updateMeetingEvent(
-  id,
-  _createEventInfo: ICreateMeeting
-) {
+export async function _updateMeetingEvent(id, _createEventInfo: ICreateMeeting) {
   return axios.patch(`/meeting-events/${id}`, { ..._createEventInfo });
 }
 
 export async function _removeMeetingEvent(id) {
   return axios.delete(`/meeting-events/${id}`);
+}
+
+export async function _checkBookingAvailability(
+  start: string,
+  end: string,
+  roomId: number,
+) {
+  const query = queryString.stringify({ start, end, roomId });
+  return axios
+    .get(`/meeting-events/check-availability?${query}`)
+    .then((res) => res.data);
 }

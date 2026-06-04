@@ -43,7 +43,7 @@ function MeetingRoomCalendar({
   const { data, isLoading, isSuccess } = meetingEventsQuery;
   const [events, setEvents] = useState([]);
   const [currentDate, setCurrentDate] = useState(
-    calendarRef?.current?.getApi().getDate() || moment()
+    calendarRef?.current?.getApi().getDate() || moment(),
   );
 
   const onNextButtonClick = () => {
@@ -52,7 +52,7 @@ function MeetingRoomCalendar({
 
     setCurrentDate(moment(calendarRef?.current?.getApi().getDate()));
     setSelectDate(
-      moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD")
+      moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD"),
     );
   };
 
@@ -62,7 +62,7 @@ function MeetingRoomCalendar({
 
     setCurrentDate(moment(calendarRef?.current?.getApi().getDate()));
     setSelectDate(
-      moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD")
+      moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD"),
     );
   };
 
@@ -94,11 +94,17 @@ function MeetingRoomCalendar({
         coloredEvent.start = event.start;
         coloredEvent.end = event.end;
         coloredEvent.resourceIds = [event.roomId];
-        coloredEvent.title = `<div style="font-weight: bold;text-align: center; font-size: 20px">${event.title}</div> <div style="text-align: center;">By ${event.staffContactDetail.nameTH} ${event.staffContactDetail.position}</div>`;
+        const startLabel = moment(event.start).format("DD MMM YY HH:mm");
+        const endLabel = moment(event.end).format("DD MMM YY HH:mm");
+        const isMultiDay = !moment(event.start).isSame(event.end, "day");
+        const timeRange = isMultiDay
+          ? `${startLabel} – ${endLabel}`
+          : `${moment(event.start).format("HH:mm")} – ${moment(event.end).format("HH:mm")}`;
+        coloredEvent.title = `<div style="font-weight: bold;text-align: center; font-size: 16px">${event.title}</div><div style="text-align: center; font-size: 13px">${timeRange}</div><div style="text-align: center; font-size: 12px">By ${event.staffContactDetail.nameTH} ${event.staffContactDetail.position || ""}</div>`;
       }
       if (event.type) {
         const foundColor = colorsMap.find(
-          (x) => (x as any).type === event.type
+          (x) => (x as any).type === event.type,
         );
         if (foundColor) {
           coloredEvent.color = (themeValues as any)[foundColor.color];
@@ -134,7 +140,7 @@ function MeetingRoomCalendar({
   useEffect(() => {
     if (typeof window === "undefined") return;
     const els = (window as any).document.querySelectorAll(
-      ".fc-col-header-cell-cushion"
+      ".fc-col-header-cell-cushion",
     );
 
     for (let i of els) {
@@ -199,7 +205,7 @@ function MeetingRoomCalendar({
                 title: `${_room.name} (${_room.capacity} คน)`,
                 order: _room.order,
               };
-            })
+            }),
           )
         }
         editable

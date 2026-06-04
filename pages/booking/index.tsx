@@ -24,15 +24,12 @@ const MeetingRoomCalendar = dynamic(
   () => import("../../components/booking/MeetingRoomCalendar"),
   {
     ssr: false,
-  }
+  },
 );
 
 function BookingMeetingRoom(): ReactElement {
   const [selectDate, setSelectDate] = useState(moment().format("YYYY-MM-DD"));
-  const floorMetaData = useQuery(
-    ["available floors"],
-    () => _getAllFloors()
-  );
+  const floorMetaData = useQuery(["available floors"], () => _getAllFloors());
   const [rooms, setRooms] = useState([]);
   const [floor, setFloor] = useState<string>("0");
   const router = useRouter();
@@ -40,7 +37,7 @@ function BookingMeetingRoom(): ReactElement {
   const [selectedRoomId, setSelectedRoomId] = useState<number>(0);
   const [bookingInterval, setBookingInterval] = useState({
     startDate: moment().startOf("month").format("YYYY-MM-DD"),
-    endDate: moment().add(1,"M").endOf("month").format("YYYY-MM-DD"),
+    endDate: moment().add(1, "M").endOf("month").format("YYYY-MM-DD"),
   });
 
   const meetingEventsQuery = useQuery(
@@ -51,11 +48,10 @@ function BookingMeetingRoom(): ReactElement {
         endDate: bookingInterval.endDate,
       };
       return _getAllBookingEvents(q);
-    }
+    },
   );
 
-  function onPanelChange(value, mode) {
-  }
+  function onPanelChange(value, mode) {}
 
   function onSelect(date) {
     setSelectDate(date.format("YYYY-MM-DD"));
@@ -73,14 +69,14 @@ function BookingMeetingRoom(): ReactElement {
 
   const selectFloor = (_floor) => {
     setFloor(_floor);
-    form.setFieldsValue({room : undefined})
+    form.setFieldsValue({ room: undefined });
   };
 
   function getListData(value) {
     let badge;
     if (!meetingEventsQuery.isSuccess) return;
     const result = meetingEventsQuery.data.find((_item) =>
-      moment(_item?.start).startOf("day").isSame(value.startOf("day"))
+      moment(_item?.start).startOf("day").isSame(value.startOf("day")),
     );
     if (result) {
       badge = {
@@ -107,7 +103,6 @@ function BookingMeetingRoom(): ReactElement {
     setSelectedRoomId(_values);
   };
 
-
   function headerRender({ value, onChange }) {
     const current = value.clone();
 
@@ -130,7 +125,10 @@ function BookingMeetingRoom(): ReactElement {
                     newValue.month(current.month() - 2);
                     const setNewMettingInterval = {
                       startDate: newValue.startOf("month").format("YYYY-MM-DD"),
-                      endDate: newValue.add(1,"M").endOf("month").format("YYYY-MM-DD"),
+                      endDate: newValue
+                        .add(1, "M")
+                        .endOf("month")
+                        .format("YYYY-MM-DD"),
                     };
                     setBookingInterval(setNewMettingInterval);
                     onChange(newValue);
@@ -152,7 +150,10 @@ function BookingMeetingRoom(): ReactElement {
                     newValue.month(current.month());
                     const setNewMettingInterval = {
                       startDate: newValue.startOf("month").format("YYYY-MM-DD"),
-                      endDate: newValue.add(1,"M").endOf("month").format("YYYY-MM-DD"),
+                      endDate: newValue
+                        .add(1, "M")
+                        .endOf("month")
+                        .format("YYYY-MM-DD"),
                     };
                     setBookingInterval(setNewMettingInterval);
                     onChange(newValue);
@@ -169,7 +170,7 @@ function BookingMeetingRoom(): ReactElement {
   }
 
   useEffect(() => {
-    getAllRooms(floor);
+    getAllRooms(floor || "0");
   }, [floor]);
 
   return (
@@ -194,16 +195,17 @@ function BookingMeetingRoom(): ReactElement {
                             placeholder="Floor"
                             onChange={selectFloor}
                           >
-                            {floorMetaData.isSuccess && floorMetaData.data.length > 0
-                                ? floorMetaData.data.map((floor) => (
-                                    <Select.Option
-                                      key={floor.floor}
-                                      value={floor.floor}
-                                    >
-                                      {floor.floor}
-                                    </Select.Option>
-                                  ))
-                                : null}
+                            {floorMetaData.isSuccess &&
+                            floorMetaData.data.length > 0
+                              ? floorMetaData.data.map((floor) => (
+                                  <Select.Option
+                                    key={floor.floor}
+                                    value={floor.floor}
+                                  >
+                                    {floor.floor}
+                                  </Select.Option>
+                                ))
+                              : null}
                           </Select>
                         </Form.Item>
                         <Col className="flex flex-col items-end">

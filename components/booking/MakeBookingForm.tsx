@@ -1,4 +1,5 @@
 import {
+  Alert,
   Button,
   Col,
   DatePicker,
@@ -15,7 +16,10 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { _getAllFloors } from "../../services/floor/floor.service";
 import { EMakeStatus } from "../../services/meetingRoom/meeting-room.model";
-import { _getRoomByFloor } from "../../services/meetingRoom/meeting-room.service";
+import {
+  _checkBookingAvailability,
+  _getRoomByFloor,
+} from "../../services/meetingRoom/meeting-room.service";
 
 type Props = {
   submitRoomBooking: () => void;
@@ -37,6 +41,7 @@ function MakeBookingForm({
   const [hourDiff, setHourDiff] = useState(0);
   const [rooms, setRooms] = useState([]);
   const [floor, setFloor] = useState<string>("0");
+  const [slotConflict, setSlotConflict] = useState<any>(null);
 
   function defaultDisabledDate(current) {
     return current < moment().subtract(23, "h");
@@ -89,6 +94,35 @@ function MakeBookingForm({
 
     return () => setHourDiff(0);
   }, [formValues]);
+
+  useEffect(() => {
+    if (makeStatus !== EMakeStatus.MAKE) {
+      setSlotConflict(null);
+      return;
+    }
+
+    const { startDate, startHour, endDate, endHour, roomId } = formValues;
+    if (!startDate || !startHour || !endDate || !endHour || !roomId) {
+      setSlotConflict(null);
+      return;
+    }
+
+    const start = `${moment(startDate).format("YYYY-MM-DD")} ${moment(startHour).format("HH:mm")}`;
+    const end = `${moment(endDate).format("YYYY-MM-DD")} ${moment(endHour).format("HH:mm")}`;
+
+    let cancelled = false;
+    _checkBookingAvailability(start, end, roomId)
+      .then((conflict) => {
+        if (!cancelled) setSlotConflict(conflict || null);
+      })
+      .catch(() => {
+        if (!cancelled) setSlotConflict(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [formValues, makeStatus]);
 
   return (
     <Row justify="center" className="w-full meeting-room">
@@ -172,8 +206,8 @@ function MakeBookingForm({
                     }
                     return Promise.reject(
                       new Error(
-                        "Please Select Only Possible Date (Day after start date)"
-                      )
+                        "Please Select Only Possible Date (Day after start date)",
+                      ),
                     );
                   },
                 }),
@@ -204,8 +238,8 @@ function MakeBookingForm({
                     if (hourDiff <= 0) {
                       return Promise.reject(
                         new Error(
-                          "Please Select Only Possible Time (time after start hour)"
-                        )
+                          "Please Select Only Possible Time (time after start hour)",
+                        ),
                       );
                     }
                     return Promise.resolve();
@@ -285,6 +319,23 @@ function MakeBookingForm({
               <Select.Option value="external">External</Select.Option>
             </Select>
           </Form.Item>
+          {slotConflict && makeStatus === EMakeStatus.MAKE && (
+            <Alert
+              type="warning"
+              showIcon
+              style={{ width: 600, marginBottom: 16 }}
+              message="This time slot is not available"
+              description={
+                <>
+                  <strong>{slotConflict.title}</strong> is already booked on
+                  this room (
+                  {moment(slotConflict.start).format("DD MMM YYYY HH:mm")} –{" "}
+                  {moment(slotConflict.end).format("DD MMM YYYY HH:mm")}).
+                  Please choose another room or time.
+                </>
+              }
+            />
+          )}
           <Form.Item className="font-bold" name={"creator"} label="Created By">
             <Input size="large" style={{ width: 600 }} disabled={true} />
           </Form.Item>
@@ -297,6 +348,7 @@ function MakeBookingForm({
                     htmlType="submit"
                     className="rounded-btn ml-6"
                     type="primary"
+                    disabled={!!slotConflict}
                   >
                     Save Booking
                   </Button>
