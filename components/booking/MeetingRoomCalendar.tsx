@@ -42,15 +42,10 @@ function MeetingRoomCalendar({
   const calendarRef = useRef<any>(null);
   const { data, isLoading, isSuccess } = meetingEventsQuery;
   const [events, setEvents] = useState([]);
-  const [currentDate, setCurrentDate] = useState(
-    calendarRef?.current?.getApi().getDate() || moment(),
-  );
 
   const onNextButtonClick = () => {
     const calendarApi = calendarRef.current.getApi();
     calendarApi.next();
-
-    setCurrentDate(moment(calendarRef?.current?.getApi().getDate()));
     setSelectDate(
       moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD"),
     );
@@ -59,30 +54,23 @@ function MeetingRoomCalendar({
   const onPrevButtonClick = () => {
     const calendarApi = calendarRef.current.getApi();
     calendarApi.prev();
-
-    setCurrentDate(moment(calendarRef?.current?.getApi().getDate()));
     setSelectDate(
       moment(calendarRef?.current?.getApi().getDate()).format("YYYY-MM-DD"),
     );
   };
 
   useEffect(() => {
-    const setNewMettingInterval = {
-      startDate: currentDate.startOf("month").format("YYYY-MM-DD"),
-      endDate: currentDate.add(1, "M").endOf("month").format("YYYY-MM-DD"),
-    };
-    setBookingInterval(setNewMettingInterval);
-  }, [currentDate]);
+    const selected = moment(selectDate);
 
-  const getToday = () => {
-    if (calendarRef.current) {
-      calendarRef.current.getApi().today();
-    }
-  };
+    setBookingInterval({
+      startDate: selected.clone().startOf("month").format("YYYY-MM-DD"),
+      endDate: selected.clone().add(1, "M").endOf("month").format("YYYY-MM-DD"),
+    });
+  }, [selectDate, setBookingInterval]);
 
-  const getToSelectDay = (selectDate) => {
+  const getToSelectDay = (date: string) => {
     if (calendarRef.current) {
-      calendarRef.current.getApi().gotoDate(selectDate);
+      calendarRef.current.getApi().gotoDate(date);
     }
   };
 
@@ -93,14 +81,19 @@ function MeetingRoomCalendar({
       if (event.roomId) {
         coloredEvent.start = event.start;
         coloredEvent.end = event.end;
-        coloredEvent.resourceIds = [event.roomId];
+        coloredEvent.resourceIds = [String(event.roomId)];
         const startLabel = moment(event.start).format("DD MMM YY HH:mm");
         const endLabel = moment(event.end).format("DD MMM YY HH:mm");
         const isMultiDay = !moment(event.start).isSame(event.end, "day");
         const timeRange = isMultiDay
           ? `${startLabel} – ${endLabel}`
           : `${moment(event.start).format("HH:mm")} – ${moment(event.end).format("HH:mm")}`;
-        coloredEvent.title = `<div style="font-weight: bold;text-align: center; font-size: 16px">${event.title}</div><div style="text-align: center; font-size: 13px">${timeRange}</div><div style="text-align: center; font-size: 12px">By ${event.staffContactDetail.nameTH} ${event.staffContactDetail.position || ""}</div>`;
+        const staffName = event.staffContactDetail?.nameTH || "Unknown";
+        const staffPosition = event.staffContactDetail?.position || "";
+        coloredEvent.title = `<div style="font-weight: bold;text-align: center; font-size: 16px">${event.title}</div><div style="text-align: center; font-size: 13px">${timeRange}</div><div style="text-align: center; font-size: 12px">By ${staffName} ${staffPosition}</div>`;
+        if (isMultiDay) {
+          coloredEvent.allDay = true;
+        }
       }
       if (event.type) {
         const foundColor = colorsMap.find(
@@ -128,10 +121,6 @@ function MeetingRoomCalendar({
   useEffect(() => {
     findAllCalendarEvent();
   }, [data]);
-
-  useEffect(() => {
-    getToday();
-  }, []);
 
   useEffect(() => {
     getToSelectDay(selectDate);
@@ -201,7 +190,7 @@ function MeetingRoomCalendar({
           successCallback(
             rooms.map((_room) => {
               return {
-                id: _room.id,
+                id: String(_room.id),
                 title: `${_room.name} (${_room.capacity} คน)`,
                 order: _room.order,
               };
@@ -217,7 +206,8 @@ function MeetingRoomCalendar({
         slotMaxTime={"19:00:01"}
         slotMinTime={"07:00:00"}
         weekends
-        allDaySlot={false}
+        allDaySlot={true}
+        allDayText="Multi-day"
         locale={"en"}
         events={isSuccess ? events : []}
         eventTimeFormat={{
