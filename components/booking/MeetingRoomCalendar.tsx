@@ -7,6 +7,10 @@ import interactionPlugin from "@fullcalendar/interaction";
 import bootstrapPlugin from "@fullcalendar/bootstrap";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline"; // a plugin!
 import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
+import "@fullcalendar/common/main.css";
+import "@fullcalendar/daygrid/main.css";
+import "@fullcalendar/timegrid/main.css";
+import "@fullcalendar/bootstrap/main.css";
 import moment from "moment";
 import { _getAllRooms } from "../../services/meetingRoom/meeting-room.service";
 import { FULL_CANLENDAR_LICENSE } from "../../config";

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useLayoutEffect, useState } from "react";
 import {
   checkAuth,
   checkToken,
@@ -24,11 +24,10 @@ export function UserProvider(props: any) {
   const router = useRouter();
   const [isLoadingUserInfo, setIsLoadingUserInfo] = useState(true);
 
-  const getUser = async () => {
-    // const user = await checkAuth();
+  const getUser = () => {
     if (getAuthToken()) {
       const user: IContact = jwt_decode(getAuthToken());
-      if (!user) return false;
+      if (!user) return;
       if (user.role) signOut();
       setUserInfo(user);
     }
@@ -50,7 +49,7 @@ export function UserProvider(props: any) {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!router.pathname.includes("log-in")) {
       getUser();
     }
@@ -58,7 +57,7 @@ export function UserProvider(props: any) {
     // if(!router.pathname.includes("log-in") && getAuthToken()){
     //   checkTokenAndRenew();
     // }
-  }, [router]);
+  }, [router.pathname]);
 
   return (
     <UserContext.Provider value={{ userInfo, signOut, getUser }}>

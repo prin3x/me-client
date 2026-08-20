@@ -17,7 +17,7 @@ const withTM = require('next-transpile-modules')([
 const withLess = require('next-with-less');
 module.exports = withTM(
   withLess({
-    swcMinify: false,
+    swcMinify: true,
     trailingSlash: true,
     images: {
       formats: ['image/avif', 'image/webp'],

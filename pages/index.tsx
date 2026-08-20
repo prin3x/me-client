@@ -12,11 +12,8 @@ import {
   _getRecentITClinic,
   _getRecentNews,
 } from "../services/news/news.service";
-import { useContext, useEffect, useState } from "react";
-import {
-  EPostCategory,
-  ListQueryParamsForPost,
-} from "../services/news/news.model";
+import { useContext } from "react";
+import { EPostCategory } from "../services/news/news.model";
 import { useRouter } from "next/router";
 import { UserContext } from "../context/UserContext";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -29,46 +26,25 @@ const CarouselSlider = dynamic(
 );
 
 const Home: NextPage = () => {
-  const { userInfo, getUser } = useContext(UserContext);
+  const { userInfo } = useContext(UserContext);
   const router = useRouter();
-  const [queryStr, setQueryStr] = useState<ListQueryParamsForPost>({});
-  const [carouselSet, setCarouselSet] = useState([]);
   const recentAnnouncementMeta = useQuery(
     [
       ALL_RECENT_ANNCOUNCEMENT,
       { limit: 10, categoryName: EPostCategory.ANNOUNCEMENT },
     ],
-    () => _getRecentNews(queryStr)
+    () => _getRecentNews({ limit: 10 })
   );
   const recentActivityMeta = useQuery(
     [ALL_RECENT_POST, { limit: 1, categoryName: EPostCategory.ACTIVITY }],
-    () => _getRecentActivity(queryStr)
+    () => _getRecentActivity({ limit: 1 })
   );
   const recentItClinicMeta = useQuery(
     [ALL_RECENT_POST, { limit: 1, categoryName: EPostCategory.IT }],
-    () => _getRecentITClinic(queryStr)
+    () => _getRecentITClinic({ limit: 1 })
   );
-
-  function setQuery() {
-    let set = {} as ListQueryParamsForPost;
-    set.limit = 10;
-    set.categoryName = EPostCategory.ANNOUNCEMENT;
-
-    setQueryStr(set);
-  }
-
-  async function getCarousel() {
-    try {
-      const res = await _getAllEnabledCarousel();
-      setCarouselSet(res);
-    } catch (e) {
-      console.error("no carousel available");
-    }
-  }
-
-  useEffect(() => {
-    getCarousel();
-  }, []);
+  const carouselMeta = useQuery(["enabled-carousel"], _getAllEnabledCarousel);
+  const carouselSet = carouselMeta.data ?? [];
 
   if (!userInfo)
     return (
